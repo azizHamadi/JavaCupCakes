@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<fx:root id="AnchorPane" prefHeight="543.0" prefWidth="834.0" type="AnchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Views.CategorieRecAfficher.CategorieRecAfficherPaneController">
+   <children>
+      <TableView fx:id="CatRecTable" layoutX="14.0" layoutY="16.0" prefHeight="512.0" prefWidth="266.0">
+        <columns>
+          <TableColumn fx:id="nomCatRec" prefWidth="265.0" text="Nom Categorie Recette" />
+        </columns>
+      </TableView>
+   </children>
+</fx:root>

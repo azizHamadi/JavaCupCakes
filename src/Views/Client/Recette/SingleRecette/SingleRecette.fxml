@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.web.HTMLEditor?>
+<?import javafx.scene.web.WebView?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="1183.0" style="-fx-background-color: #242a31;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Views.Client.Recette.SingleRecette.SingleRecetteController">
+   <children>
+      <WebView fx:id="description" layoutX="13.0" prefHeight="249.0" prefWidth="1157.0" />
+      <HTMLEditor fx:id="ckeditor" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="14.0" layoutY="275.0" onKeyPressed="#afficher" prefHeight="473.0" prefWidth="1157.0" />
+   </children>
+</AnchorPane>

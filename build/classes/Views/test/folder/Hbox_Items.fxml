@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #242a31;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Views.test.folder.Hbox_ItemsController">
+   <children>
+      <HBox fx:id="ligne_body" layoutX="10.0" layoutY="10.0" prefHeight="300.0" prefWidth="977.0" />
+   </children>
+</AnchorPane>
