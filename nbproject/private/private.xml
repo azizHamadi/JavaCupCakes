@@ -3,43 +3,55 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/CupCakesJava/src/Views/test/folder/Hbox_ItemsController.java</file>
             <file>file:/D:/CupCakesJava/src/Entity/Utilisateur.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/test/folder/morabba3s8ir.fxml</file>
             <file>file:/D:/CupCakesJava/src/Views/CategorieRecAfficher/CategorieRecAfficherPaneController.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/test/folder/morabba3Pane.fxml</file>
             <file>file:/D:/CupCakesJava/src/Views/jcpa/affichage.java</file>
             <file>file:/D:/CupCakesJava/src/Entity/CategorieRec.java</file>
             <file>file:/D:/CupCakesJava/src/Views/Client/Recette/SingleRecette/SingleRecette.fxml</file>
-            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/AjouterRecette/AjouterRecetteClient.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/test/folder/Morabba3s8irController.java</file>
             <file>file:/D:/CupCakesJava/src/Entity/Recette.java</file>
             <file>file:/D:/CupCakesJava/src/Entity/Produit.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/AjouterRecette/AjouterRecetteClientController.java</file>
             <file>file:/D:/CupCakesJava/src/Entity/Commentaire.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/ListAllRecettesController.java</file>
+            <file>file:/D:/CupCakesJava/src/Entity/Note.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/GererRecetteController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/AjouterRecette/AjouterRecetteClient.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/SingleRecette/SingleRecetteController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/morabba3s8ir.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Views/jcpa/affichagePane.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Services/RecetteService.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/CategorieRecFiltre.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Views/test/folder/ClientTemplate.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Views/CategorieRecAfficher/CategorieRecAfficher.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/common.css</file>
+            <file>file:/D:/CupCakesJava/src/Views/test/folder/Hbox_ItemsController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/test/folder/morabba3s8ir.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/AjouterRecette/AjouterRecetteClient.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/GererRecette.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Views/test/folder/Morabba3s8irController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/Hbox_Items.fxml</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/AjouterRecette/AjouterRecetteClientController.java</file>
             <file>file:/D:/CupCakesJava/src/Views/test/folder/morabba3Pane.java</file>
             <file>file:/D:/CupCakesJava/src/Views/jcpa/kaaboura.fxml</file>
-            <file>file:/D:/CupCakesJava/src/Entity/Note.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/test/folder/ClientTemplateController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/test/folder/mainCupCakes.java</file>
             <file>file:/D:/CupCakesJava/src/Technique/DataSource.java</file>
             <file>file:/D:/CupCakesJava/src/Views/CategorieRecAjout/CategorieRecAjouter.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/AjouterRecette/AjouterRecetteClient.fxml</file>
             <file>file:/D:/CupCakesJava/src/Views/test/folder/BarMenuController.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/SingleRecette/SingleRecetteController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/Morabba3s8irController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/CategorieRecFiltreController.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/Page2RecetteController.java</file>
             <file>file:/D:/CupCakesJava/src/Views/CategorieRecAfficher/CategorieRecAfficherPane.fxml</file>
-            <file>file:/D:/CupCakesJava/src/Views/jcpa/affichagePane.fxml</file>
-            <file>file:/D:/CupCakesJava/src/Views/test/folder/Morabba3PaneController.java</file>
             <file>file:/D:/CupCakesJava/src/Views/jcpa/KaabouraController.java</file>
             <file>file:/D:/CupCakesJava/src/Entity/Promotion.java</file>
-            <file>file:/D:/CupCakesJava/src/Services/RecetteService.java</file>
             <file>file:/D:/CupCakesJava/src/Views/Client/Recette/SingleRecette/SingleRecette.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/Hbox_ItemsController.java</file>
             <file>file:/D:/CupCakesJava/src/Views/test/folder/Hbox_Items.fxml</file>
             <file>file:/D:/CupCakesJava/src/Views/test/folder/barMenu.fxml</file>
             <file>file:/D:/CupCakesJava/src/Views/CategorieRecAjout/CategorieRecAjouterPane.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/test/folder/morabba3.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/CategorieRecAfficher/CategorieRecAfficher.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/Page2Recette.fxml</file>
             <file>file:/D:/CupCakesJava/src/Views/jcpa/affichagePane.java</file>
-            <file>file:/D:/CupCakesJava/src/Views/common.css</file>
             <file>file:/D:/CupCakesJava/src/Services/CategorieRecetteService.java</file>
+            <file>file:/D:/CupCakesJava/src/Views/Client/Recette/ListAllRecettes/ListAllRecettes.fxml</file>
         </group>
     </open-files>
 </project-private>

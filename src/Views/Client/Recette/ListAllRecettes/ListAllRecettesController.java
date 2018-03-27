@@ -22,7 +22,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -53,6 +56,8 @@ public class ListAllRecettesController implements Initializable {
     private Label btnP;
     @FXML
     private Label btnS;
+    @FXML
+    private TextField recherche;
 
 
 
@@ -153,7 +158,6 @@ public class ListAllRecettesController implements Initializable {
                     nbrLignePage++;
                 }
             }
-            System.out.println(listePageRecette.length + " hahahah "+ nbrLignePage);
         
         } catch (SQLException | IOException ex) {
             Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
@@ -171,9 +175,13 @@ public class ListAllRecettesController implements Initializable {
         int i = 0 ;
         int j = 0 ;
         NoteService ns = new NoteService();
-
+        if(listRec.size() % 6 == 0)
+            listePageRecette = new Node[listRec.size()/6];
+        else
+            listePageRecette = new Node[(listRec.size()/6)+1];
         FXMLLoader loaderItems = null ;
         Hbox_ItemsController hc = new Hbox_ItemsController();
+        Page2RecetteController Cp2r = new Page2RecetteController();
         for(Recette rec : listRec)
         {
             // parcour des lignes 
@@ -200,18 +208,34 @@ public class ListAllRecettesController implements Initializable {
             });
             hc.addColonne(nodesColonne[i]);
             i++;
-            if( listRec.size() > i)
-            {
-                if ( i % 3 == 0 ){
-                    section_body.getChildren().add(nodesLigne[j]);
-                    j++;
+                if(j==0 || j % 2 == 0){
+                    FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2Recette.fxml"));
+                    listePageRecette[nbrLignePage] = loaderPage2Ligne.load();
+                    Cp2r = loaderPage2Ligne.getController();
                 }
-            }
-            else
-            {
-                section_body.getChildren().add(nodesLigne[j]);
-            }
+                if( listRec.size() > i)
+                {
+                    if ( i % 3 == 0 ){
+                        Cp2r.setPage2Ligne(nodesLigne[j]);
+                        j++;
+                        if(j==2)
+                            section_body.getChildren().add(listePageRecette[nbrLignePage]);
+                        if (j % 2 ==0){
+                            listePageRecette[nbrLignePage]=Cp2r.getPage2Ligne();
+                            nbrLignePage++;
+                        }
+                    }
+                }
+                else
+                {
+                    if (j<2)
+                        section_body.getChildren().add(listePageRecette[nbrLignePage]);
+                    Cp2r.setPage2Ligne(nodesLigne[j]);
+                    listePageRecette[nbrLignePage]=Cp2r.getPage2Ligne();
+                    nbrLignePage++;
+                }
         }
+        nbrLignePage = 0 ;
     }
 
     
@@ -269,7 +293,6 @@ public class ListAllRecettesController implements Initializable {
         if(nbrLignePage<0)
             nbrLignePage=listePageRecette.length -1;
         section_body.getChildren().clear();
-        System.out.println(nbrLignePage);
         section_body.getChildren().add(listePageRecette[nbrLignePage]);
     }
 
@@ -279,9 +302,82 @@ public class ListAllRecettesController implements Initializable {
         if(nbrLignePage== listePageRecette.length)
             nbrLignePage=0 ;
         section_body.getChildren().clear();
-        System.out.println(nbrLignePage);
         section_body.getChildren().add(listePageRecette[nbrLignePage]);
     }
+
+    @FXML
+    private void RechercheRecette(KeyEvent event) throws SQLException, IOException {
+        section_body.getChildren().clear();
+        RecetteService RS = new RecetteService();
+        List<Recette> listRec = RS.RechercheParNomRecette(recherche.getText());
+        Node [] nodesLigne = new Node[3];
+        Node [] nodesColonne = new Node[9];
+        int i = 0 ;
+        int j = 0 ;
+        NoteService ns = new NoteService();
+        if(listRec.size() % 6 == 0)
+            listePageRecette = new Node[listRec.size()/6];
+        else
+            listePageRecette = new Node[(listRec.size()/6)+1];
+        FXMLLoader loaderItems = null ;
+        Hbox_ItemsController hc = new Hbox_ItemsController();
+        Page2RecetteController Cp2r = new Page2RecetteController();
+        for(Recette rec : listRec)
+        {
+            // parcour des lignes 
+            if ( i % 3 == 0 || i == 0)
+            {
+                loaderItems = new FXMLLoader(getClass().getResource("Hbox_Items.fxml"));
+                nodesLigne[j] = loaderItems.load() ;
+            }
+            hc = loaderItems.getController();
+
+            //parcour des colonnes
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("morabba3s8ir.fxml"));
+            nodesColonne[i] = loader.load() ;
+            Morabba3s8irController msc = loader.getController();
+            msc.setNom(rec.getNomRec());
+            msc.setImage(rec.getImageRec());
+            msc.setNomCat(rec.getIdCatRec().getNomCatRec());
+            msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
+            msc.setNomUser(rec.getIdUser().getUsername());
+            msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
+            ImageView img = msc.getImage();
+            img.setOnMouseClicked(e->{
+                System.out.println("te5dem");
+            });
+            hc.addColonne(nodesColonne[i]);
+            i++;
+                if(j==0 || j % 2 == 0){
+                    FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2Recette.fxml"));
+                    listePageRecette[nbrLignePage] = loaderPage2Ligne.load();
+                    Cp2r = loaderPage2Ligne.getController();
+                }
+                if( listRec.size() > i)
+                {
+                    if ( i % 3 == 0 ){
+                        Cp2r.setPage2Ligne(nodesLigne[j]);
+                        j++;
+                        if(j==2)
+                            section_body.getChildren().add(listePageRecette[nbrLignePage]);
+                        if (j % 2 ==0){
+                            listePageRecette[nbrLignePage]=Cp2r.getPage2Ligne();
+                            nbrLignePage++;
+                        }
+                    }
+                }
+                else
+                {
+                    if (j<2)
+                        section_body.getChildren().add(listePageRecette[nbrLignePage]);
+                    Cp2r.setPage2Ligne(nodesLigne[j]);
+                    listePageRecette[nbrLignePage]=Cp2r.getPage2Ligne();
+                    nbrLignePage++;
+                }
+        }
+        nbrLignePage = 0 ;
+    }
+
     
     
 }
