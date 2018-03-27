@@ -11,50 +11,62 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane id="AnchorPane" prefHeight="851.0" prefWidth="1171.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.AjouterRecette.AjouterRecetteClientController">
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1000.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.AjouterRecette.AjouterRecetteClientController">
    <children>
-      <ComboBox fx:id="catRec" layoutX="47.0" layoutY="120.0" prefHeight="31.0" prefWidth="481.0" promptText="Categorie Recette">
+      <ComboBox fx:id="catRec" layoutX="45.0" layoutY="94.0" prefHeight="31.0" prefWidth="358.0" promptText="Categorie Recette">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
-      <TextField fx:id="nomRec" layoutX="582.0" layoutY="120.0" prefHeight="31.0" prefWidth="450.0" promptText="Nom Recette" styleClass="inputNomCat" stylesheets="@../../../common.css">
+      <TextField fx:id="nomRec" layoutX="494.0" layoutY="97.0" prefHeight="31.0" prefWidth="358.0" promptText="Nom Recette" styleClass="inputNomCat" stylesheets="@../../../common.css">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
-      <HTMLEditor fx:id="description" htmlText="" layoutX="47.0" layoutY="215.0" prefHeight="476.0" prefWidth="990.0" />
-      <Label layoutX="47.0" layoutY="176.0" text="Description" textFill="WHITE">
+      <HTMLEditor fx:id="description" htmlText="" layoutX="45.0" layoutY="171.0" prefHeight="364.0" prefWidth="921.0" />
+      <Label layoutX="43.0" layoutY="139.0" text="Description" textFill="WHITE">
          <font>
-            <Font size="19.0" />
+            <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="image" layoutX="47.0" layoutY="711.0" mnemonicParsing="false" onAction="#UploadImageB" prefHeight="33.0" prefWidth="159.0" styleClass="btImage" stylesheets="@../../../common.css" text="Importer une image" textFill="WHITE">
+      <Button fx:id="image" layoutX="45.0" layoutY="548.0" mnemonicParsing="false" onAction="#UploadImageB" prefHeight="33.0" prefWidth="159.0" styleClass="btImage" stylesheets="@../../../common.css" text="Importer une image" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label fx:id="lab_image" layoutX="216.0" layoutY="725.0" text="veuillez choisir une image" textFill="#ee1d1d" visible="false" />
-      <TextField fx:id="textImage" editable="false" layoutX="206.0" layoutY="711.0" onMouseClicked="#UploadImage" prefHeight="31.0" prefWidth="450.0" styleClass="txtImage" stylesheets="@../../../common.css">
+      <Label fx:id="lab_image" layoutX="201.0" layoutY="556.0" text="veuillez choisir une image" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="textImage" editable="false" layoutX="204.0" layoutY="548.0" onMouseClicked="#UploadImage" prefHeight="31.0" prefWidth="450.0" styleClass="txtImage" stylesheets="@../../../common.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </TextField>
-      <Text fill="#e4b95b" layoutX="47.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Une recette">
+      <Text fill="#e4b95b" layoutX="43.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Une recette">
          <font>
-            <Font name="Arial Rounded MT Bold" size="33.0" />
+            <Font name="Arial Rounded MT Bold" size="25.0" />
          </font>
       </Text>
-      <Button fx:id="Enregistrer" layoutX="980.0" layoutY="749.0" mnemonicParsing="false" onAction="#AjouterRecetteClient" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="WHITE">
+      <Button fx:id="Enregistrer" layoutX="827.0" layoutY="595.0" mnemonicParsing="false" onAction="#AjouterRecetteClient" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="Annuler" layoutX="819.0" layoutY="749.0" mnemonicParsing="false" onAction="#AnnulerAjoutRecetteClient" prefHeight="31.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Annuler" textFill="WHITE">
+      <Button fx:id="Annuler" layoutX="657.0" layoutY="596.0" mnemonicParsing="false" onAction="#AnnulerAjoutRecetteClient" prefHeight="31.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Annuler" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label fx:id="lab_CatRec" layoutX="47.0" layoutY="95.0" text="veuillez choisir parmi les catégories suivantes" textFill="#ee1d1d" visible="false" />
-      <Label fx:id="lab_nomRec" layoutX="588.0" layoutY="95.0" text="veuillez saisir le nom de la recette" textFill="#ee1d1d" visible="false" />
-      <Label fx:id="lab_DescRec" layoutX="149.0" layoutY="181.0" text="veuillez saisir la description de la recette" textFill="#ee1d1d" visible="false" />
-      <Button fx:id="AjouterCategorie" layoutX="528.0" layoutY="123.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="28.0" prefWidth="21.0" style="-fx-background-color: transparent;">
+      <Label fx:id="lab_CatRec" layoutX="45.0" layoutY="69.0" text="veuillez choisir parmi les catégories suivantes" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lab_nomRec" layoutX="494.0" layoutY="72.0" text="veuillez saisir le nom de la recette" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lab_DescRec" layoutX="130.0" layoutY="143.0" text="veuillez saisir la description de la recette" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="AjouterCategorie" layoutX="410.0" layoutY="98.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="28.0" prefWidth="21.0" style="-fx-background-color: transparent;">
          <graphic>
             <FontAwesomeIconView fill="#e4b95b" glyphName="PLUS" size="18" />
          </graphic>

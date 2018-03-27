@@ -15,11 +15,11 @@ import javafx.stage.Stage;
  *
  * @author aziz
  */
-public class morabba3 extends Application {
+public class mainCupCakes extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("morabba3Pane.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ClientTemplate.fxml"));
         
         Scene scene = new Scene(root);
         
