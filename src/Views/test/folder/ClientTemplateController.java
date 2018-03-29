@@ -50,4 +50,15 @@ public class ClientTemplateController implements Initializable {
         }
 
     }
+
+    @FXML
+    private void GestionProduit(ActionEvent event) {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Produit/GererProduit.fxml"));
+        try {
+            body.getChildren().clear();
+            body.getChildren().add(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(ClientTemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

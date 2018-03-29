@@ -95,8 +95,8 @@ public class AjouterRecetteClientController implements Initializable {
 
                     @Override
                     public CategorieRec fromString(String string) {
-                        return catRec.getItems().stream().filter(ap -> 
-                                    ap.getNomCatRec().equals(string)).findFirst().orElse(null);}
+                    return catRec.getItems().stream().filter(ap -> 
+                    ap.getNomCatRec().equals(string)).findFirst().orElse(null);}
                 });
             }
         } catch (SQLException ex) {
@@ -107,7 +107,7 @@ public class AjouterRecetteClientController implements Initializable {
 
     @FXML
     private void UploadImage(MouseEvent event) {
-                FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().addAll(
         new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg" ,"*.jpeg"));
@@ -117,7 +117,7 @@ public class AjouterRecetteClientController implements Initializable {
             textImage.setText(fd1.getName());
         imgf = fd1.getName();
         fdS = fd1.getAbsolutePath();
-        fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Recettes/"+fd1.getName());
+        fdS1 = ("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Recettes/"+fd1.getName());
         lab_image.setVisible(false);
         }
         //macopitch l'image 5ater matetcopa ken maya3mel enregistrer w ykounou les conditions lkol s7a7 
@@ -139,7 +139,7 @@ public class AjouterRecetteClientController implements Initializable {
         File f1 = new File(fdS);
         File f2 = new File(fdS1);
         Files.copy(f1.getAbsoluteFile().toPath(),f2.getAbsoluteFile().toPath());
-        rs.AjouterRecette(new Recette(nomRec.getText(), description.getHtmlText().substring(58, description.getHtmlText().length()-14), imgf, catRec.getValue(), new Utilisateur(17)));
+        rs.AjouterRecette(new Recette(nomRec.getText(), description.getHtmlText().substring(58, description.getHtmlText().length()-14), imgf, catRec.getValue(), new Utilisateur(1)));
         System.out.println("c bon");
     }
     
@@ -196,7 +196,7 @@ public class AjouterRecetteClientController implements Initializable {
             textImage.setText(fd1.getName());
         imgf = fd1.getName();
         fdS = fd1.getAbsolutePath();
-        fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Recettes/"+fd1.getName());
+        fdS1 = ("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Recettes/"+fd1.getName());
         //Files.copy(f.getAbsoluteFile().toPath(),fd.getAbsoluteFile().toPath());
         lab_image.setVisible(false);
         }

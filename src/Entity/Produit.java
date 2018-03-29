@@ -32,10 +32,73 @@ public class Produit {
     public Produit() {
     }
 
+    public Produit(String nomProd, Double qteStockProd, String typeProd, Integer prixProd, Integer nvPrix, String etatProd, Integer qteAcheter, int valeur, String imageprod) {
+        this.nomProd = nomProd;
+        this.qteStockProd = qteStockProd;
+        this.typeProd = typeProd;
+        this.prixProd = prixProd;
+        this.nvPrix = nvPrix;
+        this.etatProd = etatProd;
+        this.qteAcheter = qteAcheter;
+        this.valeur = valeur;
+        this.imageprod= imageprod;
+    }
+
+    public Produit(Integer idProd, String nomProd, Double qteStockProd,String typeProd, Integer prixProd, String imageprod ) {
+        this.idProd = idProd;
+        this.nomProd = nomProd;
+        this.qteStockProd = qteStockProd;
+        this.typeProd = typeProd;
+        this.prixProd = prixProd;
+        this.imageprod = imageprod;
+    }
+
+    public Produit(Integer idProd, String etatProd) {
+        this.idProd = idProd;
+        this.etatProd = etatProd;
+    }
+
+    public Produit(Integer idProd,String nomProd, Double qteStockProd,String typeProd, Integer prixProd, String imageprod, Integer qteAcheter, Categorie idCat, Utilisateur idUser) {
+               this.idProd = idProd;
+        this.nomProd = nomProd;
+        this.qteStockProd = qteStockProd;
+                this.typeProd = typeProd;
+
+        this.prixProd = prixProd;
+        this.imageprod = imageprod;
+        this.qteAcheter = qteAcheter;
+        this.idCat = idCat;
+        this.idUser = idUser;
+    }
+
+    
+    public Produit(String nomProd, Double qteStockProd, String typeProd, Integer prixProd,  String etatProd) {
+        this.nomProd = nomProd;
+        this.qteStockProd = qteStockProd;
+        this.typeProd = typeProd;
+        this.prixProd = prixProd;
+        this.etatProd = etatProd;
+       
+    }
+
+    public Produit(String nomProd, Integer prixProd, String imageprod ,Double qteStockProd) {
+        this.nomProd = nomProd;
+        this.prixProd = prixProd;
+        this.imageprod = imageprod;
+        this.qteStockProd=qteStockProd;
+    }
+
+   
+    
     public Produit(Integer idProd) {
         this.idProd = idProd;
     }
 
+    public Produit(String nomProd) {
+        this.nomProd = nomProd;
+    }
+
+    
     public Produit(Integer idProd, int valeur) {
         this.idProd = idProd;
         this.valeur = valeur;
@@ -175,7 +238,8 @@ public class Produit {
 
     @Override
     public String toString() {
-        return "Entity.Produit[ idProd=" + idProd + " ]";
+        return "Produit{" + "nomProd=" + nomProd + '}';
     }
+
     
 }

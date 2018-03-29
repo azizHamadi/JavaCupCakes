@@ -51,12 +51,9 @@ public class CommandePane extends AnchorPane {
         Date date = java.sql.Date.valueOf(DateLiv.getValue());
         String adr = AdrLiv.getText();
         Commande com = new Commande(date,(double)15.22,date,adr,"en cours","vrai");
-        try {
-            commande.AjouterCommande(com);
-        } catch (SQLException ex) {
-            Logger.getLogger(CommandePane.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
+           // commande.AjouterCommande(com);
+
     }
     
 }

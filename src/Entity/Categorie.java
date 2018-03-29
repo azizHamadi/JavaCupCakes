@@ -20,6 +20,15 @@ public class Categorie {
     public Categorie() {
     }
 
+    public Categorie(String nomCat) {
+        this.nomCat = nomCat;
+    }
+
+    public Categorie(Integer idCat, String nomCat) {
+        this.idCat = idCat;
+        this.nomCat = nomCat;
+    }
+
     public Categorie(Integer idCat) {
         this.idCat = idCat;
     }
@@ -70,7 +79,7 @@ public class Categorie {
 
     @Override
     public String toString() {
-        return "Entity.Categorie[ idCat=" + idCat + " ]";
+        return nomCat;
     }
     
 }

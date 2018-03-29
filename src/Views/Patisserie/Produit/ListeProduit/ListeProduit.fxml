@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="1009.0" style="-fx-background-color: #f4f3ef;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Produit.ListeProduit.ListeProduitController">
+   <children>
+      <HBox prefHeight="586.0" prefWidth="1009.0">
+         <children>
+            <VBox prefHeight="586.0" prefWidth="574.0">
+               <children>
+                  <TableView fx:id="TableProd" onMouseClicked="#FetcherTable" prefHeight="584.0" prefWidth="661.0" style="-fx-border-color: #96cad9; -fx-background-color: #f4f3ef;">
+                    <columns>
+                      <TableColumn fx:id="nomP" prefWidth="117.0" text="Nom Produit" />
+                      <TableColumn fx:id="QantitéP" prefWidth="109.0" text="Quantite Stock" />
+                        <TableColumn fx:id="PrixP" prefWidth="48.0" text="Prix" />
+                        <TableColumn fx:id="TypeP" prefWidth="76.0" text="Type" />
+                        <TableColumn fx:id="CatP" prefWidth="79.0" text="Categorie" />
+                        <TableColumn fx:id="QteAcheter" prefWidth="138.0" text="Quantité Acheter" />
+                        <TableColumn fx:id="image" prefWidth="67.0" text="Image" visible="false" />
+                        <TableColumn fx:id="idProd" prefWidth="75.0" text="IdProd" visible="false" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <AnchorPane prefHeight="561.0" prefWidth="299.0">
+               <children>
+                  <JFXTextField fx:id="NomProd" focusColor="#e57c3e" layoutX="29.0" layoutY="39.0" promptText="Nom Produit" unFocusColor="#96cad9" />
+                  <JFXTextField fx:id="QteStock" focusColor="#e57c3e" layoutX="29.0" layoutY="101.0" promptText="Qauntité" unFocusColor="#96cad9" />
+                  <JFXTextField fx:id="Prix" focusColor="#e57c3e" layoutX="29.0" layoutY="168.0" promptText="Prix" unFocusColor="#96cad9" />
+                  <JFXButton layoutX="164.0" layoutY="497.0" onAction="#Modifier" prefHeight="50.0" prefWidth="135.0" text="Modifier" textFill="#96cad9">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXButton>
+                  <JFXButton layoutX="29.0" layoutY="497.0" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="113.0" text="Supprimer" textFill="#96cad9">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXButton>
+                  <JFXComboBox fx:id="type" focusColor="#e57c3e" layoutX="29.0" layoutY="234.0" prefHeight="25.0" prefWidth="135.0" promptText="Type" unFocusColor="#96cad9" />
+                  <JFXComboBox fx:id="Categorie" focusColor="#e57c3e" layoutX="29.0" layoutY="293.0" prefHeight="25.0" prefWidth="135.0" promptText="Categorie" unFocusColor="#96cad9" />
+                  <ImageView fx:id="imageview" fitHeight="127.0" fitWidth="185.0" layoutX="57.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="id" layoutX="29.0" layoutY="363.0" text="id" visible="false" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

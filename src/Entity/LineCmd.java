@@ -5,16 +5,8 @@
  */
 package Entity;
 
-import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+
 
 /**
  *
@@ -31,6 +23,17 @@ public class LineCmd {
     public LineCmd() {
     }
 
+    public LineCmd(Integer qteAcheter, String etatLineCmd) {
+        this.qteAcheter = qteAcheter;
+        this.etatLineCmd = etatLineCmd;
+    }
+
+    public LineCmd(Integer qteAcheter, Produit produit) {
+        this.qteAcheter = qteAcheter;
+        this.produit = produit;
+    }
+
+    
     
 
     public Integer getQteAcheter() {
@@ -88,6 +91,11 @@ public class LineCmd {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "LineCmd{" + "qteAcheter=" + qteAcheter + ", produit=" + produit + '}';
     }
 
    

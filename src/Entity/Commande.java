@@ -5,62 +5,24 @@
  */
 package Entity;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author escobar
  */
-@Entity
-@Table(name = "commande")
-@NamedQueries({
-    @NamedQuery(name = "Commande.findAll", query = "SELECT c FROM Commande c")})
-public class Commande implements Serializable {
+public class Commande {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "idCmd")
     private Integer idCmd;
-    @Column(name = "dateCmd")
-    @Temporal(TemporalType.DATE)
     private Date dateCmd;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "montantCmd")
     private Double montantCmd;
-    @Column(name = "dateLivCmd")
-    @Temporal(TemporalType.DATE)
     private Date dateLivCmd;
-    @Column(name = "addLiv")
     private String addLiv;
-    @Column(name = "etatLivCmd")
     private String etatLivCmd;
-    @Column(name = "etatCmd")
     private String etatCmd;
-    @JoinColumn(name = "idUser", referencedColumnName = "id")
-    @ManyToOne
     private Utilisateur idUser;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "commande")
     private Collection<LineCmd> lineCmdCollection;
-    @OneToMany(mappedBy = "idCmd")
     private Collection<FeedBack> feedBackCollection;
 
     public Commande() {
@@ -70,10 +32,44 @@ public class Commande implements Serializable {
         this.idCmd = idCmd;
     }
 
-    public Commande(java.sql.Date date, double d, java.sql.Date date0, String adr, String en_cours, String vrai) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Commande(Date dateCmd, Double montantCmd, Date dateLivCmd, String addLiv, String etatLivCmd, String etatCmd) {
+        this.dateCmd = dateCmd;
+        this.montantCmd = montantCmd;
+        this.dateLivCmd = dateLivCmd;
+        this.addLiv = addLiv;
+        this.etatLivCmd = etatLivCmd;
+        this.etatCmd = etatCmd;
     }
 
+    public Commande(Integer idCmd, String etatLivCmd) {
+        this.idCmd = idCmd;
+        this.etatLivCmd = etatLivCmd;
+    }
+
+   
+
+   
+
+    public Commande(Integer idCmd, Date dateCmd, Date dateLivCmd, String addLiv, String etatLivCmd, Utilisateur idUser) {
+        this.idCmd = idCmd;
+        this.dateCmd = dateCmd;
+        this.dateLivCmd = dateLivCmd;
+        this.addLiv = addLiv;
+        this.etatLivCmd = etatLivCmd;
+        this.idUser = idUser;
+    }
+
+    public Commande(Integer idCmd, Date dateCmd, Date dateLivCmd, String addLiv, String etatLivCmd,  Utilisateur idUser, Collection<LineCmd> lineCmdCollection) {
+        this.idCmd = idCmd;
+        this.dateCmd = dateCmd;
+        this.dateLivCmd = dateLivCmd;
+        this.addLiv = addLiv;
+        this.etatLivCmd = etatLivCmd;
+        this.idUser = idUser;
+        this.lineCmdCollection = lineCmdCollection;
+    }
+
+    
     public Integer getIdCmd() {
         return idCmd;
     }
@@ -176,7 +172,9 @@ public class Commande implements Serializable {
 
     @Override
     public String toString() {
-        return "Entity.Commande[ idCmd=" + idCmd + " ]";
+        return "Commande{" + "idCmd=" + idCmd + ", dateCmd=" + dateCmd + ", dateLivCmd=" + dateLivCmd + ", addLiv=" + addLiv + ", etatLivCmd=" + etatLivCmd + ", idUser=" + idUser + ", lineCmdCollection=" + lineCmdCollection + '}';
     }
+
+
     
 }

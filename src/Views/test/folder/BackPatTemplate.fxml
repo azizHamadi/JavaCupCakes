@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #F4F3EF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.test.folder.BackPatTemplateController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #F4F3EF;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="925.0" style="-fx-background-color: #F4F3EF;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1500.0" style="-fx-background-color: #F4F3EF;">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#GestionProduit" style="-fx-background-color: transparent;" text="Produits" textFill="#96cad9">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#GestionCommande" style="-fx-background-color: transparent;" text="Commandes" textFill="#96cad9">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: transparent; -fx-border-color: #96cad9; -fx-border-width: 3px; -fx-border-radius: 5em;">
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                     <children>
+                        <Text fill="#96cad9" strokeType="OUTSIDE" strokeWidth="0.0" text="CupCakes">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#GestionPromotion" style="-fx-background-color: transparent;" text="Promotions" textFill="#96cad9">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="55.0" prefWidth="267.0">
+                     <children>
+                        <Button fx:id="btnRecette" mnemonicParsing="false" onAction="#GestionRecette" style="-fx-background-color: transparent;" text="Recettes" textFill="#96cad9">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+           
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" top="2.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+            </HBox>
+      <HBox fx:id="body" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="643.0" prefWidth="1017.0" stylesheets="@../../common.css" />
+                  </children>
+
+      </VBox>
+
+   </children>
+</AnchorPane>

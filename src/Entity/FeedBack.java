@@ -17,6 +17,18 @@ public class FeedBack  {
     private String description;
     private Commande idCmd;
 
+    public FeedBack(String sujet, String description) {
+        this.sujet = sujet;
+        this.description = description;
+    }
+
+    public FeedBack(Integer idFeed, String sujet, String description, Commande idCmd) {
+        this.idFeed = idFeed;
+        this.sujet = sujet;
+        this.description = description;
+        this.idCmd = idCmd;
+    }
+
     public FeedBack() {
     }
 
@@ -78,7 +90,8 @@ public class FeedBack  {
 
     @Override
     public String toString() {
-        return "Entity.FeedBack[ idFeed=" + idFeed + " ]";
+        return "FeedBack{" + "idFeed=" + idFeed + ", sujet=" + sujet + ", description=" + description + ", idCmd=" + idCmd + '}';
     }
+
     
 }

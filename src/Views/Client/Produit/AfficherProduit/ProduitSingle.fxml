@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #20202F;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Views.Client.Produit.AfficherProduit.ProduitSingleController">
+   <children>
+      <ImageView fx:id="image" fitHeight="278.0" fitWidth="269.0" layoutX="45.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nomProd" layoutX="358.0" layoutY="82.0" prefHeight="55.0" prefWidth="259.0" text="NomP" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia Bold" size="43.0" />
+         </font>
+      </Label>
+      <Label fx:id="categorie" layoutX="358.0" layoutY="172.0" prefHeight="28.0" prefWidth="87.0" text="CatProd" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="prix" layoutX="360.0" layoutY="242.0" prefHeight="29.0" prefWidth="68.0" text="prix" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="stock" layoutX="360.0" layoutY="310.0" prefHeight="23.0" prefWidth="68.0" text="Stock" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
