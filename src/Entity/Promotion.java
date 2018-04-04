@@ -20,7 +20,15 @@ public class Promotion {
 
     public Promotion() {
     }
+    public Promotion(Double tauxPromo) {
+        this.tauxPromo = tauxPromo;
+    }
 
+      public Promotion(Double tauxPromo ,String etatPromo) {
+        this.tauxPromo = tauxPromo;
+        this.etatPromo = etatPromo;
+
+    }
     public Promotion(Integer idPromo) {
         this.idPromo = idPromo;
     }
@@ -87,7 +95,8 @@ public class Promotion {
 
     @Override
     public String toString() {
-        return "Entity.Promotion[ idPromo=" + idPromo + " ]";
+        return "Promotion{" + "idPromo=" + idPromo + ", tauxPromo=" + tauxPromo + ", etatPromo=" + etatPromo + '}';
     }
+
     
 }

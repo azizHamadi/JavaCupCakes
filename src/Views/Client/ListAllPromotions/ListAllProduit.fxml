@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.ListAllPromotions.ListAllProduitController">
+   <children>
+      <VBox fx:id="body" prefHeight="638.0" prefWidth="1010.0" style="-fx-background-color: #242a31;">
+         <children>
+            <HBox fx:id="nav_search" prefHeight="62.0" prefWidth="961.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit" wrappingWidth="182.2900390625">
+                     <HBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <HBox alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="770.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="224.0">
+                           <children>
+                              <TextField style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1 0 1 1;" />
+                              <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="30.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1 1 1 0;">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#a89f9f" glyphName="SEARCH" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <FontAwesomeIconView fill="WHITE" glyphName="TH" size="2em">
+                           <HBox.margin>
+                              <Insets left="20.0" right="5.0" top="4.0" />
+                           </HBox.margin>
+                        </FontAwesomeIconView>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="2em">
+                           <HBox.margin>
+                              <Insets left="20.0" right="20.0" top="2.0" />
+                           </HBox.margin>
+                        </FontAwesomeIconView>
+                     </children>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <VBox fx:id="BodyVBox" prefHeight="569.0" prefWidth="1000.0" style="-fx-background-color: #242a31;">
+               <children>
+                  <HBox fx:id="nav_cat" prefHeight="117.0" prefWidth="1000.0" />
+                  <HBox fx:id="nav_body" alignment="CENTER" prefHeight="564.0" prefWidth="1000.0">
+                     <children>
+                        <Label fx:id="btnP" onMouseClicked="#PagePrecedente" opacity="0.32" text="&lt;" textFill="WHITE">
+                           <font>
+                              <Font name="Californian FB" size="150.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="section_body" prefHeight="508.0" prefWidth="923.0" />
+                        <Label fx:id="btnS" onMouseClicked="#PageSuivant" opacity="0.32" text="&gt;" textFill="WHITE">
+                           <font>
+                              <Font name="Californian FB Italic" size="150.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
+    

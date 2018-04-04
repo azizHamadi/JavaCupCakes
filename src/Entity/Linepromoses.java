@@ -22,6 +22,14 @@ public class Linepromoses  {
     public Linepromoses() {
     }
 
+    public Linepromoses(Integer idLine, Date dateDeb, Date dateFin, Session idSes, Promotion idPromo) {
+        this.idLine = idLine;
+        this.dateDeb = dateDeb;
+        this.dateFin = dateFin;
+        this.idSes = idSes;
+        this.idPromo = idPromo;
+    }
+    
     public Linepromoses(Integer idLine) {
         this.idLine = idLine;
     }
@@ -90,5 +98,13 @@ public class Linepromoses  {
     public String toString() {
         return "Entity.Linepromoses[ idLine=" + idLine + " ]";
     }
+
+    public Linepromoses(Date dateDeb, Date dateFin, Session idSes, Promotion idPromo) {
+        this.dateDeb = dateDeb;
+        this.dateFin = dateFin;
+        this.idSes = idSes;
+        this.idPromo = idPromo;
+    }
+    
     
 }

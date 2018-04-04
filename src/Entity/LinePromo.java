@@ -21,9 +21,39 @@ public class LinePromo  {
     private Promotion idPromo;
     private Produit idProd;
 
-    public LinePromo() {
+    
+      public LinePromo() {
     }
 
+      public LinePromo(Date dateDeb, Date dateFin) {
+          this.dateDeb=dateDeb ;
+          this.dateFin=dateFin ;         
+
+    }
+
+    public LinePromo(Promotion idPromo, Produit idProd) {
+        this.idPromo = idPromo;
+        this.idProd = idProd;
+    }
+      
+
+    public LinePromo(Integer id, Date dateDeb, Date dateFin, Promotion idPromo, Produit idProd) {
+        this.id = id;
+        this.dateDeb = dateDeb;
+        this.dateFin = dateFin;
+        this.idPromo = idPromo;
+        this.idProd = idProd;
+    }
+      
+
+    public LinePromo(Date dateDeb, Date dateFin, Promotion idPromo, Produit idProd) {
+        this.dateDeb = dateDeb;
+        this.dateFin = dateFin;
+        this.idPromo = idPromo;
+        this.idProd = idProd;
+    }
+      
+      
     public LinePromo(Integer id) {
         this.id = id;
     }
@@ -106,7 +136,9 @@ public class LinePromo  {
 
     @Override
     public String toString() {
-        return "Entity.LinePromo[ id=" + id + " ]";
+        return "LinePromo{" + "id=" + id + ", dateDeb=" + dateDeb + ", dateFin=" + dateFin + ", idPromo=" + idPromo + ", idProd=" + idProd + '}';
     }
+
+   
     
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" onKeyTyped="#searchcode" prefHeight="622.0" prefWidth="845.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPromotion.AjouterpromoproduitController">
+    <stylesheets>
+        <URL value="@ajouterpromoproduit.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="29.0" layoutY="161.0" text="Produit" textFill="#96cad9">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="26.0" layoutY="245.0" text="Date de debut" textFill="#96cad9">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="28.0" layoutY="336.0" text="Date fin" textFill="#96cad9">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="29.0" layoutY="442.0" text="Peourcentage de promotion" textFill="#96cad9">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TableView fx:id="produitpromo" layoutX="412.0" layoutY="110.0" onMouseClicked="#FetcherTable" prefHeight="403.0" prefWidth="398.0">
+        <columns>
+          <TableColumn fx:id="nomProd" prefWidth="101.0" text="produit" />
+          <TableColumn fx:id="tauxPromo" prefWidth="83.0" text="taux" />
+            <TableColumn fx:id="caldate" prefWidth="100.0" text="date debut" />
+            <TableColumn fx:id="caldatefin" prefWidth="113.0" text="date fin" />
+        </columns>
+      </TableView>
+      <Label fx:id="prodtext" layoutX="218.0" layoutY="152.0" text="veuillez choisir un produit" textFill="#ee0808" visible="false" />
+      <Label fx:id="datedebtext" layoutX="204.0" layoutY="229.0" text="veuillez choisir la date de debut" textFill="#e00b0b" visible="false" />
+      <Label fx:id="datefintext" layoutX="204.0" layoutY="310.0" text="veuillez choisir la date de fin" textFill="#e40606" visible="false" />
+      <Label fx:id="compartxt" layoutX="170.0" layoutY="327.0" text="la date de debut doit etre sup ala date de fin" textFill="#e40808" visible="false" />
+      <Label fx:id="promotxt" layoutX="173.0" layoutY="395.0" text=" veuillez choisir un taux de promotion" textFill="#eb0909" visible="false" />
+      <Label fx:id="dateacttxt" layoutX="190.0" layoutY="253.0" text="la date doit etre sup date actuelle" textFill="#e10909" visible="false" />
+      <JFXComboBox fx:id="produit" focusColor="#96cad9" layoutX="259.0" layoutY="157.0" unFocusColor="#96cad9" />
+      <JFXComboBox fx:id="promo" layoutX="252.0" layoutY="442.0" unFocusColor="#96cad9" />
+      <JFXDatePicker fx:id="datedeb" defaultColor="#96cad9" layoutX="194.0" layoutY="234.0" />
+      <JFXDatePicker fx:id="datefin" defaultColor="#96cad9" layoutX="194.0" layoutY="332.0" />
+      <JFXButton fx:id="modifier" layoutX="269.0" layoutY="551.0" onAction="#modifierPromo" text="Modifier" textFill="#96cad9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="sup" layoutX="522.0" layoutY="551.0" onAction="#supprimer" text="Supprimer" textFill="#96cad9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField layoutX="494.0" layoutY="49.0" text="Search" unFocusColor="#96cad9" />
+      <Label layoutX="70.0" layoutY="53.0" text="Liste des produits sous promotion" textFill="#96cad9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

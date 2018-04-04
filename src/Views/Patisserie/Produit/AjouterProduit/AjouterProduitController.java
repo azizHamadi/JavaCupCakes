@@ -90,7 +90,7 @@ String imagef="";
 
     @FXML
     private void Ajouter(ActionEvent event) throws SQLException, IOException {
-          ProduitService ps = new ProduitService();
+        ProduitService ps = new ProduitService();
         Produit p = new Produit(nomProd.getText(),(double)Integer.parseInt(qteStock.getText()),typProd.getValue(),Integer.parseInt(prixprod.getText()) , 0, "vrai", 0, 0,imagef);
         ps.AjouterProduit(p,cat.getValue());
         System.out.println("c bon");

@@ -161,4 +161,16 @@ public class ProduitService {
         pre.setInt(2, p.getIdProd());
         pre.executeUpdate();
    }
+   
+   
+     public Produit RechercheProduit(String nom) throws SQLException{
+        ResultSet rs = ste.executeQuery("select * from produit where nomProd = '"+nom+"'");
+        Produit pr = new Produit();
+        while(rs.next())
+        {
+            pr.setNomProd(rs.getString("nomProd"));
+            pr.setIdProd(rs.getInt("idProd"));
+        }
+        return pr ;
+    }
 }

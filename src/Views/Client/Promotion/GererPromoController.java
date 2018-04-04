@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views.test.folder;
+package Views.Client.Promotion;
 
+import Views.Client.ListAllPromotions.ListAllProduitController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,20 +15,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
  *
- * @author escobar
+ * @author hamdi fathallah
  */
-public class BackForTemplateController implements Initializable {
+public class GererPromoController implements Initializable {
 
     @FXML
-    private HBox body;
-    @FXML
     private VBox nav_bar;
+    @FXML
+    private Button btnListePromoProd;
+    @FXML
+    private Button btnListePromoSes;
+    @FXML
+    private VBox body;
 
     /**
      * Initializes the controller class.
@@ -38,21 +42,16 @@ public class BackForTemplateController implements Initializable {
     }    
 
     @FXML
-    private void GestionFormation(ActionEvent event) {
-    }
-
-    @FXML
-    private void GestionSession(ActionEvent event) {
-    }
-
-    @FXML
-    private void GestionPromotion(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterPromotion/ajouterpromosession.fxml"));
+    private void promoproduit(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/ListAllPromotions/ListAllProduit.fxml"));
         Node root = loader.load();
+        ListAllProduitController Clar = loader.getController();
         body.getChildren().clear();
-        body.getChildren().add(root);
+        body.getChildren().add(Clar.getBody());
     }
 
- 
+    @FXML
+    private void promosession(ActionEvent event) {
+    }
     
 }
