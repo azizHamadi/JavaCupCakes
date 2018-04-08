@@ -30,9 +30,42 @@ public class Session {
     public Session() {
     }
 
+      public Session(Date dateDebSes, Date dateFinSes, Integer capaciteSes, String etatSes, String imagesess, Double prixSes, Double nvPrixSes, String nomSes, Formation idFor) {
+        this.dateDebSes = dateDebSes;
+        this.dateFinSes = dateFinSes;
+        this.capaciteSes = capaciteSes;
+        this.etatSes = etatSes;
+        this.imagesess = imagesess;
+        this.prixSes = prixSes;
+        this.nvPrixSes = nvPrixSes;
+        this.nomSes = nomSes;
+        this.idFor = idFor;
+    }
+    public Session(Date dateDebSes, Date dateFinSes, Integer capaciteSes,String imagesess, Double prixSes,String nomSes, Formation idFor) {
+        this.dateDebSes = dateDebSes;
+        this.dateFinSes = dateFinSes;
+        this.capaciteSes = capaciteSes;
+        this.imagesess = imagesess;
+        this.prixSes = prixSes;
+        this.nomSes = nomSes;
+        this.idFor = idFor;
+    }
+ public Session(int idSes,Date dateDebSes, Date dateFinSes, Integer capaciteSes, String etatSes, String imagesess, Double prixSes, Double nvPrixSes, String nomSes, Formation idFor) {
+        this.idSes=idSes;
+        this.dateDebSes = dateDebSes;
+        this.dateFinSes = dateFinSes;
+        this.capaciteSes = capaciteSes;
+        this.etatSes = etatSes;
+        this.imagesess = imagesess;
+        this.prixSes = prixSes;
+        this.nvPrixSes = nvPrixSes;
+        this.nomSes = nomSes;
+        this.idFor = idFor;
+    }
     public Session(Integer idSes) {
         this.idSes = idSes;
     }
+
 
     public Integer getIdSes() {
         return idSes;

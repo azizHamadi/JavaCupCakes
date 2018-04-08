@@ -9,7 +9,9 @@ import Entity.Categorie;
 import Entity.Produit;
 import Services.CategorieService;
 import Services.ProduitService;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.sql.SQLException;
@@ -29,6 +31,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class
@@ -39,37 +43,60 @@ public class ListeProduitController implements Initializable {
 
     @FXML
     private TableView<Produit> TableProd;
-    @FXML
     private TableColumn<Produit, String> nomP;
-    @FXML
     private TableColumn<Produit, Integer> QantitéP;
-    @FXML
     private TableColumn<Produit, Double> PrixP;
-    @FXML
     private TableColumn<Produit, String> TypeP;
-    @FXML
     private TableColumn<Produit, String> CatP;
-    @FXML
     private JFXTextField NomProd;
-    @FXML
     private JFXTextField QteStock;
-    @FXML
     private JFXTextField Prix;
-    @FXML
     private JFXComboBox<String> type;
-    @FXML
     private JFXComboBox<String> Categorie;
-    @FXML
     private TableColumn<Produit, Integer> QteAcheter;
     @FXML
     private ImageView imageview;
 String   imgp= "";
-    @FXML
     private TableColumn<Produit, String> image;
-    @FXML
     private TableColumn<Produit, Integer> idProd;
     @FXML
     private TextField id;
+    @FXML
+    private TableColumn<?, ?> columnNom;
+    @FXML
+    private TableColumn<?, ?> columnPlace;
+    @FXML
+    private TableColumn<?, ?> columnDescription;
+    @FXML
+    private TableColumn<?, ?> columnDate;
+    @FXML
+    private TableColumn<?, ?> columnId;
+    @FXML
+    private TableColumn<?, ?> columnImage;
+    @FXML
+    private TableColumn<?, ?> columnTypeFor;
+    @FXML
+    private AnchorPane AnchorPane;
+    @FXML
+    private JFXTextField txtNom;
+    @FXML
+    private JFXTextField txtPlace;
+    @FXML
+    private JFXButton btnModifier;
+    @FXML
+    private JFXComboBox<?> combotypeformation;
+    @FXML
+    private JFXDatePicker txtdate;
+    @FXML
+    private JFXButton btnbrowser;
+    @FXML
+    private ImageView imageView;
+    @FXML
+    private JFXTextField txtimage;
+    @FXML
+    private WebView txtDescription;
+    @FXML
+    private JFXButton btnAjouterFormationn;
     /**
      * Initializes the controller class.
      */
@@ -132,7 +159,6 @@ String   imgp= "";
         idProd.setCellValueFactory(new PropertyValueFactory<>("idProd"));
         TableProd.setItems(listP);
    }
-    @FXML
         private void Modifier(ActionEvent event) throws SQLException {
             ProduitService service = new ProduitService();
          Produit p = new Produit(Integer.parseInt(id.getText()), NomProd.getText(), Double.parseDouble(QteStock.getText()), type.getValue(),Integer.parseInt(Prix.getText()),imgp);
@@ -140,12 +166,27 @@ String   imgp= "";
          RefreshTable();
     }
 
-    @FXML
     private void SupprimerProd(ActionEvent event) throws SQLException {
          ProduitService service = new ProduitService();
          Produit p = new Produit(Integer.parseInt(id.getText()), "Faux");
          service.SupprimerProduit(p);
          RefreshTable();
+    }
+
+    @FXML
+    private void ModifierFormation(ActionEvent event) {
+    }
+
+    @FXML
+    private void SupprimerFormation(ActionEvent event) {
+    }
+
+    @FXML
+    private void AjouterFormationn(ActionEvent event) {
+    }
+
+    @FXML
+    private void listedesSessions(ActionEvent event) {
     }
     
 }

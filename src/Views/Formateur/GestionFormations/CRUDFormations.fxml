@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="1009.0" style="-fx-background-color: #f4f3ef;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Formateur.GestionFormations.CRUDFormationsController">
+   <children>
+      <HBox prefHeight="586.0" prefWidth="1009.0">
+         <children>
+            <VBox prefHeight="586.0" prefWidth="574.0">
+               <children>
+                  <TableView fx:id="tableFormation" onMouseClicked="#FetcherTable" prefHeight="554.0" prefWidth="572.0" style="-fx-border-color: #96cad9; -fx-background-color: #f4f3ef;">
+                    <columns>
+                      <TableColumn fx:id="columnNom" prefWidth="67.0" text="Nom " />
+                      <TableColumn fx:id="columnPays" prefWidth="50.0" text="Pays" />
+                        <TableColumn fx:id="columntypeformation" prefWidth="117.0" text="TypeFormation" />
+                        <TableColumn fx:id="columnidFormation" prefWidth="60.0" text="Formation" visible="false" />
+                        <TableColumn fx:id="columndate" prefWidth="221.0" text="Date" />
+                        <TableColumn fx:id="columnImage" prefWidth="67.0" text="Image" visible="false" />
+                    </columns>
+                  </TableView>
+                  <JFXTextField fx:id="txtSearch" onKeyTyped="#SearchFormation" promptText="Search formation" unFocusColor="#96cad9" />
+               </children>
+            </VBox>
+            <AnchorPane fx:id="anchorPane" onMouseClicked="#InvisibleBouton" prefHeight="586.0" prefWidth="703.0">
+               <children>
+                  <JFXTextField fx:id="txtNom" focusColor="#e57c3e" layoutX="18.0" layoutY="26.0" promptText="Nom Formation" unFocusColor="#96cad9" />
+                  <JFXTextField fx:id="txtplace" focusColor="#e57c3e" layoutX="18.0" layoutY="84.0" promptText="Pays" unFocusColor="#96cad9" />
+                  <JFXButton fx:id="btnModifierFormation" layoutX="152.0" layoutY="547.0" onAction="#ModifierFormation" prefHeight="50.0" prefWidth="135.0" text="Modifier" textFill="#96cad9" visible="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font></JFXButton>
+                  <JFXButton fx:id="btnSuprrimerFormation" layoutX="267.0" layoutY="557.0" onAction="#SupprimerFormation" prefHeight="17.0" prefWidth="113.0" text="Supprimer" textFill="#96cad9" visible="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font></JFXButton>
+                  <JFXComboBox fx:id="combotypeformation" focusColor="#e57c3e" layoutX="18.0" layoutY="151.0" prefHeight="25.0" prefWidth="135.0" promptText="choisir type formation" unFocusColor="#96cad9" />
+                  <ImageView fx:id="imageview" fitHeight="127.0" fitWidth="185.0" layoutX="351.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="id" layoutX="29.0" layoutY="363.0" text="id" visible="false" />
+                  <JFXDatePicker fx:id="txtdate" defaultColor="#96cad9" layoutX="18.0" layoutY="217.0" promptText="saisir date" />
+                  <JFXButton fx:id="btnBrowseImage" buttonType="RAISED" layoutX="19.0" layoutY="487.0" onAction="#handleFileImage" text="choisir image" />
+                  <JFXTextField fx:id="txtimage" layoutX="376.0" layoutY="164.0" unFocusColor="#96cad9" />
+                  <JFXButton fx:id="btnListeSession" layoutX="40.0" layoutY="556.0" onAction="#AutrePage" text="Liste des sessions" textFill="#96cad9" visible="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </JFXButton>
+                  <Label fx:id="labelnom" layoutX="18.0" layoutY="59.0" text="veuillez saisir le nom" textFill="#e10303" visible="false" />
+                  <Label fx:id="labelplace" layoutX="16.0" layoutY="109.0" text="veuillez saisir un pays" textFill="#e81010" visible="false" />
+                  <Label fx:id="labeltypeformation" layoutX="12.0" layoutY="183.0" text="veuillez choisir une formation" textFill="#e41212" visible="false" />
+                  <Label fx:id="labeldatedebut" layoutX="19.0" layoutY="251.0" text="veuillez saisir la date debut" textFill="#dd0f0f" visible="false" />
+                  <Label fx:id="labelimage" layoutX="35.0" layoutY="512.0" text="veuillez choisir une image" textFill="#f80f0f" visible="false" />
+                  <Label fx:id="labeldate_actuelle" layoutX="16.0" layoutY="268.0" text="la date doit etre sup date actuelle" textFill="#ee0b0b" visible="false" />
+                  <JFXButton fx:id="btnAjouterFormatino" layoutX="423.0" layoutY="560.0" onAction="#AjouterFormation" text="Ajouter" textFill="#96cad9" visible="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font></JFXButton>
+                  <Label fx:id="labeldescription" layoutX="388.0" layoutY="539.0" text="veuillez saisir une description" textFill="#d00808" visible="false" />
+                  <JFXButton fx:id="RefreshTable" layoutX="233.0" layoutY="39.0" onAction="#RefreshTable" text="Refresh" textFill="#96cad9" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

@@ -57,7 +57,7 @@ and open the template in the editor.
                                     <Insets left="1.0" />
                                  </HBox.margin>
                               </FontAwesomeIconView>
-                              <Button mnemonicParsing="false" onAction="#GestionFormation" style="-fx-background-color: transparent;" text="Formation" textFill="#f4f3ef">
+                              <Button mnemonicParsing="false" onAction="#GestionFormation" style="-fx-background-color: transparent;" text="Gestion formations" textFill="#f4f3ef">
                                  <HBox.margin>
                                     <Insets top="9.0" />
                                  </HBox.margin>
@@ -74,7 +74,7 @@ and open the template in the editor.
                                              <Insets left="1.0" />
                                           </HBox.margin>
                                        </FontAwesomeIconView>
-                                       <Button mnemonicParsing="false" onAction="#GestionSession" style="-fx-background-color: transparent;" text="Session" textFill="#f4f3ef">
+                                       <Button mnemonicParsing="false" onAction="#GestionSession" style="-fx-background-color: transparent;" text="Gestion sessions" textFill="#f4f3ef">
                                           <HBox.margin>
                                              <Insets top="9.0" />
                                           </HBox.margin>
@@ -114,6 +114,7 @@ and open the template in the editor.
                   </VBox>
                </children>
             </VBox>
+                     <VBox fx:id="vbox_body" prefHeight="643.0" prefWidth="1000.0" />
          </children>
       </HBox></HBox>
          </children>

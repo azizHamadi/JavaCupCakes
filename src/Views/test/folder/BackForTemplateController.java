@@ -28,29 +28,50 @@ public class BackForTemplateController implements Initializable {
     private HBox body;
     @FXML
     private VBox nav_bar;
+    @FXML
+    private VBox vbox_body;
+
+    public VBox getVbox_body() {
+        return vbox_body;
+    }
+
+    public void setVbox_body(VBox vbox_body) {
+        this.vbox_body = vbox_body;
+    }
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }    
 
     @FXML
-    private void GestionFormation(ActionEvent event) {
+    private void GestionFormation(ActionEvent event) throws IOException {
+        
+        System.out.println("gestion formations");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../Views/Formateur/GestionFormations/CRUDFormations.fxml"));
+        Node root = loader.load();
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(root);
     }
 
     @FXML
-    private void GestionSession(ActionEvent event) {
+    private void GestionSession(ActionEvent event) throws IOException {
+        System.out.println("gestion sessions");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Formateur/GestionSession/CRUDSessions.fxml"));
+        Node root = loader.load();
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(root);
     }
 
     @FXML
     private void GestionPromotion(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterPromotion/ajouterpromosession.fxml"));
         Node root = loader.load();
-        body.getChildren().clear();
-        body.getChildren().add(root);
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(root);
     }
 
  

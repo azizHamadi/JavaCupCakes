@@ -5,23 +5,8 @@
  */
 package Entity;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -43,10 +28,62 @@ public class Formation  {
     public Formation() {
     }
 
+    
     public Formation(Integer idFor) {
         this.idFor = idFor;
     }
 
+    public Formation(String nomFor,String place,String etatFor,String descriptionFor, 
+            Utilisateur idUser, TypeFormation idTypeFor) {
+        this.nomFor = nomFor;
+        this.place = place;
+        this.etatFor = etatFor;
+        this.descriptionFor = descriptionFor;
+        this.idUser = idUser;
+        this.idTypeFor = idTypeFor;
+           }
+
+   
+
+public Formation(int idFor,String nomFor, String place, String etatFor, String descriptionFor, 
+            Date dateFor, Utilisateur idUser, TypeFormation idTypeFor) {
+        this.idFor=idFor;
+        this.nomFor = nomFor;
+        this.place = place;
+        this.etatFor = etatFor;
+        this.descriptionFor = descriptionFor;
+        this.dateFor = dateFor;
+        this.idUser = idUser;
+        this.idTypeFor = idTypeFor;
+    }
+    public Formation(String nomFor, String place, String etatFor, String descriptionFor, 
+            Date dateFor, Utilisateur idUser, TypeFormation idTypeFor) {
+        this.nomFor = nomFor;
+        this.place = place;
+        this.etatFor = etatFor;
+        this.descriptionFor = descriptionFor;
+        this.dateFor = dateFor;
+        this.idUser = idUser;
+        this.idTypeFor = idTypeFor;
+    }
+
+    public Formation(String nomFor, String place, String descriptionFor, Date dateFor, String imageform, TypeFormation idTypeFor) {
+        this.nomFor = nomFor;
+        this.place = place;
+        this.descriptionFor = descriptionFor;
+        this.dateFor = dateFor;
+        this.imageform = imageform;
+        this.idTypeFor = idTypeFor;
+    }
+
+   
+
+    public Formation(Integer idFor, String nomFor) {
+        this.idFor = idFor;
+        this.nomFor = nomFor;
+    }
+    
+    
     public Integer getIdFor() {
         return idFor;
     }
@@ -149,7 +186,7 @@ public class Formation  {
 
     @Override
     public String toString() {
-        return "Entity.Formation[ idFor=" + idFor + " ]";
+        return "idFor=" + idFor + ", nomFor=" + nomFor + ", place=" + place + ", etatFor=" + etatFor + ", descriptionFor=" + descriptionFor + ", dateFor=" + dateFor + ", imageform=" + imageform + ", idTypeFor=" + idTypeFor + ", idUser=" + idUser + '}';
     }
-    
+
 }

@@ -21,6 +21,9 @@ public class Educate {
 
     public Educate() {
     }
+    public Educate(Session idSes) {
+        this.session=idSes;
+    }
 
 
     public Date getDateIscri() {

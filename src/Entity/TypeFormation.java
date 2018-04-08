@@ -21,8 +21,13 @@ public class TypeFormation {
     public TypeFormation() {
     }
 
-    public TypeFormation(Integer idTypeFor) {
+    public TypeFormation(int idTypeFor) {
         this.idTypeFor = idTypeFor;
+    }
+
+    public TypeFormation(int idTypeFor, String nomTypeFor) {
+      this.idTypeFor = idTypeFor;
+      this.nomTypeFor = nomTypeFor;
     }
 
     public Integer getIdTypeFor() {
