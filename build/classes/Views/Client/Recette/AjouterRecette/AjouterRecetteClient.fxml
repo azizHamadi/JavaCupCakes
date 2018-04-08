@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1000.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.AjouterRecette.AjouterRecetteClientController">
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1000.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.AjouterRecette.AjouterRecetteClientController">
    <children>
       <ComboBox fx:id="catRec" layoutX="45.0" layoutY="94.0" prefHeight="31.0" prefWidth="358.0" promptText="Categorie Recette">
          <cursor>

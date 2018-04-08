@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<AnchorPane id="AnchorPane" style="-fx-background-color: #20202f;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Views.Client.Recette.ListAllRecettes.PageCategorieRecController">
+   <children>
+      <HBox fx:id="section_bodyCategorie" prefHeight="80.0" prefWidth="923.0" />
+   </children>
+</AnchorPane>

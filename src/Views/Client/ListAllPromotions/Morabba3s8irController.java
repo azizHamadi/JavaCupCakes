@@ -43,12 +43,12 @@ public class Morabba3s8irController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        File file = new File("D:/wamp64/www/final/web/public/uploads/brochures/Produit/a18bd01eef49479340fa39143532b1b2.jpeg");
+        File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/a18bd01eef49479340fa39143532b1b2.jpeg");
         Image img = new Image(file.toURI().toString());
         image.setImage(img);
     }   
      public void setImage(String image) {
-        File file = new File("D:/wamp64/www/final/web/public/uploads/brochures/Promotion/" + image);
+        File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Promotion/" + image);
         this.image.setImage(new Image(file.toURI().toString()));
     }
 

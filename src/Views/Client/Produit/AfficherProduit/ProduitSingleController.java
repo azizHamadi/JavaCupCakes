@@ -35,7 +35,7 @@ public class ProduitSingleController implements Initializable {
     private HBox hb ;
 
     public void setImage(String image) {
-       File file = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/" + image);
+       File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/" + image);
         this.image.setImage(new Image(file.toURI().toString()));
     }
 

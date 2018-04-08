@@ -6,10 +6,14 @@
 package Views.Client.Recette.ListAllRecettes;
 
 import Entity.CategorieRec;
+import Entity.Commentaire;
 import Entity.Recette;
 import Services.CategorieRecetteService;
+import Services.CommentaireService;
 import Services.NoteService;
 import Services.RecetteService;
+import Services.ThreadService;
+import Views.Client.Recette.SingleRecette.SingleRecetteController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,7 +28,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -52,12 +55,20 @@ public class ListAllRecettesController implements Initializable {
     private VBox section_body;
     private Node[] listePageRecette ;
     private int nbrLignePage = 0 ;
+    private Node[] listePageCategorie ;
+    private int nbrPageCat = 0 ;
     @FXML
     private Label btnP;
     @FXML
     private Label btnS;
     @FXML
     private TextField recherche;
+    @FXML
+    private Label btnPCat;
+    @FXML
+    private VBox section_bodyCategorie;
+    @FXML
+    private Label btnSCat;
 
 
 
@@ -67,29 +78,47 @@ public class ListAllRecettesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            nav_cat.getChildren().clear();
+            section_bodyCategorie.getChildren().clear();
             section_body.getChildren().clear();
             CategorieRecetteService catRS = new CategorieRecetteService();
             List<CategorieRec> listC = catRS.AfficherCategorieRecette();
             NoteService ns = new NoteService();
             RecetteService rs = new RecetteService();
-            List<Recette> listRec = rs.AfficherRecette();
+            List<Recette> listRec = rs.AfficherRecette(0);
             Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[3];
-            Node [] nodesColonne = new Node[9];
+            Node [] nodesLigne = new Node[listRec.size()];
+            Node [] nodesColonne = new Node[listRec.size()];
+            
+            if(listC.size() % 4 ==0)
+                listePageCategorie = new Node[listC.size()/4];
+            else
+                listePageCategorie=new Node[(listC.size()/4)+1];
+            
             if(listRec.size() % 6 == 0)
                 listePageRecette = new Node[listRec.size()/6];
             else
                 listePageRecette = new Node[(listRec.size()/6)+1];
+            
             int i = 0 ;
             int j = 0 ;
+            FXMLLoader loaderPageCat = null ;
+            Node PageCat = null ;
+            PageCategorieRecController pcec = null ; 
+            
+            //pagination et affichage categorie
             for (CategorieRec catr : listC)
             {
+                if(i == 0 || i % 4 == 0 ){
+                    loaderPageCat = new FXMLLoader(getClass().getResource("PageCategorieRec.fxml"));
+                    PageCat = loaderPageCat.load();
+                }
+                pcec = loaderPageCat.getController();
+                
                 FXMLLoader loadercat = new FXMLLoader(getClass().getResource("CategorieRecFiltre.fxml"));
                 Node catNode = loadercat.load() ;
                 CategorieRecFiltreController crfc = loadercat.getController();
                 crfc.setNomCat(catr.getNomCatRec());
-                crfc.setNbrRec(String.valueOf(catRS.CountRecetteParCat(catr.getIdCatRec())));
+                crfc.setNbrRec(String.valueOf(catRS.CountRecetteParCat(catr.getIdCatRec(),0)));
                 Text Btafficher = crfc.getAfficherRec();
                 Btafficher.setOnMouseClicked(e->{
                     try {
@@ -100,8 +129,27 @@ public class ListAllRecettesController implements Initializable {
                         Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
-                nav_cat.getChildren().add(catNode);
+                pcec.setSection_bodyCategorie(catNode);
+                i++;
+                if(listC.size() > i){
+                    if(i % 4 == 0 ){
+                        listePageCategorie[nbrPageCat] = pcec.getSection_bodyCategorie();
+                        nbrPageCat++;
+                    }
+                    if( i == 4 )
+                        section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
+                }
+                else{
+                    if(i<4)
+                        section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
+                    listePageCategorie[nbrPageCat] = pcec.getSection_bodyCategorie();
+                    nbrPageCat++;
+                }
             }
+            nbrPageCat=0;
+            
+            //pagination et affichage des recettes
+            i=0 ;
             FXMLLoader loaderItems = null ;
             Hbox_ItemsController hc = new Hbox_ItemsController();
             Page2RecetteController Cp2r = new Page2RecetteController();
@@ -124,10 +172,39 @@ public class ListAllRecettesController implements Initializable {
                 msc.setNomCat(rec.getIdCatRec().getNomCatRec());
                 msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
                 msc.setNomUser(rec.getIdUser().getUsername());
-                msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
+                String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+                msc.setNote("Note : "+moyenne+" /5");
                 ImageView img = msc.getImage();
                 img.setOnMouseClicked(e->{
-                    System.out.println("te5dem");
+                    try {
+                        ThreadService ts = new ThreadService();
+                        if (ts.ThreadExiste(rec.getIdRec().toString()) == null )
+                            ts.AjouterThread(new Entity.Thread(rec.getIdRec().toString()));
+                    
+                        FXMLLoader loaderSingleRecette = new FXMLLoader(getClass().getResource("../../../Client/Recette/SingleRecette/SingleRecette.fxml"));
+                        Node SingleRecette = loaderSingleRecette.load();
+                        SingleRecetteController CsR = loaderSingleRecette.getController();
+                        CsR.setIdRec(rec.getIdRec());
+                        CsR.setCatRec(rec.getIdCatRec().getNomCatRec());
+                        CsR.setDescription(rec.getDescriptionRec());
+                        CsR.setImageRecette(rec.getImageRec());
+                        CsR.setNomRec(rec.getNomRec());
+                        CsR.setUsername(rec.getIdUser().getUsername());
+                        CsR.setMoyenne(moyenne);
+                        CommentaireService ComS = new CommentaireService();
+                        CsR.setNbrComment(String.valueOf(ComS.CountCommentaireParRecette(rec.getIdRec())));
+                        CommentaireService cs = new CommentaireService();
+                        List<Commentaire> listCom = cs.AfficherCommentaire(String.valueOf(rec.getIdRec()));
+                        CsR.setRec(rec);
+                        CsR.initRating();
+                        CsR.AfficherCommentaireReplay(listCom, cs,"",null);
+                        body.getChildren().clear();
+                        body.getChildren().add(SingleRecette);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 });
                 hc.addColonne(nodesColonne[i]);
                 i++;
@@ -166,12 +243,13 @@ public class ListAllRecettesController implements Initializable {
 
     }   
     
+    
     public void RecetteParCategorie(int idCat) throws SQLException, IOException{
         section_body.getChildren().clear();
         RecetteService RS = new RecetteService();
-        List<Recette> listRec = RS.RecetteParCategorie(idCat);
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        List<Recette> listRec = RS.RecetteParCategorie(idCat,0);
+        Node [] nodesLigne = new Node[listRec.size()];
+        Node [] nodesColonne = new Node[listRec.size()];
         int i = 0 ;
         int j = 0 ;
         NoteService ns = new NoteService();
@@ -201,10 +279,40 @@ public class ListAllRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
-            msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
+            String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+            msc.setNote("Note : "+moyenne+" /5");
+
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
-                System.out.println("te5dem");
+                try {
+                    ThreadService ts = new ThreadService();
+                    if (ts.ThreadExiste(rec.getIdRec().toString()) == null )
+                        ts.AjouterThread(new Entity.Thread(rec.getIdRec().toString()));
+                    
+                    FXMLLoader loaderSingleRecette = new FXMLLoader(getClass().getResource("../../../Client/Recette/SingleRecette/SingleRecette.fxml"));
+                    Node SingleRecette = loaderSingleRecette.load();
+                    SingleRecetteController CsR = loaderSingleRecette.getController();
+                    CsR.setIdRec(rec.getIdRec());
+                    CsR.setCatRec(rec.getIdCatRec().getNomCatRec());
+                    CsR.setDescription(rec.getDescriptionRec());
+                    CsR.setImageRecette(rec.getImageRec());
+                    CsR.setNomRec(rec.getNomRec());
+                    CsR.setUsername(rec.getIdUser().getUsername());
+                    CsR.setMoyenne(moyenne);
+                    CommentaireService ComS = new CommentaireService();
+                    CsR.setNbrComment(String.valueOf(ComS.CountCommentaireParRecette(rec.getIdRec())));
+                    CommentaireService cs = new CommentaireService();
+                    List<Commentaire> listCom = cs.AfficherCommentaire(String.valueOf(rec.getIdRec()));
+                    CsR.setRec(rec);
+                    CsR.initRating();
+                    CsR.AfficherCommentaireReplay(listCom, cs,"",null);
+                    body.getChildren().clear();
+                    body.getChildren().add(SingleRecette);
+                } catch (IOException ex) {
+                    Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             });
             hc.addColonne(nodesColonne[i]);
             i++;
@@ -309,9 +417,9 @@ public class ListAllRecettesController implements Initializable {
     private void RechercheRecette(KeyEvent event) throws SQLException, IOException {
         section_body.getChildren().clear();
         RecetteService RS = new RecetteService();
-        List<Recette> listRec = RS.RechercheParNomRecette(recherche.getText());
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        List<Recette> listRec = RS.RechercheParNomRecette(recherche.getText(),0);
+        Node [] nodesLigne = new Node[listRec.size()];
+        Node [] nodesColonne = new Node[listRec.size()];
         int i = 0 ;
         int j = 0 ;
         NoteService ns = new NoteService();
@@ -341,10 +449,40 @@ public class ListAllRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
-            msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
+            String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+            msc.setNote("Note : "+moyenne+" /5");
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
-                System.out.println("te5dem");
+
+                try {
+                    ThreadService ts = new ThreadService();
+                    if (ts.ThreadExiste(rec.getIdRec().toString()) == null )
+                        ts.AjouterThread(new Entity.Thread(rec.getIdRec().toString()));
+                    
+                    FXMLLoader loaderSingleRecette = new FXMLLoader(getClass().getResource("../../../Client/Recette/SingleRecette/SingleRecette.fxml"));
+                    Node SingleRecette = loaderSingleRecette.load();
+                    SingleRecetteController CsR = loaderSingleRecette.getController();
+                    CsR.setIdRec(rec.getIdRec());
+                    CsR.setCatRec(rec.getIdCatRec().getNomCatRec());
+                    CsR.setDescription(rec.getDescriptionRec());
+                    CsR.setImageRecette(rec.getImageRec());
+                    CsR.setNomRec(rec.getNomRec());
+                    CsR.setUsername(rec.getIdUser().getUsername());
+                    CsR.setMoyenne(moyenne);
+                    CommentaireService ComS = new CommentaireService();
+                    CsR.setNbrComment(String.valueOf(ComS.CountCommentaireParRecette(rec.getIdRec())));
+                    CommentaireService cs = new CommentaireService();
+                    List<Commentaire> listCom = cs.AfficherCommentaire(String.valueOf(rec.getIdRec()));
+                    CsR.setRec(rec);
+                    CsR.initRating();
+                    CsR.AfficherCommentaireReplay(listCom, cs,"",null);
+                    body.getChildren().clear();
+                    body.getChildren().add(SingleRecette);
+                } catch (IOException ex) {
+                    Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             });
             hc.addColonne(nodesColonne[i]);
             i++;
@@ -376,6 +514,24 @@ public class ListAllRecettesController implements Initializable {
                 }
         }
         nbrLignePage = 0 ;
+    }
+
+    @FXML
+    private void PagePrecedenteCategorie(MouseEvent event) {
+        nbrPageCat -= 1;
+        if(nbrPageCat<0)
+            nbrPageCat =listePageCategorie.length -1;
+        section_bodyCategorie.getChildren().clear();
+        section_bodyCategorie.getChildren().add(listePageCategorie[nbrPageCat]);
+    }
+
+    @FXML
+    private void PageSuivantCategorie(MouseEvent event) {
+        nbrPageCat++;
+        if(nbrPageCat== listePageCategorie.length)
+            nbrPageCat=0 ;
+        section_bodyCategorie.getChildren().clear();
+        section_bodyCategorie.getChildren().add(listePageCategorie[nbrPageCat]);
     }
 
     

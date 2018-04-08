@@ -83,7 +83,7 @@ String imagef="";
      System.out.println(f.getName());
                      }
          imagef = f.getName();
-         File fd = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/"+f.getName());
+         File fd = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/"+f.getName());
 
          Files.copy(f.getAbsoluteFile().toPath(),fd.getAbsoluteFile().toPath());
     }

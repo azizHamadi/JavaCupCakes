@@ -71,9 +71,12 @@ public class RecetteService {
         pre.executeUpdate();
     }
 
-    public List<Recette> AfficherRecette() throws SQLException{
+    public List<Recette> AfficherRecette(int idUser) throws SQLException{
         List<Recette> recettes = new ArrayList<>();
-        ResultSet rsRecette = ste.executeQuery("select * from recette");
+        String req = "select * from recette ";
+        if (idUser != 0)
+            req += "where idUser="+idUser ;
+        ResultSet rsRecette = ste.executeQuery(req);
 
         while(rsRecette.next())
         {
@@ -86,7 +89,8 @@ public class RecetteService {
             rec.setIdRec(rsRecette.getInt("idRec"));            
             rec.setImageRec(rsRecette.getString("imageRec"));
             rec.setNomRec(rsRecette.getString("nomRec"));
-            ResultSet rsUser = ste2.executeQuery("select * from utilisateur where id="+ rsRecette.getInt("idUser"));
+            int idU = rsRecette.getInt("idUser");
+            ResultSet rsUser = ste2.executeQuery("select * from utilisateur where id="+ idU);
             while(rsUser.next())
             {
                 user.setId(rsUser.getInt("id"));
@@ -109,10 +113,13 @@ public class RecetteService {
         }
         return recettes ;
     }
-    
-    public List<Recette> RecetteParCategorie(int idCat) throws SQLException{
+        
+    public List<Recette> RecetteParCategorie(int idCat, int idUser) throws SQLException{
         List<Recette> listR = new ArrayList<>();
-                ResultSet rsRecette = ste.executeQuery("select * from recette where idCatRec="+idCat);
+        String req = "select * from recette where idCatRec="+idCat +" " ;
+        if (idUser != 0 )
+            req+= "and idUser = "+ idUser;
+        ResultSet rsRecette = ste.executeQuery(req);
 
         while(rsRecette.next())
         {
@@ -148,9 +155,13 @@ public class RecetteService {
         return listR;
     }
     
-    public List<Recette> RechercheParNomRecette(String nom) throws SQLException{
+    public List<Recette> RechercheParNomRecette(String nom ,int idUser) throws SQLException{
         List<Recette> listR = new ArrayList<>();
-        ResultSet rsRecette = ste.executeQuery("select * from recette where nomRec like '%"+nom+"%'");
+        String req = "select * from recette where nomRec like '%"+nom+"%' ";
+            if (idUser != 0 )
+                req += " and idUser="+idUser ;
+        ResultSet rsRecette = ste.executeQuery(req);
+            
         while(rsRecette.next())
         {
             Recette rec = new Recette();

@@ -23,6 +23,12 @@ public class Note  {
     public Note() {
     }
 
+    public Note(Double note, Recette recette, Utilisateur utilisateur) {
+        this.note = note;
+        this.recette = recette;
+        this.utilisateur = utilisateur;
+    }
+    
     
     public Double getNote() {
         return note;

@@ -292,9 +292,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", username=" + username + ", email=" + email + ", roles=" + roles + ", phoneNumber=" + phoneNumber + ", addresse=" + addresse + '}';
-    }
-
-    
+        return "Utilisateur{" + "id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", roles=" + roles + ", phoneNumber=" + phoneNumber + ", addresse=" + addresse + '}';
+    }   
     
 }

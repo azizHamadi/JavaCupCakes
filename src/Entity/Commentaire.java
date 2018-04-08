@@ -25,8 +25,26 @@ public class Commentaire  {
     public Commentaire() {
     }
 
+    public Commentaire(String body, Integer idCmnt) {
+        this.body = body;
+        this.idCmnt = idCmnt;
+    }
+
     public Commentaire(Integer idCmnt) {
         this.idCmnt = idCmnt;
+    }
+
+    public Commentaire(Integer idCmnt,int state) {
+        this.state = state;
+        this.idCmnt = idCmnt;
+    }
+
+    public Commentaire(String body, String ancestors, int depth, Thread idRec, Utilisateur idUser) {
+        this.body = body;
+        this.ancestors = ancestors;
+        this.depth = depth;
+        this.idRec = idRec;
+        this.idUser = idUser;
     }
 
     public Commentaire(String body, int depth, int state, Thread idRec, Utilisateur idUser) {

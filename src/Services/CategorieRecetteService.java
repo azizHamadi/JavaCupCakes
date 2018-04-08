@@ -38,9 +38,12 @@ public class CategorieRecetteService {
             }
     }
 
-    public int CountRecetteParCat(int idCat) throws SQLException{
+    public int CountRecetteParCat(int idCat,int idUser) throws SQLException{
         int count = 0 ;
-        ResultSet rs = ste.executeQuery("select count(*) from recette where idCatRec="+idCat);
+        String req  = "select count(*) from recette where idCatRec="+idCat +" ";
+        if (idUser != 0)
+            req+="and idUser = "+idUser;
+        ResultSet rs = ste.executeQuery(req);
         while(rs.next())
             count = rs.getInt(1);
         return count;

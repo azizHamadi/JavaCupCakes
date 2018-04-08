@@ -5,7 +5,9 @@
  */
 package Views.Client.Recette;
 
+import Views.Client.Recette.AjouterRecette.AjouterRecetteClientController;
 import Views.Client.Recette.ListAllRecettes.ListAllRecettesController;
+import Views.Client.Recette.MesRecettes.MesRecettesController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +35,8 @@ public class GererRecetteController implements Initializable {
     private Button btn;
     @FXML
     private VBox body;
+    @FXML
+    private Button btn1;
 
     /**
      * Initializes the controller class.
@@ -55,8 +59,19 @@ public class GererRecetteController implements Initializable {
     private void AjouterRecette(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Recette/AjouterRecette/AjouterRecetteClient.fxml"));
         Node root = loader.load();
+        AjouterRecetteClientController ac = loader.getController();
         body.getChildren().clear();
         body.getChildren().add(root);
+
+    }
+
+    @FXML
+    private void MesRecettes(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Recette/MesRecettes/MesRecettes.fxml"));
+        Node root = loader.load();
+        MesRecettesController Clar = loader.getController();
+        body.getChildren().clear();
+        body.getChildren().add(Clar.getBody());
 
     }
 

@@ -111,5 +111,17 @@ public class NoteService {
         }
         return Notes ;
     }
+    
+    public Note NoteExiste(Note note) throws SQLException{
+        Note Rnote = null ;
+        ResultSet rsNote = ste.executeQuery("select * from note where idUser="+note.getUtilisateur().getId()+" and idRec="+note.getRecette().getIdRec());
+        while(rsNote.next())
+        {
+            System.out.println(rsNote.getDouble("note"));
+            Rnote = new Note(rsNote.getDouble("note"), new Recette(rsNote.getInt("idRec")), new Utilisateur(rsNote.getInt("idUser")));
+            return Rnote;
+        }
+        return Rnote;
+    }
 
 }
