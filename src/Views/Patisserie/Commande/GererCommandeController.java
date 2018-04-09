@@ -5,9 +5,6 @@
  */
 package Views.Patisserie.Commande;
 
-import Views.Patisserie.Produit.*;
-import Views.Client.Recette.*;
-import Views.Client.Recette.ListAllRecettes.ListAllRecettesController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +30,8 @@ public class GererCommandeController implements Initializable {
     private VBox body;
     @FXML
     private Button btnListeProduit;
+    @FXML
+    private Button btnFeedback;
 
     /**
      * Initializes the controller class.
@@ -45,7 +44,19 @@ public class GererCommandeController implements Initializable {
    
 
     @FXML
-    private void ListeCommande(ActionEvent event) {
+    private void ListeCommande(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Commande/ListeCommande/ListeCommande.fxml"));
+        Node root = loader.load();
+        body.getChildren().clear();
+        body.getChildren().add(root);
+    }
+
+    @FXML
+    private void ListeFeedback(ActionEvent event) throws IOException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Commande/ListeFeedback/ListeFeedback.fxml"));
+        Node root = loader.load();
+        body.getChildren().clear();
+        body.getChildren().add(root);
     }
 
 

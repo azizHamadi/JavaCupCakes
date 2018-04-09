@@ -40,7 +40,7 @@ and open the template in the editor.
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
                      <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Commandes" textFill="#e4b95b">
+                        <Button mnemonicParsing="false" onAction="#GestionCommande" style="-fx-background-color: transparent;" text="Commandes" textFill="#e4b95b">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>

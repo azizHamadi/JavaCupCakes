@@ -44,6 +44,12 @@ public class Produit {
         this.imageprod= imageprod;
     }
 
+    public Produit(Integer idProd, Double qteStockProd, Integer qteAcheter) {
+        this.idProd = idProd;
+        this.qteStockProd = qteStockProd;
+        this.qteAcheter = qteAcheter;
+    }
+
     public Produit(Integer idProd, String nomProd, Double qteStockProd,String typeProd, Integer prixProd, String imageprod ) {
         this.idProd = idProd;
         this.nomProd = nomProd;
@@ -58,11 +64,17 @@ public class Produit {
         this.etatProd = etatProd;
     }
 
-    public Produit(Integer idProd,String nomProd, Double qteStockProd,String typeProd, Integer prixProd, String imageprod, Integer qteAcheter, Categorie idCat, Utilisateur idUser) {
+    public Produit(Integer idProd, int valeur) {
+        this.idProd = idProd;
+        this.valeur = valeur;
+    }
+
+    public Produit(Integer idProd,String nomProd, Double qteStockProd,String typeProd, Integer prixProd, String imageprod, Integer qteAcheter, Categorie idCat, Utilisateur idUser,int valeur) {
                this.idProd = idProd;
         this.nomProd = nomProd;
         this.qteStockProd = qteStockProd;
                 this.typeProd = typeProd;
+                this.valeur=valeur;
 
         this.prixProd = prixProd;
         this.imageprod = imageprod;
@@ -99,10 +111,7 @@ public class Produit {
     }
 
     
-    public Produit(Integer idProd, int valeur) {
-        this.idProd = idProd;
-        this.valeur = valeur;
-    }
+  
 
     public Integer getIdProd() {
         return idProd;

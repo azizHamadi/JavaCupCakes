@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="884.0" style="-fx-background-color: #f4f3ef;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Commande.ListeCommande.ListeCommandeController">
+   <children>
+      <HBox prefHeight="586.0" prefWidth="851.0">
+         <children>
+            <VBox prefHeight="576.0" prefWidth="398.0">
+               <children>
+                  <TableView fx:id="TableCommande" onMouseClicked="#FetcherTable" prefHeight="576.0" prefWidth="399.0" style="-fx-border-color: #96cad9; -fx-background-color: #f4f3ef;">
+                    <columns>
+                        <TableColumn fx:id="DateL" prefWidth="87.0" text="Date Livraison" />
+                        <TableColumn fx:id="adrLiv" prefWidth="76.0" text="Adresse" />
+                        <TableColumn fx:id="Etat" prefWidth="79.0" text="Etat" />
+                        <TableColumn fx:id="Montant" prefWidth="138.0" text="Montant Total" />
+                        <TableColumn fx:id="idCmd" prefWidth="75.0" text="idCmd" visible="false" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <AnchorPane prefHeight="576.0" prefWidth="466.0">
+               <children>
+                  <JFXButton layoutX="276.0" layoutY="495.0" onAction="#Modifier" prefHeight="50.0" prefWidth="135.0" text="Modifier" textFill="#96cad9">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXButton>
+                  <JFXButton layoutX="71.0" layoutY="495.0" onAction="#SupprimerCommande" prefHeight="50.0" prefWidth="113.0" text="Supprimer" textFill="#96cad9">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXButton>
+                  <JFXComboBox fx:id="EtatLiv" focusColor="#e57c3e" layoutX="52.0" layoutY="438.0" prefHeight="25.0" prefWidth="196.0" promptText="Etat Livraison" unFocusColor="#96cad9" />
+                  <TextField fx:id="id" layoutX="29.0" layoutY="363.0" text="id" visible="false" />
+                  <Text fx:id="NomUtilisateur" fill="#96cad9" layoutX="237.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="120.13671875">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#96cad9" layoutX="47.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Utilisateur" wrappingWidth="113.00000602565706">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="384.0" prefWidth="445.0" style="-fx-background-color: #f4f3ef;">
+                     <content>
+                        <VBox fx:id="Produit" prefHeight="386.0" prefWidth="432.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets left="30.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

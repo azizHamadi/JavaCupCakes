@@ -44,7 +44,7 @@
                            </padding>
                            <children>
                               <FontAwesomeIconView fill="#383848" glyphName="USER" size="2em" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Profil" textFill="#383848">
+                              <Button mnemonicParsing="false" onAction="#PANIER" style="-fx-background-color: transparent;" text="Panier" textFill="#383848">
                                  <HBox.margin>
                                     <Insets top="10.0" />
                                  </HBox.margin>

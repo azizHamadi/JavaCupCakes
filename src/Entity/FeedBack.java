@@ -17,6 +17,12 @@ public class FeedBack  {
     private String description;
     private Commande idCmd;
 
+    public FeedBack(String sujet, String description, Commande idCmd) {
+        this.sujet = sujet;
+        this.description = description;
+        this.idCmd = idCmd;
+    }
+
     public FeedBack(String sujet, String description) {
         this.sujet = sujet;
         this.description = description;

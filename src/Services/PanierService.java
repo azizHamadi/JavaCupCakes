@@ -15,8 +15,20 @@ import java.util.Map;
  * @author escobar
  */
 public class PanierService {
+     public static PanierService Panier;
+
         private Map<Produit, Integer> panier;
  
+         public static PanierService getInstance()
+    {
+        if(Panier == null)
+        {
+            Panier=new PanierService();
+        }
+        return Panier;
+        
+    }
+        
 	public PanierService() {
 		this.panier = new HashMap<Produit, Integer>();
 	}
@@ -24,14 +36,14 @@ public class PanierService {
 	public void ajouterArticle(Produit art, int qte) {
 		Integer quantity = panier.get(art);
 		if (quantity == null){
-			quantity = Integer.valueOf(0);
+			quantity = 0;
  
 		}
 		quantity = Integer.valueOf(quantity.intValue()+qte);
 		panier.put(art, quantity);
 	}
  
-	public void supprimerArticle(String article){
+	public void supprimerArticle(Produit article){
 		 panier.remove(article);
 	}	
  
@@ -49,4 +61,8 @@ public class PanierService {
             return panier;
             
         }
+        public void closePanier(){
+        panier.clear();
+        
+    }
 }

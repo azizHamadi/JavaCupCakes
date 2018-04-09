@@ -93,7 +93,7 @@ public class ProduitService {
                 {
                     cd.setNomCat(line.getString("nomCat"));
                     }
-                           Prod.add(new Produit(rs.getInt("IdProd"),rs.getString("nomProd"),(double)rs.getInt("qteStockProd"),rs.getString("typeProd"),rs.getInt("prixProd"),rs.getString("imageprod"),rs.getInt("QteAcheter"),cd,user));
+                           Prod.add(new Produit(rs.getInt("IdProd"),rs.getString("nomProd"),(double)rs.getInt("qteStockProd"),rs.getString("typeProd"),rs.getInt("prixProd"),rs.getString("imageprod"),rs.getInt("QteAcheter"),cd,user,rs.getInt("valeur")));
             }
             
         } catch (SQLException ex) {
@@ -102,6 +102,55 @@ public class ProduitService {
 
         return Prod;
     }
+   
+    
+    public List<Produit> AfficherProduitBack(int idUser) throws SQLException{
+        List<Produit> Prod = new ArrayList();
+        String v="Vrai";
+        String req = "select * from produit where etatProd ='" + v + "'"  ;
+        if (idUser != 0)
+            req += "and idUser =" + idUser ;
+        ResultSet rsProduit = ste.executeQuery(req);
+
+        while(rsProduit.next())
+        {
+            Produit pr = new Produit();
+            Utilisateur user = new Utilisateur();
+            Categorie  categorie = new Categorie();
+            pr.setImageprod(rsProduit.getString("imageprod"));
+            pr.setNomProd(rsProduit.getString("nomProd"));
+            pr.setPrixProd(rsProduit.getInt("prixProd"));
+            pr.setIdProd(rsProduit.getInt("idProd"));            
+            pr.setQteStockProd(rsProduit.getDouble("qteStockProd"));
+            pr.setQteAcheter(rsProduit.getInt("QteAcheter"));
+            pr.setValeur(rsProduit.getInt("valeur"));
+            pr.setTypeProd(rsProduit.getString("typeProd"));
+            int idU = rsProduit.getInt("idUser");
+            ResultSet rsUser = ste2.executeQuery("select * from utilisateur where id="+ idU);
+            while(rsUser.next())
+            {
+                user.setId(rsUser.getInt("id"));
+                user.setUsername(rsUser.getString("username"));
+                user.setEmail(rsUser.getString("email"));
+                user.setPhoneNumber(rsUser.getString("phoneNumber"));
+                user.setAddresse(rsUser.getString("Addresse"));
+                user.setRoles(rsUser.getString("roles"));
+            }
+            ResultSet rsCat = ste3.executeQuery("select * from categorie where idCat = "+ rsProduit.getInt("idCat"));
+            while(rsCat.next())
+            {
+                categorie.setIdCat(rsCat.getInt("idCat"));
+                categorie.setNomCat(rsCat.getString("nomCat"));
+            }
+            pr.setIdCat(categorie);
+            pr.setIdUser(user);
+            Prod.add(pr);
+
+        }
+        return Prod ;
+    }
+    
+    
     public List<Produit> ProduitParCategorie(int idCat) throws SQLException{
         List<Produit> listP = new ArrayList<>();
                 ResultSet rsRecette = ste.executeQuery("select * from produit where idCat="+idCat);
@@ -113,7 +162,8 @@ public class ProduitService {
             Categorie categorie = new Categorie();
             pr.setNomProd(rsRecette.getString("NomProd"));
             pr.setPrixProd(rsRecette.getInt("PrixProd"));
-            pr.setIdProd(rsRecette.getInt("idProd"));            
+            pr.setIdProd(rsRecette.getInt("idProd")); 
+              pr.setQteStockProd(rsRecette.getDouble("qteStockProd")); 
             pr.setImageprod(rsRecette.getString("imageprod"));
             ResultSet rsUser = ste2.executeQuery("select * from utilisateur where id="+ rsRecette.getInt("idUser"));
             while(rsUser.next())
@@ -151,8 +201,6 @@ public class ProduitService {
         pre.setString(5, p.getTypeProd());
         pre.setInt(6, p.getIdProd());
         pre.executeUpdate();
-                System.out.println("khra mchet");
-
    }
    public void SupprimerProduit(Produit p) throws SQLException{
         String req ="update produit set etatProd=? where idProd = ?";
@@ -161,8 +209,49 @@ public class ProduitService {
         pre.setInt(2, p.getIdProd());
         pre.executeUpdate();
    }
-   
-   
+    public void UpdateProduitStock (Produit p) throws SQLException{
+        String req ="update Produit set qteStockProd=?,qteAcheter=? where idProd = ?";
+        PreparedStatement pre = con.prepareStatement(req); 
+        pre.setDouble(1,p.getQteStockProd());
+        pre.setInt(2, p.getQteAcheter());
+        pre.setInt(3, p.getIdProd());
+        pre.executeUpdate();
+   }
+     public void UpdateProduitValeur (Produit p) throws SQLException{
+        String req ="update produit set valeur="+(p.getValeur() + 1)+" where idProd ="+p.getIdProd();
+        PreparedStatement pre = con.prepareStatement(req);
+         System.out.println("p = "+(p.getValeur()+1) + " id = "+ p.getIdProd());
+        pre.executeUpdate();
+         System.out.println(p);  
+   }
+
+
+    public List<String> AfficherNomP() throws SQLException{
+        List<String> Prod = new ArrayList();
+        String v="Vrai";
+            try {
+            ResultSet rs =ste.executeQuery("SELECT nomProd FROM Produit where etatProd='" + v + "'" ) ;
+            while(rs.next()){
+                Prod.add(rs.getString("NomProd"));
+           }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return Prod;
+    }
+    
+       public List<Produit> AfficherPrixProduit() throws SQLException{
+        List<Produit> produits = new ArrayList<>();
+        ResultSet rs = ste.executeQuery("select * from Produit");
+        Produit pr = new Produit();
+        while(rs.next())
+        {
+            pr.setPrixProd(rs.getInt("prixProd"));
+        }
+        return produits ;
+    }
      public Produit RechercheProduit(String nom) throws SQLException{
         ResultSet rs = ste.executeQuery("select * from produit where nomProd = '"+nom+"'");
         Produit pr = new Produit();
@@ -170,6 +259,7 @@ public class ProduitService {
         {
             pr.setNomProd(rs.getString("nomProd"));
             pr.setIdProd(rs.getInt("idProd"));
+            pr.setPrixProd(rs.getInt("prixProd"));
         }
         return pr ;
     }

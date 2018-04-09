@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="239.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Commande.ListeCommande.ProdCmdController">
+   <children>
+      <ImageView fx:id="imageview" fitHeight="128.0" fitWidth="203.0" layoutX="215.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="NomProduit" fill="#96cad9" layoutX="50.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Produit" wrappingWidth="120.13671875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text fx:id="QteAcheter" fill="#96cad9" layoutX="50.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité Acheter " wrappingWidth="135.13671875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#96cad9" layoutX="36.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Produit :" wrappingWidth="120.13671875">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#96cad9" layoutX="36.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité Acheter :" wrappingWidth="135.13671631366014">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

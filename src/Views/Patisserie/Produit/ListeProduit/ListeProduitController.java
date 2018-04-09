@@ -7,11 +7,10 @@ package Views.Patisserie.Produit.ListeProduit;
 
 import Entity.Categorie;
 import Entity.Produit;
+import Entity.SessionUser;
 import Services.CategorieService;
 import Services.ProduitService;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,8 +30,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class
@@ -117,7 +114,7 @@ String   imgp= "";
         type.setValue(TableProd.getSelectionModel().getSelectedItem().getTypeProd());
         id.setText(TableProd.getSelectionModel().getSelectedItem().getIdProd().toString());
         imgp = TableProd.getSelectionModel().getSelectedItem().getImageprod();
-        Image image = new Image("file:///c:/wamp64/www/final/web/public/uploads/brochures/Produit/" + imgp ,imageview.getFitWidth(),imageview.getFitHeight(),true,true);
+        Image image = new Image("file:///c:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/" + imgp ,imageview.getFitWidth(),imageview.getFitHeight(),true,true);
         imageview.setImage(image);
    }
     //afficher le contenu de la table formation dans le tableau
@@ -125,7 +122,7 @@ String   imgp= "";
    {
         TableProd.getItems().clear();
         ProduitService service=new ProduitService();
-        ObservableList<Produit> listP = FXCollections.observableArrayList(service.AfficherNomProduit());
+        ObservableList<Produit> listP = FXCollections.observableArrayList(service.AfficherProduitBack(SessionUser.getId()));
         nomP.setCellValueFactory(new PropertyValueFactory<>("nomProd"));
         QantitéP.setCellValueFactory(new PropertyValueFactory<>("qteStockProd"));
         PrixP.setCellValueFactory(new PropertyValueFactory<>("prixProd"));
@@ -151,6 +148,5 @@ String   imgp= "";
          service.SupprimerProduit(p);
          RefreshTable();
     }
-
     
 }

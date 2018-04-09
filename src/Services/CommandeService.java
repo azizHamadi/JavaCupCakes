@@ -47,7 +47,7 @@ public class CommandeService {
             Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void AjouterCommande(Commande c,LineCmd linec) throws SQLException{
+    public int AjouterCommande(Commande c) throws SQLException{
         String req ="INSERT INTO Commande (dateCmd,montantCmd,dateLivCmd,addLiv,etatLivCmd,etatCmd,idUser) VALUES(?,?,?,?,?,?,?)";
         PreparedStatement pre = con.prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = ste.executeQuery("SELECT * FROM Utilisateur WHERE id = 1");
@@ -62,26 +62,29 @@ public class CommandeService {
         pre.setString(6, c.getEtatCmd());
         pre.setInt(7, id );
         pre.executeUpdate();
-           ResultSet clef = pre.getGeneratedKeys();
-          int cle = 0 ;
-          while (clef.next())
-              cle=clef.getInt(1);
+        ResultSet  clef = pre.getGeneratedKeys();
+        while(clef.next())
+          return clef.getInt(1);
+        return 0;
+    }
+    
+    public void AjouterLine(LineCmd linec,int cmd) throws SQLException{
+         
         String reqln ="INSERT INTO line_cmd (qteAcheter,etatLineCmd,idCmd,idProd) VALUES (?,?,?,?)";
                 PreparedStatement preline = con.prepareStatement(reqln);
                 
-        ResultSet rsp = ste.executeQuery("SELECT * FROM produit WHERE idProd = 1");
+        ResultSet rsp = ste.executeQuery("SELECT * FROM produit WHERE idProd = "+ linec.getProduit().getIdProd());
        int idp = 0;
        while(rsp.next())
             idp= rsp.getInt("idProd");
        preline.setInt(1, linec.getQteAcheter());
        preline.setString(2, linec.getEtatLineCmd());
-       preline.setInt(3, cle);
+       preline.setInt(3, cmd);
        preline.setInt(4,idp);
        preline.executeUpdate();
 
 
     }
-    
     
     public void SupprimerComande(Commande c) throws SQLException{
         String req ="update commande set etatCmd = ? where idCmd = ?";
@@ -99,14 +102,20 @@ public class CommandeService {
         
         pre.executeUpdate();
     }
-   
-        public List<Commande> AfficherCommande() throws SQLException{
+       /*"select * from produit ,promotion , line_cmd 
+       where produit.idProd=line_cmd.idProd and Commande.idCmd=line_cmd.idCmd and produit.idUser=" 
+       + idUser);
+*/
+        public List<Commande> AfficherCommandeBack(int idUser) throws SQLException{
         List<Commande> Commandes = new ArrayList<>();
-        ResultSet listeCmd = ste.executeQuery("select * from Commande");
+        String v = "Vrai";
+            try {
+
+        ResultSet listeCmd = ste.executeQuery("select * from produit ,commande , line_cmd where produit.idProd=line_cmd.idProd and Commande.idCmd=line_cmd.idCmd and produit.idUser="  + idUser);
         while(listeCmd.next())
         {
             Utilisateur user = new Utilisateur();
-            ResultSet cdUser = ste1.executeQuery("select * from utilisateur where id = "+ listeCmd.getInt("idUser"));
+            ResultSet cdUser = ste1.executeQuery("select * from utilisateur where id = "+ idUser);
             while(cdUser.next())
             {
                 user.setId(cdUser.getInt("id"));
@@ -130,10 +139,74 @@ public class CommandeService {
                 }
                 list.add(new LineCmd(line.getInt("qteAcheter"),p));
                 
-            }
-            Commandes.add(new Commande(listeCmd.getInt("idCmd"), (Date) listeCmd.getDate("dateCmd"),  (Date) listeCmd.getDate("dateLivCmd"), listeCmd.getString("addLiv"), listeCmd.getString("etatLivCmd"), user, list));
-        }
+             } 
+           Commandes.add(new Commande(listeCmd.getInt("idCmd"), (Date) listeCmd.getDate("dateCmd"),(double)listeCmd.getDouble("montantCmd") , (Date) listeCmd.getDate("dateLivCmd"), listeCmd.getString("addLiv"), listeCmd.getString("etatLivCmd"), user, list));
+        }}catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);}
+         
         return Commandes ;
+    }
+   public List<Commande> AfficherCommandeFront(int idUser) throws SQLException{
+        List<Commande> Commandes = new ArrayList<>();
+        String v = "Vrai";
+            try {
+
+        ResultSet listeCmd = ste.executeQuery("select * from commande where idUser="  + idUser);
+        while(listeCmd.next())
+        {
+            Utilisateur user = new Utilisateur();
+            ResultSet cdUser = ste1.executeQuery("select * from utilisateur where id = "+ idUser);
+            while(cdUser.next())
+            {
+                user.setId(cdUser.getInt("id"));
+                user.setUsername(cdUser.getString("username"));
+                user.setEmail(cdUser.getString("email"));
+                user.setPhoneNumber(cdUser.getString("phoneNumber"));
+                user.setAddresse(cdUser.getString("Addresse"));
+                user.setRoles(cdUser.getString("roles"));
+            }
+            
+            List<LineCmd> list = new ArrayList<>();
+            ResultSet line = ste2.executeQuery("select * from line_cmd where idCmd = "+ listeCmd.getInt("idCmd"));
+            while(line.next())
+            {
+                LineCmd cd = new LineCmd();
+                cd.setQteAcheter(line.getInt("qteAcheter"));
+                Produit p = new Produit();
+                ResultSet prod = ste3.executeQuery("select * from produit where idProd = "+ line.getInt("idProd"));
+                while(prod.next()){
+                p.setNomProd(prod.getString("nomProd"));
+                }
+                list.add(new LineCmd(line.getInt("qteAcheter"),p));
+                
+             } 
+           Commandes.add(new Commande(listeCmd.getInt("idCmd"), (Date) listeCmd.getDate("dateCmd"),(double)listeCmd.getDouble("montantCmd") , (Date) listeCmd.getDate("dateLivCmd"), listeCmd.getString("addLiv"), listeCmd.getString("etatLivCmd"), user, list));
+        }}catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);}
+         
+        return Commandes ;
+    }
+        
+        public List<LineCmd> AfficherLineCommande(int c) throws SQLException{
+        List<LineCmd> line = new ArrayList<>();
+        String v = "Vrai";
+        ResultSet listeline = ste.executeQuery("select * from line_cmd where idCmd = "+c);
+        while(listeline.next())
+        {
+           
+                LineCmd cd = new LineCmd();
+                cd.setQteAcheter(listeline.getInt("qteAcheter"));
+                Produit p = new Produit();
+                ResultSet prod = ste3.executeQuery("select * from produit where idProd = "+ listeline.getInt("idProd"));
+                while(prod.next()){
+                p.setNomProd(prod.getString("nomProd"));
+                p.setImageprod(prod.getString("imageprod"));
+                }
+                line.add(new LineCmd(listeline.getInt("qteAcheter"),p));
+                
+            }
+        return line ;
     }
    
 }
+

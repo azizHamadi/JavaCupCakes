@@ -32,18 +32,17 @@ public class ClientTemplateController implements Initializable {
     @FXML
     private Button GestionFormations;
 
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-    }    
+    }
 
     @FXML
     private void GestionRecette(ActionEvent event) throws IOException, SQLException {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Recette/GererRecette.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Recette/GererRecette.fxml"));
         try {
             body.getChildren().clear();
             body.getChildren().add(loader.load());
@@ -55,7 +54,18 @@ public class ClientTemplateController implements Initializable {
 
     @FXML
     private void GestionProduit(ActionEvent event) {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Produit/GererProduit.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Produit/GererProduit.fxml"));
+        try {
+            body.getChildren().clear();
+            body.getChildren().add(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(ClientTemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GestionCommande(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Commande/GererCommande.fxml"));
         try {
             body.getChildren().clear();
             body.getChildren().add(loader.load());
@@ -66,9 +76,9 @@ public class ClientTemplateController implements Initializable {
 
     @FXML
     private void GestionFormations(ActionEvent event) {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/GestionFormation/GererFormation.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/GestionFormation/GererFormation.fxml"));
         try {
-          //  body.getChildren().clear();
+            //  body.getChildren().clear();
             body.getChildren().add(loader.load());
         } catch (IOException ex) {
             Logger.getLogger(ClientTemplateController.class.getName()).log(Level.SEVERE, null, ex);

@@ -7,6 +7,7 @@ package Services;
 
 import Entity.Commande;
 import Entity.FeedBack;
+import Entity.Utilisateur;
 import Technique.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,22 +27,24 @@ public class FeedbackService {
      public Connection con = DataSource.getInstance().getCon();
     private Statement ste ;
     private Statement ste1 ;
+    private Statement ste2 ;
 
     
     public FeedbackService() {
 try {
             ste =con.createStatement();
             ste1 =con.createStatement();
+            ste2 =con.createStatement();
 
         } catch (SQLException ex) {
             Logger.getLogger(CommandeService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-     public void AjouterFeedback(FeedBack c) throws SQLException{
+     public void AjouterFeedback(FeedBack c,Commande cmd) throws SQLException{
         String req ="INSERT INTO feed_back (sujet,description,idCmd) VALUES (?,?,?)";
         PreparedStatement pre = con.prepareStatement(req);
-        ResultSet rs = ste.executeQuery("SELECT * FROM Commande WHERE idCmd = 1");
+        ResultSet rs = ste.executeQuery("SELECT * FROM Commande WHERE idCmd = "+cmd.getIdCmd());
        int id = 0;
        while(rs.next())
             id= rs.getInt("idCmd");
@@ -66,10 +69,17 @@ try {
                 Cmd.setDateLivCmd(FeedCmd.getDate("dateLivCmd"));
                 Cmd.setDateCmd(FeedCmd.getDate("dateCmd"));
                 Cmd.setMontantCmd(FeedCmd.getDouble("montantCmd"));
-                
+                 Utilisateur user = new Utilisateur();
+            ResultSet cdUser = ste2.executeQuery("select * from utilisateur where id = "+ FeedCmd.getInt("idUser"));
+            while(cdUser.next())
+            {
+                user.setUsername(cdUser.getString("username"));
+            }
             }
             feedback.add(new FeedBack(listeFeedback.getInt("idFeed"),listeFeedback.getString("sujet"), listeFeedback.getString("description"), Cmd));
         }
+                System.out.println(feedback);
+
         return feedback ;
 }
 }

@@ -50,18 +50,20 @@ public class Commande {
 
    
 
-    public Commande(Integer idCmd, Date dateCmd, Date dateLivCmd, String addLiv, String etatLivCmd, Utilisateur idUser) {
+    public Commande(Integer idCmd, Date dateCmd,Double Montant ,Date dateLivCmd, String addLiv, String etatLivCmd, Utilisateur idUser) {
         this.idCmd = idCmd;
         this.dateCmd = dateCmd;
+        this.montantCmd=Montant;
         this.dateLivCmd = dateLivCmd;
         this.addLiv = addLiv;
         this.etatLivCmd = etatLivCmd;
         this.idUser = idUser;
     }
 
-    public Commande(Integer idCmd, Date dateCmd, Date dateLivCmd, String addLiv, String etatLivCmd,  Utilisateur idUser, Collection<LineCmd> lineCmdCollection) {
+    public Commande(Integer idCmd, Date dateCmd,Double Montant , Date dateLivCmd, String addLiv, String etatLivCmd,  Utilisateur idUser, Collection<LineCmd> lineCmdCollection) {
         this.idCmd = idCmd;
         this.dateCmd = dateCmd;
+        this.montantCmd=Montant;
         this.dateLivCmd = dateLivCmd;
         this.addLiv = addLiv;
         this.etatLivCmd = etatLivCmd;

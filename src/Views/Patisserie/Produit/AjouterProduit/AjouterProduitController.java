@@ -29,7 +29,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 /**
@@ -51,6 +54,20 @@ public class AjouterProduitController implements Initializable {
     private JFXComboBox<String> typProd;
     @FXML
     private JFXButton image;
+    @FXML
+    private ImageView Image;
+    @FXML
+    private Label labNomProd;
+    @FXML
+    private Label labPrix;
+    @FXML
+    private Label labQte;
+    @FXML
+    private Label labCat;
+    @FXML
+    private Label labTypeProd;
+    @FXML
+    private Label labImage;
 
     /**
      * Initializes the controller class.
@@ -83,14 +100,25 @@ String imagef="";
      System.out.println(f.getName());
                      }
          imagef = f.getName();
-         File fd = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/"+f.getName());
-
+         File fd = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/"+f.getName());
+         String imaged = "";
+         imaged ="file:///"+fd.getAbsolutePath();
          Files.copy(f.getAbsoluteFile().toPath(),fd.getAbsoluteFile().toPath());
+         Image.setImage(new Image(imaged));
     }
 
     @FXML
     private void Ajouter(ActionEvent event) throws SQLException, IOException {
-        ProduitService ps = new ProduitService();
+         if (verif())
+        {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Attention!");
+            alert.setHeaderText(null);
+            alert.setContentText("veuillez remplir tous les champs!");
+            alert.showAndWait();
+            return ;
+        }
+          ProduitService ps = new ProduitService();
         Produit p = new Produit(nomProd.getText(),(double)Integer.parseInt(qteStock.getText()),typProd.getValue(),Integer.parseInt(prixprod.getText()) , 0, "vrai", 0, 0,imagef);
         ps.AjouterProduit(p,cat.getValue());
         System.out.println("c bon");
@@ -99,7 +127,7 @@ String imagef="";
         alert.setHeaderText(null);
         alert.setContentText("Produit insérée avec succés!");
         alert.show();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherProd.FXML"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeProduit.FXML"));
         Parent root = loader.load();
         typProd.getScene().setRoot(root);
 
@@ -133,4 +161,71 @@ String imagef="";
         });
     }
     
+    public boolean verif(){
+        int img = 0,nom = 0,cata = 0,qte = 0, type = 0, prix=0 ;
+        if (imagef == "")
+        {
+            img = 1;
+            labImage.setVisible(true);
+        }
+        else
+            labImage.setVisible(false);
+        
+        if (nomProd.getText().length()==0)
+        {
+            nom = 1 ;
+            labNomProd.setVisible(true);
+        }
+        else
+            labNomProd.setVisible(false);
+        
+        if (prixprod.getText().length()==0)
+        {
+            prix = 1 ;
+            labPrix.setVisible(true);
+        }
+        else
+            labPrix.setVisible(false);
+        
+       /* if (Integer.parseInt(prixprod.getText())>0) {
+            prix = 1 ;
+            labPrix.setVisible(true);
+        } else labPrix.setVisible(false);
+        */
+        /*
+         if (Integer.parseInt(qteStock.getText())<0)
+        {
+            qte = 1 ;
+            labPrix.setVisible(true);
+        }
+        else
+            labPrix.setVisible(false);
+*/
+        if (qteStock.getText().length()==0 )
+        {
+            qte = 1 ;
+            labQte.setVisible(true);
+        }
+        else
+            labQte.setVisible(false);
+
+        if (cat.getValue() == null)
+        {
+            cata = 1 ;
+            labCat.setVisible(true);
+        }
+        else
+            labCat.setVisible(false);
+        
+        if (typProd.getValue() == null)
+        {
+            type = 1 ;
+            labTypeProd.setVisible(true);
+        }
+        else
+            labTypeProd.setVisible(false);
+        
+        return ( img==1 || nom==1 || cata==1 || qte==1 || type ==1 );
+    }
+
 }

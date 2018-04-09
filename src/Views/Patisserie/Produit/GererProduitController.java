@@ -5,6 +5,8 @@
  */
 package Views.Patisserie.Produit;
 
+import Views.Client.Recette.*;
+import Views.Client.Recette.ListAllRecettes.ListAllRecettesController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 /**
@@ -33,6 +36,10 @@ public class GererProduitController implements Initializable {
     private Button ListeCategoriebtn;
     @FXML
     private Button btnListeProduit;
+    @FXML
+    private Button statvbtn;
+    @FXML
+    private Button StatVu;
 
     /**
      * Initializes the controller class.
@@ -52,12 +59,32 @@ public class GererProduitController implements Initializable {
 
 
     @FXML
-    private void ListeCategorie(ActionEvent event) {
+    private void ListeCategorie(ActionEvent event) throws IOException {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Produit/ListeCategorie/ListeCategorieP.fxml"));
+        Node root = loader.load();
+        body.getChildren().clear();
+        body.getChildren().add(root);
     }
 
     @FXML
     private void ListeProduit(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Produit/ListeProduit/ListeProduit.fxml"));
+        Node root = loader.load();
+        body.getChildren().clear();
+        body.getChildren().add(root);
+    }
+
+    @FXML
+    private void statistique(ActionEvent event) throws IOException {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Produit/StatVente/StateVente.fxml"));
+        Node root = loader.load();
+        body.getChildren().clear();
+        body.getChildren().add(root);
+    }
+
+    @FXML
+    private void statistiqueVue(ActionEvent event) throws IOException {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Produit/StatVue/StateVue.fxml"));
         Node root = loader.load();
         body.getChildren().clear();
         body.getChildren().add(root);

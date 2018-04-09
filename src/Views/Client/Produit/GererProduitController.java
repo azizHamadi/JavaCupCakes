@@ -5,6 +5,7 @@
  */
 package Views.Client.Produit;
 
+import Views.Client.Panier.AfficherPanier.AfficherPanierController;
 import Views.Client.Produit.ListAllProduit.ListAllProduitController;
 import java.io.IOException;
 import java.net.URL;
@@ -48,6 +49,15 @@ public class GererProduitController implements Initializable {
         ListAllProduitController Clar = loader.getController();
         body.getChildren().clear();
         body.getChildren().add(Clar.getBody());
+    }
+
+    @FXML
+    private void PANIER(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Panier/AfficherPanier/AffichrerPanier.fxml"));
+        Node root = loader.load();
+        AfficherPanierController Clar = loader.getController();
+        body.getChildren().clear();
+        body.getChildren().add(root);
     }
 
         

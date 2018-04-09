@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefWidth="1200.0" style="-fx-background-color: #F4F3EF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Commande.GererCommandeController">
+<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Commande.GererCommandeController">
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="628.0" prefWidth="1200.0" stylesheets="@../../common.css">
          <children>
@@ -20,7 +20,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <VBox.margin>
-                              <Insets top="15.0" />
+                              <Insets top="10.0" />
                            </VBox.margin>
                            <children>
                               <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
@@ -28,12 +28,32 @@
                                     <Insets left="1.0" />
                                  </HBox.margin>
                               </FontAwesomeIconView>
-                              <Button fx:id="btnListeProduit" mnemonicParsing="false" onAction="#ListeCommande" prefWidth="143.0" style="-fx-background-color: transparent;" text="Liste des commande" textFill="#f4f3ef">
+                              <Button fx:id="btnListeProduit" mnemonicParsing="false" onAction="#ListeCommande" style="-fx-background-color: transparent;" text="Liste des commande" textFill="#f4f3ef">
                                  <HBox.margin>
                                     <Insets top="9.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="40.0" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
+                                 <HBox.margin>
+                                    <Insets left="1.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <Button fx:id="btnFeedback" mnemonicParsing="false" onAction="#ListeFeedback" style="-fx-background-color: transparent;" text="Liste des feedback" textFill="#f4f3ef">
+                                 <HBox.margin>
+                                    <Insets top="9.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                      <padding>

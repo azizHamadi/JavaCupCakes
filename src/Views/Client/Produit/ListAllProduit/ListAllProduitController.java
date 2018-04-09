@@ -8,7 +8,9 @@ package Views.Client.Produit.ListAllProduit;
 import Entity.Categorie;
 import Entity.Produit;
 import Services.CategorieService;
+import Services.PanierService;
 import Services.ProduitService;
+import Views.Client.Produit.AfficherProduit.ProduitSingleController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -20,6 +22,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -120,8 +124,32 @@ public class ListAllProduitController implements Initializable {
                 msc.setNomPat(prod.getIdUser().getUsername());
                 msc.setPrix(prod.getPrixProd().toString());
                 ImageView img = msc.getImage();
+               
                 img.setOnMouseClicked(e->{
-                    System.out.println("te5dem");
+                    try {
+                         
+                        ps.UpdateProduitValeur(prod);
+                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../AfficherProduit/ProduitSingle.fxml"));
+                        Parent root = loader1.load();
+                        ProduitSingleController c2 =loader1.getController();
+                        System.out.println("produit " + prod);
+                        section_body.getChildren().clear();
+                        section_body.getChildren().add(root);
+                        c2.setNomProd(prod.getNomProd());
+                        c2.setImage(prod.getImageprod());
+                        c2.setPrix(prod.getPrixProd().toString());
+                        c2.setCategorie(prod.getIdCat().getNomCat());
+                        c2.setStock(prod.getQteStockProd().toString());
+                       System.out.println(prod);
+                        c2.setProd(prod);
+                        c2.Controle();
+                        System.out.println("produit valeur" + prod.getValeur());
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 });
                 hc.addColonne(nodesColonne[i]);
                 i++;
@@ -193,8 +221,25 @@ public class ListAllProduitController implements Initializable {
             msc.setPrix(prod.getPrixProd().toString());
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
-                System.out.println("te5dem");
-            });
+                try {
+                    FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../AfficherProduit/ProduitSingle.fxml"));
+                    Parent root = loader1.load();
+                    ProduitSingleController c2 =loader1.getController();
+                    c2.setProd(prod);
+                    System.out.println("produit " + prod);
+                    section_body.getChildren().clear();
+                    section_body.getChildren().add(root);
+                    c2.setNomProd(prod.getNomProd());
+                    c2.setImage(prod.getImageprod());
+                    c2.setPrix(prod.getPrixProd().toString());
+                    c2.setCategorie(prod.getIdCat().getNomCat());
+                    c2.setStock(prod.getQteStockProd().toString());
+                    System.out.println(prod);
+                    c2.Controle();
+                } catch (IOException ex) {
+                    Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+ });
             hc.addColonne(nodesColonne[i]);
             i++;
             if( listProd.size() > i)
