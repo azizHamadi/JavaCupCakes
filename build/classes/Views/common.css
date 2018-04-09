@@ -5,10 +5,24 @@
     -fx-border-color: white;
 }
 
+.inputNomCatP {
+    -fx-text-inner-color:  #20202f;
+    -fx-background-color:  transparent ;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color:  #20202f;
+}
+
 .btnRechRec{
     -fx-text-inner-color: white;
     -fx-background-color: transparent;
     -fx-border-color: white;
+    -fx-border-width:  1 0 1 1;
+}
+
+.btnRechRecP{
+    -fx-text-inner-color: #20202f;
+    -fx-background-color: transparent;
+    -fx-border-color: #20202f;
     -fx-border-width:  1 0 1 1;
 }
 
@@ -31,10 +45,23 @@ input[type="text"] {
     -fx-border-width: 1 0 1 1;
 }
 
+.btImageP{
+    -fx-background-color: transparent;
+    -fx-border-color:  #20202f;
+    -fx-border-width: 1 0 1 1;
+}
+
 .txtImage{
     -fx-text-inner-color: white;
     -fx-background-color: transparent;
     -fx-border-color: white;
+    -fx-border-width: 1 1 1 0;
+}
+
+.txtImageP{
+    -fx-text-inner-color:  #20202f;
+    -fx-background-color: transparent;
+    -fx-border-color:  #20202f;
     -fx-border-width: 1 1 1 0;
 }
 
@@ -64,7 +91,59 @@ input[type="text"] {
     -fx-content-display: LEFT;
 }
 
-.btn-add-recette:pressed {
+.btn-add-recetteP{
+    -fx-background-color: 
+        linear-gradient(#e3b85a, #e3b85a),
+        linear-gradient(#e0b557, #dcb153),
+        linear-gradient(#d5aa4c, #cea345),
+        linear-gradient(#c99e42, #c99e42 50%, #c99e42 100%),
+        linear-gradient(from 5% 5% to 25% 50%, rgba(201,158,66,126), rgba(221,178,84,144));
+    /*-fx-background-color: 
+        linear-gradient(#242333, #222131),
+        linear-gradient(#404156, #37384c),
+        linear-gradient(#2b2c3e, #262535),
+        linear-gradient(#242333, #242333 50%, #222131 100%),
+        linear-gradient(from 5% 5% to 25% 50%, rgba(34,33,49,39), rgba(47,48,66,53));*/
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-background-radius: 10em;
+    -fx-border-radius: 10em;
+}
+
+.btn-add-recetteP:hover{
+    -fx-background-color: 
+        linear-gradient(#242333, #222131),
+        linear-gradient(#404156, #37384c),
+        linear-gradient(#2b2c3e, #262535),
+        linear-gradient(#242333, #242333 50%, #222131 100%),
+        linear-gradient(from 5% 5% to 25% 50%, rgba(34,33,49,39), rgba(47,48,66,53));
+    -fx-background-radius: 10em;
+    -fx-border-radius: 10em;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
+
+.description {
+    -fx-background-color: transparent ;
+}
+
+body{
+    background-color:   #20202f;
+    color :white;
     
+}
+
+.descriptionWeb{
+    -fx-text-inner-color: white;
+    -fx-background-color:  transparent ;
+    -fx-border-color: white;
+    -fx-border-radius: 2em;
+}
+
+.descriptionWebP{
+    -fx-text-inner-color: #20202f;
+    -fx-background-color:  transparent ;
+    -fx-border-color: #20202f;
+    -fx-border-radius: 2em;
 }
 

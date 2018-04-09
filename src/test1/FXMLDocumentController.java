@@ -19,6 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -57,14 +59,27 @@ public class FXMLDocumentController implements Initializable {
             SessionUser.setPhoneNumber(user.getPhoneNumber());
             SessionUser.setRoles(user.getRoles());
             SessionUser.setUsername(user.getUsername());
-            Parent root = FXMLLoader.load(getClass().getResource("../Views/test/folder/ClientTemplate.fxml"));
+            Parent root = null ;
+            if (SessionUser.getRoles().equals("a:1:{i:0;s:15:\"ROLE_PATISSERIE\";}"))
+                root = FXMLLoader.load(getClass().getResource("../Views/test/folder/BackPatTemplate.fxml"));
+            else if (SessionUser.getRoles().equals("a:1:{i:0;s:11:\"ROLE_CLIENT\";}"))
+                root = FXMLLoader.load(getClass().getResource("../Views/test/folder/ClientTemplate.fxml"));
+            else if (SessionUser.getRoles().equals("a:1:{i:0;s:14:\"ROLE_FORMATEUR\";}"))
+                root = FXMLLoader.load(getClass().getResource("../Views/test/folder/BackForTemplate.fxml"));
+            else System.out.println("thabbet !");
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();            
         }
         else
-            System.out.println("7aaamdiiiiiiiiiiiiiiiiiiiiii");
+        {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Attention!");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier votre login et mot de passe!");
+            alert.showAndWait();
+        }
     }
     
 }

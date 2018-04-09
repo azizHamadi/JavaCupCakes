@@ -192,7 +192,6 @@ public class ModifierRecetteController implements Initializable {
         CommentaireService cs = new CommentaireService();
         Utilisateur idUser = new Utilisateur(SessionUser.getId());
         Thread thread = new Thread(String.valueOf(idRec));
-        System.out.println("idRec = "+idRec);
         Commentaire com = new Commentaire(commentaire.getText(), 0, 0,thread, idUser);
         if (com.getBody().length() < 2){
             labCom.setVisible(true);
@@ -234,7 +233,6 @@ public class ModifierRecetteController implements Initializable {
             cc.getCommentaire().setPadding(new Insets(10, 0, 0, ancestor.split("/").length *15));
             cc.setVbody(vbody);
             cc.setAncestors(ancestor);
-            System.out.println("id rec commentaire = "+idRec);
             cc.setIdRec(String.valueOf(idRec));
             cc.setBodyCom(listCom.get(0).getBody());
             cc.setUsername(listCom.get(0).getIdUser().getUsername());

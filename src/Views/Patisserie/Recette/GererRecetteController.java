@@ -6,6 +6,8 @@
 package Views.Patisserie.Recette;
 
 
+import Views.Patisserie.Recette.ListAllRecettes.ListAllRecettesController;
+import Views.Patisserie.Recette.MesRecettes.MesRecettesController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,21 +45,31 @@ public class GererRecetteController implements Initializable {
         // TODO
     }    
 
+
     @FXML
-    private void AjouterProduit(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Produit/AjouterProduit/AjouterProduit.fxml"));
+    private void ListeCategorie(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Recette/MesRecettes/MesRecettes.fxml"));
+        Node root = loader.load();
+        MesRecettesController Clar = loader.getController();
+        body.getChildren().clear();
+        body.getChildren().add(Clar.getBody());
+    }
+
+    @FXML
+    private void ListeRecette(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Recette/ListAllRecettes/ListAllRecettes.fxml"));
+        Node root = loader.load();
+        ListAllRecettesController Clar = loader.getController();
+        body.getChildren().clear();
+        body.getChildren().add(Clar.getBody());
+    }
+
+    @FXML
+    private void AjouterRecette(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterRecette/AjouterRecettePatisserie.fxml"));
         Node root = loader.load();
         body.getChildren().clear();
         body.getChildren().add(root);
-    }
-
-
-    @FXML
-    private void ListeCategorie(ActionEvent event) {
-    }
-
-    @FXML
-    private void ListeProduit(ActionEvent event) {
     }
 
         

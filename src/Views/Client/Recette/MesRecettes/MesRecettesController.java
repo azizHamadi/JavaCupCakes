@@ -14,6 +14,7 @@ import Services.CategorieRecetteService;
 import Services.CommentaireService;
 import Services.NoteService;
 import Services.RecetteService;
+import Services.ThreadService;
 import Views.Client.Recette.Commentaire.CommentaireController;
 import Views.Client.Recette.ModifierRecette.ModifierRecetteController;
 import Views.Client.Recette.ModifierRecette.InfoRecetteController;
@@ -181,6 +182,9 @@ public class MesRecettesController implements Initializable {
                 ImageView img = msc.getImage();
                 img.setOnMouseClicked(e->{
                     try {
+                        ThreadService ts = new ThreadService();
+                        if (ts.ThreadExiste(rec.getIdRec().toString()) == null )
+                            ts.AjouterThread(new Entity.Thread(rec.getIdRec().toString()));
                         FXMLLoader loaderSingleRecette = new FXMLLoader(getClass().getResource("../../../Client/Recette/ModifierRecette/ModifierRecette.fxml"));
                         Node SingleRecette = loaderSingleRecette.load();
                         ModifierRecetteController CsR = loaderSingleRecette.getController();
@@ -297,11 +301,16 @@ public class MesRecettesController implements Initializable {
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
                 try {
+                    ThreadService ts = new ThreadService();
+                        if (ts.ThreadExiste(rec.getIdRec().toString()) == null )
+                            ts.AjouterThread(new Entity.Thread(rec.getIdRec().toString()));
                     FXMLLoader loaderSingleRecette = new FXMLLoader(getClass().getResource("../../Client/Recette/SingleRecette/SingleRecette.fxml"));
                     Node SingleRecette = loaderSingleRecette.load();
                     body.getChildren().clear();
                     body.getChildren().add(SingleRecette);
                 } catch (IOException ex) {
+                    Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
@@ -444,11 +453,16 @@ public class MesRecettesController implements Initializable {
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
                 try {
+                    ThreadService ts = new ThreadService();
+                        if (ts.ThreadExiste(rec.getIdRec().toString()) == null )
+                            ts.AjouterThread(new Entity.Thread(rec.getIdRec().toString()));
                     FXMLLoader loaderSingleRecette = new FXMLLoader(getClass().getResource("../../Client/Recette/SingleRecette/SingleRecette.fxml"));
                     Node SingleRecette = loaderSingleRecette.load();
                     body.getChildren().clear();
                     body.getChildren().add(SingleRecette);
                 } catch (IOException ex) {
+                    Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });

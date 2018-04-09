@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.HTMLEditor?>
+
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1000.0" style="-fx-background-color: #F4F3EF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Recette.AjouterRecette.AjouterRecettePatisserieController">
+   <children>
+      <ComboBox fx:id="catRec" layoutX="45.0" layoutY="94.0" prefHeight="31.0" prefWidth="358.0" promptText="Categorie Recette">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <TextField fx:id="nomRec" layoutX="494.0" layoutY="97.0" prefHeight="31.0" prefWidth="358.0" promptText="Nom Recette" styleClass="inputNomCatP" stylesheets="@../../../commonPatisserie.css">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="15.0" />
+         </font>
+      </TextField>
+      <HTMLEditor fx:id="description" htmlText="" layoutX="45.0" layoutY="171.0" prefHeight="364.0" prefWidth="921.0" />
+      <Label layoutX="43.0" layoutY="139.0" text="Description" textFill="#20202f">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="image" layoutX="45.0" layoutY="548.0" mnemonicParsing="false" onAction="#UploadImageB" prefHeight="33.0" prefWidth="159.0" styleClass="btImageP" stylesheets="@../../../commonPatisserie.css" text="Importer une image" textFill="#20202f">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="lab_image" layoutX="201.0" layoutY="556.0" text="veuillez choisir une image" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="textImage" editable="false" layoutX="204.0" layoutY="548.0" onMouseClicked="#UploadImage" prefHeight="31.0" prefWidth="450.0" styleClass="txtImageP" stylesheets="@../../../commonPatisserie.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </TextField>
+      <Text fill="#20202f" layoutX="43.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Une recette">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="Enregistrer" layoutX="827.0" layoutY="595.0" mnemonicParsing="false" onAction="#AjouterRecetteClient" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../commonPatisserie.css" text="Enregistrer" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="Annuler" layoutX="657.0" layoutY="596.0" mnemonicParsing="false" onAction="#AnnulerAjoutRecetteClient" prefHeight="31.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../commonPatisserie.css" text="Annuler" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="lab_CatRec" layoutX="45.0" layoutY="69.0" text="veuillez choisir parmi les catégories suivantes" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lab_nomRec" layoutX="494.0" layoutY="72.0" text="veuillez saisir le nom de la recette" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lab_DescRec" layoutX="130.0" layoutY="143.0" text="veuillez saisir la description de la recette" textFill="#ee1d1d" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="AjouterCategorie" layoutX="410.0" layoutY="98.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="28.0" prefWidth="21.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <FontAwesomeIconView fill="#20202f" glyphName="PLUS" size="18" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

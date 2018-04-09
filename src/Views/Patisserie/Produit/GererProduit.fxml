@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Produit.GererProduitController">
+<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #F4F3EF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Patisserie.Produit.GererProduitController">
    <children>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="628.0" prefWidth="1200.0" stylesheets="@../../common.css">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #F4F3EF;" stylesheets="@../../common.css">
          <children>
             <VBox fx:id="nav_bar" prefHeight="628.0" prefWidth="200.0" style="-fx-background-color: #F4F3EF;">
                <children>
@@ -21,7 +21,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
                            <children>
                               <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
@@ -38,7 +38,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px 0 0 0 7px;">
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -65,7 +65,7 @@
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="15.0" />
                            </VBox.margin>
                         </HBox>
                      </children>
