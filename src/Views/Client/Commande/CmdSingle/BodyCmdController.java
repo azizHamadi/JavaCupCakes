@@ -36,7 +36,7 @@ public class BodyCmdController implements Initializable {
     }
 
     public void setImage(String Image) {
-       File file = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/" + Image);
+       File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/" + Image);
         this.Image.setImage(new Image(file.toURI().toString()));
     }
 

@@ -33,7 +33,7 @@ public class ProdCmdController implements Initializable {
     }
 
     public void setImageview(String imageview) {
-  File file = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/" + imageview);
+  File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/" + imageview);
         this.imageview.setImage(new Image(file.toURI().toString()));
         }
 

@@ -17,12 +17,12 @@
       <JFXTextField fx:id="qteStock" focusColor="#e57c3e" layoutX="25.0" layoutY="234.0" prefHeight="25.0" prefWidth="205.0" promptText="Quantité Stock" />
       <JFXComboBox fx:id="cat" focusColor="#e57c3e" layoutX="320.0" layoutY="159.0" prefHeight="16.0" prefWidth="205.0" promptText="Categorie Produit" />
       <JFXComboBox fx:id="typProd" focusColor="#e57c3e" layoutX="315.0" layoutY="234.0" prefHeight="18.0" prefWidth="205.0" promptText="Type Produit" />
-      <JFXButton fx:id="image" layoutX="325.0" layoutY="76.0" onAction="#AjouterImage" prefHeight="25.0" prefWidth="195.0" text="Ajouter Une Image" textFill="#96cad9">
+      <JFXButton fx:id="image" layoutX="325.0" layoutY="76.0" onAction="#AjouterImage" prefHeight="25.0" prefWidth="195.0" style="-fx-border-color: #75bcd0; -fx-border-width: 2px; -fx-border-radius: 2em;" text="Ajouter Une Image" textFill="#75bcd0">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="89.0" layoutY="332.0" onAction="#Ajouter" prefHeight="46.0" prefWidth="174.0" ripplerFill="BLACK" text="Ajouter" textFill="#96cad9">
+      <JFXButton layoutX="89.0" layoutY="332.0" onAction="#Ajouter" prefHeight="46.0" prefWidth="174.0" ripplerFill="BLACK" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Ajouter" textFill="#75bcd0">
          <font>
             <Font size="21.0" />
          </font></JFXButton>

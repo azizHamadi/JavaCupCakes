@@ -10,7 +10,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Panier.AfficherPanier.AfficherPanierController">
    <children>
-      <JFXButton layoutX="528.0" layoutY="442.0" onAction="#Valider" prefHeight="50.0" prefWidth="145.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Valider" textFill="#e2b85b">
+      <JFXButton layoutX="528.0" layoutY="442.0" onAction="#Valider" prefHeight="50.0" prefWidth="145.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Valider" textFill="WHITE">
          <font>
             <Font name="Georgia" size="21.0" />
          </font></JFXButton>

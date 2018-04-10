@@ -30,12 +30,12 @@
             <Font name="Georgia" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="BtAjouter" layoutX="495.0" layoutY="405.0" mnemonicParsing="false" onAction="#ajouterPanier" prefHeight="55.0" prefWidth="226.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Ajouter au panier" textFill="#e2b85b" visible="false">
+      <Button fx:id="BtAjouter" layoutX="495.0" layoutY="405.0" mnemonicParsing="false" onAction="#ajouterPanier" prefHeight="55.0" prefWidth="226.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Ajouter au panier" textFill="WHITE" visible="false">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <JFXTextField fx:id="QteAcheter" focusColor="#e2b85b" layoutX="358.0" layoutY="328.0" prefHeight="40.0" prefWidth="205.0" promptText="Quantité a acheter" styleClass="inputPanier" stylesheets="@../../../common.css" unFocusColor="#e2b85b">
+      <JFXTextField fx:id="QteAcheter" focusColor="#e2b85b" layoutX="358.0" layoutY="328.0" prefHeight="40.0" prefWidth="205.0" promptText="Quantité a acheter" styleClass="inputtxtcommande" stylesheets="@../../../common.css" unFocusColor="#e2b85b">
          <font>
             <Font size="17.0" />
          </font></JFXTextField>

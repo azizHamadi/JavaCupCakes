@@ -156,7 +156,7 @@ public class InfoRecetteController implements Initializable {
     
     @FXML
     private void ModifierRecette(ActionEvent event) throws IOException {
-        FXMLLoader loaderModifier = new FXMLLoader(getClass().getResource("../ModifierRecette/ModifierRecetteClient.fxml"));
+        FXMLLoader loaderModifier = new FXMLLoader(getClass().getResource("ModifierRecettePatisserie.fxml"));
         Node RecetteModifier = loaderModifier.load();
         ModifierRecettePatisserieController mcc = loaderModifier.getController();
         mcc.setMcc(mcc);

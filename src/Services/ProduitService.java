@@ -8,6 +8,7 @@ package Services;
 import Entity.Categorie;
 import Entity.FeedBack;
 import Entity.Produit;
+import Entity.SessionUser;
 import Entity.Utilisateur;
 import Technique.DataSource;
 import java.sql.Connection;
@@ -53,7 +54,7 @@ public class ProduitService {
     public void AjouterProduit(Produit p,String NomCat) throws SQLException{
         String req ="INSERT INTO produit (nomProd,qteStockProd,typeProd,prixProd,etatProd,imageprod,QteAcheter,valeur,idUser,idCat) VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pre = con.prepareStatement(req);
-        ResultSet rs = ste.executeQuery("SELECT * FROM Utilisateur WHERE id = 1");
+        ResultSet rs = ste.executeQuery("SELECT * FROM Utilisateur WHERE id ="+SessionUser.getId());
        int id = 0;
        while(rs.next())
             id= rs.getInt("id");
@@ -252,7 +253,7 @@ public class ProduitService {
         }
         return produits ;
     }
-     public Produit RechercheProduit(String nom) throws SQLException{
+    public Produit RechercheProduit(String nom) throws SQLException{
         ResultSet rs = ste.executeQuery("select * from produit where nomProd = '"+nom+"'");
         Produit pr = new Produit();
         while(rs.next())
@@ -262,5 +263,19 @@ public class ProduitService {
             pr.setPrixProd(rs.getInt("prixProd"));
         }
         return pr ;
+    }
+     
+    public List<Produit> RechercheProduitClient(String nom) throws SQLException{
+        String req = "select * from produit where etatProd = 'vrai' ";
+        if(nom != "" )
+            req+= " and nomProd like '%"+nom+"%'";
+        ResultSet rs = ste.executeQuery(req);
+        List<Produit> listProd = new ArrayList<>();
+        while(rs.next())
+        {
+            listProd.add( new Produit(rs.getInt("idProd"), rs.getString("nomProd"), rs.getDouble("qteStockProd"), rs.getString("typeProd"), rs.getInt("prixProd"), rs.getString("imageProd"), rs.getInt("QteAcheter"), new Categorie(rs.getInt("idCat")), new Utilisateur(rs.getInt("idUser")), rs.getInt("valeur")));
+            
+        }
+        return listProd ;
     }
 }

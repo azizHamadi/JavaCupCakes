@@ -5,6 +5,11 @@
     -fx-border-color: white;
 }
 
+.inputtxtcommande{
+    -fx-text-inner-color: white;
+    -fx-background-color:  transparent ;
+}
+
 .inputNomCatP {
     -fx-text-inner-color:  #20202f;
     -fx-background-color:  transparent ;

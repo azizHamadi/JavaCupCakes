@@ -42,7 +42,7 @@ public class PanierBodyController implements Initializable {
     }
 
     public void setImageP(String imageP) {
-        File file = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/" + imageP);
+        File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/" + imageP);
         this.imageP.setImage(new Image(file.toURI().toString()));
     }
 

@@ -3,10 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/escobar/Documents/NetBeansProjects/FinalPi/src/Views/AjouterPromotion/AjouterpromoproduitController.java</file>
-            <file>file:/C:/Users/escobar/Documents/NetBeansProjects/FinalPi/src/Services/FeedbackService.java</file>
-            <file>file:/C:/Users/escobar/Documents/NetBeansProjects/FinalPi/src/Views/AjouterPromotion/AjouterproduitpromoController.java</file>
-            <file>file:/C:/Users/escobar/Documents/NetBeansProjects/FinalPi/src/Views/Client/Commande/Feedback/FeedbackController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Services/FeedbackService.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Produit/AfficherProduit/ProduitSingleController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Recette/GererRecetteController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Recette/MesRecettes/Morabba3s8irController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/test1/Test1.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Produit/GererProduitController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/test/folder/BackPatTemplate.fxml</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Panier/ConfirmerAdre/CommandeController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Recette/MesRecettes/MesRecettesController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/test/folder/BackPatTemplateController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Produit/ListAllProduit/ListAllProduitController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Services/CommandeService.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Services/PanierService.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Entity/Produit.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Patisserie/Produit/GererProduitController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Patisserie/Commande/GererCommande.fxml</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/Client/Produit/GererProduit.fxml</file>
+            <file>file:/D:/cupcakeJdid2/src/test1/FXMLDocumentController.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Entity/Commande.java</file>
+            <file>file:/D:/cupcakeJdid2/src/Views/test/folder/ClientTemplateController.java</file>
         </group>
     </open-files>
 </project-private>

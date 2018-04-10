@@ -8,6 +8,7 @@ package Services;
 import Entity.Commande;
 import Entity.LineCmd;
 import Entity.Produit;
+import Entity.SessionUser;
 import Entity.Utilisateur;
 import Technique.DataSource;
 import java.sql.Connection;
@@ -50,17 +51,13 @@ public class CommandeService {
     public int AjouterCommande(Commande c) throws SQLException{
         String req ="INSERT INTO Commande (dateCmd,montantCmd,dateLivCmd,addLiv,etatLivCmd,etatCmd,idUser) VALUES(?,?,?,?,?,?,?)";
         PreparedStatement pre = con.prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
-        ResultSet rs = ste.executeQuery("SELECT * FROM Utilisateur WHERE id = 1");
-            int id = 0;
-            while(rs.next())
-            id= rs.getInt("id");
         pre.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
         pre.setDouble(2, c.getMontantCmd());
         pre.setDate(3, (Date) c.getDateLivCmd());
         pre.setString(4, c.getAddLiv());
         pre.setString(5, c.getEtatLivCmd());
         pre.setString(6, c.getEtatCmd());
-        pre.setInt(7, id );
+        pre.setInt(7, SessionUser.getId() );
         pre.executeUpdate();
         ResultSet  clef = pre.getGeneratedKeys();
         while(clef.next())

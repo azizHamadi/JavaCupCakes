@@ -9,6 +9,7 @@ import Entity.Categorie;
 import Entity.LinePromo;
 import Entity.Produit;
 import Entity.Promotion;
+import Entity.SessionUser;
 import Entity.Utilisateur;
 import Technique.DataSource;
 import java.sql.Connection;
@@ -167,8 +168,8 @@ public class LinePromoService {
     }
 
     public ObservableList<LinePromo> SearchListePromo(String nom) throws SQLException {
-        ResultSet rssession = ste.executeQuery("SELECT * FROM line_promo p ,produit pr WHERE p.etatLinePromo='en cours' AND pr.nomProd LIKE '%" + nom + "%'");
-
+        ResultSet rssession = ste.executeQuery("SELECT * FROM line_promo p ,produit pr WHERE p.etatLinePromo='en cours' AND pr.idProd = p.idProd and pr.nomProd LIKE '%" + nom + "%' and pr.idUser="+SessionUser.getId());
+        List<LinePromo> listeLinePromo = new ArrayList<LinePromo>() ;
         while (rssession.next()) {
             LinePromo p = new LinePromo();
             Produit pp = new Produit();
@@ -188,9 +189,9 @@ public class LinePromoService {
             }
             p.setIdProd(pp);
             p.setIdPromo(po);
-            Listlinepromo.add(p);
+            listeLinePromo.add(p);
         }
-        return Listlinepromo;
+        return FXCollections.observableArrayList(listeLinePromo);
     }
 
 }

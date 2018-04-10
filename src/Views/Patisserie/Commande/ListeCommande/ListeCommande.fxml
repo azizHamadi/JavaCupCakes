@@ -32,11 +32,11 @@
             </VBox>
             <AnchorPane prefHeight="576.0" prefWidth="466.0">
                <children>
-                  <JFXButton layoutX="276.0" layoutY="495.0" onAction="#Modifier" prefHeight="50.0" prefWidth="135.0" text="Modifier" textFill="#96cad9">
+                  <JFXButton layoutX="276.0" layoutY="495.0" onAction="#Modifier" prefHeight="50.0" prefWidth="135.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Modifier" textFill="#96cad9">
                      <font>
                         <Font size="18.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="71.0" layoutY="495.0" onAction="#SupprimerCommande" prefHeight="50.0" prefWidth="113.0" text="Supprimer" textFill="#96cad9">
+                  <JFXButton layoutX="71.0" layoutY="495.0" onAction="#SupprimerCommande" prefHeight="50.0" prefWidth="113.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Supprimer" textFill="#75bcd0">
                      <font>
                         <Font size="18.0" />
                      </font></JFXButton>

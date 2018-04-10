@@ -35,7 +35,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="valider" layoutX="312.0" layoutY="355.0" onAction="#validerpromo" text="Ajouter" textFill="#96cad9">
+      <JFXButton fx:id="valider" layoutX="312.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" layoutY="355.0" onAction="#validerpromo" text="Ajouter" textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>

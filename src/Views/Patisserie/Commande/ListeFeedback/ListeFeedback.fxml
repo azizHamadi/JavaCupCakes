@@ -46,7 +46,7 @@
                         <Font size="19.0" />
                      </font>
                   </Text>
-                  <JFXButton layoutX="310.0" layoutY="391.0" onAction="#AffciherCmd" prefHeight="54.0" prefWidth="160.0" text="Commande" textFill="#96cad9">
+                  <JFXButton layoutX="310.0" layoutY="391.0" onAction="#AffciherCmd" prefHeight="54.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" prefWidth="160.0" text="Commande" textFill="#96cad9">
                      <font>
                         <Font size="22.0" />
                      </font>

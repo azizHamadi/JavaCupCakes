@@ -38,11 +38,11 @@
                   <JFXTextField fx:id="NomProd" focusColor="#e57c3e" layoutX="29.0" layoutY="39.0" promptText="Nom Produit" unFocusColor="#96cad9" />
                   <JFXTextField fx:id="QteStock" focusColor="#e57c3e" layoutX="29.0" layoutY="101.0" promptText="Qauntité" unFocusColor="#96cad9" />
                   <JFXTextField fx:id="Prix" focusColor="#e57c3e" layoutX="29.0" layoutY="168.0" promptText="Prix" unFocusColor="#96cad9" />
-                  <JFXButton layoutX="164.0" layoutY="497.0" onAction="#Modifier" prefHeight="50.0" prefWidth="135.0" text="Modifier" textFill="#96cad9">
+                  <JFXButton layoutX="164.0" layoutY="497.0" onAction="#Modifier" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" prefHeight="50.0" prefWidth="135.0" text="Modifier" textFill="#96cad9">
                      <font>
                         <Font size="18.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="29.0" layoutY="497.0" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="113.0" text="Supprimer" textFill="#96cad9">
+                  <JFXButton layoutX="29.0" layoutY="497.0" onAction="#SupprimerProd" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" prefHeight="50.0" prefWidth="113.0" text="Supprimer" textFill="#96cad9">
                      <font>
                         <Font size="18.0" />
                      </font></JFXButton>

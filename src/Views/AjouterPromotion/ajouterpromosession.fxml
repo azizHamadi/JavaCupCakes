@@ -43,11 +43,11 @@
       <JFXComboBox fx:id="pourcentage" layoutX="251.0" layoutY="360.0" />
       <JFXDatePicker fx:id="datedeb" layoutX="194.0" layoutY="176.0" />
       <JFXDatePicker fx:id="datefin" layoutX="194.0" layoutY="270.0" />
-      <JFXButton fx:id="ajouter" layoutX="241.0" layoutY="443.0" onAction="#ajoutses" text="Ajouter" textFill="#96cad9">
+      <JFXButton fx:id="ajouter" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" layoutX="241.0" layoutY="443.0" onAction="#ajoutses" text="Ajouter" textFill="#96cad9">
          <font>
             <Font size="14.0" />
          </font></JFXButton>
-      <JFXButton fx:id="update" layoutX="493.0" layoutY="443.0" onAction="#modifier" text="Modifier" textFill="#96cad9">
+      <JFXButton fx:id="update" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" layoutX="493.0" layoutY="443.0" onAction="#modifier" text="Modifier" textFill="#96cad9">
          <font>
             <Font size="14.0" />
          </font></JFXButton>

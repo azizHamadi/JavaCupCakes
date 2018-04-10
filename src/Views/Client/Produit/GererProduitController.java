@@ -47,6 +47,7 @@ public class GererProduitController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Produit/ListAllProduit/ListAllProduit.fxml"));
         Node root = loader.load();
         ListAllProduitController Clar = loader.getController();
+        Clar.setVbody(body);
         body.getChildren().clear();
         body.getChildren().add(Clar.getBody());
     }

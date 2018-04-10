@@ -114,7 +114,7 @@ String   imgp= "";
         type.setValue(TableProd.getSelectionModel().getSelectedItem().getTypeProd());
         id.setText(TableProd.getSelectionModel().getSelectedItem().getIdProd().toString());
         imgp = TableProd.getSelectionModel().getSelectedItem().getImageprod();
-        Image image = new Image("file:///c:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/" + imgp ,imageview.getFitWidth(),imageview.getFitHeight(),true,true);
+        Image image = new Image("file:///c:/wamp64/www/final/web/public/uploads/brochures/Produit/" + imgp ,imageview.getFitWidth(),imageview.getFitHeight(),true,true);
         imageview.setImage(image);
    }
     //afficher le contenu de la table formation dans le tableau
