@@ -5,17 +5,16 @@
  */
 package Views.AjouterPromotion;
 
-import Entity.LinePromo;
-import Entity.Produit;
+import Entity.Linepromoses;
 import Entity.Promotion;
-import Services.LinePromoService;
-import Services.ProduitService;
+import Entity.Session;
+import Services.LinePromoSesService;
 import Services.PromotionService;
+import Services.SessionService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,13 +22,16 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextInputDialog;
+import javafx.util.Callback;
 import javax.mail.MessagingException;
 
 /**
@@ -37,10 +39,10 @@ import javax.mail.MessagingException;
  *
  * @author hamdi fathallah
  */
-public class AjouterproduitpromoController implements Initializable {
+public class AjoutsessionpromoController implements Initializable {
 
     @FXML
-    private JFXComboBox<String> produit;
+    private JFXComboBox<String> session;
     @FXML
     private JFXComboBox<Double> promo;
     @FXML
@@ -50,7 +52,7 @@ public class AjouterproduitpromoController implements Initializable {
     @FXML
     private JFXButton valider;
     @FXML
-    private Label prodtext;
+    private Label sesstext;
     @FXML
     private Label promotxt;
     @FXML
@@ -74,19 +76,21 @@ public class AjouterproduitpromoController implements Initializable {
             for (Promotion c : listpromo) {
                 promo.getItems().add(c.getTauxPromo());
             }
-            ProduitService prod = new ProduitService();
-            List<Produit> listprod = prod.AfficherNomProduit();
-            for (Produit c : listprod) {
-                produit.getItems().add(c.getNomProd());
+            SessionService sess = new SessionService();
+            List<Session> listprod = sess.ListeSessions();
+            for (Session c : listprod) {
+                session.getItems().add(c.getNomSes());
             }
-            // TODO
+
         } catch (SQLException ex) {
-            Logger.getLogger(AjouterpromoproduitController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AjoutsessionpromoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        // TODO
     }
 
     @FXML
     private void validerpromo(ActionEvent event) throws SQLException, MessagingException {
+
         if (ValidateFields()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention!");
@@ -95,60 +99,61 @@ public class AjouterproduitpromoController implements Initializable {
             alert.showAndWait();
             return;
         } else {
-            LinePromoService fs = new LinePromoService();
+            LinePromoSesService fs = new LinePromoSesService();
             PromotionService ps = new PromotionService();
-            ProduitService pk = new ProduitService();
             Promotion p = ps.RecherchePromotion(promo.getValue());
-            System.out.println(p);
-            ProduitService ks = new ProduitService();
-            Produit pr = ks.RechercheProduit(produit.getValue());
-            System.out.println(pr);
-            LinePromo pf = new LinePromo();
-            //if (comparedate(pf)== true) {
-            LinePromo f = new LinePromo(java.sql.Date.valueOf(datedeb.getValue()), java.sql.Date.valueOf(datefin.getValue()), p, pr);
-            if (comparedate(f)) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("ajout impossible!");
-                alert.setHeaderText(null);
-                alert.setContentText("le produit est deja sous promotion !");
-                alert.showAndWait();
-            } else {
-                fs.AjouterLinePromo(f);
-                fs.calculepromo(pr, p);
-                ClearFields();
+            SessionService ks = new SessionService();
+            Session pr = ks.RechercheSession(session.getValue());
+            Linepromoses f = new Linepromoses(java.sql.Date.valueOf(datedeb.getValue()), java.sql.Date.valueOf(datefin.getValue()), pr, p);
+               if (comparedate(f)) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("ajout impossible!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("la session est deja sous promotion !");
+                    alert.showAndWait();
 
-                return;
+                } else {
+                fs.AjouterLinePromoSes(f);
+                System.out.println("zadha");
+                fs.calculepromo(pr, p);
+                System.out.println("7sebhaaa");
+                ClearFields();
+                
+            return;
+
             }
             combobox();
-        }
-    }
 
-    public void combobox() throws SQLException {
-        PromotionService promos = new PromotionService();
-        List<Promotion> listpromo = promos.AfficherPromotion();
-        for (Promotion c : listpromo) {
-            promo.getItems().add(c.getTauxPromo());
-        }
-        ProduitService prod = new ProduitService();
-        List<Produit> listprod = prod.AfficherNomProduit();
-        for (Produit c : listprod) {
-            produit.getItems().add(c.getNomProd());
         }
     }
 
     public void ClearFields() {
-        produit.getItems().clear();
+        session.getItems().clear();
         datedeb.getEditor().setText(null);
         datefin.getEditor().setText(null);
         promo.getItems().clear();
 
     }
+    
+     public void combobox() throws SQLException {
+       PromotionService promos = new PromotionService();
+            List<Promotion> listpromo = promos.AfficherPromotion();
+            for (Promotion c : listpromo) {
+                promo.getItems().add(c.getTauxPromo());
+            }
+            SessionService sess = new SessionService();
+            List<Session> listprod = sess.ListeSessions();
+            for (Session c : listprod) {
+                session.getItems().add(c.getNomSes());
+            }
 
-    public boolean comparedate(LinePromo p) throws SQLException {
-        LinePromoService pk = new LinePromoService();
-        List<LinePromo> listProd = pk.RecherchePromoProduit(p.getIdProd().getIdProd());
-        for (LinePromo lp : listProd) {
-            System.out.println("line = " + lp);
+      }
+
+    public boolean comparedate(Linepromoses p) throws SQLException {
+        LinePromoSesService pk = new LinePromoSesService();
+        List<Linepromoses> listses = pk.RecherchePromosession(p.getIdSes().getIdSes());
+        for (Linepromoses lp : listses) {
+            System.out.println("line = " + lp.getDateFin().toString() + " deb = " + p.getDateDeb().toString());
             if (!p.getDateDeb().after(lp.getDateFin())) {
                 return true;
             }
@@ -163,11 +168,11 @@ public class AjouterproduitpromoController implements Initializable {
 
         int comboprod = 0, combopromo = 0, datedeb = 0, datefin = 0;
 
-        if (produit.getValue() == null) {
+        if (session.getValue() == null) {
             comboprod = 1;
-            prodtext.setVisible(true);
+            sesstext.setVisible(true);
         } else {
-            prodtext.setVisible(false);
+            sesstext.setVisible(false);
         }
 
         //tester la date de debut
@@ -228,13 +233,13 @@ public class AjouterproduitpromoController implements Initializable {
                     crs.AjouterPromotion(new Promotion(Double.parseDouble(taux)));
                     this.initialize(null, null);
                 } else {
-                    Alert alert = new Alert(AlertType.WARNING);
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Erreur!");
                     alert.setContentText("pourcentage existe deja!!!");
                     alert.showAndWait();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(ajouterproduitpromo.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ajoutsessionpromo.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

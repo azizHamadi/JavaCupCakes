@@ -14,6 +14,7 @@ import Services.SessionService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -37,9 +38,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
+import javax.mail.MessagingException;
 
 /**
  * FXML Controller class
@@ -69,8 +72,6 @@ public class AjouterpromosessionController implements Initializable {
     @FXML
     private JFXDatePicker datefin;
     @FXML
-    private JFXButton ajouter;
-    @FXML
     private JFXButton update;
     @FXML
     private Label prodtext;
@@ -84,6 +85,12 @@ public class AjouterpromosessionController implements Initializable {
     private Label compartxt;
     @FXML
     private Label dateacttxt;
+    @FXML
+    private JFXButton sup;
+    @FXML
+    private JFXTextField search;
+    @FXML
+    private Button ajout;
  
 
     /**
@@ -127,8 +134,7 @@ public class AjouterpromosessionController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void ajoutses(ActionEvent event) throws SQLException {
+   /* private void ajoutses(ActionEvent event) throws SQLException {
         if (ValidateFields())
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -146,10 +152,13 @@ public class AjouterpromosessionController implements Initializable {
          Session pr = ks.RechercheSession(session.getValue());
          Linepromoses f = new Linepromoses(java.sql.Date.valueOf(datedeb.getValue()), java.sql.Date.valueOf(datefin.getValue()), pr, p) ;
          fs.AjouterLinePromoSes(f);
+            System.out.println("zadha");
+            fs.calculepromo(pr, p);
+                        System.out.println("7sebhaaa");
          RefreshTable();
          ClearFields();
     }
-    }
+    }*/
 
  public void RefreshTable() throws SQLException
    {    tableses.getItems().clear();
@@ -292,6 +301,75 @@ public class AjouterpromosessionController implements Initializable {
         }
 
         return (comboprod == 1 || datedeb == 1 || datefin == 1 || combopromo == 1);
+    }
+
+    @FXML
+    private void supprimer(ActionEvent event) {
+        LinePromoSesService service=new LinePromoSesService();
+        
+        try {
+            //date yekhou mel table or howa yelzm yekhou mel textfield
+            
+            
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Supprimer promo");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Voulez vous vraiment supprimer cette promo!!");
+                    alert.showAndWait();
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                       {
+                            Linepromoses s=new Linepromoses();
+                            service.SupprimerLinePromoSes(s,tableses.getSelectionModel().getSelectedItem().getIdLine());
+                            RefreshTable();
+                            ClearFields();  
+                       }
+                    } else {
+                        alert.close();
+                        // ... user chose CANCEL or closed the dialog
+                    }
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(AjouterpromoproduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void searchcode(KeyEvent event) {
+         LinePromoSesService service=new LinePromoSesService();
+        try {
+            tableses.setItems(service.SearchListePromo(search.getText()));
+            System.out.println("rechercher");
+        } catch (SQLException ex) {
+            Logger.getLogger(AjouterpromoproduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void ajouterses(ActionEvent event) throws SQLException, MessagingException {
+          if (ValidateFields())
+                {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Attention!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("veuillez remplir tous les champs!");
+                    alert.showAndWait();
+                   return;
+                }
+         else {
+         LinePromoSesService fs = new LinePromoSesService();
+         PromotionService ps = new PromotionService();
+         Promotion p = ps.RecherchePromotion(pourcentage.getValue());
+         SessionService ks = new SessionService();
+         Session pr = ks.RechercheSession(session.getValue());
+         Linepromoses f = new Linepromoses(java.sql.Date.valueOf(datedeb.getValue()), java.sql.Date.valueOf(datefin.getValue()), pr, p) ;
+         fs.AjouterLinePromoSes(f);
+            System.out.println("zadha");
+            fs.calculepromo(pr, p);
+                        System.out.println("7sebhaaa");
+         RefreshTable();
+         ClearFields();
+    }
     }
 
 }

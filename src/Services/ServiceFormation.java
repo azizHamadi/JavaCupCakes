@@ -323,6 +323,23 @@ public class ServiceFormation {
         return formation;
     } 
 
+     public List<Formation> AfficherFormation() throws SQLException{
+        List<Formation> Categorie = new ArrayList<>();
+        ResultSet rs = st.executeQuery("select * from formation");
+        while(rs.next())
+        {
+            Categorie.add(new Formation (rs.getInt("idFor"), rs.getString("nomFor")));
+        }
+        return Categorie ;
+    }
+      public int CountSessionParFormation(int idFor) throws SQLException{
+        int count = 0 ;
+        ResultSet rs = st.executeQuery("select count(*) from formation ,session , linepromoses  where formation.idFor=session.idFor and session.idSes=linepromoses.idSes and etatLinePromosession = 'en cours' and formation.idFor="+idFor);
+        while(rs.next())
+            count = rs.getInt(1);
+        return count;
+
+    }
    
   
 }

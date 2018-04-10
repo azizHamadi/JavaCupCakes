@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views.Client.ListAllPromotions;
+package Views.Client.ListAllPromoFormation;
 
-import Entity.Categorie;
-import Entity.LinePromo;
-import Entity.Produit;
-import Services.CategorieService;
-import Services.LinePromoService;
-import Services.ProduitService;
+import Entity.Formation;
+import Entity.Linepromoses;
+import Entity.Session;
+import Services.LinePromoSesService;
+import Services.ServiceFormation;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -35,7 +34,7 @@ import javafx.scene.text.Text;
  *
  * @author hamdi fathallah
  */
-public class ListAllProduitController implements Initializable {
+public class ListAllSessionPromoController implements Initializable {
 
     @FXML
     private VBox body;
@@ -45,10 +44,10 @@ public class ListAllProduitController implements Initializable {
     private VBox BodyVBox;
     @FXML
     private HBox nav_cat;
-    @FXML
-    private HBox nav_body;
     private Node[] listePagePromotion ;
     private int nbrLignePage = 0 ;
+    @FXML
+    private HBox nav_body;
     @FXML
     private Label btnP;
     @FXML
@@ -62,13 +61,14 @@ public class ListAllProduitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-         try {
+        
+        try {
             nav_cat.getChildren().clear();
             section_body.getChildren().clear();
-            CategorieService catProd = new CategorieService();
-            List<Categorie> listC = catProd.AfficherCategorie();
-            LinePromoService ps = new LinePromoService();
-            List<LinePromo> listPromo = ps.AfficherLinePromo();
+            ServiceFormation catProd = new ServiceFormation();
+            List<Formation> listC = catProd.AfficherFormation();
+            LinePromoSesService ps = new LinePromoSesService();
+            List<Linepromoses> listPromo = ps.AfficherLinePromoSes();
             Node [] nodesCategorie = new Node[listC.size()];
             Node [] nodesLigne = new Node[listPromo.size()];
             Node [] nodesColonne = new Node[listPromo.size()];
@@ -78,22 +78,22 @@ public class ListAllProduitController implements Initializable {
                 listePagePromotion  = new Node[(listPromo.size()/6)+1];
             int i = 0 ;
             int j = 0 ;
-            for (Categorie catp : listC)
+            for (Formation catp : listC)
             {
-                FXMLLoader loadercat = new FXMLLoader(getClass().getResource("CategorieProdFiltre.fxml"));
+                FXMLLoader loadercat = new FXMLLoader(getClass().getResource("FormationSessionFiltre.fxml"));
                 Node catNode = loadercat.load() ;
-                CategorieProdFiltreController crfc = loadercat.getController();
-                crfc.setNomCat(catp.getNomCat());
-                crfc.setNbrProd(String.valueOf(catProd.CountPromoParCat(catp.getIdCat())));
-                Text Btafficher = crfc.getAfficherProduit();
+                FormationSessionFiltreController crfc = loadercat.getController();
+                crfc.setNomFor(catp.getNomFor());
+                crfc.setNbrSes(String.valueOf(catProd.CountSessionParFormation(catp.getIdFor())));
+                Text Btafficher = crfc.getAffichersession();
                 Btafficher.setOnMouseClicked(e->{
                   
                     try {
-                        PromotionParCategorie(catp.getIdCat());
+                        SessionParFormation(catp.getIdFor());
                     } catch (SQLException ex) {
-                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {
-                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                   
                 });
@@ -101,8 +101,8 @@ public class ListAllProduitController implements Initializable {
             }
             FXMLLoader loaderItems = null ;
             Hbox_ItemsController hc = new Hbox_ItemsController();
-            Page2ProduitController Cp2r = new Page2ProduitController();
-            for(LinePromo promo : listPromo)
+            Page2sessionController Cp2r = new Page2sessionController();
+            for(Linepromoses promo : listPromo)
             {
                 // parcour des lignes
                 if ( i % 3 == 0 || i == 0)
@@ -111,21 +111,21 @@ public class ListAllProduitController implements Initializable {
                     nodesLigne[j] = loaderItems.load() ;
                 }
                 hc = loaderItems.getController();
-               Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
+                Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
                 System.out.println("date actuelle"+dateactuelle);
                 if(promo.getDateFin().before(dateactuelle))
                 {
                     System.out.println("modification date eli kbal date actuelle effectuée");
-                    ps.ModifierEtatLinePromo((java.sql.Date) (Date) promo.getDateFin());
+                    ps.ModifierEtatLinePromoses((java.sql.Date) (Date) promo.getDateFin());
                 }
                 //parcour des colonnes
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("morabba3s8ir.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("moraba3s8ir.fxml"));
                 nodesColonne[i] = loader.load() ;
-                Morabba3s8irController msc = loader.getController();
-                msc.setNom(promo.getIdProd().getNomProd());
-                msc.setImage(promo.getIdProd().getImageprod());
-                msc.setPrix(promo.getIdProd().getPrixProd().toString());
-                msc.setNomPat(promo.getIdProd().getNvPrix().toString());
+                Moraba3s8irController msc = loader.getController();
+                msc.setNom(promo.getIdSes().getNomSes());
+                msc.setImage(promo.getIdSes().getImagesess());
+                msc.setPrix(promo.getIdSes().getPrixSes().toString());
+                msc.setNv_prix(promo.getIdSes().getNvPrixSes().toString());
                 //msc.setNomCat(promo.getIdProd().getIdCat().getNomCat());
                 //msc.setNomPat(promo.getIdProd().getIdUser().getUsername());
                 ImageView img = msc.getImage();
@@ -135,7 +135,7 @@ public class ListAllProduitController implements Initializable {
                 hc.addColonne(nodesColonne[i]);
                 i++;
                 if(j==0 || j % 2 == 0){
-                    FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2Produit.fxml"));
+                    FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2session.fxml"));
                     listePagePromotion[nbrLignePage] = loaderPage2Ligne.load();
                     Cp2r = loaderPage2Ligne.getController();
                 }
@@ -164,15 +164,15 @@ public class ListAllProduitController implements Initializable {
             System.out.println(listePagePromotion.length + " hahahah "+ nbrLignePage);
         
         } catch (SQLException | IOException ex) {
-            Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     nbrLignePage = 0 ;
-       
-    }   
-     public void PromotionParCategorie(int idCat) throws SQLException, IOException{
+
+    }    
+     public void SessionParFormation(int idFor) throws SQLException, IOException{
         section_body.getChildren().clear();
-        LinePromoService RS = new LinePromoService();
-        List<Produit> listPromo = RS.ProduitParCategorie(idCat);
+        LinePromoSesService RS = new LinePromoSesService();
+        List<Session> listPromo = RS.SessionParFormation(idFor);
         Node [] nodesLigne = new Node[3];
         Node [] nodesColonne = new Node[9];
         int i = 0 ;
@@ -180,7 +180,7 @@ public class ListAllProduitController implements Initializable {
         
         FXMLLoader loaderItems = null ;
         Hbox_ItemsController hc = new Hbox_ItemsController();
-        for(Produit promo : listPromo)
+        for(Session promo : listPromo)
         {
             // parcour des lignes 
             if ( i % 3 == 0 || i == 0)
@@ -189,16 +189,15 @@ public class ListAllProduitController implements Initializable {
                 nodesLigne[j] = loaderItems.load() ;
             }
             hc = loaderItems.getController();
-
             //parcour des colonnes
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("morabba3s8ir.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("moraba3s8ir.fxml"));
             nodesColonne[i] = loader.load() ;
-            Morabba3s8irController msc = loader.getController();
-            msc.setNom(promo.getNomProd());
-            msc.setImage(promo.getImageprod());
-            msc.setNomCat(promo.getIdCat().getNomCat());
-            msc.setNomPat(promo.getIdUser().getUsername());
-            msc.setPrix(promo.getPrixProd().toString());
+            Moraba3s8irController msc = loader.getController();
+            msc.setNom(promo.getNomSes());
+            msc.setImage(promo.getImagesess());
+            msc.setNomFor(promo.getIdFor().getNomFor());
+            msc.setNv_prix(promo.getNvPrixSes().toString());
+            msc.setPrix(promo.getPrixSes().toString());
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
                 System.out.println("te5dem");
@@ -219,7 +218,7 @@ public class ListAllProduitController implements Initializable {
         }
     }
 
-    public VBox getBody() {
+         public VBox getBody() {
         return body;
     }
 
@@ -280,7 +279,7 @@ public class ListAllProduitController implements Initializable {
 
     @FXML
     private void PageSuivant(MouseEvent event) {
-          nbrLignePage++;
+         nbrLignePage++;
         if(nbrLignePage== listePagePromotion.length)
             nbrLignePage=0 ;
         section_body.getChildren().clear();

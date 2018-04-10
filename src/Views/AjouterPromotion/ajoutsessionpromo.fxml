@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPromotion.AjouterproduitpromoController">
+<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPromotion.AjoutsessionpromoController">
    <children>
-      <JFXComboBox fx:id="produit" focusColor="#051b22" layoutX="228.0" layoutY="141.0" unFocusColor="#96cad9" />
+      <JFXComboBox fx:id="session" focusColor="#051b22" layoutX="228.0" layoutY="141.0" unFocusColor="#96cad9" />
       <JFXComboBox fx:id="promo" layoutX="228.0" layoutY="263.0" unFocusColor="#96cad9" />
       <JFXDatePicker fx:id="datedeb" defaultColor="#96cad9" layoutX="500.0" layoutY="141.0" />
       <JFXDatePicker fx:id="datefin" defaultColor="#96cad9" layoutX="500.0" layoutY="263.0" />
-      <Label layoutX="61.0" layoutY="145.0" text="Produit" textFill="#96cad9">
+      <Label layoutX="61.0" layoutY="145.0" text="Session" textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>
@@ -40,7 +40,7 @@
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <Label fx:id="prodtext" layoutX="162.0" layoutY="188.0" text="veuillez choisir un produit" textFill="#ee0c0c" visible="false" />
+      <Label fx:id="sesstext" layoutX="162.0" layoutY="188.0" text="veuillez choisir une session" textFill="#ee0c0c" visible="false" />
       <Label fx:id="promotxt" layoutX="128.0" layoutY="311.0" text=" veuillez choisir un taux de promotion" textFill="#e81111" visible="false" />
       <Label fx:id="datedebtext" layoutX="481.0" layoutY="197.0" text="veuillez choisir la date de debut" textFill="#e40606" visible="false" />
       <Label fx:id="datefintext" layoutX="490.0" layoutY="319.0" text="veuillez choisir la date de fin" textFill="#e80f0f" visible="false" />

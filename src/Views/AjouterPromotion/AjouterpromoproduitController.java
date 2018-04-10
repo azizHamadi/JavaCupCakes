@@ -42,6 +42,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import javax.mail.MessagingException;
 
 
 /**
@@ -108,8 +109,6 @@ public class AjouterpromoproduitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          try {
-            produitpromo.getItems().clear();
-
             PromotionService promos = new PromotionService();
             List<Promotion> listpromo = promos.AfficherPromotion();
             for(Promotion c : listpromo)
@@ -151,7 +150,7 @@ public class AjouterpromoproduitController implements Initializable {
         // TODO
     }    
 
-    private void validerpromo(ActionEvent event) throws SQLException {
+    private void validerpromo(ActionEvent event) throws SQLException, MessagingException {
          if (ValidateFields())
                 {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -180,7 +179,8 @@ public class AjouterpromoproduitController implements Initializable {
          LinePromo f = new LinePromo(java.sql.Date.valueOf(datedeb.getValue()), java.sql.Date.valueOf(datefin.getValue()), p, pr) ;
          fs.AjouterLinePromo(f);
          System.out.println("zadhaaa cv!!!");
-        
+         fs.calculepromo(pr, p);
+         System.out.println("7sebhaaaa cv!!!");       
          ClearFields(); 
          RefreshTable();
 
@@ -190,10 +190,9 @@ public class AjouterpromoproduitController implements Initializable {
     }
 
     
-     public void RefreshTable() throws SQLException
+     public void RefreshTable() throws SQLException 
    
-   {    
-        produitpromo.getItems().clear();
+   {    produitpromo.getItems().clear();
         LinePromoService service=new LinePromoService();
         caldate.setCellValueFactory(new PropertyValueFactory<>("dateDeb"));
         caldatefin.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
@@ -382,21 +381,8 @@ public class AjouterpromoproduitController implements Initializable {
         }
     }
 
-  /*  @FXML
-    private void searchcode(KeyEvent event) {
-         LinePromoService service=new LinePromoService();
-        try {
-            produitpromo.setItems(service.SearchListePromo(search.getText()));
-            System.out.println("rechercher");
-        } catch (SQLException ex) {
-            Logger.getLogger(AjouterpromoproduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-*/
-
     @FXML
     private void searchcode(KeyEvent event) {
-        produitpromo.getItems().clear();
         LinePromoService service=new LinePromoService();
         try {
             produitpromo.setItems(service.SearchListePromo(search.getText()));
@@ -405,12 +391,15 @@ public class AjouterpromoproduitController implements Initializable {
             Logger.getLogger(AjouterpromoproduitController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+}
+
+
     
     
    
         
        
 
-}
+
     
 

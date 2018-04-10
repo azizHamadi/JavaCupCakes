@@ -31,6 +31,8 @@ public class ClientTemplateController implements Initializable {
     private HBox body;
     @FXML
     private Button GestionFormations;
+    @FXML
+    private Button btnPromotion;
 
     /**
      * Initializes the controller class.
@@ -79,6 +81,17 @@ public class ClientTemplateController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/GestionFormation/GererFormation.fxml"));
         try {
             //  body.getChildren().clear();
+            body.getChildren().add(loader.load());
+        } catch (IOException ex) {
+            Logger.getLogger(ClientTemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void GestionPromotion(ActionEvent event) {
+          FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Promotion/GererPromo.fxml"));
+        try {
+            body.getChildren().clear();
             body.getChildren().add(loader.load());
         } catch (IOException ex) {
             Logger.getLogger(ClientTemplateController.class.getName()).log(Level.SEVERE, null, ex);

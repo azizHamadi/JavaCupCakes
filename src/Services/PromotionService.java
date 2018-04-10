@@ -34,7 +34,7 @@ public class PromotionService {
     }
     
     public void AjouterPromotion(Promotion p) throws SQLException{
-        String req ="INSERT INTO Promotion (tauxPromo, etatPromo) VALUES (?,?)";
+        String req ="INSERT INTO Promotion (tauxPromo, etatPromo ,) VALUES (?,?)";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setDouble(1, p.getTauxPromo());
         pre.setString(2, null);

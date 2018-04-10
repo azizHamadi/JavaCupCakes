@@ -5,6 +5,7 @@
  */
 package Views.Client.Promotion;
 
+import Views.Client.ListAllPromoFormation.ListAllSessionPromoController;
 import Views.Client.ListAllPromotions.ListAllProduitController;
 import java.io.IOException;
 import java.net.URL;
@@ -51,7 +52,12 @@ public class GererPromoController implements Initializable {
     }
 
     @FXML
-    private void promosession(ActionEvent event) {
+    private void promosession(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/ListAllPromoFormation/ListAllSessionPromo.fxml"));
+        Node root = loader.load();
+        ListAllSessionPromoController Clar = loader.getController();
+        body.getChildren().clear();
+        body.getChildren().add(Clar.getBody());
     }
     
 }

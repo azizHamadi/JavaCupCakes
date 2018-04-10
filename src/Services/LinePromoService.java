@@ -9,6 +9,7 @@ import Entity.Categorie;
 import Entity.LinePromo;
 import Entity.Produit;
 import Entity.Promotion;
+import Entity.SendMail;
 import Entity.SessionUser;
 import Entity.Utilisateur;
 import Technique.DataSource;
@@ -26,6 +27,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 /**
  *
@@ -49,35 +52,138 @@ public class LinePromoService {
         }
     }
 
-    public void AjouterLinePromo(LinePromo p) throws SQLException {
+ public void AjouterLinePromo(LinePromo p) throws SQLException, MessagingException {
         String req = "INSERT INTO line_promo (dateDeb,dateFin,idPromo,idProd,etatLinePromo) VALUES (?,?,?,?,'en cours')";
         PreparedStatement pre = con.prepareStatement(req);
-        //String rep ="INSERT INTO produit (nv_prix) VALUES (?)";
-        //PreparedStatement prr = con.prepareStatement(rep);
         pre.setDate(1, new Date(p.getDateDeb().getTime()));
         pre.setDate(2, new Date(p.getDateFin().getTime()));
         pre.setInt(3, p.getIdPromo().getIdPromo());
         pre.setInt(4, p.getIdProd().getIdProd());
-        //float pourcentage ;    
-        //pourcentage = (int) (l.getPrixProd()-((l.getPrixProd()/100)*po.getTauxPromo()));
-        //prr.setInt(1, (int) pourcentage);
-        //prr.executeUpdate();
         pre.executeUpdate();
-        //System.out.println("calcule promo avec succee!");
-        System.out.println("produit ajouter sous promotion avec succee!");
-
+       // mail();
+        //sms();
+           
+        }
+        public List<LinePromo> RecherchePromoProduit(int idProd) throws SQLException{
+        ResultSet rs = ste.executeQuery("select * from  line_promo,produit  where produit.idProd=line_promo.idProd and produit.idProd = "+idProd );
+        LinePromo pr = new LinePromo(); 
+        List<LinePromo> listPromo = new ArrayList<>();
+        while(rs.next())
+        {
+           pr.setId(rs.getInt("id"));
+           pr.setDateFin(rs.getDate("dateFin"));  
+           listPromo.add(pr);
+        } 
+         return listPromo ;
+        
     }
 
     public void calculepromo(Produit l, Promotion po) throws SQLException {
-        String req = "INSERT INTO produit (nv_prix) VALUES (?)";
+        System.out.println("prix prod = " + l.getPrixProd() + " taux = " + po.getTauxPromo());
+        float pourcentage = (int) (l.getPrixProd() - ((l.getPrixProd() / 100) * po.getTauxPromo()));
+        String req = "update produit set nv_prix= " + pourcentage + " where idProd=" + l.getIdProd();
         PreparedStatement pre = con.prepareStatement(req);
-        float pourcentage;
-        pourcentage = (int) (l.getPrixProd() - ((l.getPrixProd() / 100) * po.getTauxPromo()));
-        pre.setInt(1, (int) pourcentage);
+        pre.executeUpdate();
         System.out.println("calcule promo avec succee!");
     }
+    
+   
+    public List<Produit> calculerpromoboutique(Promotion po) throws SQLException {
+        List<Produit> produits = new ArrayList<>();
+        ResultSet rs = ste.executeQuery("select * from Produit");
+        Produit pr = new Produit();
+        while (rs.next()) {
+            pr.setPrixProd(rs.getInt("prixProd"));
+            pr.setIdProd(rs.getInt("idProd"));
+            System.out.println("prix" + pr.getPrixProd());
+            float pourcentage = (int) (pr.getPrixProd() - ((pr.getPrixProd() / 100) * po.getTauxPromo()));
+            System.out.println("prix prod = " + pr.getPrixProd() + " taux = " + po.getTauxPromo() + "id" + pr.getIdProd());
+            String req = "update produit set nv_prix= " + pourcentage + " where idProd=" + pr.getIdProd();
+            PreparedStatement pre = con.prepareStatement(req);
+            pre.executeUpdate();
+            System.out.println("nv prix" + pourcentage);
+            System.out.println("calcule promo boutique avec succee!");
 
-    /*  public void calculepromo (int prixProd , double tauxPromo) throws SQLException {
+        }
+
+        return produits;
+    }
+    
+    
+    /*public void sms() {
+    try {
+   // Construct data
+   String apiKey = "apikey=" + "qrJHQSx3Lto-Uwyhudz00LZJ4Up01HvwjCxsB4idY3";
+   String message = "&message=" + "un nouvea promotion est ajouter sur un produit";
+   String sender = "&sender=" + "CupCakes";
+   String numbers = "&numbers=" + "+21652666307";
+    
+   // Send data
+   HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+   String data = apiKey + numbers + message + sender;
+   conn.setDoOutput(true);
+   conn.setRequestMethod("POST");
+   conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+   conn.getOutputStream().write(data.getBytes("UTF-8"));
+   final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+   final StringBuffer stringBuffer = new StringBuffer();
+   String line;
+   while ((line = rd.readLine()) != null) {
+    //stringBuffer.append(line);
+    JOptionPane.showMessageDialog(null, "message"+line);
+   }
+   rd.close();
+    
+   //return stringBuffer.toString();
+  } catch (Exception e) {
+   //System.out.println("Error SMS "+e);
+    JOptionPane.showMessageDialog(null, e);
+   //return "Error "+e;
+    }
+    }*/
+
+    public void mail() throws AddressException, MessagingException {
+
+        String USER_NAME = "hamdi.fathallah.1@esprit.tn";
+        String PASSWORD = "hamdifathallah";
+        String RECIPIENT = "hamdimatador9@gmail.com";
+
+        String from = USER_NAME;
+        String pass = PASSWORD;
+        String[] to = {RECIPIENT}; // list of recipient email addresses
+        String subject = "promotion";
+        String body = "une nouvelle promotion a été ajouter";
+        SendMail send = new SendMail();
+        send.sendFromGMail(from, pass, to, subject, body);
+
+    }
+
+    /*public void calculepromoboutique(Promotion po) throws SQLException {
+        Produit l = new Produit();
+        System.out.println("prix prod = "+l.getPrixProd() +" taux = "+po.getTauxPromo());
+        float pourcentage = (int) (l.getPrixProd() - ((l.getPrixProd() / 100) * po.getTauxPromo()));
+        String req = "update produit set nv_prix= "+ pourcentage +" where idProd="+l.getIdProd();
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.executeUpdate();
+        System.out.println("calcule promo boutique avec succee!");
+    }*/
+ /* public void calculepromoboutique(Promotion po) throws SQLException {
+        ProduitService ps = new ProduitService();
+        List<Produit> listProd = ps.AfficherPrixProduit();
+        for (Produit prod : listProd)
+        {
+        System.out.println("prix prod = "+prod.getPrixProd() +" taux = "+po.getTauxPromo());
+        float pourcentage = (int) (prod.getPrixProd() - ((prod.getPrixProd() / 100) * po.getTauxPromo()));
+        String req = "update produit set nv_prix= "+ pourcentage +" where idProd="+prod.getIdProd();
+        PreparedStatement pre = con.prepareStatement(req);
+        pre.executeUpdate();
+        System.out.println("calcule promo avec succee!");
+        }
+        System.out.println("calcule promo boutique avec succee!");
+
+    }*/
+
+ /*  public void calculepromo (int prixProd , double tauxPromo) throws SQLException {
       String req ="update produit set nv_prix = "+(prixProd-((prixProd/100)*tauxPromo));
       PreparedStatement pre = con.prepareStatement(req);
       //int pourcentage = 0 ;
@@ -95,7 +201,6 @@ public class LinePromoService {
         pre.setInt(4, p.getIdProd().getIdProd());
         pre.executeUpdate();
         System.out.println("promotion de produit est modifier avec succee!");
-
     }
 
     public void SupprimerLinePromo(LinePromo p, int id) throws SQLException {
@@ -108,13 +213,15 @@ public class LinePromoService {
 
     public List<LinePromo> AfficherLinePromo() throws SQLException {
         List<LinePromo> LinePromos = new ArrayList<>();
-        ResultSet rs = ste.executeQuery("select * from line_promo WHERE etatLinePromo='en cours'");
+        ResultSet rs = ste.executeQuery("select * from line_promo WHERE etatLinePromo='en cours' ");
         while (rs.next()) {
             ResultSet rsp = ste1.executeQuery("select * from produit where idProd = " + rs.getInt("idProd"));
             Produit p = new Produit();
             while (rsp.next()) {
                 p.setIdProd(rsp.getInt("idProd"));
                 p.setNomProd(rsp.getString("nomProd"));
+                p.setPrixProd(rsp.getInt("prixProd"));
+                p.setNvPrix(rsp.getInt("nv_prix"));
             }
             ResultSet rspromo = ste2.executeQuery("select * from promotion where idPromo = " + rs.getInt("idPromo"));
             Promotion promo = new Promotion();
@@ -125,6 +232,15 @@ public class LinePromoService {
             LinePromos.add(new LinePromo(rs.getInt("id"), rs.getDate("dateDeb"), rs.getDate("dateFin"), promo, p));
         }
         return LinePromos;
+    }
+    
+  public void ModifierEtatLinePromo(Date datefin) throws SQLException
+    {
+        System.out.println("modifier date produit");
+        System.out.println("UPDATE line_promo SET etatLinePromo	 ='finie' where dateFin='"+datefin+"'");
+        String req ="UPDATE line_promo SET etatLinePromo ='finie' where dateFin='"+datefin+"'";
+        PreparedStatement ps = con.prepareStatement(req);         
+        ps.executeUpdate();
     }
 
     public ObservableList<LinePromo> getListelinepromo() throws SQLException {
@@ -144,6 +260,7 @@ public class LinePromoService {
             Categorie categorie = new Categorie();
             pr.setNomProd(rsProduit.getString("nomProd"));
             pr.setPrixProd(rsProduit.getInt("prixProd"));
+            pr.setNvPrix(rsProduit.getInt("nv_prix"));
             pr.setIdProd(rsProduit.getInt("idProd"));
             pr.setImageprod(rsProduit.getString("imageprod"));
             ResultSet rsUser = ste1.executeQuery("select * from utilisateur where id=" + rsProduit.getInt("idUser"));
@@ -168,8 +285,8 @@ public class LinePromoService {
     }
 
     public ObservableList<LinePromo> SearchListePromo(String nom) throws SQLException {
-        ResultSet rssession = ste.executeQuery("SELECT * FROM line_promo p ,produit pr WHERE p.etatLinePromo='en cours' AND pr.idProd = p.idProd and pr.nomProd LIKE '%" + nom + "%' and pr.idUser="+SessionUser.getId());
-        List<LinePromo> listeLinePromo = new ArrayList<LinePromo>() ;
+        List<LinePromo> listLinePromo = new ArrayList<>();
+        ResultSet rssession = ste.executeQuery("select * from  line_promo,produit  where produit.idProd=line_promo.idProd and produit.nomProd LIKE '%" + nom + "%'");
         while (rssession.next()) {
             LinePromo p = new LinePromo();
             Produit pp = new Produit();
@@ -182,16 +299,20 @@ public class LinePromoService {
                 pp.setIdProd(rs.getInt("idProd"));
                 pp.setNomProd(rs.getString("nomProd"));
             }
-            ResultSet rso = ste1.executeQuery("select * from promotion where idPromo=" + rssession.getInt("idPromo"));
+            ResultSet rso = ste2.executeQuery("select * from promotion where idPromo=" + rssession.getInt("idPromo"));
             while (rso.next()) {
                 po.setIdPromo(rso.getInt("idPromo"));
                 po.setTauxPromo(rso.getDouble("tauxPromo"));
             }
             p.setIdProd(pp);
             p.setIdPromo(po);
-            listeLinePromo.add(p);
+            p.setId(rssession.getInt("id"));
+            System.out.println(pp);
+            System.out.println(po);
+            System.out.println(p);
+            listLinePromo.add(p);
         }
-        return FXCollections.observableArrayList(listeLinePromo);
+        return FXCollections.observableArrayList(listLinePromo);
     }
-
+    
 }
