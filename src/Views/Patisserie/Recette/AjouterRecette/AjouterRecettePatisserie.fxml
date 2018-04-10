@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -46,14 +47,6 @@
             <Font name="Arial Rounded MT Bold" size="25.0" />
          </font>
       </Text>
-      <Button fx:id="Enregistrer" layoutX="827.0" layoutY="595.0" mnemonicParsing="false" onAction="#AjouterRecetteClient" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="Annuler" layoutX="657.0" layoutY="596.0" mnemonicParsing="false" onAction="#AnnulerAjoutRecetteClient" prefHeight="31.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Annuler" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
       <Label fx:id="lab_CatRec" layoutX="45.0" layoutY="69.0" text="veuillez choisir parmi les catégories suivantes" textFill="#ee1d1d" visible="false">
          <font>
             <Font size="14.0" />
@@ -74,5 +67,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <JFXButton fx:id="Enregistrer" layoutX="844.0" layoutY="581.0" onAction="#AjouterRecetteClient" prefHeight="35.0" prefWidth="130.0" ripplerFill="BLACK" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Enregistrer" textFill="#75bcd0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="Annuler" layoutX="702.0" layoutY="581.0" onAction="#AnnulerAjoutRecetteClient" prefHeight="35.0" prefWidth="130.0" ripplerFill="BLACK" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Annuler" textFill="#75bcd0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

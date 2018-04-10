@@ -46,7 +46,7 @@
       <Text fx:id="user" fill="#96cad9" layoutX="227.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="79.13671875" />
       <JFXButton layoutX="24.0" layoutY="467.0" onAction="#Retour" prefHeight="31.0" prefWidth="88.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Retour" textFill="#96cad9">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
    </children>

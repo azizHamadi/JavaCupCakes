@@ -48,6 +48,9 @@
                                  </HBox.margin>
                               </Button>
                            </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-width: 0 0 0 7px; -fx-border-color: #383848;">
                            <padding>
@@ -61,6 +64,9 @@
                                  </HBox.margin>
                               </Button>
                            </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                      <padding>

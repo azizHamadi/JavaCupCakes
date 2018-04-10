@@ -22,7 +22,6 @@
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </TextField>
-      <HTMLEditor fx:id="description" htmlText="" layoutX="45.0" layoutY="171.0" prefHeight="364.0" prefWidth="921.0" />
       <Label layoutX="43.0" layoutY="139.0" text="Description" textFill="#20202f">
          <font>
             <Font size="16.0" />

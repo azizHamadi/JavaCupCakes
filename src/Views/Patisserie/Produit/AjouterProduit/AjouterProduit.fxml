@@ -19,12 +19,12 @@
       <JFXComboBox fx:id="typProd" focusColor="#e57c3e" layoutX="315.0" layoutY="234.0" prefHeight="18.0" prefWidth="205.0" promptText="Type Produit" />
       <JFXButton fx:id="image" layoutX="325.0" layoutY="76.0" onAction="#AjouterImage" prefHeight="25.0" prefWidth="195.0" style="-fx-border-color: #75bcd0; -fx-border-width: 2px; -fx-border-radius: 2em;" text="Ajouter Une Image" textFill="#75bcd0">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="89.0" layoutY="332.0" onAction="#Ajouter" prefHeight="46.0" prefWidth="174.0" ripplerFill="BLACK" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Ajouter" textFill="#75bcd0">
+      <JFXButton layoutX="89.0" layoutY="332.0" onAction="#Ajouter" prefHeight="25.0" prefWidth="156.0" ripplerFill="BLACK" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Ajouter" textFill="#75bcd0">
          <font>
-            <Font size="21.0" />
+            <Font name="System Bold" size="18.0" />
          </font></JFXButton>
       <Button layoutX="554.0" layoutY="155.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="18.0" prefWidth="27.0" style="-fx-background-color: #F4F3EF; -fx-border-color: #F4F3EF;">
          <graphic>

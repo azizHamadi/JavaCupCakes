@@ -34,11 +34,11 @@
                <children>
                   <JFXButton layoutX="276.0" layoutY="495.0" onAction="#Modifier" prefHeight="50.0" prefWidth="135.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Modifier" textFill="#96cad9">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></JFXButton>
-                  <JFXButton layoutX="71.0" layoutY="495.0" onAction="#SupprimerCommande" prefHeight="50.0" prefWidth="113.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Supprimer" textFill="#75bcd0">
+                  <JFXButton layoutX="71.0" layoutY="495.0" onAction="#SupprimerCommande" prefHeight="50.0" prefWidth="135.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Supprimer" textFill="#75bcd0">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></JFXButton>
                   <JFXComboBox fx:id="EtatLiv" focusColor="#e57c3e" layoutX="52.0" layoutY="438.0" prefHeight="25.0" prefWidth="196.0" promptText="Etat Livraison" unFocusColor="#96cad9" />
                   <TextField fx:id="id" layoutX="29.0" layoutY="363.0" text="id" visible="false" />

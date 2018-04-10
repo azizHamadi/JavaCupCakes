@@ -11,6 +11,7 @@ import Entity.SessionUser;
 import Entity.Utilisateur;
 import Services.CategorieRecetteService;
 import Services.RecetteService;
+import com.jfoenix.controls.JFXButton;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -57,11 +58,7 @@ public class AjouterRecettePatisserieController implements Initializable {
     String imgf="";
     String fdS ="";
     String fdS1 ="";
-    
-    @FXML
-    private Button Enregistrer;
-    @FXML
-    private Button Annuler;
+
     @FXML
     private Label lab_CatRec;
     @FXML
@@ -74,6 +71,10 @@ public class AjouterRecettePatisserieController implements Initializable {
     private Button AjouterCategorie;
     
     ObservableList<CategorieRec> listC;
+    @FXML
+    private JFXButton Enregistrer;
+    @FXML
+    private JFXButton Annuler;
     /**
      * Initializes the controller class.
      */

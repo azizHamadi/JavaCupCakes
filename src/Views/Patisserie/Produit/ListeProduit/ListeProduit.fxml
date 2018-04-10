@@ -38,18 +38,19 @@
                   <JFXTextField fx:id="NomProd" focusColor="#e57c3e" layoutX="29.0" layoutY="39.0" promptText="Nom Produit" unFocusColor="#96cad9" />
                   <JFXTextField fx:id="QteStock" focusColor="#e57c3e" layoutX="29.0" layoutY="101.0" promptText="Qauntité" unFocusColor="#96cad9" />
                   <JFXTextField fx:id="Prix" focusColor="#e57c3e" layoutX="29.0" layoutY="168.0" promptText="Prix" unFocusColor="#96cad9" />
-                  <JFXButton layoutX="164.0" layoutY="497.0" onAction="#Modifier" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" prefHeight="50.0" prefWidth="135.0" text="Modifier" textFill="#96cad9">
+                  <JFXButton layoutX="29.0" layoutY="497.0" onAction="#SupprimerProd" prefHeight="50.0" prefWidth="125.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Supprimer" textFill="#96cad9">
                      <font>
-                        <Font size="18.0" />
-                     </font></JFXButton>
-                  <JFXButton layoutX="29.0" layoutY="497.0" onAction="#SupprimerProd" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" prefHeight="50.0" prefWidth="113.0" text="Supprimer" textFill="#96cad9">
-                     <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></JFXButton>
                   <JFXComboBox fx:id="type" focusColor="#e57c3e" layoutX="29.0" layoutY="234.0" prefHeight="25.0" prefWidth="135.0" promptText="Type" unFocusColor="#96cad9" />
                   <JFXComboBox fx:id="Categorie" focusColor="#e57c3e" layoutX="29.0" layoutY="293.0" prefHeight="25.0" prefWidth="135.0" promptText="Categorie" unFocusColor="#96cad9" />
                   <ImageView fx:id="imageview" fitHeight="127.0" fitWidth="185.0" layoutX="57.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
                   <TextField fx:id="id" layoutX="29.0" layoutY="363.0" text="id" visible="false" />
+                  <JFXButton layoutX="198.0" layoutY="497.0" onAction="#Modifier" prefHeight="50.0" prefWidth="135.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Modifier" textFill="#96cad9">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </AnchorPane>
          </children>

@@ -11,6 +11,7 @@ import Entity.Thread;
 import Entity.Utilisateur;
 import Services.CommentaireService;
 import Views.Patisserie.Recette.SingleRecette.SingleRecetteController;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -39,14 +40,14 @@ public class VcommentaireController implements Initializable {
     private TextArea Rcommentaire;
     @FXML
     private VBox vreplay;
-    @FXML
-    private Button Enregistrer;
     private String ancestors ;
     private String idRec;
     private SingleRecetteController sRc ;
     private VBox vbody;
     @FXML
     private Label labCom;
+    @FXML
+    private JFXButton AjouterCommentaire;
     
     /**
      * Initializes the controller class.

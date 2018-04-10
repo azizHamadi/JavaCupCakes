@@ -9,6 +9,7 @@ import Entity.Commentaire;
 import Services.CommentaireService;
 import Views.Patisserie.Recette.ModifierRecette.ModifierRecetteController;
 import Views.Patisserie.Recette.SingleRecette.SingleRecetteController;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -37,13 +38,7 @@ public class CommentaireController implements Initializable {
     @FXML
     private Label username;
     @FXML
-    private Button Modifier;
-    @FXML
-    private Button Supprimer;
-    @FXML
     private Label bodyCom;
-    @FXML
-    private Button replay;
     @FXML
     private AnchorPane anchorComment;
     @FXML
@@ -56,6 +51,12 @@ public class CommentaireController implements Initializable {
     private ModifierRecetteController mrc ;
     private VBox vbody ;
     private int idCmnt;
+    @FXML
+    private JFXButton Modifier;
+    @FXML
+    private JFXButton Supprimer;
+    @FXML
+    private JFXButton replay;
     /**
      * Initializes the controller class.
      */
@@ -88,21 +89,6 @@ public class CommentaireController implements Initializable {
         this.username.setText(username);
     }
 
-    public Button getModifier() {
-        return Modifier;
-    }
-
-    public void setModifier(Button Modifier) {
-        this.Modifier = Modifier;
-    }
-
-    public Button getSupprimer() {
-        return Supprimer;
-    }
-
-    public void setSupprimer(Button Supprimer) {
-        this.Supprimer = Supprimer;
-    }
 
     public Label getBodyCom() {
         return bodyCom;
@@ -112,11 +98,27 @@ public class CommentaireController implements Initializable {
         this.bodyCom.setText(bodyCom);
     }
 
-    public Button getReplay() {
+    public JFXButton getModifier() {
+        return Modifier;
+    }
+
+    public void setModifier(JFXButton Modifier) {
+        this.Modifier = Modifier;
+    }
+
+    public JFXButton getSupprimer() {
+        return Supprimer;
+    }
+
+    public void setSupprimer(JFXButton Supprimer) {
+        this.Supprimer = Supprimer;
+    }
+
+    public JFXButton getReplay() {
         return replay;
     }
 
-    public void setReplay(Button replay) {
+    public void setReplay(JFXButton replay) {
         this.replay = replay;
     }
 
@@ -167,6 +169,7 @@ public class CommentaireController implements Initializable {
     public void setMrc(ModifierRecetteController mrc) {
         this.mrc = mrc;
     }
+    
 
     @FXML
     private void ModifierCommentaire(ActionEvent event) throws IOException, SQLException {
@@ -192,7 +195,7 @@ public class CommentaireController implements Initializable {
         vbody.getChildren().clear();
         sRc.AfficherCommentaireReplay(cs.AfficherCommentaire(idRec), cs, "", null);
     }
-
+    
     @FXML
     private void AfficherCommentaire(ActionEvent event) throws IOException {
         FXMLLoader loaderReplay = new FXMLLoader(getClass().getResource("Vcommentaire.fxml"));
