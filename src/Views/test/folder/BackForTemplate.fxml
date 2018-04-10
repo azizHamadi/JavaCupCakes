@@ -104,6 +104,57 @@ and open the template in the editor.
                                        <Insets top="10.0" />
                                     </VBox.margin>
                                  </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
+                                    <padding>
+                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <children>
+                                       <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
+                                          <HBox.margin>
+                                             <Insets left="1.0" />
+                                          </HBox.margin>
+                                       </FontAwesomeIconView>
+                                       <Button mnemonicParsing="false" onAction="#GestionRecette" style="-fx-background-color: transparent;" text="Liste des recettes" textFill="#f4f3ef">
+                                          <HBox.margin>
+                                             <Insets top="9.0" />
+                                          </HBox.margin>
+                                       </Button>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
+                                    <padding>
+                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <children>
+                                       <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
+                                          <HBox.margin>
+                                             <Insets left="1.0" />
+                                          </HBox.margin>
+                                       </FontAwesomeIconView>
+                                       <Button mnemonicParsing="false" onAction="#AjouterRecette" style="-fx-background-color: transparent;" text="Ajouter recette" textFill="#f4f3ef">
+                                          <HBox.margin>
+                                             <Insets top="9.0" />
+                                          </HBox.margin>
+                                       </Button>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
+                                    <padding>
+                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <children>
+                                       <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
+                                          <HBox.margin>
+                                             <Insets left="1.0" />
+                                          </HBox.margin>
+                                       </FontAwesomeIconView>
+                                       <Button mnemonicParsing="false" onAction="#MesRecette" style="-fx-background-color: transparent;" text="Mes recettes" textFill="#f4f3ef">
+                                          <HBox.margin>
+                                             <Insets top="9.0" />
+                                          </HBox.margin>
+                                       </Button>
+                                    </children>
+                                 </HBox>
                      </children>
                      <padding>
                         <Insets bottom="20.0" right="20.0" top="20.0" />

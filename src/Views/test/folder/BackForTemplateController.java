@@ -5,6 +5,8 @@
  */
 package Views.test.folder;
 
+import Views.Patisserie.Recette.ListAllRecettes.ListAllRecettesController;
+import Views.Patisserie.Recette.MesRecettes.MesRecettesController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -72,6 +74,35 @@ public class BackForTemplateController implements Initializable {
         Node root = loader.load();
         vbox_body.getChildren().clear();
         vbox_body.getChildren().add(root);
+    }
+
+    @FXML
+    private void GestionRecette(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Recette/ListAllRecettes/ListAllRecettes.fxml"));
+        Node root = loader.load();
+        ListAllRecettesController Clar = loader.getController();
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(Clar.getBody());
+
+    }
+
+    @FXML
+    private void AjouterRecette(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Recette/AjouterRecette/AjouterRecettePatisserie.fxml"));
+        Node root = loader.load();
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(root);
+
+    }
+
+    @FXML
+    private void MesRecette(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Recette/MesRecettes/MesRecettes.fxml"));
+        Node root = loader.load();
+        MesRecettesController Clar = loader.getController();
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(Clar.getBody());
+
     }
 
  
