@@ -14,6 +14,7 @@ import java.util.Collection;
  */
 public class TypeFormation {
 
+  
     private Integer idTypeFor;
     private String nomTypeFor;
     private Collection<Formation> formationCollection;
@@ -29,6 +30,9 @@ public class TypeFormation {
       this.idTypeFor = idTypeFor;
       this.nomTypeFor = nomTypeFor;
     }
+
+    public TypeFormation( String nomTypeFor) {
+ this.nomTypeFor = nomTypeFor;    }
 
     public Integer getIdTypeFor() {
         return idTypeFor;
@@ -78,5 +82,6 @@ public class TypeFormation {
     public String toString() {
         return "Entity.TypeFormation[ idTypeFor=" + idTypeFor + " ]";
     }
+    
     
 }

@@ -5,12 +5,9 @@
  */
 package Views.Formateur.GestionSession;
 
-
 import Entity.Formation;
 import Entity.Session;
-import Entity.TypeFormation;
 import Services.ServiceFormation;
-import Services.ServiceTypeFormation;
 import Services.SessionService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -31,9 +28,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
@@ -47,7 +42,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -58,7 +52,7 @@ import javafx.util.StringConverter;
  * @author FERIEL FADHLOUN
  */
 public class CRUDSessionsController implements Initializable {
-  @FXML
+@FXML
     private JFXTextField txtNom;
     @FXML
     private JFXTextField txtCapacite;
@@ -133,13 +127,23 @@ public class CRUDSessionsController implements Initializable {
     private JFXTextField txtSearch;
     @FXML
     private TableColumn<Session, Integer> columnidSession;
+    @FXML
+    private JFXButton btnModifierSession;
+    @FXML
+    private JFXButton btnSupprimerSession;
+    @FXML
+    private JFXButton btnAjouterSession;
+    @FXML
+    private Label dateFormationSes;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-           
+                btnModifierSession.setVisible(false);
+                btnSupprimerSession.setVisible(false);
+                btnAjouterSession.setVisible(true);
             comboformation.getItems().clear();
             ServiceFormation serviceFor = new ServiceFormation();
             listfor = serviceFor.getListeFor();
@@ -173,30 +177,17 @@ public class CRUDSessionsController implements Initializable {
 
     @FXML
     private void FetcherTable(MouseEvent event) {
+          btnModifierSession.setVisible(true);
+                btnSupprimerSession.setVisible(true);
+                btnAjouterSession.setVisible(false);
           ClearFields();
         txtNom.setText(tableSession.getSelectionModel().getSelectedItem().getNomSes());
         txtCapacite.setText(tableSession.getSelectionModel().getSelectedItem().getCapaciteSes().toString());
         txtPrix.setText(tableSession.getSelectionModel().getSelectedItem().getPrixSes().toString());
-        //date debut
-        String datesessiondebut=tableSession.getSelectionModel().getSelectedItem().getDateDebSes().toString();
         
-        /*String year=datesessiondebut.substring(0,4);
-        String month=datesessiondebut.substring(5,7);
-        String date=datesessiondebut.substring(8,10);
-        System.out.println("yeardeb="+year);
-        System.out.println("monthdeb="+month);
-        System.out.println("daydeb="+date);*/
         txtdatedebut.setValue(LocalDate.parse(tableSession.getSelectionModel().getSelectedItem().getDateDebSes().toString()));
         System.out.println("date mel fetch"+txtdatedebut.getValue());
-        //date fin
-       String datesessionfin=tableSession.getSelectionModel().getSelectedItem().getDateFinSes().toString();
-        
-        /*String yearfin=datesessionfin.substring(0,4);
-        String monthfin=datesessionfin.substring(5,7);
-        String dayfin=datesessionfin.substring(8,10);
-        System.out.println("yearfin="+yearfin);
-        System.out.println("monthfin="+monthfin);
-        System.out.println("dayfin="+dayfin);*/
+       
         txtdatefin.setValue(LocalDate.parse(tableSession.getSelectionModel().getSelectedItem().getDateFinSes().toString()));
 
         //datefin.getEditor().setText(dayfin+"/"+monthfin+"/"+yearfin);
@@ -267,8 +258,9 @@ public class CRUDSessionsController implements Initializable {
     }
 
     @FXML
-    private void BoutonRefresh(ActionEvent event) {
+    private void BoutonRefresh(ActionEvent event) throws SQLException {
         ClearFields();
+        RefreshTable();
     }
     
    
@@ -277,6 +269,8 @@ public class CRUDSessionsController implements Initializable {
     private void AjouterSession(ActionEvent event) throws SQLException {
            SessionService service=new SessionService();
         try {
+              System.out.println("el id mte el formation selected"+comboformation.getSelectionModel().getSelectedItem().getIdFor());
+
             File f1 = new File(fdS);
             File f2 = new File(fdS1);
             if (ValidateFields())
@@ -292,7 +286,6 @@ public class CRUDSessionsController implements Initializable {
                 {
                     if(validateCapacite()&&validatePrixSession())
                     {
-                                
                         Session s=new Session(java.sql.Date.valueOf(txtdatedebut.getValue()), java.sql.Date.valueOf(txtdatefin.getValue()), Integer.parseInt(txtCapacite.getText()),imgf,Double.parseDouble(txtPrix.getText()),txtNom.getText(),comboformation.getValue()) ;
 
                         Files.copy(f1.getAbsoluteFile().toPath(),f2.getAbsoluteFile().toPath());
@@ -315,13 +308,14 @@ public class CRUDSessionsController implements Initializable {
     }
     
        
-  //controle de saisie des champs
-    public boolean ValidateFields()
+     //controle de saisie des champs
+    public boolean ValidateFields() throws SQLException
     {
-        System.out.println("date debut mareja"+txtdatedebut.getEditor().getText());
-        System.out.println("date actuelle mareja"+LocalDate.now());
-        System.out.println("date fin mareja"+txtdatefin.getValue());
-
+        System.out.println("date debut="+txtdatedebut.getEditor().getText());
+        System.out.println("date actuelle ="+LocalDate.now());
+        System.out.println("date fin ="+txtdatefin.getValue());
+        ServiceFormation sf=new ServiceFormation();
+            Formation f=new Formation();
        int img = 0,nom = 0,combo = 0,capacite = 0 , datedeb =0 , datefin = 0,prix=0;
         if (imgf.isEmpty())
         {
@@ -355,7 +349,14 @@ public class CRUDSessionsController implements Initializable {
             labelformation.setVisible(true);
         }
         else
+        {
             labelformation.setVisible(false);
+            //recuperer la date de la formation selected
+            
+            f=sf.AfficherDateFor(comboformation.getSelectionModel().getSelectedItem().getIdFor());
+            System.out.println("la formation selected"+f);
+            System.out.println("la date de formation selected"+f.getDateFor());
+        }
         
         if (txtPrix.getText().length() == 0)
         {
@@ -370,25 +371,38 @@ public class CRUDSessionsController implements Initializable {
             datedeb = 1 ;
             labeldatedebut.setVisible(true);
             labeldate_actuelle.setVisible(false);
-           
         }
-        
-        else if( (txtdatedebut.getValue().isBefore(LocalDate.now())))
+        else 
+        /*if((txtdatedebut.getValue().isBefore(LocalDate.now())))
         {
             datedeb = 1 ;
             labeldate_actuelle.setVisible(true);
+            labeldatedebut.setVisible(false);
+            dateFormationSes.setVisible(false);
+        }
+        else*/
+        if(java.sql.Date.valueOf(txtdatedebut.getValue()).before(f.getDateFor()))
+        {
+            datedeb = 1;
+            System.out.println("date debut session akber mel date formation");
+            dateFormationSes.setVisible(true);
             labeldatedebut.setVisible(false); 
+            labeldate_actuelle.setVisible(false);
+            System.out.println("date deb session"+txtdatedebut.getValue());
+            System.out.println("date formation"+(f.getDateFor()));
+            System.out.println(LocalDate.now());
         }
         else
         { 
             labeldatedebut.setVisible(false); 
             labeldate_actuelle.setVisible(false);
+            dateFormationSes.setVisible(false);
             System.out.println("date deb"+txtdatedebut.getValue());
             System.out.println("date fin"+this.txtdatefin.getValue());
             System.out.println(LocalDate.now());
         }   
         //tester la date de fin
-        if(this.txtdatefin.getEditor().getText().length()==0 )
+        if(txtdatefin.getEditor().getText().length()==0 )
         {
             datedeb = 1 ;
             labeldatefin.setVisible(true);
@@ -399,12 +413,13 @@ public class CRUDSessionsController implements Initializable {
         {
             datedeb = 1 ;
             labeldateFinSup.setVisible(true);
-            labeldatefin.setVisible(false); 
+            labeldatefin.setVisible(false);
         }
         else
         { 
             labeldatefin.setVisible(false); 
             labeldateFinSup.setVisible(false);
+            
             System.out.println("date deb"+txtdatedebut.getValue());
             System.out.println("date fin"+this.txtdatefin.getValue());
             System.out.println("date actuelle"+LocalDate.now());
@@ -412,7 +427,7 @@ public class CRUDSessionsController implements Initializable {
         return ( img==1 || nom==1 || combo==1 || prix==1 || datedeb == 1||datefin == 1 || capacite==1);
                 }
      
-//vider les champs
+    //vider les champs
     public void ClearFields()
     {
         txtNom.clear();
@@ -455,13 +470,13 @@ public class CRUDSessionsController implements Initializable {
                     }
                 }
         } catch (SQLException ex) {
-ex.printStackTrace();        }
+        ex.printStackTrace();        }
     }
     
     //afficher le contenu de la table formation dans le tableau
    public void RefreshTable() throws SQLException 
    {
-        ClearFields();
+       
         SessionService service=new SessionService();
         tableSession.getItems().clear();
         columnidSession.setCellValueFactory(new PropertyValueFactory<>("idSes"));
@@ -514,7 +529,7 @@ ex.printStackTrace();        }
         return false;
          
          
-         }
+        }
 
     @FXML
     private void SearchSession(KeyEvent event) {
@@ -525,6 +540,14 @@ ex.printStackTrace();        }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    private void InvisibleBouton(MouseEvent event) {
+            ClearFields();
+            btnModifierSession.setVisible(false);
+            btnSupprimerSession.setVisible(false);
+            btnAjouterSession.setVisible(true);
     }
 
    

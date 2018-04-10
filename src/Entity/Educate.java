@@ -13,9 +13,9 @@ import java.util.Objects;
  * @author escobar
  */
 public class Educate {
-
-    private Date dateIscri;
+  private Date dateIscri;
     private String etatEduc;
+    private String etatNotif;
     private Session session;
     private Utilisateur utilisateur;
 
@@ -24,6 +24,21 @@ public class Educate {
     public Educate(Session idSes) {
         this.session=idSes;
     }
+
+    public String getEtatNotif() {
+        return etatNotif;
+    }
+
+    public void setEtatNotif(String etatNotif) {
+        this.etatNotif = etatNotif;
+    }
+
+    public Educate(Date dateIscri, String etatEduc) {
+        this.dateIscri = dateIscri;
+        this.etatEduc = etatEduc;
+    }
+
+    
 
 
     public Date getDateIscri() {
@@ -91,5 +106,6 @@ public class Educate {
         return true;
     }
 
+    
     
 }

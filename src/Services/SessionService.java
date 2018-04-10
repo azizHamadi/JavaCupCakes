@@ -7,6 +7,7 @@ package Services;
 
 import Entity.Formation;
 import Entity.Session;
+import Entity.SessionUser;
 import Entity.TypeFormation;
 import Entity.Utilisateur;
 import Technique.DataSource;
@@ -28,7 +29,6 @@ import javafx.collections.ObservableList;
  * @author hamdi fathallah
  */
 public class SessionService {
-    
      final ObservableList<Session> listeob=FXCollections.observableArrayList();
     private Connection con=DataSource.getInstance().getCon();
     private Statement st;
@@ -53,19 +53,7 @@ public class SessionService {
     
          
     
-    {
-        try 
-        {
-            st=con.createStatement();
-            ste2 =con.createStatement();
-            ste3 =con.createStatement();
-            ste4 =con.createStatement();
-        } 
-        catch (SQLException ex) 
-        {
-           ex.printStackTrace();
-        }
-    }
+    
     
     //ajouter formation
     public void insertSession(Session s)
@@ -95,10 +83,12 @@ public class SessionService {
     }
     
      //afficher toutes les sessions
+    //houni zeda yelzm nzid iduser bech yaffichilou les sessions mteou
+    //SELECT * FROM Session,Formation WHERE etatSes='en cours' AND Session.idFor=Formatin.idFor AND Formation.iduser=eli bech nzidou
     public ObservableList<Session> ListeToutesLesSessions() throws SQLException
     {
-        ResultSet rssession=st.executeQuery("SELECT * FROM Session WHERE etatSes='en cours' ");
-     
+        ResultSet rssession=st.executeQuery("SELECT * FROM Session,Formation WHERE etatSes='en cours' AND etatFor='en cours' AND Session.idFor=Formation.idFor AND Formation.idUser="+SessionUser.getId());
+        System.out.println("SELECT * FROM Session,Formation WHERE etatSes='en cours' AND Session.idFor=Formation.idFor AND Formation.idUser="+SessionUser.getId());
         while(rssession.next())
         {   
             TypeFormation typeformation=new TypeFormation();
@@ -189,9 +179,56 @@ public class SessionService {
         return listeob;
     }
 
+     //afficher lister sessions par rapport formation
+    public ObservableList<Session> ListeSessionsFormateur() throws SQLException
+    {
+        System.out.println("SELECT * FROM Session WHERE etatSes='en cours' ");
+        ResultSet rssession=st.executeQuery("SELECT * FROM Session WHERE etatSes='en cours' AND idFor=");
+     
+        while(rssession.next())
+        {   
+            TypeFormation typeformation=new TypeFormation();
+            Formation formation = new Formation();
+            Session session=new Session();
+            Utilisateur user = new Utilisateur();
+            session.setIdSes(rssession.getInt("idSes"));
+            session.setDateDebSes(rssession.getDate("dateDebSes"));
+            session.setDateFinSes(rssession.getDate("dateFinSes"));
+            session.setCapaciteSes(rssession.getInt("capaciteSes"));
+            session.setImagesess(rssession.getString("imagesess"));
+            session.setPrixSes(rssession.getDouble("prix_ses"));
+            session.setNomSes(rssession.getString("nomSes"));
+            System.out.println("formation de session="+rssession.getInt("idFor"));
+            
+            ResultSet rsformation = ste4.executeQuery("select * from formation where idFor="+ rssession.getInt("idFor"));
+            
+            while(rsformation.next())
+            {
+                formation.setIdFor(rsformation.getInt("idFor"));
+                formation.setNomFor(rsformation.getString("nomFor"));
+                
+          /*
+            ResultSet rsUser = ste3.executeQuery("select * from utilisateur where id="+ rsformation.getInt("idUser"));
+            
+            while(rsUser.next())
+            {
+                user.setId(rsUser.getInt("id"));
+                user.setUsername(rsUser.getString("username"));
+                user.setEmail(rsUser.getString("email"));
+                user.setPhoneNumber(rsUser.getString("phoneNumber"));
+                user.setAddresse(rsUser.getString("Addresse"));
+                user.setRoles(rsUser.getString("roles"));
+            }*/
+           
+            }
+            session.setIdFor(formation);
+            listeob.add(session);
+        }
+        return listeob;
+    }
     public void SupprimerSession(Session s, int idSes) {
         try {
-            String req ="UPDATE Session SET etatSes ='finie' where idSes ="+idSes;
+            String req ="UPDATE Session SET etatSes ='finie' where idSes="+idSes;
             PreparedStatement ps = con.prepareStatement(req);
             
             ps.executeUpdate();
@@ -271,11 +308,58 @@ public class SessionService {
         }
         return listeob;
     }
+    
+    public ObservableList<Session> SearchListeSessionsClient(String nomSession) throws SQLException
+    {
+         ResultSet rssession=st.executeQuery("SELECT * FROM Session WHERE etatSes='en cours' AND nomSes LIKE '%"+nomSession+"%'");
+     
+        while(rssession.next())
+        {   
+            TypeFormation typeformation=new TypeFormation();
+            Formation formation = new Formation();
+            Session session=new Session();
+            Utilisateur user = new Utilisateur();
+            session.setIdSes(rssession.getInt("idSes"));
+            session.setDateDebSes(rssession.getDate("dateDebSes"));
+            session.setDateFinSes(rssession.getDate("dateFinSes"));
+            session.setCapaciteSes(rssession.getInt("capaciteSes"));
+            session.setImagesess(rssession.getString("imagesess"));
+            session.setPrixSes(rssession.getDouble("prix_ses"));
+            session.setNomSes(rssession.getString("nomSes"));
+            System.out.println("formation de session="+rssession.getInt("idFor"));
+            
+            ResultSet rsformation = ste4.executeQuery("select * from formation where idFor="+ rssession.getInt("idFor"));
+            
+            while(rsformation.next())
+            {
+                formation.setIdFor(rsformation.getInt("idFor"));
+                formation.setNomFor(rsformation.getString("nomFor"));
+                
+          /*
+            ResultSet rsUser = ste3.executeQuery("select * from utilisateur where id="+ rsformation.getInt("idUser"));
+            
+            while(rsUser.next())
+            {
+                user.setId(rsUser.getInt("id"));
+                user.setUsername(rsUser.getString("username"));
+                user.setEmail(rsUser.getString("email"));
+                user.setPhoneNumber(rsUser.getString("phoneNumber"));
+                user.setAddresse(rsUser.getString("Addresse"));
+                user.setRoles(rsUser.getString("roles"));
+            }*/
+           
+            }
+            session.setIdFor(formation);
+            listeob.add(session);
+        }
+        return listeob;
+    }
+
 
     //liste client session en cours
-    public ObservableList<Session> ListeSessionsClientEnCoursFinies(int idclient,String etatSes) throws SQLException
+    public ObservableList<Session> ListeSessionsClientEnCoursFinies(String etatSes) throws SQLException
     {
-        ResultSet rssession=st.executeQuery("SELECT * FROM Session,Educate WHERE etatSes='"+etatSes+"' AND Session.idSes=Educate.idSes AND idUser="+idclient);
+        ResultSet rssession=st.executeQuery("SELECT * FROM Session,Educate WHERE etatSes='"+etatSes+"' AND Session.idSes=Educate.idSes AND idUser="+SessionUser.getId());
      
         while(rssession.next())
         {   
@@ -410,7 +494,7 @@ public class SessionService {
             String req ="update Session set capaciteSes=? where idSes="+idSession ;
             PreparedStatement ps = con.prepareStatement(req);
             System.out.println("capacite ancienne="+s.getCapaciteSes());
-            int nouvCapacite=s.getCapaciteSes()+1;
+            int nouvCapacite=s.getCapaciteSes()-1;
             System.out.println("capacite new="+nouvCapacite);
             ps.setInt(1, nouvCapacite);       
             ps.executeUpdate();
@@ -587,8 +671,9 @@ public class SessionService {
         }
     }
     
-     public Session RechercheSession(String nom) throws SQLException{
-        ResultSet rs = st.executeQuery("select * from session where nomSes = '"+nom+"'");
+    //a voir
+    public Session RechercheSession(String nom) throws SQLException{
+        ResultSet rs = st.executeQuery("select * from session where nomSes ='"+nom+"'");
         Session pr = new Session();
         while(rs.next())
         {
@@ -597,6 +682,54 @@ public class SessionService {
         }
         return pr ;
     }
-
+     
+     
+      //search Session 
+    //yelzem nzid fazet el iduser
+    public ObservableList<Session> SearchListeSessionsByIDFor(String nomSession,int idfor) throws SQLException
+    {
+         ResultSet rssession=st.executeQuery("SELECT * FROM Session WHERE etatSes='en cours' AND idFor="+idfor+"AND nomSes LIKE '%"+nomSession+"%'");
+     
+        while(rssession.next())
+        {   
+            TypeFormation typeformation=new TypeFormation();
+            Formation formation = new Formation();
+            Session session=new Session();
+            Utilisateur user = new Utilisateur();
+            session.setIdSes(rssession.getInt("idSes"));
+            session.setDateDebSes(rssession.getDate("dateDebSes"));
+            session.setDateFinSes(rssession.getDate("dateFinSes"));
+            session.setCapaciteSes(rssession.getInt("capaciteSes"));
+            session.setImagesess(rssession.getString("imagesess"));
+            session.setPrixSes(rssession.getDouble("prix_ses"));
+            session.setNomSes(rssession.getString("nomSes"));
+            System.out.println("formation de session="+rssession.getInt("idFor"));
+            
+            ResultSet rsformation = ste4.executeQuery("select * from formation where idFor="+ rssession.getInt("idFor"));
+            
+            while(rsformation.next())
+            {
+                formation.setIdFor(rsformation.getInt("idFor"));
+                formation.setNomFor(rsformation.getString("nomFor"));
+                
+          /*
+            ResultSet rsUser = ste3.executeQuery("select * from utilisateur where id="+ rsformation.getInt("idUser"));
+            
+            while(rsUser.next())
+            {
+                user.setId(rsUser.getInt("id"));
+                user.setUsername(rsUser.getString("username"));
+                user.setEmail(rsUser.getString("email"));
+                user.setPhoneNumber(rsUser.getString("phoneNumber"));
+                user.setAddresse(rsUser.getString("Addresse"));
+                user.setRoles(rsUser.getString("roles"));
+            }*/
+           
+            }
+            session.setIdFor(formation);
+            listeob.add(session);
+        }
+        return listeob;
+    }
 }
 

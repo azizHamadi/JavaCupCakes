@@ -30,7 +30,7 @@
                         </Text>
                         <HBox prefHeight="18.0" prefWidth="141.0">
                            <children>
-                              <Text fx:id="afficherListeFor" fill="#e25a92" strokeType="OUTSIDE" strokeWidth="0.0" text="Afficher les formations" underline="true">
+                              <Text fx:id="afficherListeFor" fill="#e2b85b" strokeType="OUTSIDE" strokeWidth="0.0" text="Afficher les formations" underline="true">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -48,7 +48,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" layoutX="18.0" layoutY="-5.0" prefHeight="44.0" prefWidth="71.0" style="-fx-background-color: #e25a92; -fx-background-radius: 1em;">
+                  <VBox alignment="CENTER" layoutX="18.0" layoutY="-5.0" prefHeight="44.0" prefWidth="71.0" style="-fx-background-color: #e2b85b; -fx-background-radius: 1em;">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>

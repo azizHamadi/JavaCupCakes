@@ -9,7 +9,7 @@ import Entity.Formation;
 import Entity.TypeFormation;
 import Services.ServiceFormation;
 import Services.ServiceTypeFormation;
-import Views.test.folder.BackForTemplateController;
+import Services.SessionService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -23,29 +23,29 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -57,7 +57,7 @@ import javafx.util.StringConverter;
  * @author FERIEL FADHLOUN
  */
 public class CRUDFormationsController implements Initializable {
-  
+
     @FXML
     private TableColumn<Formation, String> columnImage;
     @FXML
@@ -127,9 +127,17 @@ Stage stage;
     private JFXButton btnSuprrimerFormation;
     @FXML
     private JFXButton btnAjouterFormatino;
-    private HTMLEditor txtDescription;
     @FXML
-    private JFXButton RefreshTable;
+    private HTMLEditor txtDescription;
+    private VBox vbox ;
+    @FXML
+    private JFXButton btnRefresh;
+    @FXML
+    private Button btnAjoutTypeFor;
+    @FXML
+    private TableColumn<Formation, String> columnDescription;
+
+     
     /**
      * Initializes the controller class.
      */
@@ -170,16 +178,16 @@ Stage stage;
 
     @FXML
     private void FetcherTable(MouseEvent event) {
-                btnListeSession.setVisible(true);
-                btnModifierFormation.setVisible(true);
-                btnSuprrimerFormation.setVisible(true);
-                btnAjouterFormatino.setVisible(false);
-        ClearFields();
+               
+            btnListeSession.setVisible(true);
+            btnModifierFormation.setVisible(true);
+            btnSuprrimerFormation.setVisible(true);
+            btnAjouterFormatino.setVisible(false);
+        
         System.out.println("hello");
         txtNom.setText(tableFormation.getSelectionModel().getSelectedItem().getNomFor());
         txtplace.setText(tableFormation.getSelectionModel().getSelectedItem().getPlace());
-        txtDescription.setHtmlText(tableFormation.getSelectionModel().getSelectedItem().getDescriptionFor());
-        
+        txtDescription.setHtmlText(tableFormation.getSelectionModel().getSelectedItem().getDescriptionFor());       
         String dateformation=tableFormation.getSelectionModel().getSelectedItem().getDateFor().toString();
         ServiceFormation sf=new ServiceFormation();
         String year=dateformation.substring(0,4);
@@ -218,17 +226,20 @@ Stage stage;
             if (result.get() == ButtonType.OK){
                {
                     Formation f=new Formation(txtNom.getText(),txtplace.getText(),txtDescription.getHtmlText().substring(58, txtDescription.getHtmlText().length()-14),java.sql.Date.valueOf(txtdate.getValue()),imgf,combotypeformation.getValue());
-                    service.ModifierFormation(f,tableFormation.getSelectionModel().getSelectedItem().getIdFor());
-                    RefreshTable();
+                    service.ModificationFormation(f,tableFormation.getSelectionModel().getSelectedItem().getIdFor());
                     ClearFields();
+                    RefreshTable();
+                    
                }
             } else {
                 alert.close();
             }
             
             
-        } catch (SQLException ex) {
-ex.printStackTrace();        }
+        } catch (SQLException ex)
+        {
+                ex.printStackTrace();       
+        }
     }
 
     @FXML
@@ -356,7 +367,7 @@ ex.printStackTrace();        }
     {
         txtNom.clear();
         txtplace.clear();
-        txtDescription.setHtmlText(null);
+        txtDescription.setHtmlText("");
         imageview.setImage(null);
         txtdate.setValue(null);
         combotypeformation.setValue(null);
@@ -385,6 +396,7 @@ ex.printStackTrace();        }
                     Files.copy(f1.getAbsoluteFile().toPath(),f2.getAbsoluteFile().toPath());
 
                     service.insertFormation(f);
+                    RefreshTable();
                     System.out.println("formation ajouté avec succes");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Ajout");
@@ -392,52 +404,65 @@ ex.printStackTrace();        }
                     alert.setContentText("formation ajouté avec succes");
                     alert.showAndWait();
                     ClearFields(); 
-                    RefreshTable();
+                   
                 }
-           /* Scene sc = new Scene(root);
-            Stage st = new Stage();
-            st.setScene(sc);
-            st.show();*/
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     //afficher le contenu de la table formation dans le tableau
-    @FXML
    public void RefreshTable() throws SQLException 
    {
        
         ServiceFormation service=new ServiceFormation();
-
+        tableFormation.getItems().clear();
         columnidFormation.setCellValueFactory(new PropertyValueFactory<>("idFor"));
         columnNom.setCellValueFactory(new PropertyValueFactory<>("nomFor"));
         columnPays.setCellValueFactory(new PropertyValueFactory<>("place"));
-        //ColumnDescription.setCellValueFactory(new PropertyValueFactory<>("descriptionFor"));
+        columnDescription.setCellValueFactory(new PropertyValueFactory<>("descriptionFor"));
         columndate.setCellValueFactory(new PropertyValueFactory<>("dateFor"));
         columnImage.setCellValueFactory(new PropertyValueFactory<>("imageform"));
         columntypeformation.setCellValueFactory(new PropertyValueFactory<>("idTypeFor"));
         tableFormation.setItems(service.AfficherListeFormation());
    }
    
-
     @FXML
     private void InvisibleBouton(MouseEvent event) {
             btnListeSession.setVisible(false);
             btnModifierFormation.setVisible(false);
             btnSuprrimerFormation.setVisible(false);
             btnAjouterFormatino.setVisible(true);
+            ClearFields();
+
     }
 
     @FXML
-    private void AutrePage(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SessionByIDFor.fxml"));       
+    private void AutrePage(ActionEvent event) throws IOException, SQLException {
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("SessionByIDFor.fxml"));       
         Parent root = loader.load();   
         SessionByIDForController sc = loader.getController();
+        sc.setVbox(vbox);
         sc.setIdFormation(tableFormation.getSelectionModel().getSelectedItem().getIdFor());
-        //sc.setVbox(root);       
-        txtNom.getScene().setRoot(root);
+        System.out.println("crudFormations"+sc.getIdFormation());  
+        sc.RemplirCombo(sc.getIdFormation());
+         SessionService ss=new SessionService();
+            if(ss.SessionExists(sc.getIdFormation())!=0)
+            {
+                sc.RefreshTableByIdFormation();
+                
+            }
+            else
+            {
+                System.out.println("aucune session trouvée pour cette formation");
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Attention!");
+                alert.setHeaderText(null);
+                alert.setContentText("aucune session trouvée pour cette formation!!");
+                alert.showAndWait();
+            }
+        vbox.getChildren().clear(); 
+        vbox.getChildren().add(root);
     }
 
     @FXML
@@ -450,7 +475,48 @@ ex.printStackTrace();        }
             ex.printStackTrace();
         }
     }
+
+    public VBox getVbox() {
+        return vbox;
+    }
+
+    public void setVbox(VBox vbox) {
+        this.vbox = vbox;
+    }
+
+    @FXML
+    private void btnRefresh(ActionEvent event) throws SQLException {
+         ClearFields();
+        RefreshTable();
+    }
+
+    @FXML
+    private void AjouterTypeFormation(ActionEvent event) {
+         TextInputDialog dialog = new TextInputDialog("Nom type formationn");
+        dialog.setTitle("Type formation");
+        dialog.setHeaderText("Ajouter une type de formation");
+        dialog.setContentText("Nom du type formation:");
+        Optional<String> result = dialog.showAndWait();
+        
+        result.ifPresent(name -> {
+            try {
+                ServiceTypeFormation stf = new ServiceTypeFormation();
+                if( stf.rechercheTypeFormation(name) == null){
+                    stf.AjouterTypeFormation(new TypeFormation(name));
+                    this.initialize(null, null);
+                }
+                else
+                {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Erreur!");
+                    alert.setContentText("type formation existe deja!");
+                    alert.showAndWait();
+                }
+            } catch (SQLException ex) {
+               ex.printStackTrace();
+            }
+        });
+    }
+    
     
 }
-
-    

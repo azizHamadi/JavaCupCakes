@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Session {
 
-    private Integer idSes;
+     private Integer idSes;
     private Date dateDebSes;
     private Date dateFinSes;
     private Integer capaciteSes;
@@ -24,6 +24,7 @@ public class Session {
     private Double nvPrixSes;
     private String nomSes;
     private Formation idFor;
+    private String etatNotif;
     private Collection<Linepromoses> linepromosesCollection;
     private Collection<Educate> educateCollection;
 
@@ -66,7 +67,13 @@ public class Session {
         this.idSes = idSes;
     }
 
+    public String getEtatNotif() {
+        return etatNotif;
+    }
 
+    public void setEtatNotif(String etatNotif) {
+        this.etatNotif = etatNotif;
+    }
     public Integer getIdSes() {
         return idSes;
     }
@@ -187,5 +194,6 @@ public class Session {
     public String toString() {
         return "Entity.Session[ idSes=" + idSes + " ]";
     }
+    
     
 }

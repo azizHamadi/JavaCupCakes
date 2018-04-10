@@ -9,6 +9,7 @@ import Views.Client.ListAllSessionsFor.ListAllSessionsForController;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,7 +113,7 @@ public class Morabba3s8irController implements Initializable {
     }
 
     @FXML
-    private void AfficherListeSessionsFor(MouseEvent event) throws IOException {
+    private void AfficherListeSessionsFor(MouseEvent event) throws IOException, SQLException {
         System.out.println("event mouse clicked");
         System.out.println("id for mel listAllFormations"+idmelListAllFormations);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/ListAllSessionsFor/ListAllSessionsFor.fxml"));       

@@ -5,6 +5,7 @@
  */
 package Views.test.folder;
 
+import Views.Formateur.GestionFormations.CRUDFormationsController;
 import Views.Patisserie.Recette.ListAllRecettes.ListAllRecettesController;
 import Views.Patisserie.Recette.MesRecettes.MesRecettesController;
 import java.io.IOException;
@@ -48,13 +49,14 @@ public class BackForTemplateController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        
     }    
-
     @FXML
     private void GestionFormation(ActionEvent event) throws IOException {
         
         System.out.println("gestion formations");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../Views/Formateur/GestionFormations/CRUDFormations.fxml"));
         Node root = loader.load();
+        CRUDFormationsController cfc = loader.getController();
+        cfc.setVbox(vbox_body);
         vbox_body.getChildren().clear();
         vbox_body.getChildren().add(root);
     }

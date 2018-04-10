@@ -59,11 +59,11 @@ public class MesSessionsFiniesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       try {
+        try {
             nav_cat.getChildren().clear();
             section_body.getChildren().clear();
             SessionService servicesession = new SessionService();
-            List<Session> listC = servicesession.ListeSessionsClientEnCoursFinies(1,"finie");
+            List<Session> listC = servicesession.ListeSessionsClientEnCoursFinies("finie");
             NoteService ns = new NoteService();
            
             Node [] nodesCategorie = new Node[listC.size()];
@@ -147,7 +147,7 @@ public class MesSessionsFiniesController implements Initializable {
 
     @FXML
     private void RechercheSession(KeyEvent event) throws SQLException, IOException {
-         section_body.getChildren().clear();
+        section_body.getChildren().clear();
         SessionService RS = new SessionService();
         List<Session> listRec = RS.SearchListeSessionsClientEnCoursouFinie(recherche.getText(),"finie");
         Node [] nodesLigne = new Node[3];

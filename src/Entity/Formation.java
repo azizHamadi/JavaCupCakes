@@ -13,8 +13,7 @@ import java.util.Date;
  * @author escobar
  */
 public class Formation  {
-
-    private Integer idFor;
+private Integer idFor;
     private String nomFor;
     private String place;
     private String etatFor;

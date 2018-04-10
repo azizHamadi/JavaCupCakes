@@ -59,12 +59,13 @@ public class MesSessionsEnCoursController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       try {
+    public void initialize(URL url, ResourceBundle rb) 
+    {
+         try {
             nav_cat.getChildren().clear();
             section_body.getChildren().clear();
             SessionService servicesession = new SessionService();
-            List<Session> listC = servicesession.ListeSessionsClientEnCoursFinies(1,"en cours");
+            List<Session> listC = servicesession.ListeSessionsClientEnCoursFinies("en cours");
             NoteService ns = new NoteService();
            
             Node [] nodesCategorie = new Node[listC.size()];
@@ -150,7 +151,7 @@ public class MesSessionsEnCoursController implements Initializable {
             Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     nbrLignePage = 0 ;
-    }    
+    }
 
     @FXML
     private void PagePrecedente(MouseEvent event) {

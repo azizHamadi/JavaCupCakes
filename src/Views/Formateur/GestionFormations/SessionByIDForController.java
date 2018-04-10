@@ -137,6 +137,8 @@ public class SessionByIDForController implements Initializable {
     private JFXButton btnSupprimerSession;
     @FXML
     private JFXButton btnAjouterSession;
+    @FXML
+    private Label dateFormationSes;
 
     public VBox getVbox() {
         return vbox;
@@ -157,73 +159,35 @@ public class SessionByIDForController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
+     
                 btnModifierSession.setVisible(false);
                 btnSupprimerSession.setVisible(false);
                 btnAjouterSession.setVisible(true);
-            comboformation.getItems().clear();
-            ServiceFormation serviceFor = new ServiceFormation();
-            listfor = serviceFor.getListeFor();
-            //combobox typeformation
-            for(Formation c : listfor)
-            {
-                comboformation.getItems().add(c);
-                comboformation.setConverter(new StringConverter<Formation>() {
-                    @Override
-                    public String toString(Formation object) {
-                        return object.getNomFor();
-                    }
-
-                    @Override
-                    public Formation fromString(String string) {
-                        return comboformation.getItems().stream().filter(ap -> 
-                                    ap.getNomFor().equals(string)).findFirst().orElse(null);}
-
-                    
-                });
-            }
+               
+            
             
             fileChooser=new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("images", "*.jpg","*.png","*.jpeg"));
-            RefreshTable();
+            
            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+           
+           
+        
     }    
 
     @FXML
     private void FetcherTable(MouseEvent event) {
-                btnModifierSession.setVisible(true);
-                btnSupprimerSession.setVisible(true);
-                btnAjouterSession.setVisible(false);
+               
+            btnModifierSession.setVisible(true);
+            btnSupprimerSession.setVisible(true);
+            btnAjouterSession.setVisible(false);
           ClearFields();
         txtNom.setText(tableSession.getSelectionModel().getSelectedItem().getNomSes());
         txtCapacite.setText(tableSession.getSelectionModel().getSelectedItem().getCapaciteSes().toString());
         txtPrix.setText(tableSession.getSelectionModel().getSelectedItem().getPrixSes().toString());
-        //date debut
-        String datesessiondebut=tableSession.getSelectionModel().getSelectedItem().getDateDebSes().toString();
-        
-        /*String year=datesessiondebut.substring(0,4);
-        String month=datesessiondebut.substring(5,7);
-        String date=datesessiondebut.substring(8,10);
-        System.out.println("yeardeb="+year);
-        System.out.println("monthdeb="+month);
-        System.out.println("daydeb="+date);*/
         txtdatedebut.setValue(LocalDate.parse(tableSession.getSelectionModel().getSelectedItem().getDateDebSes().toString()));
         System.out.println("date mel fetch"+txtdatedebut.getValue());
-        //date fin
-       String datesessionfin=tableSession.getSelectionModel().getSelectedItem().getDateFinSes().toString();
-        
-        /*String yearfin=datesessionfin.substring(0,4);
-        String monthfin=datesessionfin.substring(5,7);
-        String dayfin=datesessionfin.substring(8,10);
-        System.out.println("yearfin="+yearfin);
-        System.out.println("monthfin="+monthfin);
-        System.out.println("dayfin="+dayfin);*/
         txtdatefin.setValue(LocalDate.parse(tableSession.getSelectionModel().getSelectedItem().getDateFinSes().toString()));
-
-        //datefin.getEditor().setText(dayfin+"/"+monthfin+"/"+yearfin);
         comboformation.setValue(tableSession.getSelectionModel().getSelectedItem().getIdFor());
         imgf=tableSession.getSelectionModel().getSelectedItem().getImagesess();
         if(!imgf.isEmpty())
@@ -252,7 +216,7 @@ public class SessionByIDForController implements Initializable {
                                 Integer.parseInt(txtCapacite.getText()),imgf,Double.parseDouble(txtPrix.getText()),
                                 txtNom.getText(),comboformation.getValue()) ;
                         service.ModifierSession(s,tableSession.getSelectionModel().getSelectedItem().getIdSes());
-                        RefreshTable();
+                        RefreshTableByIdFormation();
                         ClearFields();
                     } 
                     else 
@@ -268,11 +232,7 @@ public class SessionByIDForController implements Initializable {
     private void handleFileImage(ActionEvent event) {
         stage=(Stage) anchorPane.getScene().getWindow();
         file=fileChooser.showOpenDialog(stage);
-       /* try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutFormationController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+    
        if(file !=null)
        {
            System.out.println("file path="+file.getAbsolutePath());
@@ -296,7 +256,7 @@ public class SessionByIDForController implements Initializable {
     private void SearchSession(ActionEvent event) {
          SessionService service=new SessionService();
         try {
-            tableSession.setItems(service.SearchListeSessions(txtSearch.getText()));
+            tableSession.setItems(service.SearchListeSessionsByIDFor(txtSearch.getText(),idFormation));
             System.out.println("rechercher");
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -335,7 +295,7 @@ public class SessionByIDForController implements Initializable {
                         alert.setContentText("Session ajouté avec succes");
                         alert.showAndWait();
                         ClearFields(); 
-                        RefreshTable();
+                        RefreshTableByIdFormation();
                     }
                     
                     }
@@ -344,13 +304,14 @@ public class SessionByIDForController implements Initializable {
             ex.printStackTrace();        }
     }
         
-  //controle de saisie des champs
-    public boolean ValidateFields()
+    //controle de saisie des champs
+    public boolean ValidateFields() throws SQLException
     {
-        System.out.println("date debut mareja"+txtdatedebut.getEditor().getText());
-        System.out.println("date actuelle mareja"+LocalDate.now());
-        System.out.println("date fin mareja"+txtdatefin.getValue());
-
+        System.out.println("date debut="+txtdatedebut.getEditor().getText());
+        System.out.println("date actuelle ="+LocalDate.now());
+        System.out.println("date fin ="+txtdatefin.getValue());
+        ServiceFormation sf=new ServiceFormation();
+            Formation f=new Formation();
        int img = 0,nom = 0,combo = 0,capacite = 0 , datedeb =0 , datefin = 0,prix=0;
         if (imgf.isEmpty())
         {
@@ -384,7 +345,14 @@ public class SessionByIDForController implements Initializable {
             labelformation.setVisible(true);
         }
         else
+        {
             labelformation.setVisible(false);
+            //recuperer la date de la formation selected
+            
+            f=sf.AfficherDateFor(comboformation.getSelectionModel().getSelectedItem().getIdFor());
+            System.out.println("la formation selected"+f);
+            System.out.println("la date de formation selected"+f.getDateFor());
+        }
         
         if (txtPrix.getText().length() == 0)
         {
@@ -399,25 +367,38 @@ public class SessionByIDForController implements Initializable {
             datedeb = 1 ;
             labeldatedebut.setVisible(true);
             labeldate_actuelle.setVisible(false);
-           
         }
-        
-        else if( (txtdatedebut.getValue().isBefore(LocalDate.now())))
+        else 
+        /*if((txtdatedebut.getValue().isBefore(LocalDate.now())))
         {
             datedeb = 1 ;
             labeldate_actuelle.setVisible(true);
+            labeldatedebut.setVisible(false);
+            dateFormationSes.setVisible(false);
+        }
+        else*/
+        if(java.sql.Date.valueOf(txtdatedebut.getValue()).before(f.getDateFor()))
+        {
+            datedeb = 1;
+            System.out.println("date debut session akber mel date formation");
+            dateFormationSes.setVisible(true);
             labeldatedebut.setVisible(false); 
+            labeldate_actuelle.setVisible(false);
+            System.out.println("date deb session"+txtdatedebut.getValue());
+            System.out.println("date formation"+(f.getDateFor()));
+            System.out.println(LocalDate.now());
         }
         else
         { 
             labeldatedebut.setVisible(false); 
             labeldate_actuelle.setVisible(false);
+            dateFormationSes.setVisible(false);
             System.out.println("date deb"+txtdatedebut.getValue());
             System.out.println("date fin"+this.txtdatefin.getValue());
             System.out.println(LocalDate.now());
         }   
         //tester la date de fin
-        if(this.txtdatefin.getEditor().getText().length()==0 )
+        if(txtdatefin.getEditor().getText().length()==0 )
         {
             datedeb = 1 ;
             labeldatefin.setVisible(true);
@@ -428,12 +409,13 @@ public class SessionByIDForController implements Initializable {
         {
             datedeb = 1 ;
             labeldateFinSup.setVisible(true);
-            labeldatefin.setVisible(false); 
+            labeldatefin.setVisible(false);
         }
         else
         { 
             labeldatefin.setVisible(false); 
             labeldateFinSup.setVisible(false);
+            
             System.out.println("date deb"+txtdatedebut.getValue());
             System.out.println("date fin"+this.txtdatefin.getValue());
             System.out.println("date actuelle"+LocalDate.now());
@@ -441,7 +423,7 @@ public class SessionByIDForController implements Initializable {
         return ( img==1 || nom==1 || combo==1 || prix==1 || datedeb == 1||datefin == 1 || capacite==1);
                 }
      
-//vider les champs
+    //vider les champs
     public void ClearFields()
     {
         txtNom.clear();
@@ -449,7 +431,6 @@ public class SessionByIDForController implements Initializable {
         txtPrix.clear();
         txtimage.clear();
         imageview.setImage(null);
-        
         txtdatedebut.setValue(null);
         txtdatefin.setValue(null);
         comboformation.setValue(null);
@@ -475,7 +456,7 @@ public class SessionByIDForController implements Initializable {
                        {
                             Session s=new Session();
                             service.SupprimerSession(s,tableSession.getSelectionModel().getSelectedItem().getIdSes());
-                            RefreshTable();
+                            RefreshTableByIdFormation();
                             ClearFields();  
                        }
                     } else {
@@ -488,9 +469,9 @@ ex.printStackTrace();        }
     }
     
     //afficher le contenu de la table formation dans le tableau
-   public void RefreshTable() throws SQLException 
+   public void RefreshTableByIdFormation() throws SQLException 
    {
-        ClearFields();
+       System.out.println("id formation fel fetch page thenia="+idFormation);
         SessionService service=new SessionService();
         tableSession.getItems().clear();
         columnidSession.setCellValueFactory(new PropertyValueFactory<>("idSes"));
@@ -501,9 +482,11 @@ ex.printStackTrace();        }
         columnDateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebSes"));
         columnDateFin.setCellValueFactory(new PropertyValueFactory<>("dateFinSes"));
         columnFormation.setCellValueFactory(new PropertyValueFactory<>("idFor"));
-        tableSession.setItems(service.ListeToutesLesSessions());
+        tableSession.setItems(service.ListeSessions(idFormation));
+        
    }
    
+  
      //validation capacite 
     private boolean validateCapacite(){
          Pattern  p = Pattern.compile("([0-9]+)");
@@ -550,7 +533,7 @@ ex.printStackTrace();        }
           SessionService service=new SessionService();
         try {
             tableSession.setItems(service.SearchListeSessions(txtSearch.getText()));
-            System.out.println("rechercher");
+            System.out.println("rechercher session");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -558,11 +541,36 @@ ex.printStackTrace();        }
 
     @FXML
     private void InvisibleBouton(MouseEvent event) {
+            ClearFields();
             btnModifierSession.setVisible(false);
             btnSupprimerSession.setVisible(false);
             btnAjouterSession.setVisible(true);
     }
 
    
+    //ajouter dans le combo la formation eli khtheha mel page loula kahawwww
+    public void RemplirCombo(int idfor) throws SQLException
+    {
+         Formation format=new Formation();
+            comboformation.getItems().clear();
+            ServiceFormation serviceFor = new ServiceFormation();
+            System.out.println("id fel page thenia "+idFormation);
+            format = serviceFor.ComboFormationsById(idfor);
+            //combobox typeformation
+            
+                comboformation.getItems().add(format);
+                comboformation.setConverter(new StringConverter<Formation>() {
+                    @Override
+                    public String toString(Formation object) {
+                        return object.getNomFor();
+                    }
 
+                    @Override
+                    public Formation fromString(String string) {
+                        return comboformation.getItems().stream().filter(ap -> 
+                                    ap.getNomFor().equals(string)).findFirst().orElse(null);}
+
+                    
+                });
+    }
 }

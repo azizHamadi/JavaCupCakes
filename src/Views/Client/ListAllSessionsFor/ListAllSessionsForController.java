@@ -10,19 +10,26 @@ import Entity.Session;
 import Services.NoteService;
 import Services.ServiceEducate;
 import Services.SessionService;
+import Views.Client.Produit.ListAllProduit.ListAllProduitController;
 import Views.Client.Recette.ListAllRecettes.ListAllRecettesController;
+import Views.Client.SingleSession.SingleSessionController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,6 +39,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -66,8 +75,18 @@ public class ListAllSessionsForController implements Initializable {
      private int idFormation;
     private Node[] listePageFormation;
      private int nbrLignePage = 0 ;
-    private VBox vbody ;
+   private VBox vbody ;
     
+    //date bech tekhou date+1
+    private java.util.Date date ;
+
+    public java.util.Date getDate() {
+        return date;
+    }
+
+    public void setDate(java.util.Date date) {
+        this.date = date;
+    }
 
     private int idSessionpourinscri;
     
@@ -102,9 +121,11 @@ public class ListAllSessionsForController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     }    
 
-    public void afficherSessionsFormation(int idSessionpourinscri)
+    //bech naaytelha fel GestionFormation
+    public void afficherSessionsFormation(int idSessionpourinscri) throws SQLException, IOException
     {
         SessionService ss=new SessionService();
         try {
@@ -129,6 +150,9 @@ public class ListAllSessionsForController implements Initializable {
             NoteService ns = new NoteService();
             SessionService rs = new SessionService();
             List<Session> listSession= rs.ListeSessions(idFormation);
+            ServiceEducate se=new ServiceEducate();
+            //liste educate pour le user connecte eli howa testiwouh bel 1
+            List<Educate> listEduc=se.ListeInscriSession();
             //Node [] nodesCategorie = new Node[listC.size()];
             Node [] nodesLigne = new Node[3];
             Node [] nodesColonne = new Node[9];
@@ -138,6 +162,7 @@ public class ListAllSessionsForController implements Initializable {
                 listePageFormation = new Node[(listSession.size()/6)+1];
             int i = 0 ;
             int j = 0 ;
+            String notif ="";
             
             FXMLLoader loaderItems = null ;
             Views.Client.ListAllSessionsFor.Hbox_ItemsController hc = new Views.Client.ListAllSessionsFor.Hbox_ItemsController();
@@ -164,12 +189,13 @@ public class ListAllSessionsForController implements Initializable {
                 {
                       //test aal date bech nbadalha keni fetet
                 
-                Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
+                java.util.Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
                 System.out.println("date actuelle"+dateactuelle);
-                //if(rec.getDateFinSes().before(dateactuelle))
-                //{
-                 //   rs.ModifierEtatFormation((Date) rec.getDateFinSes());
-                
+                if(rec.getDateFinSes().before(dateactuelle))
+                {
+                    System.out.println("test date session aal date actuelle");
+                    rs.ModifierEtatFormation((java.sql.Date) (java.util.Date) rec.getDateFinSes());
+                }
                 //parcour des colonnes
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("morabba3s8ir.fxml"));
                 nodesColonne[i] = loader.load() ;
@@ -180,19 +206,55 @@ public class ListAllSessionsForController implements Initializable {
                 msc.setTxtdatedebut(rec.getDateDebSes().toString());
                 msc.setTxtdatefin(rec.getDateFinSes().toString());
                 ImageView img = msc.getImage();
-                ServiceEducate se=new ServiceEducate();
+                //afficher les informations de la sessions                
+                img.setOnMouseClicked(e->{
+                    try {
+                        System.out.println("fi west el image");
+                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../SingleSession/SingleSession.fxml"));
+                        Parent root = loader1.load();
+                        SingleSessionController singlefor =loader1.getController();
+                        System.out.println("session " + rec);
+                        section_body.getChildren().clear();
+                        section_body.getChildren().add(root);
+                        singlefor.setNomSess(rec.getNomSes());
+                        singlefor.setImageSes(rec.getImagesess());
+                        singlefor.setPrixSes(rec.getPrixSes().toString());
+                        singlefor.setCapaciteSes(rec.getCapaciteSes().toString());
+                        singlefor.setDatedebses(rec.getDateDebSes().toString());
+                        singlefor.setDatefinses(rec.getDateFinSes().toString());
+                       
+                       
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                });
+                //date actuelle eli bech ytesti beha fel notif
+                    java.util.Date date = new java.util.Date();
+                    System.out.println("date actu="+date);
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    cal.add(Calendar.DAY_OF_MONTH, +1);
+                    date = cal.getTime();
+                    System.out.println("date plus un jour="+date);
+                    System.out.println("date session debut"+rec.getDateDebSes());
+                for(Educate educ : listEduc)
+                {
+                    if(se.SearchNonNotifie(rec.getIdSes(), date))
+                        { 
+                            notif += "vous avez une session le "+rec.getDateDebSes() +"\n";
+                            System.out.println("true");
+                            se.ModifierEtatNotif(educ,rec.getIdSes());
+                        }
+                    else
+                    {
+                        System.out.println("false");
+                    }
+                }
                 
                 Educate educate=new Educate(rec);
-                if(se.ifClientExists(1, rec.getIdSes()))
+                if(se.ifClientExists( rec.getIdSes()))
                 {
-                    msc.getTxtinscription().setVisible(false);
-                    System.out.println("client deja inscrit");
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Inscription!");
-                    alert.setHeaderText(null);
-                    alert.setContentText("client deja inscrit !!");
-                    alert.showAndWait();
-                    
+                    msc.getTxtinscription().setVisible(false);    
                 }
                 else
                 {
@@ -244,12 +306,28 @@ public class ListAllSessionsForController implements Initializable {
                 }
             }
             }
-        } catch (SQLException | IOException ex) {
+            if(!notif.equals("")){
+                    Notifications notification=Notifications.create()
+                                .title("Session approche")
+                                .text(notif)
+                                .graphic(null)
+                                .hideAfter(Duration.seconds(6))
+                                .position(Pos.TOP_RIGHT)
+                                .onAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                   System.out.println("closed notification");
+                            }});
+                            notification.showInformation();
+                }
+            }
+         catch (SQLException | IOException ex) {
             Logger.getLogger(ListAllRecettesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     nbrLignePage = 0 ;
 
     }
+
 
     @FXML
     private void PagePrecedente(MouseEvent event) {

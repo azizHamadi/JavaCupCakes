@@ -30,7 +30,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Text>
-                        <Text fx:id="ListeSession" fill="#e25a92" fontSmoothingType="LCD" onMouseClicked="#AfficherListeSessionsFor" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des sessions" textAlignment="CENTER" underline="true">
+                        <Text fx:id="ListeSession" fill="#e2b85b" fontSmoothingType="LCD" onMouseClicked="#AfficherListeSessionsFor" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des sessions" textAlignment="CENTER" underline="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" top="5.0" />
                            </VBox.margin>
@@ -43,7 +43,7 @@
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>
                         </WebView>
-                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #e25a92;">
+                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #e2b85b;">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>

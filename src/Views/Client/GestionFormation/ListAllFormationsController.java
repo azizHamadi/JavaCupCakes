@@ -13,6 +13,7 @@ import Services.ServiceTypeFormation;
 import Views.Client.Recette.ListAllRecettes.ListAllRecettesController;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -62,8 +63,8 @@ public class ListAllFormationsController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       try {
+    public void initialize(URL url, ResourceBundle rb) 
+    {try {
             nav_cat.getChildren().clear();
             section_body.getChildren().clear();
             ServiceTypeFormation listetypeformation = new ServiceTypeFormation();
@@ -71,6 +72,7 @@ public class ListAllFormationsController implements Initializable {
             NoteService ns = new NoteService();
             ServiceFormation rs = new ServiceFormation();
             List<Formation> listRec = rs.AfficherListeFormation();
+            
             Node [] nodesCategorie = new Node[listC.size()];
             Node [] nodesLigne = new Node[3];
             Node [] nodesColonne = new Node[9];
@@ -80,20 +82,23 @@ public class ListAllFormationsController implements Initializable {
                 listePageFormation = new Node[(listRec.size()/6)+1];
             int i = 0 ;
             int j = 0 ;
-            for (TypeFormation catr : listC)
+           
+            
+            
+            for (TypeFormation typef : listC)
             {
                 FXMLLoader loadercat = new FXMLLoader(getClass().getResource("TypeFormationFiltre.fxml"));
                 Node catNode = loadercat.load() ;
-                Views.Client.GestionFormation.TypeFormationFiltreController crfc = loadercat.getController();
-                crfc.setNomTypeFor(catr.getNomTypeFor());
-                crfc.setNbrTypeFor(String.valueOf(rs.CountFormationParTypeFor(catr.getIdTypeFor())));
-                System.out.println("id loula"+catr.getIdTypeFor());
-                Text Btafficher = crfc.getAfficherListeFor();
-                System.out.println(catr.getIdTypeFor());
+                Views.Client.GestionFormation.TypeFormationFiltreController typeffiltre = loadercat.getController();
+                typeffiltre.setNomTypeFor(typef.getNomTypeFor());
+                typeffiltre.setNbrTypeFor(String.valueOf(rs.CountFormationParTypeFor(typef.getIdTypeFor())));
+                System.out.println("id loula"+typef.getIdTypeFor());
+                Text Btafficher = typeffiltre.getAfficherListeFor();
+                System.out.println(typef.getIdTypeFor());
                 Btafficher.setOnMouseClicked(e->{
                     try 
                     {
-                        AfficherListeFormationParTypeFor(catr.getIdTypeFor());
+                        AfficherListeFormationParTypeFor(typef.getIdTypeFor());
                     } catch (SQLException ex) {
                         Logger.getLogger(ListAllFormationsController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {
@@ -116,12 +121,13 @@ public class ListAllFormationsController implements Initializable {
                 hc = loaderItems.getController();
                 //test aal date bech nbadalha keni fetet
                 
-              /*  Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
+                Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
                 System.out.println("date actuelle"+dateactuelle);
                 if(rec.getDateFor().before(dateactuelle))
                 {
+                    System.out.println("modification date eli kbal date actuelle effectuée");
                     rs.ModifierEtatFormation((Date) rec.getDateFor());
-                }*/
+                }
                 //parcour des colonnes
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("morabba3s8ir.fxml"));
                 nodesColonne[i] = loader.load() ;
@@ -256,6 +262,8 @@ public class ListAllFormationsController implements Initializable {
         nbrLignePage = 0 ;
     }
 
+   
+
     @FXML
     private void PagePrecedente(MouseEvent event) {
         nbrLignePage= nbrLignePage-1;
@@ -278,7 +286,7 @@ public class ListAllFormationsController implements Initializable {
     private void RechercheFormation(KeyEvent event) throws SQLException, IOException {
         section_body.getChildren().clear();
         ServiceFormation RS = new ServiceFormation();
-        List<Formation> listRec = RS.SearchListeFormation(recherche.getText());
+        List<Formation> listRec = RS.SearchListeFormationClient(recherche.getText());
         Node [] nodesLigne = new Node[3];
         Node [] nodesColonne = new Node[9];
         int i = 0 ;
@@ -308,7 +316,7 @@ public class ListAllFormationsController implements Initializable {
             msc.setNomFormation(rec.getNomFor());
             msc.setImage(rec.getImageform());
             msc.setTxtdatefin(rec.getDateFor().toString());
-            //msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
+           
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
                 System.out.println("te5dem");
