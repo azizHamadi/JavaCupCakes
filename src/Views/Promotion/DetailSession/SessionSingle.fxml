@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="748.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Promotion.DetailSession.SessionSingleController">
+     <children>
+      <ImageView fx:id="image" fitHeight="278.0" fitWidth="269.0" layoutX="45.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nomSes" layoutX="387.0" layoutY="55.0" prefHeight="55.0" prefWidth="259.0" text="NomP" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia Bold" size="43.0" />
+         </font>
+      </Label>
+      <Label fx:id="Formation" layoutX="546.0" layoutY="176.0" prefHeight="29.0" prefWidth="188.0" text="Formation" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="prix" layoutX="546.0" layoutY="244.0" prefHeight="29.0" prefWidth="129.0" text="prix" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="capacoté" layoutX="546.0" layoutY="426.0" prefHeight="29.0" prefWidth="129.0" text="Capacité" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="nvprix" layoutX="546.0" layoutY="320.0" prefHeight="29.0" prefWidth="165.0" text="nouveau prix" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="347.0" layoutY="176.0" text="Formation" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="353.0" layoutY="244.0" text="prix" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="347.0" layoutY="320.0" text="nouveau prix" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="341.0" layoutY="426.0" text="Capacité" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

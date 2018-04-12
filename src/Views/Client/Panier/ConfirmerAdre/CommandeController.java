@@ -10,6 +10,7 @@ import Entity.LineCmd;
 import Views.Client.Produit.AfficherProduit.*;
 import Entity.Produit;
 import Services.CommandeService;
+import Services.LinePromoService;
 import Services.PanierService;
 import Services.ProduitService;
 import com.jfoenix.controls.JFXDatePicker;
@@ -21,6 +22,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -87,7 +89,7 @@ public class CommandeController implements Initializable {
             Map<Produit, Integer> ps = panier.Afficher();
             CommandeService cs = new CommandeService();
             ProduitService prods = new ProduitService();
-
+ 
             Date date = java.sql.Date.valueOf(dateliv.getValue());
             String adr = Adrliv.getText();
             Commande c = new Commande(date, Double.valueOf(panier.calculerPanier()), date, adr, "en cour", "vrai");

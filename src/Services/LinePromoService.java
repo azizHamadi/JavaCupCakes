@@ -235,7 +235,7 @@ public class LinePromoService {
         return LinePromos;
     }
     
-    public List<LinePromo> AfficherLinePromoS() throws SQLException {
+   public List<LinePromo> AfficherLinePromoS() throws SQLException {
         List<LinePromo> LinePromos = new ArrayList<>();
         ResultSet rs = ste.executeQuery("select * from line_promo l , produit p , categorie c  WHERE c.idCat=p.idCat and l.idProd=p.idProd and etatLinePromo='en cours'" );
         while (rs.next()) {
@@ -247,6 +247,9 @@ public class LinePromoService {
                 p.setPrixProd(rsp.getInt("prixProd"));
                 p.setNvPrix(rsp.getInt("nv_prix"));
                 p.setImageprod(rsp.getString("imageprod"));
+                p.setQteStockProd(rsp.getDouble("qteStockProd"));
+                p.setIdCat(new Categorie(rsp.getInt("idCat")));
+                p.setQteAcheter(rsp.getInt("QteAcheter"));
             }
             ResultSet rspromo = ste2.executeQuery("select * from promotion where idPromo = " + rs.getInt("idPromo"));
             Promotion promo = new Promotion();
@@ -324,6 +327,10 @@ public class LinePromoService {
             while (rs.next()) {
                 pp.setIdProd(rs.getInt("idProd"));
                 pp.setNomProd(rs.getString("nomProd"));
+                pp.setPrixProd(rs.getInt("prixProd"));
+                pp.setIdCat(new Categorie(rs.getInt("idCat")));
+                pp.setNvPrix(rs.getInt("nv_prix"));
+                pp.setImageprod(rs.getString("imageprod"));
             }
             ResultSet rso = ste2.executeQuery("select * from promotion where idPromo=" + rssession.getInt("idPromo"));
             while (rso.next()) {
@@ -348,4 +355,15 @@ public class LinePromoService {
         pre.executeUpdate();
          System.out.println(p);  
    }
+    
+    public List<Integer> afficherProduit() throws SQLException{
+         List<Integer> Prod = new ArrayList<>();
+         String v ="en cours";
+        ResultSet rs = ste.executeQuery("select * from line_promo where etatLinePromo= '" + v + "'");
+        while(rs.next())
+        {
+            Prod.add(rs.getInt("idProd"));
+        }
+        return Prod ;
+    }
 }

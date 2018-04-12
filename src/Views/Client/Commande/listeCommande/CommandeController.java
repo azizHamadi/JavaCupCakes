@@ -50,14 +50,12 @@ public class CommandeController implements Initializable {
     private HBox nav_body;
     @FXML
     private VBox section_body;
-    private Node[] listePageProduit ;
-    private int nbrLignePage = 0 ;
+    private Node[] listePageProduit;
+    private int nbrLignePage = 0;
     @FXML
     private Label btnP;
     @FXML
     private Label btnS;
-
-
 
     /**
      * Initializes the controller class.
@@ -67,43 +65,41 @@ public class CommandeController implements Initializable {
         try {
             section_body.getChildren().clear();
             CommandeService Cmd = new CommandeService();
-            List<Commande> listC = Cmd.AfficherCommandeFront(SessionUser.getId());         
-            Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[listC.size()/2];
-            Node [] nodesColonne = new Node[listC.size()];
-            if(listC.size() % 6 == 0)
-                listePageProduit = new Node[listC.size()/6];
-            else
-                listePageProduit = new Node[(listC.size()/6)+1];
-            int i = 0 ;
-            int j = 0 ;
-            FXMLLoader loaderItems = null ;
+            List<Commande> listC = Cmd.AfficherCommandeFront(SessionUser.getId());
+            Node[] nodesCategorie = new Node[listC.size()];
+            Node[] nodesLigne = new Node[listC.size() ];
+            Node[] nodesColonne = new Node[listC.size()];
+            if (listC.size() % 6 == 0) {
+                listePageProduit = new Node[listC.size() / 6];
+            } else {
+                listePageProduit = new Node[(listC.size() / 6) + 1];
+            }
+            int i = 0;
+            int j = 0;
+            FXMLLoader loaderItems = null;
             Hbox_ItemsController hc = new Hbox_ItemsController();
             Page2CommandeController Cp2r = new Page2CommandeController();
-            for(Commande cmd : listC)
-            {
+            for (Commande cmd : listC) {
                 // parcour des lignes
-                if ( i % 3 == 0 || i == 0)
-                {
+                if (i % 3 == 0 || i == 0) {
                     loaderItems = new FXMLLoader(getClass().getResource("Hbox_Items.fxml"));
-                    nodesLigne[j] = loaderItems.load() ;
+                    nodesLigne[j] = loaderItems.load();
                 }
                 hc = loaderItems.getController();
-                
                 //parcour des colonnes
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CommandeMouraba3.fxml"));
-                nodesColonne[i] = loader.load() ;
+                nodesColonne[i] = loader.load();
                 CommandeMouraba3Controller msc = loader.getController();
                 msc.setDateCmd(cmd.getDateCmd().toString());
-                 Text Btafficher = msc.getAfficherProduit();
-                Btafficher.setOnMouseClicked(e->{
+                Text Btafficher = msc.getAfficherProduit();
+                Btafficher.setOnMouseClicked(e -> {
                     System.out.println("tekhdem");
                     try {
                         section_body.getChildren().clear();
                         FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../CmdSingle/CmdSingle.fxml"));
                         Node root = loader1.load();
                         System.out.println("tekhdem 1");
-                        CmdSingleController c2 =loader1.getController();
+                        CmdSingleController c2 = loader1.getController();
                         c2.setAdr(cmd.getAddLiv());
                         c2.setCmd(cmd);
                         c2.setAdrLiv(cmd.getDateLivCmd().toString());
@@ -111,8 +107,8 @@ public class CommandeController implements Initializable {
                         c2.setMontant(cmd.getMontantCmd().toString());
                         c2.getListeProd().getChildren().clear();
                         System.out.println(cmd.getIdCmd());
-                         List<LineCmd> listL = Cmd.AfficherLineCommande(cmd.getIdCmd());         
-                            for(LineCmd l : listL){
+                        List<LineCmd> listL = Cmd.AfficherLineCommande(cmd.getIdCmd());
+                        for (LineCmd l : listL) {
                             System.out.println("tekhdem 2");
                             FXMLLoader loaderL = new FXMLLoader(getClass().getResource("../CmdSingle/BodyCmd.fxml"));
                             Node pr = loaderL.load();
@@ -123,54 +119,53 @@ public class CommandeController implements Initializable {
                             Bsc.setImage(l.getProduit().getImageprod());
                             System.out.println(l.getProduit().getImageprod());
                             c2.getListeProd().getChildren().add(pr);
-                            }
-                       section_body.getChildren().add(root);     
+                        }
+                        section_body.getChildren().add(root);
                     } catch (IOException ex) {
                         Logger.getLogger(CommandeController.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (SQLException ex) {
                         Logger.getLogger(CommandeController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                  
-                });            
+
+                });
                 hc.addColonne(nodesColonne[i]);
                 i++;
-                if(j==0 || j % 2 == 0){
+                if (j == 0 || j % 2 == 0) {
                     FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2Commande.fxml"));
                     listePageProduit[nbrLignePage] = loaderPage2Ligne.load();
                     Cp2r = loaderPage2Ligne.getController();
                 }
-                if( listC.size() > i)
-                {
-                    if ( i % 3 == 0 ){
+                if (listC.size() > i) {
+                    if (i % 3 == 0) {
                         Cp2r.setPage2Ligne(nodesLigne[j]);
                         j++;
-                        if(j==2)
+                        if (j == 2) {
                             section_body.getChildren().add(listePageProduit[nbrLignePage]);
-                        if (j % 2 ==0){
-                            listePageProduit[nbrLignePage]=Cp2r.getPage2Ligne();
+                        }
+                        if (j % 2 == 0) {
+                            listePageProduit[nbrLignePage] = Cp2r.getPage2Ligne();
                             nbrLignePage++;
                         }
                     }
-                }
-                else
-                {
-                    if (j<2)
+                } else {
+                    if (j < 2) {
                         section_body.getChildren().add(listePageProduit[nbrLignePage]);
+                    }
                     Cp2r.setPage2Ligne(nodesLigne[j]);
-                    listePageProduit[nbrLignePage]=Cp2r.getPage2Ligne();
+                    listePageProduit[nbrLignePage] = Cp2r.getPage2Ligne();
                     nbrLignePage++;
                 }
                 //55555555555555555
             }
-            System.out.println(listePageProduit.length + " hahahah "+ nbrLignePage);
-        
+            System.out.println(listePageProduit.length + " hahahah " + nbrLignePage);
+
         } catch (SQLException | IOException ex) {
             Logger.getLogger(CommandeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    nbrLignePage = 0 ;
+        nbrLignePage = 0;
 
-    }   
-    
+    }
+
     public VBox getBody() {
         return body;
     }
@@ -195,8 +190,6 @@ public class CommandeController implements Initializable {
         this.BodyVBox = BodyVBox;
     }
 
-   
-
     public HBox getNav_body() {
         return nav_body;
     }
@@ -215,9 +208,10 @@ public class CommandeController implements Initializable {
 
     @FXML
     private void PagePrecedente(MouseEvent event) {
-        nbrLignePage= nbrLignePage-1;
-        if(nbrLignePage<0)
-            nbrLignePage=listePageProduit.length -1;
+        nbrLignePage = nbrLignePage - 1;
+        if (nbrLignePage < 0) {
+            nbrLignePage = listePageProduit.length - 1;
+        }
         section_body.getChildren().clear();
         System.out.println(nbrLignePage);
         section_body.getChildren().add(listePageProduit[nbrLignePage]);
@@ -226,12 +220,12 @@ public class CommandeController implements Initializable {
     @FXML
     private void PageSuivant(MouseEvent event) {
         nbrLignePage++;
-        if(nbrLignePage== listePageProduit.length)
-            nbrLignePage=0 ;
+        if (nbrLignePage == listePageProduit.length) {
+            nbrLignePage = 0;
+        }
         section_body.getChildren().clear();
         System.out.println(nbrLignePage);
         section_body.getChildren().add(listePageProduit[nbrLignePage]);
     }
-    
-    
+
 }

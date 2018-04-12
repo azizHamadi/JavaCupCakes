@@ -51,7 +51,7 @@
                                  </font></Text>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Text fx:id="NomPat" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom patisserie">
+                                    <Text fx:id="Nv_prix" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nv_prix">
                                        <font>
                                           <Font size="13.0" />
                                        </font></Text>

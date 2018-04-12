@@ -27,7 +27,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -59,6 +61,8 @@ public class ListAllProduitController implements Initializable {
     @FXML
     private Label btnS;
     private VBox vbody;
+    @FXML
+    private TextField search;
 
     /**
      * Initializes the controller class.
@@ -129,7 +133,7 @@ public class ListAllProduitController implements Initializable {
                 msc.setNom(promo.getIdProd().getNomProd());
                 msc.setImage(promo.getIdProd().getImageprod());
                 msc.setPrix(promo.getIdProd().getPrixProd().toString());
-                msc.setNomPat(promo.getIdProd().getNvPrix().toString());
+                msc.setNv_prix(promo.getIdProd().getNvPrix().toString());
                 //msc.setNomCat(promo.getIdProd().getIdCat().getNomCat());
                 //msc.setNomPat(promo.getIdProd().getIdUser().getUsername());
                 ImageView img = msc.getImage();
@@ -150,7 +154,7 @@ public class ListAllProduitController implements Initializable {
                         c2.setNomProd(promo.getIdProd().getNomProd());
                         c2.setImage(promo.getIdProd().getImageprod());
                         c2.setPrix(promo.getIdProd().getPrixProd().toString());
-                        c2.setNvprix(promo.getIdProd().getPrixProd().toString());
+                        c2.setNvprix(promo.getIdProd().getNvPrix().toString());
                         c2.setCategorie(promo.getIdProd().getIdCat().getNomCat());
                         c2.setStock(promo.getIdProd().getQteStockProd().toString());
                         System.out.println(promo);
@@ -232,7 +236,9 @@ public class ListAllProduitController implements Initializable {
             msc.setNom(promo.getNomProd());
             msc.setImage(promo.getImageprod());
             msc.setNomCat(promo.getIdCat().getNomCat());
-            msc.setNomPat(promo.getIdUser().getUsername());
+                            msc.setNv_prix(promo.getNvPrix().toString());
+
+        //    msc.setNomPat(promo.getIdUser().getUsername());
             msc.setPrix(promo.getPrixProd().toString());
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
@@ -322,5 +328,140 @@ public class ListAllProduitController implements Initializable {
         System.out.println(nbrLignePage);
         section_body.getChildren().add(listePagePromotion[nbrLignePage]);
     }
-    
+  @FXML
+    private void SEARCH(KeyEvent event) throws SQLException, IOException {
+          nav_cat.getChildren().clear();
+            section_body.getChildren().clear();
+             CategorieService catProd = new CategorieService();
+            List<Categorie> listC = catProd.AfficherCategorie();
+            LinePromoService ps = new LinePromoService();
+            List<LinePromo> listPromo = ps.SearchListePromo(search.getText());
+            Node [] nodesCategorie = new Node[listC.size()];
+            Node [] nodesLigne = new Node[3];
+            Node [] nodesColonne = new Node[9];
+            if(listPromo.size() % 6 == 0)
+                listePagePromotion = new Node[listPromo.size()/6];
+            else
+                listePagePromotion = new Node[(listPromo.size()/6)+1];
+            int i = 0 ;
+            int j = 0 ;
+            for (Categorie catp : listC)
+            {
+                FXMLLoader loadercat = new FXMLLoader(getClass().getResource("CategorieProdFiltre.fxml"));
+                Node catNode = loadercat.load() ;
+                CategorieProdFiltreController crfc = loadercat.getController();
+                crfc.setNomCat(catp.getNomCat());
+                crfc.setNbrProd(String.valueOf(catProd.CountPromoParCat(catp.getIdCat())));
+                Text Btafficher = crfc.getAfficherProduit();
+                Btafficher.setOnMouseClicked(e->{
+                  
+                     try {
+                        PromotionParCategorie(catp.getIdCat());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                  
+                });
+                nav_cat.getChildren().add(catNode);
+            }
+            FXMLLoader loaderItems = null ;
+            Hbox_ItemsController hc = new Hbox_ItemsController();
+            Page2ProduitController Cp2r = new Page2ProduitController();
+           for(LinePromo promo : listPromo)
+            {
+                // parcour des lignes
+                if ( i % 3 == 0 || i == 0)
+                {
+                    loaderItems = new FXMLLoader(getClass().getResource("Hbox_Items.fxml"));
+                    nodesLigne[j] = loaderItems.load() ;
+                }
+                hc = loaderItems.getController();
+               Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
+                System.out.println("date actuelle"+dateactuelle);
+                if(promo.getDateFin().before(dateactuelle))
+                {
+                    System.out.println("modification date eli kbal date actuelle effectuée");
+                    ps.ModifierEtatLinePromo((java.sql.Date) (Date) promo.getDateFin());
+                }
+                //parcour des colonnes
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("morabba3s8ir.fxml"));
+                nodesColonne[i] = loader.load() ;
+                Morabba3s8irController msc = loader.getController();
+                msc.setNom(promo.getIdProd().getNomProd());
+                msc.setImage(promo.getIdProd().getImageprod());
+                 msc.setPrix(promo.getIdProd().getPrixProd().toString());
+                 msc.setNv_prix(promo.getIdProd().getNvPrix().toString());
+                 msc.setNomCat(promo.getIdProd().getIdCat().getNomCat());
+  //              msc.setNomPat(promo.getIdProd().getIdUser().getUsername());
+                ImageView img = msc.getImage();
+                img.setOnMouseClicked(e->{
+                    try {
+                        System.out.println("te5dem");
+                      
+                           
+                            ps.UpdateProduitValeur(promo.getIdProd());
+                        
+                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../PromoSingle/PromoSingle.fxml"));
+                        Parent root;
+                        root = loader1.load();
+                        PromoSingleController c2 =loader1.getController();
+                        System.out.println("produit " + promo);
+                        BodyVBox.getChildren().clear();
+                        BodyVBox.getChildren().add(root);
+                        c2.setNomProd(promo.getIdProd().getNomProd());
+                        c2.setImage(promo.getIdProd().getImageprod());
+                        c2.setPrix(promo.getIdProd().getPrixProd().toString());
+                        c2.setNvprix(promo.getIdProd().getNvPrix().toString());
+                        c2.setCategorie(promo.getIdProd().getIdCat().getNomCat());
+                        c2.setStock(promo.getIdProd().getQteStockProd().toString());
+                        System.out.println(promo);
+                        c2.setProd(promo.getIdProd());
+                        c2.Controle();
+                        System.out.println("produit valeur" + promo.getIdProd().getValeur());
+                        
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    }   catch (SQLException ex) {
+                            Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                });
+                hc.addColonne(nodesColonne[i]);
+                i++;
+                if(j==0 || j % 2 == 0){
+                    FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2Produit.fxml"));
+                    listePagePromotion[nbrLignePage] = loaderPage2Ligne.load();
+                    Cp2r = loaderPage2Ligne.getController();
+                }
+                if( listPromo.size() > i)
+                {
+                    if ( i % 3 == 0 ){
+                        Cp2r.setPage2Ligne(nodesLigne[j]);
+                        j++;
+                        if(j==2)
+                            section_body.getChildren().add(listePagePromotion[nbrLignePage]);
+                        if (j % 2 ==0){
+                            listePagePromotion[nbrLignePage]=Cp2r.getPage2Ligne();
+                            nbrLignePage++;
+                        }
+                    }
+                }
+                else
+                {
+                    if (j<2)
+                        section_body.getChildren().add(listePagePromotion[nbrLignePage]);
+                    Cp2r.setPage2Ligne(nodesLigne[j]);
+                    listePagePromotion[nbrLignePage]=Cp2r.getPage2Ligne();
+                    nbrLignePage++;
+                }
+            }
+            System.out.println(listePagePromotion.length + " hahahah "+ nbrLignePage);
+        
+    nbrLignePage = 0 ;
+        
+        
+    }  
 }

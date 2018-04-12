@@ -100,7 +100,7 @@ String imagef="";
      System.out.println(f.getName());
                      }
          imagef = f.getName();
-         File fd = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/"+f.getName());
+         File fd = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/"+f.getName());
          String imaged = "";
          imaged ="file:///"+fd.getAbsolutePath();
          Files.copy(f.getAbsoluteFile().toPath(),fd.getAbsoluteFile().toPath());
@@ -127,7 +127,7 @@ String imagef="";
         alert.setHeaderText(null);
         alert.setContentText("Produit insérée avec succés!");
         alert.show();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeProduit.FXML"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeProduit/ListeProduit.FXML"));
         Parent root = loader.load();
         typProd.getScene().setRoot(root);
 

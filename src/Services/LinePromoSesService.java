@@ -183,6 +183,9 @@ public class LinePromoSesService {
             while (rs.next()) {
                 pp.setIdSes(rs.getInt("idSes"));
                 pp.setNomSes(rs.getString("nomSes"));
+                pp.setImagesess(rs.getString("imagesess"));
+                pp.setNvPrixSes(rs.getDouble("nv_prix_ses"));
+                pp.setPrixSes(rs.getDouble("prix_ses"));
             }
             ResultSet rso = ste2.executeQuery("select * from promotion where idPromo=" + rssession.getInt("idPromo"));
             while (rso.next()) {
@@ -211,7 +214,8 @@ public class LinePromoSesService {
             se.setPrixSes(rsProduit.getDouble("prix_ses"));
             se.setNvPrixSes(rsProduit.getDouble("nv_prix_ses"));
             se.setIdSes(rsProduit.getInt("idSes"));
-            se.setImagesess(rsProduit.getString("imageprod"));
+            se.setImagesess(rsProduit.getString("imagesess"));
+            se.setCapaciteSes(rsProduit.getInt("capaciteSes"));
           /*  ResultSet rsUser = ste1.executeQuery("select * from utilisateur where id=" + rsProduit.getInt("idUser"));
             while (rsUser.next()) {
                 user.setId(rsUser.getInt("id"));

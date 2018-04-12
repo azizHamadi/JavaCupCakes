@@ -32,10 +32,11 @@ public class Morabba3s8irController implements Initializable {
     private Text Prix;
     private Text nomUser;
     private Text note;
-    @FXML
     private Text NomPat;
     @FXML
     private ImageView image;
+    @FXML
+    private Text Nv_prix;
 
     /**
      * Initializes the controller class.
@@ -55,6 +56,14 @@ public class Morabba3s8irController implements Initializable {
 
     public void setNomCat(String nomCat) {
         this.nomCat.setText(nomCat);
+    }
+
+    public Text getNv_prix() {
+        return Nv_prix;
+    }
+
+    public void setNv_prix(String Nv_prix) {
+        this.Nv_prix.setText(Nv_prix);
     }
 
     

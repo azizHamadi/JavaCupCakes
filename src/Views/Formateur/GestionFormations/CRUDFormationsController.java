@@ -203,7 +203,7 @@ Stage stage;
         imgf=tableFormation.getSelectionModel().getSelectedItem().getImageform();
         if(!imgf.isEmpty())
         { txtimage.setText(imgf);}
-        image=new Image("file:///C:/wamp64/www/final/web/public/uploads/brochures/Formateur/"+tableFormation.getSelectionModel().getSelectedItem().getImageform(),imageview.getFitWidth(),imageview.getFitHeight(),true,true);
+        image=new Image("file:///C://wamp3//www//CupCakesFweb//public//uploads//brochures//Formateur"+tableFormation.getSelectionModel().getSelectedItem().getImageform(),imageview.getFitWidth(),imageview.getFitHeight(),true,true);
         imageview.setImage(image);
         btnListeSession.setVisible(true);
     }
@@ -287,7 +287,7 @@ Stage stage;
            txtimage.setText(file.getName());
            imgf = file.getName();
            fdS = file.getAbsolutePath();
-           fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Formateur/"+file.getName());
+           fdS1 = ("C://wamp3//www//CupCakesF//web//public//uploads//brochures//Formateur//"+file.getName());
            //lab_image.setVisible(false);
                  
        }

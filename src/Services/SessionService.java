@@ -265,7 +265,7 @@ public class SessionService {
     //yelzem nzid fazet el iduser
     public ObservableList<Session> SearchListeSessions(String nomSession) throws SQLException
     {
-         ResultSet rssession=st.executeQuery("SELECT * FROM Session WHERE etatSes='en cours' AND nomSes LIKE '%"+nomSession+"%'");
+         ResultSet rssession=st.executeQuery("SELECT * FROM Session WHERE etatSes='en cours' AND nomSes LIKE '%"+nomSession+"%' AND Session.idFor=Formatin.idFor AND Formation.idUser="+SessionUser.getId());
      
         while(rssession.next())
         {   
@@ -404,43 +404,6 @@ public class SessionService {
     }
     
     
-    //liste client session finie
-    public ObservableList<Session> ListeSessionsClientFinie(int idclient,String etatSes) throws SQLException
-    {
-        ResultSet rssession=st.executeQuery("SELECT dateDebSes,dateFinSes,imagesess,nomSes FROM Session,Educate WHERE etatSes='"+etatSes+"' AND Session.idSes=Educate.idSes AND idUser="+idclient);
-     
-        while(rssession.next())
-        {   
-           
-            Formation formation = new Formation();
-            Session session=new Session();
-            Utilisateur user = new Utilisateur();
-            
-            session.setDateDebSes(rssession.getDate("dateDebSes"));
-            session.setDateFinSes(rssession.getDate("dateFinSes"));
-            
-            session.setImagesess(rssession.getString("imagesess"));
-            //session.setPrixSes(rssession.getDouble("prix_ses"));
-            session.setNomSes(rssession.getString("nomSes"));
-              
-          /*
-            ResultSet rsUser = ste3.executeQuery("select * from utilisateur where id="+ rsformation.getInt("idUser"));
-            
-            while(rsUser.next())
-            {
-                user.setId(rsUser.getInt("id"));
-                user.setUsername(rsUser.getString("username"));
-                user.setEmail(rsUser.getString("email"));
-                user.setPhoneNumber(rsUser.getString("phoneNumber"));
-                user.setAddresse(rsUser.getString("Addresse"));
-                user.setRoles(rsUser.getString("roles"));
-            }*/
-           
-            
-            listeob.add(session);
-        }
-        return listeob;
-    }
     
     //bch ntesti beha est ce que el formation mawjouda wala baed
     public int SessionExists(int idFor) throws SQLException
@@ -606,7 +569,7 @@ public class SessionService {
             while(rsformation.next())
             {
                 formation.setIdFor(rsformation.getInt("idFor"));
-                formation.setPlace(rsformation.getString("place"));
+              //  formation.setPlace(rsformation.getString("place"));
                 formation.setEtatFor(rsformation.getString("etatFor"));
                 formation.setDescriptionFor(rsformation.getString("descriptionFor"));
                 formation.setDateFor(rsformation.getDate("dateFor"));

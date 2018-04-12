@@ -6,8 +6,10 @@
 package Services;
 
 import Entity.Produit;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,12 +49,19 @@ public class PanierService {
 		 panier.remove(article);
 	}	
  
-	public int calculerPanier() {
+	public int calculerPanier() throws SQLException {
+             LinePromoService line = new LinePromoService();
+                     List<Integer> l =line.afficherProduit();
 		int total = 0;
 		Iterator<Map.Entry<Produit, Integer>> il = this.panier.entrySet().iterator();
 		while (il.hasNext()) {
                         Map.Entry<Produit, Integer> entry = il.next();
-			total += entry.getKey().getPrixProd() * entry.getValue();
+                        if(l.contains(entry.getKey().getIdProd())){
+                            total += entry.getKey().getNvPrix() * entry.getValue();                        
+                        }
+                        else{
+                            total += entry.getKey().getPrixProd() * entry.getValue();
+                        }
 		}
 		return total;
 	}

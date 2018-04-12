@@ -110,7 +110,7 @@ public class ServiceFormation {
             ps.setDate(4,(Date) f.getDateFor());
             ps.setString(5,f.getImageform());
             //bech nzid iduser houni fel ajout
-            ps.setString(6,null);
+            ps.setInt(6,SessionUser.getId());
             ps.setInt(7,f.getIdTypeFor().getIdTypeFor());
             ps.setString(8, f.getLongitude());
             ps.setString(9, f.getAtitude());
@@ -126,14 +126,14 @@ public class ServiceFormation {
     // whouni bech nzid el iduser zeda bech yaffichi les formations mte user connecté
     public ObservableList<Formation> AfficherListeFormation() throws SQLException
     {
-        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours'");
+        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours' and idUser="+SessionUser.getId());
      
         while(rsformation.next())
         {   
             Formation formation=new Formation();
             formation.setIdFor(rsformation.getInt("idFor"));
             formation.setNomFor(rsformation.getString("nomFor"));
-            formation.setPlace(rsformation.getString("place"));
+            
             formation.setDescriptionFor(rsformation.getString("descriptionFor"));
             formation.setDateFor(rsformation.getDate("dateFor"));
             formation.setImageform (rsformation.getString("imageform"));
@@ -171,7 +171,7 @@ public class ServiceFormation {
     public ObservableList<Formation> AfficherListTableau() throws SQLException
     {
         ListView list=new ListView(listeob);
-        String req="SELECT * FROM Formation where nomFor=?";
+        String req="SELECT * FROM Formation where nomFor=? and idUser="+SessionUser.getId();
         PreparedStatement ps=conn.prepareStatement(req);
         ps.setString(1, (String) list.getSelectionModel().getSelectedItem());
         ResultSet rsformation=ps.executeQuery();
@@ -204,7 +204,7 @@ public class ServiceFormation {
     public ObservableList<Formation> SearchListeFormation(String nomformation) throws SQLException
     {
        
-        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation WHERE etatFor='en cours' AND nomFor LIKE '%"+nomformation+"%' AND idUSer="+SessionUser.getId());
+        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation WHERE etatFor='en cours' AND nomFor LIKE '%"+nomformation+"%' AND idUser="+SessionUser.getId());
      
         while(rsformation.next())
         {   
@@ -235,7 +235,7 @@ public class ServiceFormation {
             Formation formation=new Formation();
             formation.setIdFor(rsformation.getInt("idFor"));
             formation.setNomFor(rsformation.getString("nomFor"));
-            formation.setPlace(rsformation.getString("place"));
+            
             formation.setDescriptionFor(rsformation.getString("descriptionFor"));
             formation.setDateFor(rsformation.getDate("dateFor"));
             formation.setImageform(rsformation.getString("imageform"));
@@ -248,7 +248,7 @@ public class ServiceFormation {
     public List<Formation> AfficherListeFormationParTypeFor(int idtypefor) throws SQLException
     {
         List<Formation> ListeForPartype = new ArrayList<>();
-        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours' and idTypeFor="+idtypefor);
+        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours' and idTypeFor="+idtypefor+" and idUser="+SessionUser.getId());
      
         while(rsformation.next())
         {   
@@ -325,7 +325,7 @@ public class ServiceFormation {
             
             
             formation.setNomFor(rsformation.getString("nomFor"));
-            formation.setPlace(rsformation.getString("place"));
+         
             formation.setDescriptionFor(rsformation.getString("descriptionFor"));
             formation.setDateFor(rsformation.getDate("dateFor"));
             formation.setImageform(rsformation.getString("imageform"));
@@ -335,13 +335,13 @@ public class ServiceFormation {
     } 
 
      public List<Formation> AfficherFormation() throws SQLException{
-        List<Formation> Categorie = new ArrayList<>();
+        List<Formation> forma = new ArrayList<>();
         ResultSet rs = st.executeQuery("select * from formation");
         while(rs.next())
         {
-            Categorie.add(new Formation (rs.getInt("idFor"), rs.getString("nomFor")));
+            forma.add(new Formation (rs.getInt("idFor"), rs.getString("nomFor")));
         }
-        return Categorie ;
+        return forma ;
     }
       public int CountSessionParFormation(int idFor) throws SQLException{
         int count = 0 ;

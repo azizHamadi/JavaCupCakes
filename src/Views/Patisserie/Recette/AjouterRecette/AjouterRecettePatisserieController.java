@@ -119,7 +119,7 @@ public class AjouterRecettePatisserieController implements Initializable {
             textImage.setText(fd1.getName());
         imgf = fd1.getName();
         fdS = fd1.getAbsolutePath();
-        fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Recettes/"+fd1.getName());
+        fdS1 = ("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Recettes/"+fd1.getName());
         lab_image.setVisible(false);
         }
         //macopitch l'image 5ater matetcopa ken maya3mel enregistrer w ykounou les conditions lkol s7a7 
@@ -198,7 +198,7 @@ public class AjouterRecettePatisserieController implements Initializable {
             textImage.setText(fd1.getName());
         imgf = fd1.getName();
         fdS = fd1.getAbsolutePath();
-        fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Recettes/"+fd1.getName());
+        fdS1 = ("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Recettes/"+fd1.getName());
         //Files.copy(f.getAbsoluteFile().toPath(),fd.getAbsoluteFile().toPath());
         lab_image.setVisible(false);
         }

@@ -6,10 +6,13 @@
 package Views.Client.Produit.AfficherProduit;
 
 import Entity.Produit;
+import Services.LinePromoService;
 import Services.PanierService;
 import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -44,9 +48,33 @@ public class ProduitSingleController implements Initializable {
     @FXML
     private JFXTextField QteAcheter;
     private Produit prod ;
+    @FXML
+    private Text Promotion;
+    @FXML
+    private Label NV;
+    @FXML
+    private Label labPromo;
+ 
     
+   public void Controlle() throws SQLException{
+        LinePromoService line = new LinePromoService();
+                     List<Integer> l =line.afficherProduit();
+                     if(l.contains(prod.getIdProd())){
+                          Promotion.setVisible(true);
+                          NV.setVisible(true);
+                          labPromo.setVisible(true);
+                        }
+                        else{
+                          Promotion.setVisible(false);
+                            NV.setVisible(false);
+                            labPromo.setVisible(false);
+
+                        }
+                    
+                     
+    }
     public void setImage(String image) {
-       File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/" + image);
+       File file = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/" + image);
         this.image.setImage(new Image(file.toURI().toString()));
     }
 
@@ -108,6 +136,14 @@ public class ProduitSingleController implements Initializable {
 
     public void setBtAjouter(Button BtAjouter) {
         this.BtAjouter = BtAjouter;
+    }
+
+    public Label getNV() {
+        return NV;
+    }
+
+    public void setNV(String NV) {
+        this.NV.setText(NV);
     }
 
  

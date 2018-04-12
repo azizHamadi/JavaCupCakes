@@ -16,6 +16,11 @@
          <children>
             <Pane prefHeight="130.0" prefWidth="219.0" VBox.vgrow="NEVER">
                <children>
+                  <Text fx:id="Promotion" fill="#fc0101" strokeType="OUTSIDE" strokeWidth="0.0" text="Promotion" visible="false" wrappingWidth="189.13671875">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Text>
                   <VBox alignment="CENTER" layoutY="15.0" prefHeight="157.0" prefWidth="239.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
                      <padding>
                         <Insets top="70.0" />
@@ -49,6 +54,11 @@
                                  <font>
                                     <Font size="13.0" />
                                  </font></Text>
+                              <Text fx:id="NV" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="nv" translateX="20.0" visible="false">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
                               <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Text fx:id="NomPat" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom patisserie">

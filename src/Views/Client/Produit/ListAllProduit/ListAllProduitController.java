@@ -8,6 +8,7 @@ package Views.Client.Produit.ListAllProduit;
 import Entity.Categorie;
 import Entity.Produit;
 import Services.CategorieService;
+import Services.LinePromoService;
 import Services.PanierService;
 import Services.ProduitService;
 import Views.Client.Produit.AfficherProduit.ProduitSingleController;
@@ -69,6 +70,8 @@ public class ListAllProduitController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+             LinePromoService line = new LinePromoService();
+                     List<Integer> l =line.afficherProduit();
             nav_cat.getChildren().clear();
             section_body.getChildren().clear();
             CategorieService catProd = new CategorieService();
@@ -136,6 +139,11 @@ public class ListAllProduitController implements Initializable {
                 msc.setNomCat(prod.getIdCat().getNomCat());
                 msc.setNomPat(prod.getIdUser().getUsername());
                 msc.setPrix(prod.getPrixProd().toString());
+               
+                     if(l.contains(prod.getIdProd())){
+                msc.setNV(prod.getNvPrix().toString());}
+                msc.setP(prod);
+                 msc.Controlle();
                 ImageView img = msc.getImage();
                
                 img.setOnMouseClicked(e->{
@@ -156,6 +164,8 @@ public class ListAllProduitController implements Initializable {
                        System.out.println(prod);
                         c2.setProd(prod);
                         c2.Controle();
+                         c2.Controlle();
+                        c2.setNV(prod.getNvPrix().toString());
                         System.out.println("produit valeur" + prod.getValeur());
                         
                     } catch (IOException ex) {
@@ -200,8 +210,8 @@ public class ListAllProduitController implements Initializable {
         }
     nbrLignePage = 0 ;
 
-    }   
-    
+    }
+        
     public void ProduitParCategorie(int idCat) throws SQLException, IOException{
         section_body.getChildren().clear();
         ProduitService RS = new ProduitService();

@@ -45,6 +45,8 @@ public class PromoSingleController implements Initializable {
     @FXML
     private Label nvprix;
     private HBox hb;
+    @FXML
+    private Label labPromo;
 
     public HBox getHb() {
         return hb;

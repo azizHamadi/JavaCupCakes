@@ -7,7 +7,6 @@ package Entity;
 
 import java.util.Collection;
 
-
 /**
  *
  * @author escobar
@@ -41,7 +40,7 @@ public class Produit {
         this.etatProd = etatProd;
         this.qteAcheter = qteAcheter;
         this.valeur = valeur;
-        this.imageprod= imageprod;
+        this.imageprod = imageprod;
     }
 
     public Produit(Integer idProd, Double qteStockProd, Integer qteAcheter) {
@@ -50,7 +49,7 @@ public class Produit {
         this.qteAcheter = qteAcheter;
     }
 
-    public Produit(Integer idProd, String nomProd, Double qteStockProd,String typeProd, Integer prixProd, String imageprod ) {
+    public Produit(Integer idProd, String nomProd, Double qteStockProd, String typeProd, Integer prixProd, String imageprod) {
         this.idProd = idProd;
         this.nomProd = nomProd;
         this.qteStockProd = qteStockProd;
@@ -69,13 +68,13 @@ public class Produit {
         this.valeur = valeur;
     }
 
-    public Produit(Integer idProd,String nomProd, Double qteStockProd,String typeProd, Integer prixProd, String imageprod, Integer qteAcheter, Categorie idCat, Utilisateur idUser,int valeur) {
-               this.idProd = idProd;
+    public Produit(Integer idProd, String nomProd, Double qteStockProd, String typeProd, Integer prixProd, String imageprod, Integer qteAcheter, Categorie idCat, Utilisateur idUser, int valeur, int nvPrix) {
+        this.idProd = idProd;
         this.nomProd = nomProd;
         this.qteStockProd = qteStockProd;
-                this.typeProd = typeProd;
-                this.valeur=valeur;
-
+        this.typeProd = typeProd;
+        this.valeur = valeur;
+        this.nvPrix = nvPrix;
         this.prixProd = prixProd;
         this.imageprod = imageprod;
         this.qteAcheter = qteAcheter;
@@ -83,25 +82,22 @@ public class Produit {
         this.idUser = idUser;
     }
 
-    
-    public Produit(String nomProd, Double qteStockProd, String typeProd, Integer prixProd,  String etatProd) {
+    public Produit(String nomProd, Double qteStockProd, String typeProd, Integer prixProd, String etatProd) {
         this.nomProd = nomProd;
         this.qteStockProd = qteStockProd;
         this.typeProd = typeProd;
         this.prixProd = prixProd;
         this.etatProd = etatProd;
-       
+
     }
 
-    public Produit(String nomProd, Integer prixProd, String imageprod ,Double qteStockProd) {
+    public Produit(String nomProd, Integer prixProd, String imageprod, Double qteStockProd) {
         this.nomProd = nomProd;
         this.prixProd = prixProd;
         this.imageprod = imageprod;
-        this.qteStockProd=qteStockProd;
+        this.qteStockProd = qteStockProd;
     }
 
-   
-    
     public Produit(Integer idProd) {
         this.idProd = idProd;
     }
@@ -109,9 +105,6 @@ public class Produit {
     public Produit(String nomProd) {
         this.nomProd = nomProd;
     }
-
-    
-  
 
     public Integer getIdProd() {
         return idProd;
@@ -250,6 +243,4 @@ public class Produit {
         return "Produit{" + "idProd=" + idProd + ", nomProd=" + nomProd + ", qteStockProd=" + qteStockProd + ", typeProd=" + typeProd + ", prixProd=" + prixProd + ", nvPrix=" + nvPrix + ", etatProd=" + etatProd + ", imageprod=" + imageprod + ", qteAcheter=" + qteAcheter + ", valeur=" + valeur + ", idCat=" + idCat + ", idUser=" + idUser + '}';
     }
 
-    
-    
 }

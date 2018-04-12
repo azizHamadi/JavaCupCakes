@@ -6,11 +6,12 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Produit.AfficherProduit.ProduitSingleController">
    <children>
       <ImageView fx:id="image" fitHeight="278.0" fitWidth="269.0" layoutX="45.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="nomProd" layoutX="358.0" layoutY="82.0" prefHeight="55.0" prefWidth="259.0" text="NomP" textFill="#e2b85b">
+      <Label fx:id="nomProd" layoutX="358.0" layoutY="82.0" prefHeight="55.0" prefWidth="370.0" text="NomP" textFill="#e2b85b">
          <font>
             <Font name="Georgia Bold" size="43.0" />
          </font>
@@ -20,12 +21,12 @@
             <Font name="Georgia" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="prix" layoutX="358.0" layoutY="207.0" prefHeight="29.0" prefWidth="129.0" text="prix" textFill="#e2b85b">
+      <Label fx:id="prix" layoutX="488.0" layoutY="207.0" prefHeight="29.0" prefWidth="95.0" text="prix" textFill="#e2b85b">
          <font>
             <Font name="Georgia" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="stock" layoutX="358.0" layoutY="265.0" prefHeight="29.0" prefWidth="129.0" text="Stock" textFill="#e2b85b">
+      <Label fx:id="stock" layoutX="493.0" layoutY="266.0" prefHeight="29.0" prefWidth="129.0" text="Stock" textFill="#e2b85b" visible="false">
          <font>
             <Font name="Georgia" size="24.0" />
          </font>
@@ -35,9 +36,34 @@
             <Font size="23.0" />
          </font>
       </Button>
-      <JFXTextField fx:id="QteAcheter" focusColor="#e2b85b" layoutX="358.0" layoutY="328.0" prefHeight="40.0" prefWidth="205.0" promptText="Quantité a acheter" styleClass="inputtxtcommande" stylesheets="@../../../common.css" unFocusColor="#e2b85b">
+      <JFXTextField fx:id="QteAcheter" focusColor="#e2b85b" layoutX="358.0" layoutY="360.0" prefHeight="40.0" prefWidth="205.0" promptText="Quantité a acheter" styleClass="inputtxtcommande" stylesheets="@../../../common.css" unFocusColor="#e2b85b">
          <font>
             <Font size="17.0" />
          </font></JFXTextField>
+      <Label layoutX="358.0" layoutY="207.0" prefHeight="29.0" prefWidth="95.0" text="prix" textFill="#e2b85b">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="354.0" layoutY="266.0" prefHeight="29.0" prefWidth="129.0" text="Quantité" textFill="#e2b85b" visible="false">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
+      <Text fx:id="Promotion" fill="#ff0202" layoutX="514.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Promotion" wrappingWidth="205.00000627338886">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Text>
+      <Label fx:id="NV" layoutX="542.0" layoutY="321.0" prefHeight="29.0" prefWidth="95.0" text="prix" textFill="#e2b85b" visible="false">
+         <font>
+            <Font name="Georgia Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label fx:id="labPromo" layoutX="354.0" layoutY="321.0" prefHeight="29.0" prefWidth="129.0" text="Promotion" textFill="#e2b85b" visible="false">
+         <font>
+            <Font name="Georgia" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

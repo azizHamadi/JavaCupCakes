@@ -29,7 +29,7 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="224.0">
                            <children>
-                              <TextField style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1 0 1 1;" />
+                              <TextField fx:id="search" onKeyReleased="#SEARCH" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1 0 1 1;" />
                               <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="30.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-width: 1 1 1 0;">
                                  <graphic>
                                     <FontAwesomeIconView fill="#a89f9f" glyphName="SEARCH" />

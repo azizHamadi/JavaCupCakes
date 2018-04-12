@@ -6,6 +6,7 @@
 package Views.Client.Panier.AfficherPanier;
 
 import Entity.Produit;
+import Services.LinePromoService;
 import Services.PanierService;
 import Services.ProduitService;
 import Views.Client.Panier.ConfirmerAdre.CommandeController;
@@ -13,7 +14,9 @@ import Views.Client.Produit.AfficherProduit.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -65,22 +68,39 @@ public class AfficherPanierController implements Initializable {
             for(Map.Entry<Produit,Integer> p : panier.entrySet())
             {
                  try {
+                     LinePromoService line = new LinePromoService();
+                     List<Integer> l =line.afficherProduit();
                      //parcour des colonnes
                      FXMLLoader loader = new FXMLLoader(getClass().getResource("PanierBody.fxml"));
                      Node pr = loader.load();
                      PanierBodyController msc = loader.getController();
                      panierpart.getChildren().add(pr);
                      msc.setImageP(p.getKey().getImageprod());
-                     msc.setPrixUni(p.getKey().getPrixProd().toString());
+                     if(l.contains(p.getKey().getIdProd())){
+                           msc.setPrixUni(p.getKey().getNvPrix().toString());
+                        }
+                        else{
+                           msc.setPrixUni(p.getKey().getPrixProd().toString());
+                        }
+                     
                      msc.setQte(p.getValue().toString());
-                     Tot = p.getKey().getPrixProd() * p.getValue();
+                     if(l.contains(p.getKey().getIdProd())){
+                           Tot = p.getKey().getNvPrix()* p.getValue();
+                        }
+                        else{
+                          Tot = p.getKey().getPrixProd() * p.getValue();
+                        }
+                     
                      msc.setTotal(String.valueOf(Tot));
+                     
                      msc.setProd(p.getKey());
                      ImageView img = msc.getImageP();
                      img.setOnMouseClicked(e->{
                          System.out.println("tekhdem");
                      });
                  } catch (IOException ex) {
+                     Logger.getLogger(AfficherPanierController.class.getName()).log(Level.SEVERE, null, ex);
+                 } catch (SQLException ex) {
                      Logger.getLogger(AfficherPanierController.class.getName()).log(Level.SEVERE, null, ex);
                  }
                                        

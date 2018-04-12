@@ -18,6 +18,7 @@ public class Linepromoses  {
     private Date dateFin;
     private Session idSes;
     private Promotion idPromo;
+    private String etatLinePromosession;
 
     public Linepromoses() {
     }
@@ -72,6 +73,14 @@ public class Linepromoses  {
 
     public void setIdPromo(Promotion idPromo) {
         this.idPromo = idPromo;
+    }
+
+    public String getEtatLinePromosession() {
+        return etatLinePromosession;
+    }
+
+    public void setEtatLinePromosession(String etatLinePromosession) {
+        this.etatLinePromosession = etatLinePromosession;
     }
 
     @Override
