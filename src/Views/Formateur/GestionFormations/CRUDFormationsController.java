@@ -23,6 +23,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -378,7 +380,7 @@ Stage stage;
     }
 
     @FXML
-    private void AjouterFormation(ActionEvent event) {
+    private void AjouterFormation(ActionEvent event) throws IOException, SQLException {
         ServiceFormation service=new ServiceFormation();
         try {
             File f1 = new File(fdS);
@@ -393,7 +395,10 @@ Stage stage;
                    return;
                 }
             else
-                {
+                
+                    if(validateLalt()&&validateLong())
+                    {
+                     
                     Formation f=new Formation(txtNom.getText(),txtDescription.getHtmlText().substring(58, txtDescription.getHtmlText().length()-14),java.sql.Date.valueOf(txtdate.getValue()),imgf,combotypeformation.getValue(),txtlong.getText(),txtatitude.getText());
 
                     Files.copy(f1.getAbsoluteFile().toPath(),f2.getAbsoluteFile().toPath());
@@ -407,8 +412,8 @@ Stage stage;
                     alert.setContentText("formation ajouté avec succes");
                     alert.showAndWait();
                     ClearFields(); 
-                   
-                }
+                    }
+                
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -521,4 +526,45 @@ Stage stage;
             }
         });
     }
+    
+    
+     //validation long 
+        private boolean validateLong(){
+                Pattern  p = Pattern.compile("(([0-9]+)[.]([0-9]+))");
+                Matcher m = p.matcher(txtlong.getText());
+               if (m.matches())
+               {
+                   return true;
+               }
+               else
+               {
+                Alert alert  = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("validate prix");
+                alert.setHeaderText(null);
+                alert.setContentText("please une longitude correcte ");
+                alert.showAndWait();
+               }
+               return false;
+
+         
+         }
+        
+         //validation long 
+        private boolean validateLalt(){
+                Pattern  p = Pattern.compile("(([0-9]+)[.]([0-9]+))");
+                Matcher m = p.matcher(txtatitude.getText());
+               if (m.matches())
+               {
+                   return true;
+               }
+               else
+               {
+                Alert alert  = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("validate prix");
+                alert.setHeaderText(null);
+                alert.setContentText("please une altitude correcte ");
+                alert.showAndWait();
+               }
+               return false;
+        }
 }

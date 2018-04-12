@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="564.0" prefWidth="1034.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.SingleFormation.SingleFormationController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="633.0" prefWidth="921.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.SingleFormation.SingleFormationController">
    <children>
       <ImageView fx:id="imageFor" fitHeight="276.0" fitWidth="269.0" layoutX="24.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="nomFormation" layoutX="249.0" layoutY="47.0" onMouseClicked="#btnRetour" prefHeight="55.0" prefWidth="475.0" text="NomFormation" textAlignment="CENTER" textFill="#e2b85b">
@@ -29,12 +29,12 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="328.0" layoutY="460.0" prefHeight="25.0" prefWidth="92.0" text="pays" textFill="#e2b85b">
+      <Label layoutX="328.0" layoutY="437.0" prefHeight="25.0" prefWidth="92.0" text="pays" textFill="#e2b85b">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <WebView fx:id="txtDescription" layoutX="406.0" layoutY="273.0" prefHeight="173.0" prefWidth="296.0" stylesheets="@../../common.css" />
-      <WebView fx:id="webviewimage" layoutX="763.0" layoutY="260.0" prefHeight="189.0" prefWidth="262.0" />
+      <WebView fx:id="txtDescription" layoutX="440.0" layoutY="174.0" prefHeight="173.0" prefWidth="296.0" stylesheets="@../../common.css" />
+      <WebView fx:id="webviewimage" layoutX="440.0" layoutY="381.0" prefHeight="211.0" prefWidth="458.0" />
    </children>
 </AnchorPane>

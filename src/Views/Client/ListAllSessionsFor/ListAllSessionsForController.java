@@ -72,11 +72,10 @@ public class ListAllSessionsForController implements Initializable {
     @FXML
     private Label btnS;
 
-     private int idFormation;
+    private int idFormation;
     private Node[] listePageFormation;
-     private int nbrLignePage = 0 ;
-   private VBox vbody ;
-    
+    private int nbrLignePage = 0 ;
+    private VBox vbody ;
     //date bech tekhou date+1
     private java.util.Date date ;
 
@@ -144,7 +143,7 @@ public class ListAllSessionsForController implements Initializable {
             {
                 labelaucunesessiondispo.setVisible(false);
             }
-            System.out.println("morabaa3 theni"+idFormation);
+            
             
             //List<Session> listC = listetypeformation.ListeTypeFormations();
             NoteService ns = new NoteService();
@@ -154,8 +153,8 @@ public class ListAllSessionsForController implements Initializable {
             //liste educate pour le user connecte eli howa testiwouh bel 1
             List<Educate> listEduc=se.ListeInscriSession();
             //Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[listSession.size()];
-            Node [] nodesColonne = new Node[listSession.size()];
+            Node [] nodesLigne = new Node[3];
+            Node [] nodesColonne = new Node[9];
             if(listSession.size() % 6 == 0)
                 listePageFormation = new Node[listSession.size()/6];
             else
@@ -223,7 +222,6 @@ public class ListAllSessionsForController implements Initializable {
                         singlefor.setDatedebses(rec.getDateDebSes().toString());
                         singlefor.setDatefinses(rec.getDateFinSes().toString());
                        
-                       
                     } catch (IOException ex) {
                         Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
                     } 
@@ -254,6 +252,7 @@ public class ListAllSessionsForController implements Initializable {
                 Educate educate=new Educate(rec);
                 if(se.ifClientExists( rec.getIdSes()))
                 {
+                    System.out.println("client deja inscrit men kbal");
                     msc.getTxtinscription().setVisible(false);    
                 }
                 else
@@ -328,7 +327,6 @@ public class ListAllSessionsForController implements Initializable {
 
     }
 
-
     @FXML
     private void PagePrecedente(MouseEvent event) {
            nbrLignePage= nbrLignePage-1;
@@ -351,9 +349,9 @@ public class ListAllSessionsForController implements Initializable {
     private void RechercheSession(KeyEvent event) throws SQLException, IOException {
           section_body.getChildren().clear();
         SessionService RS = new SessionService();
-        List<Session> listRec = RS.SearchListeSessions(recherche.getText());
-        Node [] nodesLigne = new Node[listRec.size()];
-        Node [] nodesColonne = new Node[listRec.size()];
+        List<Session> listRec = RS.SearchListeSessionsClient(recherche.getText());
+        Node [] nodesLigne = new Node[3];
+        Node [] nodesColonne = new Node[9];
         int i = 0 ;
         int j = 0 ;
         NoteService ns = new NoteService();
@@ -428,5 +426,4 @@ public class ListAllSessionsForController implements Initializable {
     }
 
    
-    
 }

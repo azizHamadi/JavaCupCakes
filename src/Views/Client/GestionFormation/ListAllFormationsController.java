@@ -167,6 +167,21 @@ public class ListAllFormationsController implements Initializable {
                         
                         WebEngine webEngine = singlefor.getTxtDescription().getEngine();
                         webEngine.loadContent(rec.getDescriptionFor());
+                         //page el map
+                        WebEngine webEnginemap = singlefor.getWebviewimage().getEngine();
+                        webEnginemap.load(getClass().getResource("../../../Map/googlemap.html").toString());
+                        webEnginemap.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>(
+                        
+                        ) {
+                            @Override
+                            public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
+                                    if(newValue== Worker.State.SUCCEEDED)
+                                    {
+                                        System.out.println("maaaaap");
+                                        webEnginemap.executeScript("addMarker("+rec.getAtitude()+","+rec.getLongitude()+");");
+                                    }
+                            }
+                        });
                        
                        
                     } catch (IOException ex) {
@@ -272,24 +287,21 @@ public class ListAllFormationsController implements Initializable {
                         
                         WebEngine webEngine = singlefor.getTxtDescription().getEngine();
                         webEngine.loadContent(rec.getDescriptionFor());
-                        //page el map
+                         //page el map
                         WebEngine webEnginemap = singlefor.getWebviewimage().getEngine();
                         webEnginemap.load(getClass().getResource("../../../Map/googlemap.html").toString());
-                        webEnginemap.getLoadWorker().stateProperty().addListener(
-                                new ChangeListener<Worker.State>() {
+                        webEnginemap.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>(
+                        
+                        ) {
                             @Override
-                            public void changed(ObservableValue<? extends Worker.State> ov, Worker.State oldState, Worker.State newState) {
-                                if (newState == Worker.State.SUCCEEDED) {
-                                    System.out.println("map");
-                                            webEngine.executeScript("addMarker("+rec.getAtitude()+","+rec.getLongitude()+");");
-
-                                        }
-
-
+                            public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
+                                    if(newValue== Worker.State.SUCCEEDED)
+                                    {
+                                        System.out.println("maaaaap");
+                                        webEnginemap.executeScript("addMarker("+rec.getAtitude()+","+rec.getLongitude()+");");
+                                    }
                             }
-
-
-                        });  
+                        });
                        
                         
                        

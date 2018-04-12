@@ -99,23 +99,24 @@ public class ServiceFormation {
     }
     public void insertFormation(Formation f)
     {
-        String sql="INSERT INTO Formation(nomFor,place,etatFor,descriptionFor,dateFor,imageForm,idUser,idTypeFor)VALUES(?,?,?,?,?,?,?,?);";
+        String sql="INSERT INTO Formation(nomFor,etatFor,descriptionFor,dateFor,imageForm,idUser,idTypeFor,longitude,atitude)VALUES(?,?,?,?,?,?,?,?,?);";
         try 
         {
             PreparedStatement ps=conn.prepareStatement(sql);
             ps.setString(1,f.getNomFor());
-            ps.setString(2,f.getPlace());
-            ps.setString(3,"en cours");
-            ps.setString(4,f.getDescriptionFor());
-            ps.setDate(5,(Date) f.getDateFor());
-            ps.setString(6,f.getImageform());
+           
+            ps.setString(2,"en cours");
+            ps.setString(3,f.getDescriptionFor());
+            ps.setDate(4,(Date) f.getDateFor());
+            ps.setString(5,f.getImageform());
             //bech nzid iduser houni fel ajout
-            ps.setInt(7,SessionUser.getId());
-            ps.setInt(8,f.getIdTypeFor().getIdTypeFor());
-            
+            ps.setString(6,null);
+            ps.setInt(7,f.getIdTypeFor().getIdTypeFor());
+            ps.setString(8, f.getLongitude());
+            ps.setString(9, f.getAtitude());
             ps.executeUpdate();
             
-        } 
+        }  
         catch (SQLException ex) 
         {
             Logger.getLogger(ServiceFormation.class.getName()).log(Level.SEVERE, null, ex);
@@ -125,7 +126,7 @@ public class ServiceFormation {
     // whouni bech nzid el iduser zeda bech yaffichi les formations mte user connecté
     public ObservableList<Formation> AfficherListeFormation() throws SQLException
     {
-        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours' AND idUSer="+SessionUser.getId());
+        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours'");
      
         while(rsformation.next())
         {   
@@ -135,7 +136,9 @@ public class ServiceFormation {
             formation.setPlace(rsformation.getString("place"));
             formation.setDescriptionFor(rsformation.getString("descriptionFor"));
             formation.setDateFor(rsformation.getDate("dateFor"));
-            formation.setImageform(rsformation.getString("imageform"));
+            formation.setImageform (rsformation.getString("imageform"));
+            formation.setAtitude(rsformation.getString("atitude"));
+            formation.setLongitude(rsformation.getString("longitude"));
             ResultSet rstype= ste2.executeQuery("select * from type_formation where idTypeFor="+ rsformation.getInt("idTypeFor"));
             TypeFormation typeformation=new TypeFormation();
             while(rstype.next())
@@ -154,13 +157,14 @@ public class ServiceFormation {
     public void ModificationFormation(Formation f,int idFor) throws SQLException{
         System.out.println("modification formation");
         System.out.println("UPDATE Formation SET nomFor= "+f.getNomFor()+",place="+f.getPlace()+",idTypeFor="+f.getIdTypeFor().getIdTypeFor()+",DescriptionFor="+f.getDescriptionFor()+",dateFor="+ f.getDateFor()+"where idFor="+idFor);
-            String req ="UPDATE Formation SET nomFor= ?,place=?,idTypeFor=?,DescriptionFor=?,dateFor=? where idFor="+idFor;
+            String req ="UPDATE Formation SET nomFor=?,idTypeFor=?,DescriptionFor=?,dateFor=?,longitude=?,atitude=? where idFor="+idFor;
             PreparedStatement ps = con.prepareStatement(req);
             ps.setString(1,f.getNomFor());
-            ps.setString(2,f.getPlace());
-            ps.setInt(3, f.getIdTypeFor().getIdTypeFor());
-            ps.setString(4,f.getDescriptionFor());
-            ps.setDate(5,(Date) f.getDateFor());
+            ps.setInt(2, f.getIdTypeFor().getIdTypeFor());
+            ps.setString(3,f.getDescriptionFor());
+            ps.setDate(4,(Date) f.getDateFor());
+            ps.setString(5, f.getLongitude());
+            ps.setString(6, f.getAtitude());
             ps.executeUpdate();
     }
 
@@ -175,10 +179,14 @@ public class ServiceFormation {
         while(rsformation.next())
         {   
             Formation formation=new Formation();
+            formation.setIdFor(rsformation.getInt("idFor"));
             formation.setNomFor(rsformation.getString("nomFor"));
-            formation.setPlace(rsformation.getString("place"));
+           
             formation.setDescriptionFor(rsformation.getString("descriptionFor"));
             formation.setDateFor(rsformation.getDate("dateFor"));
+            formation.setImageform (rsformation.getString("imageform"));
+            formation.setAtitude(rsformation.getString("atitude"));
+            formation.setLongitude(rsformation.getString("longitude"));
             
             listeob.add(formation);
         }
@@ -201,12 +209,15 @@ public class ServiceFormation {
         while(rsformation.next())
         {   
             Formation formation=new Formation();
+            
             formation.setIdFor(rsformation.getInt("idFor"));
             formation.setNomFor(rsformation.getString("nomFor"));
-            formation.setPlace(rsformation.getString("place"));
+           
             formation.setDescriptionFor(rsformation.getString("descriptionFor"));
             formation.setDateFor(rsformation.getDate("dateFor"));
-            formation.setImageform(rsformation.getString("imageform"));
+            formation.setImageform (rsformation.getString("imageform"));
+            formation.setAtitude(rsformation.getString("atitude"));
+            formation.setLongitude(rsformation.getString("longitude"));
             
             listeob.add(formation);
         }

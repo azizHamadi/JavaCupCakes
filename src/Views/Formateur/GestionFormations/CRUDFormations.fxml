@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.HTMLEditor?>
 
 <AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="1009.0" style="-fx-background-color: #f4f3ef;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Formateur.GestionFormations.CRUDFormationsController">
    <children>
@@ -87,6 +88,7 @@
                   <JFXTextField fx:id="txtlong" layoutX="17.0" layoutY="68.0" promptText="longitude" unFocusColor="#96cad9" />
                   <JFXTextField fx:id="txtatitude" layoutX="17.0" layoutY="118.0" promptText="atitude" unFocusColor="#96cad9" />
                   <Label fx:id="labellat" layoutX="187.0" layoutY="122.0" text="veuillez saisir la longitude" textFill="#e11010" visible="false" />
+                  <HTMLEditor fx:id="txtDescription" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="21.0" layoutY="296.0" prefHeight="200.0" prefWidth="506.0" />
                </children>
             </AnchorPane>
          </children>
