@@ -10,6 +10,7 @@ import Entity.Linepromoses;
 import Entity.Promotion;
 import Entity.SendMail;
 import Entity.Session;
+import Entity.SessionUser;
 import Entity.TypeFormation;
 import Entity.Utilisateur;
 import Technique.DataSource;
@@ -58,7 +59,7 @@ public class LinePromoSesService {
         pre.setInt(3, p.getIdSes().getIdSes());
         pre.setInt(4, p.getIdPromo().getIdPromo());
         //pre.setInt(2, id );
-        mail();
+        //mail();
         pre.executeUpdate();
         System.out.println("session ajouter sous promotion avec succee!");
 
@@ -85,7 +86,7 @@ public class LinePromoSesService {
 
     public List<Linepromoses> AfficherLinePromoSes() throws SQLException {
         List<Linepromoses> LinePromosess = new ArrayList<>();
-        ResultSet rs = ste.executeQuery("select * from linepromoses");
+        ResultSet rs = ste.executeQuery("select * from linepromoses l , session s, formation f where s.idFor=f.idFor and l.idSes=s.idSes and f.idUser="+SessionUser.getId());
         while (rs.next()) {
             ResultSet rsp = ste1.executeQuery("select * from promotion where idPromo = " + rs.getInt("idPromo"));
             Promotion p = new Promotion();
@@ -137,8 +138,7 @@ public class LinePromoSesService {
     
      public List<Session> calculerpromoformation(Promotion po) throws SQLException {
         List<Session> sessions = new ArrayList<>();
-        ResultSet rs = ste.executeQuery("select * f"
-                + "*rom session");
+        ResultSet rs = ste.executeQuery("select * from session");
         Session pr = new Session();
         while (rs.next()) {
             pr.setPrixSes(rs.getDouble("prix_ses"));

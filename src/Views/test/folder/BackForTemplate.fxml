@@ -42,14 +42,14 @@ and open the template in the editor.
          <children>
             <VBox fx:id="nav_bar" prefHeight="628.0" prefWidth="200.0" style="-fx-background-color: #F4F3EF;">
                <children>
-                  <VBox id="side_nav" prefHeight="615.0" prefWidth="239.0" style="-fx-background-color: #96CAD9; -fx-background-radius: 3em;" stylesheets="@../../common.css">
+                  <VBox id="side_nav" prefHeight="631.0" prefWidth="225.0" style="-fx-background-color: #96CAD9; -fx-background-radius: 3em;" stylesheets="@../../common.css">
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets bottom="5.0" right="5.0" top="5.0" />
                            </VBox.margin>
                            <children>
                               <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
@@ -81,7 +81,7 @@ and open the template in the editor.
                                        </Button>
                                     </children>
                                     <VBox.margin>
-                                       <Insets top="10.0" />
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
                                     </VBox.margin>
                                  </HBox>
                                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="40.0" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
@@ -94,14 +94,14 @@ and open the template in the editor.
                                              <Insets left="1.0" />
                                           </HBox.margin>
                                        </FontAwesomeIconView>
-                                       <Button mnemonicParsing="false" onAction="#GestionPromotion" style="-fx-background-color: transparent;" text="Promotion" textFill="#f4f3ef">
+                                       <Button mnemonicParsing="false" onAction="#GestionPromotion" style="-fx-background-color: transparent;" text="Mes promotions" textFill="#f4f3ef">
                                           <HBox.margin>
                                              <Insets top="9.0" />
                                           </HBox.margin>
                                        </Button>
                                     </children>
                                     <VBox.margin>
-                                       <Insets top="10.0" />
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
                                     </VBox.margin>
                                  </HBox>
                                  <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
@@ -120,6 +120,9 @@ and open the template in the editor.
                                           </HBox.margin>
                                        </Button>
                                     </children>
+                                    <VBox.margin>
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
                                  </HBox>
                                  <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
                                     <padding>
@@ -137,6 +140,9 @@ and open the template in the editor.
                                           </HBox.margin>
                                        </Button>
                                     </children>
+                                    <VBox.margin>
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
                                  </HBox>
                                  <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
                                     <padding>
@@ -154,10 +160,53 @@ and open the template in the editor.
                                           </HBox.margin>
                                        </Button>
                                     </children>
+                                    <VBox.margin>
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
+                                    <padding>
+                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </padding>
+                                    <children>
+                                       <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
+                                          <HBox.margin>
+                                             <Insets left="1.0" />
+                                          </HBox.margin>
+                                       </FontAwesomeIconView>
+                                       <Button mnemonicParsing="false" onAction="#AjouterPromo" style="-fx-background-color: transparent;" text="Ajout Promo/Session" textFill="#f4f3ef">
+                                          <HBox.margin>
+                                             <Insets top="9.0" />
+                                          </HBox.margin>
+                                       </Button>
+                                    </children>
+                                    <VBox.margin>
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
+                                 </HBox>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="196.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
+                                    <padding>
+                                       <Insets bottom="5.0" left="5.0" top="5.0" />
+                                    </padding>
+                                    <children>
+                                       <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
+                                          <HBox.margin>
+                                             <Insets left="1.0" />
+                                          </HBox.margin>
+                                       </FontAwesomeIconView>
+                                       <Button mnemonicParsing="false" onAction="#AjouterPromoFor" prefHeight="25.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Ajout Promo / Formation" textFill="#f4f3ef">
+                                          <HBox.margin>
+                                             <Insets top="9.0" />
+                                          </HBox.margin>
+                                       </Button>
+                                    </children>
+                                    <VBox.margin>
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
+                                    </VBox.margin>
                                  </HBox>
                      </children>
                      <padding>
-                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="20.0" top="20.0" />
                      </padding>
                      <VBox.margin>
                         <Insets top="7.0" />

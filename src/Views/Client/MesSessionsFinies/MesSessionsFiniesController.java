@@ -67,8 +67,8 @@ public class MesSessionsFiniesController implements Initializable {
             NoteService ns = new NoteService();
            
             Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[3];
-            Node [] nodesColonne = new Node[9];
+            Node [] nodesLigne = new Node[listC.size()];
+            Node [] nodesColonne = new Node[listC.size()];
             if(listC.size() % 6 == 0)
                 listePageSession = new Node[listC.size()/6];
             else

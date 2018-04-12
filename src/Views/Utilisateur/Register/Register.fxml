@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1210.0" styleClass="mainFxmlClass" stylesheets="@registerfxml.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Utilisateur.Register.RegisterController">
+   <children>
+      <JFXComboBox fx:id="cb" focusColor="#e2b85b" layoutX="317.0" layoutY="480.0" prefHeight="31.0" prefWidth="268.0" promptText="Role" unFocusColor="#e2b85b" visibleRowCount="20" />
+      <JFXButton fx:id="Enregistrer" layoutX="762.0" layoutY="495.0" onAction="#AjouterUtilsateur" prefHeight="77.0" prefWidth="322.0" text="Enregistrer" textFill="#e2b85b">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="username" focusColor="#e2b85b" layoutX="330.0" layoutY="119.0" prefHeight="33.0" prefWidth="223.0" promptText="Username" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="Adresse" focusColor="#e2b85b" layoutX="663.0" layoutY="264.0" prefHeight="31.0" prefWidth="198.0" promptText="Adresse" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="nom" focusColor="#e2b85b" layoutX="667.0" layoutY="116.0" prefHeight="31.0" prefWidth="198.0" promptText="Nom" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="email" focusColor="#e2b85b" layoutX="339.0" layoutY="348.0" prefHeight="39.0" prefWidth="211.0" promptText="Email" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="prenom" focusColor="#e2b85b" layoutX="667.0" layoutY="187.0" prefHeight="31.0" prefWidth="198.0" promptText="Prenom" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="tel" focusColor="#e2b85b" layoutX="669.0" layoutY="351.0" prefHeight="31.0" prefWidth="198.0" promptText="Telephone" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField fx:id="password" focusColor="#e2b85b" layoutX="330.0" layoutY="205.0" prefHeight="31.0" prefWidth="223.0" promptText="Mot de passe" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </JFXPasswordField>
+      <JFXPasswordField fx:id="Cpassword" layoutX="330.0" layoutY="282.0" prefHeight="31.0" prefWidth="223.0" promptText="Confirmation mot de passe" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
+         <font>
+            <Font name="Georgia" size="18.0" />
+         </font>
+      </JFXPasswordField>
+   </children>
+</AnchorPane>

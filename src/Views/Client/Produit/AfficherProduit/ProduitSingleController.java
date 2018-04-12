@@ -51,7 +51,8 @@ public class ProduitSingleController implements Initializable {
     }
 
     public void setNomProd(String nomProd) {
-        this.nomProd.setText(nomProd);    }
+        this.nomProd.setText(nomProd);    
+    }
 
     public void setCategorie(String categorie) {
         this.categorie.setText(categorie);

@@ -1,0 +1,20 @@
+/*
+ * Empty Stylesheet file.
+ */
+.main{
+    -fx-background-image:url('cupcake.jpg');
+    -fx-background-size:cover;
+}
+.Label{ 
+    -fx-text-fill: white;
+
+}
+.Text-field{
+     -fx-text-fill: 24pt ;
+    
+}
+.textProfilUpdate{
+    -fx-text-inner-color:  #EB8A91;
+    -fx-background-color: transparent;
+    
+}

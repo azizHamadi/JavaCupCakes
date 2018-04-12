@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="471.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Utilisateur.Profil.ProfilController">
+   <children>
+      <ImageView fx:id="Image" fitHeight="117.0" fitWidth="158.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label alignment="TOP_CENTER" layoutX="204.0" layoutY="14.0" prefHeight="67.0" prefWidth="173.0" styleClass="Label" stylesheets="@profil.css" text="Profil" textFill="#563f46">
+         <font>
+            <Font name="Times New Roman" size="48.0" />
+         </font>
+      </Label>
+      <VBox layoutX="7.0" layoutY="139.0" prefHeight="267.0" prefWidth="257.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="199.0" text="Nom" textFill="#5b3937">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label prefHeight="18.0" prefWidth="227.0" text="Prenom" textFill="#5b3937">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label prefHeight="18.0" prefWidth="181.0" text="Adresse" textFill="#5b3937">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label prefHeight="18.0" prefWidth="188.0" text="Telephone" textFill="#5b3937">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label prefHeight="18.0" prefWidth="239.0" text="Email" textFill="#5b3937">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+         </children>
+      </VBox>
+      <VBox layoutX="317.0" layoutY="133.0" prefHeight="275.0" prefWidth="173.0">
+         <children>
+            <Label fx:id="Nom" prefHeight="18.0" prefWidth="172.0" text="Label" textFill="#eb8a91">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label fx:id="Prenom" prefHeight="18.0" prefWidth="215.0" text="Label" textFill="#eb8a91">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label fx:id="Adresse" prefHeight="18.0" prefWidth="185.0" text="Label" textFill="#eb8a91">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label fx:id="Telephone" prefHeight="18.0" prefWidth="195.0" text="Label" textFill="#eb8a91">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label fx:id="Email" prefHeight="18.0" prefWidth="176.0" text="Label" textFill="#eb8a91">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+         </children>
+      </VBox>
+      <JFXButton fx:id="Modifier" layoutX="438.0" layoutY="81.0" onAction="#ModifierUser" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: #eb8a91;" text="Modifier" />
+      <JFXButton fx:id="Retour" layoutX="438.0" layoutY="393.0" onAction="#Retour" prefHeight="43.0" prefWidth="106.0" style="-fx-background-color: #eb8a91;" text="Acceuil" />
+      <JFXButton fx:id="ajout" layoutX="438.0" layoutY="26.0" onAction="#Enregistrer" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: #eb8a91;" text="Ajouter Image" visible="false" />
+   </children>
+</AnchorPane>

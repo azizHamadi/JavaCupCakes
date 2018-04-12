@@ -86,7 +86,7 @@ public class Moraba3s8irController implements Initializable {
     }
 
     public void setImage(String image) {
-        File file = new File("D:/wamp64/www/final/web/public/uploads/brochures/Promotion/" + image);
+        File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Formateur/" + image);
         this.image.setImage(new Image(file.toURI().toString()));
     }
     

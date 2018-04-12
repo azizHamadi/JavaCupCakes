@@ -37,6 +37,8 @@ public class GererPromotionController implements Initializable {
     private Button btnAjouterPromotion;
     @FXML
     private Button btnpromotionajout;
+    @FXML
+    private Button btnpromoboutique;
 
     /**
      * Initializes the controller class.
@@ -68,6 +70,14 @@ public class GererPromotionController implements Initializable {
     @FXML
     private void validerpromo(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterPourcentage/ajouterpourcentage.fxml"));
+        Node root = loader.load();
+        body.getChildren().clear();
+        body.getChildren().add(root);
+    }
+
+    @FXML
+    private void promoboutique(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterPromotion/ajouterpromoboutique.fxml"));
         Node root = loader.load();
         body.getChildren().clear();
         body.getChildren().add(root);

@@ -64,36 +64,36 @@ public class ListeProduitController implements Initializable {
     private TableColumn<Produit, Integer> QteAcheter;
     @FXML
     private ImageView imageview;
-String   imgp= "";
+    String imgp = "";
     @FXML
     private TableColumn<Produit, String> image;
     @FXML
     private TableColumn<Produit, Integer> idProd;
     @FXML
     private TextField id;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           
+
         try {
-             type.getItems().add("Sucrée");
-        type.getItems().add("Salée");
-         CategorieService categ = new CategorieService();
+            type.getItems().add("Sucrée");
+            type.getItems().add("Salée");
+            CategorieService categ = new CategorieService();
             List<Categorie> listCat = categ.AfficherCategorie();
-            for(Categorie c : listCat)
-            {
+            for (Categorie c : listCat) {
                 Categorie.getItems().add(c.getNomCat());
             }
             RefreshTable();
         } catch (SQLException ex) {
             Logger.getLogger(ListeProduitController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
-  //vider les champs
-    public void ClearFields()
-    {
+    }
+    //vider les champs
+
+    public void ClearFields() {
         NomProd.clear();
         QteStock.clear();
         Prix.clear();
@@ -106,7 +106,7 @@ String   imgp= "";
     //affichage des champs dans les textfiels a partir du table 
     @FXML
     private void FetcherTable(MouseEvent event) {
-       
+
         NomProd.setText(TableProd.getSelectionModel().getSelectedItem().getNomProd());
         QteStock.setText(TableProd.getSelectionModel().getSelectedItem().getQteStockProd().toString());
         Prix.setText(TableProd.getSelectionModel().getSelectedItem().getPrixProd().toString());
@@ -114,14 +114,14 @@ String   imgp= "";
         type.setValue(TableProd.getSelectionModel().getSelectedItem().getTypeProd());
         id.setText(TableProd.getSelectionModel().getSelectedItem().getIdProd().toString());
         imgp = TableProd.getSelectionModel().getSelectedItem().getImageprod();
-        Image image = new Image("file:///c:/wamp64/www/final/web/public/uploads/brochures/Produit/" + imgp ,imageview.getFitWidth(),imageview.getFitHeight(),true,true);
+        Image image = new Image("file:///c:/wamp64/www/final/web/public/uploads/brochures/Produit/" + imgp, imageview.getFitWidth(), imageview.getFitHeight(), true, true);
         imageview.setImage(image);
-   }
+    }
+
     //afficher le contenu de la table formation dans le tableau
-   public void RefreshTable() throws SQLException
-   {
+    public void RefreshTable() throws SQLException {
         TableProd.getItems().clear();
-        ProduitService service=new ProduitService();
+        ProduitService service = new ProduitService();
         ObservableList<Produit> listP = FXCollections.observableArrayList(service.AfficherProduitBack(SessionUser.getId()));
         nomP.setCellValueFactory(new PropertyValueFactory<>("nomProd"));
         QantitéP.setCellValueFactory(new PropertyValueFactory<>("qteStockProd"));
@@ -132,21 +132,22 @@ String   imgp= "";
         QteAcheter.setCellValueFactory(new PropertyValueFactory<>("QteAcheter"));
         idProd.setCellValueFactory(new PropertyValueFactory<>("idProd"));
         TableProd.setItems(listP);
-   }
+    }
+
     @FXML
-        private void Modifier(ActionEvent event) throws SQLException {
-            ProduitService service = new ProduitService();
-         Produit p = new Produit(Integer.parseInt(id.getText()), NomProd.getText(), Double.parseDouble(QteStock.getText()), type.getValue(),Integer.parseInt(Prix.getText()),imgp);
-         service.UpdateProduit(p,Categorie.getValue());
-         RefreshTable();
+    private void Modifier(ActionEvent event) throws SQLException {
+        ProduitService service = new ProduitService();
+        Produit p = new Produit(Integer.parseInt(id.getText()), NomProd.getText(), Double.parseDouble(QteStock.getText()), type.getValue(), Integer.parseInt(Prix.getText()), imgp);
+        service.UpdateProduit(p, Categorie.getValue());
+        RefreshTable();
     }
 
     @FXML
     private void SupprimerProd(ActionEvent event) throws SQLException {
-         ProduitService service = new ProduitService();
-         Produit p = new Produit(Integer.parseInt(id.getText()), "Faux");
-         service.SupprimerProduit(p);
-         RefreshTable();
+        ProduitService service = new ProduitService();
+        Produit p = new Produit(Integer.parseInt(id.getText()), "Faux");
+        service.SupprimerProduit(p);
+        RefreshTable();
     }
-    
+
 }

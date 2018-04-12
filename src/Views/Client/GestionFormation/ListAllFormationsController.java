@@ -74,8 +74,8 @@ public class ListAllFormationsController implements Initializable {
             List<Formation> listRec = rs.AfficherListeFormation();
             
             Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[3];
-            Node [] nodesColonne = new Node[9];
+            Node [] nodesLigne = new Node[listC.size()/3];
+            Node [] nodesColonne = new Node[listC.size()];
             if(listRec.size() % 6 == 0)
                 listePageFormation = new Node[listRec.size()/6];
             else
@@ -193,8 +193,8 @@ public class ListAllFormationsController implements Initializable {
         section_body.getChildren().clear();
         ServiceFormation RS = new ServiceFormation();
         List<Formation> listRec = RS.AfficherListeFormationParTypeFor(idtypefor);
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        Node [] nodesLigne = new Node[listRec.size()];
+        Node [] nodesColonne = new Node[listRec.size()];
         int i = 0 ;
         int j = 0 ;
         NoteService ns = new NoteService();
@@ -287,8 +287,8 @@ public class ListAllFormationsController implements Initializable {
         section_body.getChildren().clear();
         ServiceFormation RS = new ServiceFormation();
         List<Formation> listRec = RS.SearchListeFormationClient(recherche.getText());
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        Node [] nodesLigne = new Node[listRec.size()];
+        Node [] nodesColonne = new Node[listRec.size()];
         int i = 0 ;
         int j = 0 ;
         NoteService ns = new NoteService();

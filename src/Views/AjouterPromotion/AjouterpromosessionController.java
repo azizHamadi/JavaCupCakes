@@ -89,8 +89,6 @@ public class AjouterpromosessionController implements Initializable {
     private JFXButton sup;
     @FXML
     private JFXTextField search;
-    @FXML
-    private Button ajout;
  
 
     /**
@@ -345,7 +343,6 @@ public class AjouterpromosessionController implements Initializable {
         }
     }
 
-    @FXML
     private void ajouterses(ActionEvent event) throws SQLException, MessagingException {
           if (ValidateFields())
                 {

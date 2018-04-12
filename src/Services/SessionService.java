@@ -584,7 +584,7 @@ public class SessionService {
     public List<Session> ListeSessions() throws SQLException
     {
         ArrayList<Session> sessions=new ArrayList<Session>();
-        ResultSet rssession=st.executeQuery("SELECT * FROM Session");
+        ResultSet rssession=st.executeQuery("SELECT * FROM Session s ,formation f where s.idFor = f.idFor and f.idUser="+SessionUser.getId());
      
         while(rssession.next())
         {   
@@ -679,6 +679,7 @@ public class SessionService {
         {
             pr.setNomSes(rs.getString("nomSes"));
             pr.setIdSes(rs.getInt("idSes"));
+            pr.setPrixSes(rs.getDouble("prix_ses"));
         }
         return pr ;
     }

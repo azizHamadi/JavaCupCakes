@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPourcentage.AjouterpourcentageController">
+<AnchorPane id="AnchorPane" prefHeight="519.0" prefWidth="779.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPourcentage.AjouterpourcentageController">
     <stylesheets>
         <URL value="@ajouterpourcentagecontroller.css" />
     </stylesheets>
    <children>
-      <Label layoutX="33.0" layoutY="57.0" text="Ajouter une pourcentage pour la promotion " textFill="#96cad9">
+      <Label layoutX="27.0" layoutY="144.0" text="Ajouter une pourcentage pour la promotion " textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="105.0" layoutY="173.0" text="Pourcentage" textFill="#96cad9">
+      <Label layoutX="126.0" layoutY="250.0" text="Pourcentage" textFill="#96cad9">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="pourcentage" layoutX="321.0" layoutY="171.0" unFocusColor="#96cad9" />
-      <JFXButton fx:id="envpour" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" layoutX="262.0" layoutY="277.0" onAction="#ajoutpromo" text="Ajouter" textFill="#96cad9">
+      <JFXTextField fx:id="pourcentage" layoutX="525.0" layoutY="247.0" unFocusColor="#96cad9" />
+      <JFXButton fx:id="envpour" layoutX="329.0" layoutY="405.0" onAction="#ajoutpromo" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Ajouter" textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>

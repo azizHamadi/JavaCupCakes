@@ -9,35 +9,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="449.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPromotion.AjouterproduitpromoController">
+<AnchorPane id="AnchorPane" prefHeight="586.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPromotion.AjouterproduitpromoController">
    <children>
-      <JFXComboBox fx:id="produit" focusColor="#051b22" layoutX="228.0" layoutY="141.0" unFocusColor="#96cad9" />
-      <JFXComboBox fx:id="promo" layoutX="228.0" layoutY="263.0" unFocusColor="#96cad9" />
-      <JFXDatePicker fx:id="datedeb" defaultColor="#96cad9" layoutX="500.0" layoutY="141.0" />
-      <JFXDatePicker fx:id="datefin" defaultColor="#96cad9" layoutX="500.0" layoutY="263.0" />
-      <Label layoutX="61.0" layoutY="145.0" text="Produit" textFill="#96cad9">
+      <JFXComboBox fx:id="produit" focusColor="#051b22" layoutX="228.0" layoutY="242.0" unFocusColor="#96cad9" />
+      <JFXComboBox fx:id="promo" layoutX="228.0" layoutY="376.0" unFocusColor="#96cad9" />
+      <JFXDatePicker fx:id="datedeb" defaultColor="#96cad9" layoutX="504.0" layoutY="242.0" />
+      <JFXDatePicker fx:id="datefin" defaultColor="#96cad9" layoutX="504.0" layoutY="376.0" />
+      <Label layoutX="91.0" layoutY="241.0" text="Produit" textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="61.0" layoutY="267.0" text="Pourcentage" textFill="#96cad9">
+      <Label layoutX="70.0" layoutY="375.0" text="Pourcentage" textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="364.0" layoutY="149.0" text="Date debut" textFill="#96cad9">
+      <Label layoutX="366.0" layoutY="241.0" text="Date debut" textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="378.0" layoutY="262.0" text="Date fin" textFill="#96cad9">
+      <Label layoutX="379.0" layoutY="375.0" text="Date fin" textFill="#96cad9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="valider" layoutX="312.0" layoutY="355.0" onAction="#validerpromo" text="Ajouter" textFill="#96cad9">
+      <JFXButton fx:id="valider" layoutX="318.0" layoutY="482.0" onAction="#validerpromo" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Ajouter" textFill="#96cad9">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
       <Label fx:id="prodtext" layoutX="162.0" layoutY="188.0" text="veuillez choisir un produit" textFill="#ee0c0c" visible="false" />
@@ -46,9 +46,12 @@
       <Label fx:id="datefintext" layoutX="490.0" layoutY="319.0" text="veuillez choisir la date de fin" textFill="#e80f0f" visible="false" />
       <Label fx:id="dateacttxt" layoutX="476.0" layoutY="225.0" text="la date doit etre sup date actuelle" textFill="#f50f0f" visible="false" />
       <Label fx:id="compartxt" layoutX="438.0" layoutY="347.0" text="la date de debut doit etre sup ala date de fin" textFill="#e11414" visible="false" />
-      <Button layoutX="316.0" layoutY="268.0" mnemonicParsing="false" onAction="#AjouterProurcentage" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: tr;">
-         <graphic>
-            <FontAwesomeIconView fill="#96cad9" glyphName="PLUS" size="25" wrappingWidth="19.428571701049805" />
-         </graphic></Button>
+      <Button layoutX="297.0" layoutY="376.0" mnemonicParsing="false" onAction="#AjouterProurcentage" prefHeight="25.0" prefWidth="43.0" style="-fx-background-color: tr;" />
+      <FontAwesomeIconView fill="#96cad9" glyphName="PLUS" layoutX="306.0" layoutY="398.0" size="25" wrappingWidth="19.428571701049805" />
+      <Label layoutX="171.0" layoutY="93.0" text="Ajouter un produit sous promotion" textFill="#96cad9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -5,6 +5,7 @@
  */
 package Views.test.folder;
 
+import Views.AjouterPromotion.AjoutpromoformationController;
 import Views.Formateur.GestionFormations.CRUDFormationsController;
 import Views.Patisserie.Recette.ListAllRecettes.ListAllRecettesController;
 import Views.Patisserie.Recette.MesRecettes.MesRecettesController;
@@ -105,6 +106,22 @@ public class BackForTemplateController implements Initializable {
         vbox_body.getChildren().clear();
         vbox_body.getChildren().add(Clar.getBody());
 
+    }
+
+    @FXML
+    private void AjouterPromo(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterPromotion/ajoutsessionpromo.fxml"));
+        Node root = loader.load();
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(root);
+    }
+
+    @FXML
+    private void AjouterPromoFor(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../AjouterPromotion/ajoutpromoformation.fxml"));
+        Node root = loader.load();
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(root);
     }
 
  

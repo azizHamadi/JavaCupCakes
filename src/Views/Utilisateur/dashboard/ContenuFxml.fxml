@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Utilisateur.dashboard.ContenuFxmlController">
+   <children>
+      <HBox alignment="CENTER" layoutY="74.0" prefHeight="626.0" prefWidth="960.0">
+         <children>
+            <Label fx:id="Precedent" onMouseClicked="#precedent" text="&lt;">
+               <font>
+                  <Font name="Californian FB" size="72.0" />
+               </font>
+            </Label>
+            <VBox fx:id="vboxC" prefHeight="700.0" prefWidth="847.0" />
+            <Label fx:id="suivant" onMouseClicked="#suivant" text="&gt;">
+               <font>
+                  <Font name="Californian FB" size="72.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <JFXTextField fx:id="search" layoutX="682.0" layoutY="14.0" onKeyReleased="#SearchUser" prefHeight="25.0" prefWidth="218.0" />
+   </children>
+</AnchorPane>

@@ -74,10 +74,19 @@ public class ListAllProduitController implements Initializable {
             CategorieService catProd = new CategorieService();
             List<Categorie> listC = catProd.AfficherCategorie();
             ProduitService ps = new ProduitService();
-            List<Produit> listProd = ps.AfficherNomProduit();
+            List<Produit> listProd = ps.AfficherProduit();
             Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[3];
-            Node [] nodesColonne = new Node[9];
+            Node [] nodesLigne ;
+            
+            //liste des ligne
+            if(listProd.size() % 3 == 0)
+                nodesLigne = new Node[(listProd.size() /3)];
+            else
+                nodesLigne = new Node[(listProd.size() /3)+1];
+            
+            //liste des colonnes
+            Node [] nodesColonne = new Node[listProd.size()];
+            
             if(listProd.size() % 6 == 0)
                 listePageProduit = new Node[listProd.size()/6];
             else
@@ -197,8 +206,16 @@ public class ListAllProduitController implements Initializable {
         section_body.getChildren().clear();
         ProduitService RS = new ProduitService();
         List<Produit> listProd = RS.ProduitParCategorie(idCat);
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        Node [] nodesLigne ;
+
+        //liste des ligne
+        if(listProd.size() % 3 == 0)
+            nodesLigne = new Node[(listProd.size() /3)];
+        else
+            nodesLigne = new Node[(listProd.size() /3)+1];
+
+        //liste des colonnes
+        Node [] nodesColonne = new Node[listProd.size()];
         int i = 0 ;
         int j = 0 ;
         
@@ -345,8 +362,8 @@ public class ListAllProduitController implements Initializable {
             ProduitService ps = new ProduitService();
             List<Produit> listProd = ps.RechercheProduitClient(search.getText());
             Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[3];
-            Node [] nodesColonne = new Node[9];
+            Node [] nodesLigne = new Node[listProd.size()];
+            Node [] nodesColonne = new Node[listProd.size()];
             if(listProd.size() % 6 == 0)
                 listePageProduit = new Node[listProd.size()/6];
             else

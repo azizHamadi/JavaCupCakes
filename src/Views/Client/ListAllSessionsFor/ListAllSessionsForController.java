@@ -154,8 +154,8 @@ public class ListAllSessionsForController implements Initializable {
             //liste educate pour le user connecte eli howa testiwouh bel 1
             List<Educate> listEduc=se.ListeInscriSession();
             //Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[3];
-            Node [] nodesColonne = new Node[9];
+            Node [] nodesLigne = new Node[listSession.size()];
+            Node [] nodesColonne = new Node[listSession.size()];
             if(listSession.size() % 6 == 0)
                 listePageFormation = new Node[listSession.size()/6];
             else
@@ -352,8 +352,8 @@ public class ListAllSessionsForController implements Initializable {
           section_body.getChildren().clear();
         SessionService RS = new SessionService();
         List<Session> listRec = RS.SearchListeSessions(recherche.getText());
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        Node [] nodesLigne = new Node[listRec.size()];
+        Node [] nodesColonne = new Node[listRec.size()];
         int i = 0 ;
         int j = 0 ;
         NoteService ns = new NoteService();

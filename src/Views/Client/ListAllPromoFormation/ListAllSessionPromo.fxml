@@ -59,7 +59,21 @@
             </HBox>
             <VBox fx:id="BodyVBox" prefHeight="569.0" prefWidth="1000.0" style="-fx-background-color: #242a31;">
                <children>
-                  <HBox fx:id="nav_cat" prefHeight="117.0" prefWidth="1000.0" />
+                  <HBox fx:id="nav_cat" prefHeight="117.0" prefWidth="1000.0">
+                     <children>
+                        <Label fx:id="btnPCat" onMouseClicked="#PagePrecedenteCategorie" opacity="0.32" prefHeight="154.0" prefWidth="43.0" text="&lt;" textFill="WHITE">
+                           <font>
+                              <Font name="Californian FB" size="70.0" />
+                           </font>
+                        </Label>
+                        <VBox fx:id="section_bodyCategorie" alignment="CENTER" prefHeight="85.0" prefWidth="927.0" />
+                        <Label fx:id="btnSCat" onMouseClicked="#PageSuivantCategorie" opacity="0.32" text="&gt;" textFill="WHITE">
+                           <font>
+                              <Font name="Californian FB Italic" size="70.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                   <HBox fx:id="nav_body" alignment="CENTER" prefHeight="564.0" prefWidth="1000.0">
                      <children>
                         <Label fx:id="btnP" onMouseClicked="#PagePrecedente" opacity="0.32" text="&lt;" textFill="WHITE">

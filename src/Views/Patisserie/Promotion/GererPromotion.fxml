@@ -21,7 +21,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <VBox.margin>
-                              <Insets top="15.0" />
+                              <Insets right="5.0" top="10.0" />
                            </VBox.margin>
                            <children>
                               <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
@@ -38,7 +38,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px 0 0 0 7px;">
                            <VBox.margin>
-                              <Insets top="15.0" />
+                              <Insets right="5.0" top="10.0" />
                            </VBox.margin>
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -62,14 +62,34 @@
                                     <Insets left="1.0" />
                                  </HBox.margin>
                               </FontAwesomeIconView>
-                              <Button fx:id="btnpromotionajout" mnemonicParsing="false" onAction="#validerpromo" style="-fx-background-color: transparent;" text="Ajouter une pourcentage" textFill="#f4f3ef">
+                              <Button fx:id="btnpromotionajout" mnemonicParsing="false" onAction="#validerpromo" prefHeight="25.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Ajouter pourcentage" textFill="#f4f3ef">
                                  <HBox.margin>
                                     <Insets top="9.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets top="15.0" />
+                              <Insets right="5.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #F4F3EF; -fx-border-width: 0 0 0 7px;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                           <children>
+                              <FontAwesomeIconView fill="#f4f3ef" glyphName="USER" size="2em">
+                                 <HBox.margin>
+                                    <Insets left="1.0" />
+                                 </HBox.margin>
+                              </FontAwesomeIconView>
+                              <Button fx:id="btnpromoboutique" mnemonicParsing="false" onAction="#promoboutique" prefHeight="25.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Promo par boutique" textFill="#f4f3ef">
+                                 <HBox.margin>
+                                    <Insets top="9.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets right="5.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
                      </children>

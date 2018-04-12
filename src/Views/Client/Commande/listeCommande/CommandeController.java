@@ -69,8 +69,8 @@ public class CommandeController implements Initializable {
             CommandeService Cmd = new CommandeService();
             List<Commande> listC = Cmd.AfficherCommandeFront(SessionUser.getId());         
             Node [] nodesCategorie = new Node[listC.size()];
-            Node [] nodesLigne = new Node[3];
-            Node [] nodesColonne = new Node[9];
+            Node [] nodesLigne = new Node[listC.size()/2];
+            Node [] nodesColonne = new Node[listC.size()];
             if(listC.size() % 6 == 0)
                 listePageProduit = new Node[listC.size()/6];
             else

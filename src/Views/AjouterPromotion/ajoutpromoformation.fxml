@@ -3,14 +3,33 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Views.AjouterPromotion.AjoutpromoformationController">
+<AnchorPane id="AnchorPane" prefHeight="497.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.AjouterPromotion.AjoutpromoformationController">
    <children>
-      <JFXComboBox fx:id="promo" layoutX="266.0" layoutY="81.0" />
-      <JFXDatePicker fx:id="datedeb" layoutX="215.0" layoutY="164.0" />
-      <JFXDatePicker fx:id="datefin" layoutX="215.0" layoutY="262.0" />
-      <JFXButton fx:id="ajouter" layoutX="257.0" layoutY="329.0" onAction="#valider" text="Ajouter" />
+      <JFXComboBox fx:id="promo" layoutX="578.0" layoutY="78.0" unFocusColor="#96cad9" />
+      <JFXDatePicker fx:id="datedeb" defaultColor="#96cad9" layoutX="493.0" layoutY="180.0" />
+      <JFXDatePicker fx:id="datefin" defaultColor="#96cad9" layoutX="493.0" layoutY="287.0" />
+      <JFXButton fx:id="ajouter" layoutX="355.0" layoutY="396.0" onAction="#valider" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Ajouter" textFill="#96cad9">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></JFXButton>
+      <Label layoutX="136.0" layoutY="77.0" text="Pourcentage" textFill="#96cad9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="141.0" layoutY="179.0" text="Date debut" textFill="#96cad9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="143.0" layoutY="286.0" text="Date finale" textFill="#96cad9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -10,6 +10,7 @@ import Entity.Linepromoses;
 import Entity.Session;
 import Services.LinePromoSesService;
 import Services.ServiceFormation;
+import Views.Client.Recette.ListAllRecettes.PageCategorieRecController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -46,6 +47,9 @@ public class ListAllSessionPromoController implements Initializable {
     private HBox nav_cat;
     private Node[] listePagePromotion ;
     private int nbrLignePage = 0 ;
+    private Node[] listePageCategorie ;
+    private int nbrPageCat = 0 ;
+
     @FXML
     private HBox nav_body;
     @FXML
@@ -54,6 +58,12 @@ public class ListAllSessionPromoController implements Initializable {
     private VBox section_body;
     @FXML
     private Label btnS;
+    @FXML
+    private Label btnPCat;
+    @FXML
+    private VBox section_bodyCategorie;
+    @FXML
+    private Label btnSCat;
 
     /**
      * Initializes the controller class.
@@ -63,7 +73,7 @@ public class ListAllSessionPromoController implements Initializable {
         // TODO
         
         try {
-            nav_cat.getChildren().clear();
+            section_bodyCategorie.getChildren().clear();
             section_body.getChildren().clear();
             ServiceFormation catProd = new ServiceFormation();
             List<Formation> listC = catProd.AfficherFormation();
@@ -72,14 +82,30 @@ public class ListAllSessionPromoController implements Initializable {
             Node [] nodesCategorie = new Node[listC.size()];
             Node [] nodesLigne = new Node[listPromo.size()];
             Node [] nodesColonne = new Node[listPromo.size()];
+            
+            if(listC.size() % 4 ==0)
+                listePageCategorie = new Node[listC.size()/4];
+            else
+                listePageCategorie=new Node[(listC.size()/4)+1];
+
             if(listPromo.size() % 6 == 0)
                 listePagePromotion  = new Node[listPromo.size()/6];
             else
                 listePagePromotion  = new Node[(listPromo.size()/6)+1];
             int i = 0 ;
             int j = 0 ;
+            FXMLLoader loaderPageCat = null ;
+            Node PageCat = null ;
+            PageCategorieRecController pcec = null ; 
+            
             for (Formation catp : listC)
             {
+                if(i == 0 || i % 4 == 0 ){
+                    loaderPageCat = new FXMLLoader(getClass().getResource("../Recette/ListAllRecettes/PageCategorieRec.fxml"));
+                    PageCat = loaderPageCat.load();
+                }
+                
+                pcec = loaderPageCat.getController();
                 FXMLLoader loadercat = new FXMLLoader(getClass().getResource("FormationSessionFiltre.fxml"));
                 Node catNode = loadercat.load() ;
                 FormationSessionFiltreController crfc = loadercat.getController();
@@ -97,8 +123,26 @@ public class ListAllSessionPromoController implements Initializable {
                     }
                   
                 });
-                nav_cat.getChildren().add(catNode);
+                pcec.setSection_bodyCategorie(catNode);
+                i++;
+                if(listC.size() > i){
+                    if(i % 4 == 0 ){
+                        listePageCategorie[nbrPageCat] = pcec.getSection_bodyCategorie();
+                        nbrPageCat++;
+                    }
+                    if( i == 4 )
+                        section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
+                }
+                else{
+                    if(i<4)
+                        section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
+                    listePageCategorie[nbrPageCat] = pcec.getSection_bodyCategorie();
+                    nbrPageCat++;
+                }
             }
+            nbrPageCat=0;
+            i=0;
+            
             FXMLLoader loaderItems = null ;
             Hbox_ItemsController hc = new Hbox_ItemsController();
             Page2sessionController Cp2r = new Page2sessionController();
@@ -173,8 +217,8 @@ public class ListAllSessionPromoController implements Initializable {
         section_body.getChildren().clear();
         LinePromoSesService RS = new LinePromoSesService();
         List<Session> listPromo = RS.SessionParFormation(idFor);
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        Node [] nodesLigne = new Node[listPromo.size()];
+        Node [] nodesColonne = new Node[listPromo.size()];
         int i = 0 ;
         int j = 0 ;
         
@@ -285,6 +329,14 @@ public class ListAllSessionPromoController implements Initializable {
         section_body.getChildren().clear();
         System.out.println(nbrLignePage);
         section_body.getChildren().add(listePagePromotion[nbrLignePage]);
+    }
+
+    @FXML
+    private void PagePrecedenteCategorie(MouseEvent event) {
+    }
+
+    @FXML
+    private void PageSuivantCategorie(MouseEvent event) {
     }
     
 }

@@ -39,26 +39,48 @@ public class Utilisateur {
     private Collection<Recette> recetteCollection;
     private Collection<Educate> educateCollection;
     private Collection<Commentaire> commentaireCollection;
+    private String imageProfil ;
 
     public Utilisateur() {
+    }
+
+    public Utilisateur(Integer id, String username, String email, String phoneNumber, String addresse, String nom, String prenom,String imageProfil) {
+        this.id = id;
+        this.username = username;
+        this.password = password;                
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.addresse = addresse;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.imageProfil=imageProfil;
+    }
+    
+    public Utilisateur(String email ,Integer id)
+    {
+        this.id=id;
+        this.email=email;
+    }
+
+    public Utilisateur(Integer id, String imageProfil) {
+        this.id = id;
+        this.imageProfil = imageProfil;
+    }
+
+    public Utilisateur(Integer id, String username, String email, String addresse, String nom, String prenom, String imageProfil) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.addresse = addresse;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.imageProfil = imageProfil;
     }
 
     public Utilisateur(Integer id) {
         this.id = id;
     }
 
-    public Utilisateur(int id ,String username, String email, String password, String roles, String phoneNumber, String addresse) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-        this.phoneNumber = phoneNumber;
-        this.addresse = addresse;
-    }
-
-    
-    
     public Utilisateur(Integer id, String username, String usernameCanonical, String email, String emailCanonical, boolean enabled, String password, String roles) {
         this.id = id;
         this.username = username;
@@ -68,6 +90,46 @@ public class Utilisateur {
         this.enabled = enabled;
         this.password = password;
         this.roles = roles;
+    }
+
+    public Utilisateur(String username, String email, String password, String confirmationToken, String roles, String phoneNumber, String addresse, String nom, String prenom) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.confirmationToken = confirmationToken;
+        this.roles = roles;
+        this.phoneNumber = phoneNumber;
+        this.addresse = addresse;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+       
+
+  public Utilisateur(Integer id, String email, String username, String password, String roles, String phoneNumber, String addresse, String nom, String prenom) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.phoneNumber = phoneNumber;
+        this.addresse = addresse;
+        this.nom = nom;
+        this.prenom = prenom;
+        
+    }
+    
+     public Utilisateur(Integer id, String email, String username, String password, String roles, String phoneNumber, String addresse, String nom, String prenom, String imageProfil) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.phoneNumber = phoneNumber;
+        this.addresse = addresse;
+        this.nom = nom;
+        this.prenom = prenom;
+          this.imageProfil = imageProfil;
+         
     }
 
     public Integer getId() {
@@ -80,6 +142,14 @@ public class Utilisateur {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getImageProfil() {
+        return imageProfil;
+    }
+
+    public void setImageProfil(String imageProfil) {
+        this.imageProfil = imageProfil;
     }
 
     public void setUsername(String username) {
@@ -292,7 +362,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", roles=" + roles + ", phoneNumber=" + phoneNumber + ", addresse=" + addresse + '}';
-    }   
+        return "Entity.Utilisateur[ id=" + id + " ]";
+    }
     
 }

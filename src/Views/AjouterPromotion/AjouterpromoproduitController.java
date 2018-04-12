@@ -97,11 +97,11 @@ public class AjouterpromoproduitController implements Initializable {
     @FXML
     private JFXDatePicker datefin;
     @FXML
+    private JFXTextField search;
+    @FXML
     private JFXButton modifier;
     @FXML
     private JFXButton sup;
-    @FXML
-    private JFXTextField search;
 
     /**
      * Initializes the controller class.

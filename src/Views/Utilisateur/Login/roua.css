@@ -1,0 +1,19 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.root {
+    -fx-background-image:url('cupcake.jpg');
+    -fx-background-size:cover;
+}
+.input {
+    -fx-text-inner-color: #e2b85b;
+    -fx-background-color:  transparent ;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #e2b85b;
+}
+.VBOX {
+    -fx-border-color: #FFFAF0;
+    -fx-background-color:#FFFAF0;
+    -fx-border-radius:2em;
+}

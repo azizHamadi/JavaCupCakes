@@ -11,6 +11,8 @@ import Entity.Produit;
 import Services.CategorieService;
 import Services.LinePromoService;
 import Services.ProduitService;
+import Views.Client.Produit.AfficherProduit.ProduitSingleController;
+import Views.Client.PromoSingle.PromoSingleController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -23,6 +25,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -55,6 +58,7 @@ public class ListAllProduitController implements Initializable {
     private VBox section_body;
     @FXML
     private Label btnS;
+    private VBox vbody;
 
     /**
      * Initializes the controller class.
@@ -68,7 +72,7 @@ public class ListAllProduitController implements Initializable {
             CategorieService catProd = new CategorieService();
             List<Categorie> listC = catProd.AfficherCategorie();
             LinePromoService ps = new LinePromoService();
-            List<LinePromo> listPromo = ps.AfficherLinePromo();
+            List<LinePromo> listPromo = ps.AfficherLinePromoS();
             Node [] nodesCategorie = new Node[listC.size()];
             Node [] nodesLigne = new Node[listPromo.size()];
             Node [] nodesColonne = new Node[listPromo.size()];
@@ -130,7 +134,38 @@ public class ListAllProduitController implements Initializable {
                 //msc.setNomPat(promo.getIdProd().getIdUser().getUsername());
                 ImageView img = msc.getImage();
                 img.setOnMouseClicked(e->{
-                    System.out.println("te5dem");
+                    try {
+                        System.out.println("te5dem");
+                      
+                           
+                            ps.UpdateProduitValeur(promo.getIdProd());
+                        
+                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../PromoSingle/PromoSingle.fxml"));
+                        Parent root;
+                        root = loader1.load();
+                        PromoSingleController c2 =loader1.getController();
+                        System.out.println("produit " + promo);
+                        BodyVBox.getChildren().clear();
+                        BodyVBox.getChildren().add(root);
+                        c2.setNomProd(promo.getIdProd().getNomProd());
+                        c2.setImage(promo.getIdProd().getImageprod());
+                        c2.setPrix(promo.getIdProd().getPrixProd().toString());
+                        c2.setNvprix(promo.getIdProd().getPrixProd().toString());
+                        c2.setCategorie(promo.getIdProd().getIdCat().getNomCat());
+                        c2.setStock(promo.getIdProd().getQteStockProd().toString());
+                        System.out.println(promo);
+                        c2.setProd(promo.getIdProd());
+                        c2.Controle();
+                        System.out.println("produit valeur" + promo.getIdProd().getValeur());
+                        
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    }   catch (SQLException ex) {
+                            Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                  
                 });
                 hc.addColonne(nodesColonne[i]);
                 i++;
@@ -173,8 +208,8 @@ public class ListAllProduitController implements Initializable {
         section_body.getChildren().clear();
         LinePromoService RS = new LinePromoService();
         List<Produit> listPromo = RS.ProduitParCategorie(idCat);
-        Node [] nodesLigne = new Node[3];
-        Node [] nodesColonne = new Node[9];
+        Node [] nodesLigne = new Node[listPromo.size()];
+        Node [] nodesColonne = new Node[listPromo.size()];
         int i = 0 ;
         int j = 0 ;
         

@@ -80,7 +80,7 @@ public class ProduitService {
         List<Produit> Prod = new ArrayList();
         String v="Vrai";
             try {
-            ResultSet rs =ste.executeQuery("SELECT * FROM Produit where etatProd='" + v + "'" ) ;
+            ResultSet rs =ste.executeQuery("SELECT * FROM Produit where  idUser = "+SessionUser.getId()+" and etatProd='" + v + "'" ) ;
             while(rs.next()){
                 Utilisateur user = new Utilisateur();
                 ResultSet cdUser = ste2.executeQuery("select * from utilisateur where id = "+ rs.getInt("idUser"));
@@ -103,7 +103,36 @@ public class ProduitService {
 
         return Prod;
     }
-   
+
+        public List<Produit> AfficherProduit() throws SQLException{
+        List<Produit> Prod = new ArrayList();
+        String v="Vrai";
+            try {
+            ResultSet rs =ste.executeQuery("SELECT * FROM Produit where etatProd='" + v + "'" ) ;
+            while(rs.next()){
+                Utilisateur user = new Utilisateur();
+                ResultSet cdUser = ste2.executeQuery("select * from utilisateur where id = "+ rs.getInt("idUser"));
+                while(cdUser.next())
+                {
+                    user.setUsername(cdUser.getString("username"));
+                 }
+                Categorie cd = new Categorie();
+                ResultSet line = ste3.executeQuery("select * from Categorie where idCat = "+ rs.getInt("idCat"));
+                while(line.next())
+                {
+                    cd.setNomCat(line.getString("nomCat"));
+                    }
+                System.out.println(rs.getString("imageprod"));
+                           Prod.add(new Produit(rs.getInt("IdProd"),rs.getString("nomProd"),(double)rs.getInt("qteStockProd"),rs.getString("typeProd"),rs.getInt("prixProd"),rs.getString("imageprod"),rs.getInt("QteAcheter"),cd,user,rs.getInt("valeur")));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return Prod;
+    }
+
     
     public List<Produit> AfficherProduitBack(int idUser) throws SQLException{
         List<Produit> Prod = new ArrayList();

@@ -13,6 +13,7 @@ import Services.ProduitService;
 import Services.PromotionService;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -34,6 +35,10 @@ public class AjouterpromoboutiqueController implements Initializable {
     private JFXComboBox<Double> promo;
     @FXML
     private JFXButton btnajout;
+    @FXML
+    private JFXDatePicker datedeb;
+    @FXML
+    private JFXDatePicker datefin;
 
     /**
      * Initializes the controller class.
@@ -61,7 +66,7 @@ public class AjouterpromoboutiqueController implements Initializable {
          Promotion p = ps.RecherchePromotion(promo.getValue());
          System.out.println(promo.getValue()); 
          Produit pr = new Produit ();
-         LinePromo f = new LinePromo(p, pr) ;
+         LinePromo f = new LinePromo(java.sql.Date.valueOf(datedeb.getValue()), java.sql.Date.valueOf(datefin.getValue()),p, pr);
          fs.calculerpromoboutique(p);
         
     }

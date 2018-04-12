@@ -213,15 +213,40 @@ public class LinePromoService {
 
     public List<LinePromo> AfficherLinePromo() throws SQLException {
         List<LinePromo> LinePromos = new ArrayList<>();
-        ResultSet rs = ste.executeQuery("select * from line_promo WHERE etatLinePromo='en cours' ");
+        ResultSet rs = ste.executeQuery("select * from line_promo l , produit p , categorie c  WHERE c.idCat=p.idCat and l.idProd=p.idProd and etatLinePromo='en cours' and p.idUser="+SessionUser.getId() );
         while (rs.next()) {
-            ResultSet rsp = ste1.executeQuery("select * from produit where idProd = " + rs.getInt("idProd"));
+            ResultSet rsp = ste1.executeQuery("select * from produit where idProd ="+rs.getInt("idProd"));
             Produit p = new Produit();
             while (rsp.next()) {
                 p.setIdProd(rsp.getInt("idProd"));
                 p.setNomProd(rsp.getString("nomProd"));
                 p.setPrixProd(rsp.getInt("prixProd"));
                 p.setNvPrix(rsp.getInt("nv_prix"));
+                p.setImageprod(rsp.getString("imageprod"));
+            }
+            ResultSet rspromo = ste2.executeQuery("select * from promotion where idPromo = " + rs.getInt("idPromo"));
+            Promotion promo = new Promotion();
+            while (rspromo.next()) {
+                promo.setIdPromo(rspromo.getInt("idPromo"));
+                promo.setTauxPromo(rspromo.getDouble("tauxPromo"));
+            }
+            LinePromos.add(new LinePromo(rs.getInt("id"), rs.getDate("dateDeb"), rs.getDate("dateFin"), promo, p));
+        }
+        return LinePromos;
+    }
+    
+    public List<LinePromo> AfficherLinePromoS() throws SQLException {
+        List<LinePromo> LinePromos = new ArrayList<>();
+        ResultSet rs = ste.executeQuery("select * from line_promo l , produit p , categorie c  WHERE c.idCat=p.idCat and l.idProd=p.idProd and etatLinePromo='en cours'" );
+        while (rs.next()) {
+            ResultSet rsp = ste1.executeQuery("select * from produit where idProd ="+rs.getInt("idProd"));
+            Produit p = new Produit();
+            while (rsp.next()) {
+                p.setIdProd(rsp.getInt("idProd"));
+                p.setNomProd(rsp.getString("nomProd"));
+                p.setPrixProd(rsp.getInt("prixProd"));
+                p.setNvPrix(rsp.getInt("nv_prix"));
+                p.setImageprod(rsp.getString("imageprod"));
             }
             ResultSet rspromo = ste2.executeQuery("select * from promotion where idPromo = " + rs.getInt("idPromo"));
             Promotion promo = new Promotion();
@@ -263,6 +288,7 @@ public class LinePromoService {
             pr.setNvPrix(rsProduit.getInt("nv_prix"));
             pr.setIdProd(rsProduit.getInt("idProd"));
             pr.setImageprod(rsProduit.getString("imageprod"));
+            pr.setQteStockProd(rsProduit.getDouble("qteStockProd"));
             ResultSet rsUser = ste1.executeQuery("select * from utilisateur where id=" + rsProduit.getInt("idUser"));
             while (rsUser.next()) {
                 user.setId(rsUser.getInt("id"));
@@ -315,4 +341,11 @@ public class LinePromoService {
         return FXCollections.observableArrayList(listLinePromo);
     }
     
+    public void UpdateProduitValeur (Produit p) throws SQLException{
+        String req ="update produit set valeur="+(p.getValeur() + 1)+" where idProd ="+p.getIdProd();
+        PreparedStatement pre = con.prepareStatement(req);
+         System.out.println("p = "+(p.getValeur()+1) + " id = "+ p.getIdProd());
+        pre.executeUpdate();
+         System.out.println(p);  
+   }
 }
