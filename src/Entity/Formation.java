@@ -23,9 +23,37 @@ private Integer idFor;
     private Collection<Session> sessionCollection;
     private TypeFormation idTypeFor;
     private Utilisateur idUser;
+     private String longitude;
+    private String atitude;
 
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getAtitude() {
+        return atitude;
+    }
+
+    public void setAtitude(String atitude) {
+        this.atitude = atitude;
+    }
     public Formation() {
     }
+     public Formation(String nomFor, String descriptionFor, Date dateFor, String imageform, TypeFormation idTypeFor,String longitude,String atitude) {
+        this.nomFor = nomFor;
+        this.place = place;
+        this.descriptionFor = descriptionFor;
+        this.dateFor = dateFor;
+        this.imageform = imageform;
+        this.idTypeFor = idTypeFor;
+        this.longitude=longitude;
+        this.atitude=atitude;
+    }
+
 
     
     public Formation(Integer idFor) {

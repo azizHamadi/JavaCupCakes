@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.web.HTMLEditor?>
 
 <AnchorPane id="AnchorPane" prefHeight="584.0" prefWidth="1009.0" style="-fx-background-color: #f4f3ef;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Formateur.GestionFormations.CRUDFormationsController">
    <children>
@@ -27,12 +26,13 @@
                   <TableView fx:id="tableFormation" onMouseClicked="#FetcherTable" prefHeight="554.0" prefWidth="572.0" style="-fx-border-color: #96cad9; -fx-background-color: #f4f3ef;">
                     <columns>
                       <TableColumn fx:id="columnNom" prefWidth="67.0" text="Nom " />
-                      <TableColumn fx:id="columnPays" prefWidth="50.0" text="Pays" />
                         <TableColumn fx:id="columntypeformation" prefWidth="117.0" text="TypeFormation" />
                         <TableColumn fx:id="columnidFormation" prefWidth="60.0" text="Formation" visible="false" />
-                        <TableColumn fx:id="columndate" prefWidth="100.0" text="Date" />
+                        <TableColumn fx:id="columndate" prefWidth="150.0" text="Date" />
                         <TableColumn fx:id="columnImage" prefWidth="67.0" text="Image" visible="false" />
-                        <TableColumn fx:id="columnDescription" prefWidth="120.0" text="Description" />
+                        <TableColumn fx:id="columnlong" prefWidth="75.0" text="Longitude" />
+                        <TableColumn fx:id="columnLat" prefWidth="75.0" text="atitude" />
+                        <TableColumn fx:id="columnDescription" prefWidth="75.0" text="Description" />
                     </columns>
                   </TableView>
                   <JFXTextField fx:id="txtSearch" onKeyTyped="#SearchFormation" promptText="Search formation" unFocusColor="#96cad9" />
@@ -41,7 +41,6 @@
             <AnchorPane fx:id="anchorPane" onMouseClicked="#InvisibleBouton" prefHeight="586.0" prefWidth="703.0">
                <children>
                   <JFXTextField fx:id="txtNom" focusColor="#e57c3e" layoutX="18.0" layoutY="26.0" promptText="Nom Formation" unFocusColor="#96cad9" />
-                  <JFXTextField fx:id="txtplace" focusColor="#e57c3e" layoutX="18.0" layoutY="84.0" promptText="Pays" unFocusColor="#96cad9" />
                   <JFXButton fx:id="btnModifierFormation" layoutX="201.0" layoutY="557.0" onAction="#ModifierFormation" prefHeight="35.0" prefWidth="113.0" style="-fx-border-color: #75bcd0; -fx-border-radius: 2em; -fx-border-width: 2px;" text="Modifier" textFill="#96cad9" visible="false">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -65,7 +64,7 @@
                      </font>
                   </JFXButton>
                   <Label fx:id="labelnom" layoutX="18.0" layoutY="59.0" text="veuillez saisir le nom" textFill="#e10303" visible="false" />
-                  <Label fx:id="labelplace" layoutX="16.0" layoutY="109.0" text="veuillez saisir un pays" textFill="#e81010" visible="false" />
+                  <Label fx:id="labellong" layoutX="17.0" layoutY="97.0" text="veuillez saisir la longitude" textFill="#e81010" visible="false" />
                   <Label fx:id="labeltypeformation" layoutX="12.0" layoutY="183.0" text="veuillez choisir une formation" textFill="#e41212" visible="false" />
                   <Label fx:id="labeldatedebut" layoutX="19.0" layoutY="251.0" text="veuillez saisir la date debut" textFill="#dd0f0f" visible="false" />
                   <Label fx:id="labelimage" layoutX="35.0" layoutY="512.0" text="veuillez choisir une image" textFill="#f80f0f" visible="false" />
@@ -85,7 +84,9 @@
                         <FontAwesomeIconView fill="#96cad9" glyphName="PLUS" size="25" wrappingWidth="23.428571701049805" />
                      </graphic>
                   </Button>
-                  <HTMLEditor fx:id="txtDescription" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="19.0" layoutY="296.0" prefHeight="200.0" prefWidth="506.0" />
+                  <JFXTextField fx:id="txtlong" layoutX="17.0" layoutY="68.0" promptText="longitude" unFocusColor="#96cad9" />
+                  <JFXTextField fx:id="txtatitude" layoutX="17.0" layoutY="118.0" promptText="atitude" unFocusColor="#96cad9" />
+                  <Label fx:id="labellat" layoutX="187.0" layoutY="122.0" text="veuillez saisir la longitude" textFill="#e11010" visible="false" />
                </children>
             </AnchorPane>
          </children>

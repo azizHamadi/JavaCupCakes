@@ -57,8 +57,7 @@ import javafx.util.StringConverter;
  * @author FERIEL FADHLOUN
  */
 public class CRUDFormationsController implements Initializable {
-
-    @FXML
+ @FXML
     private TableColumn<Formation, String> columnImage;
     @FXML
     private JFXTextField txtSearch;
@@ -66,8 +65,7 @@ public class CRUDFormationsController implements Initializable {
     private AnchorPane anchorPane;
     @FXML
     private JFXTextField txtNom;
-    @FXML
-    private JFXTextField txtplace;
+    
     @FXML
     private JFXComboBox<TypeFormation> combotypeformation;
     @FXML
@@ -82,7 +80,6 @@ public class CRUDFormationsController implements Initializable {
     private JFXButton btnListeSession;
     @FXML
     private Label labelnom;
-    @FXML
     private Label labelplace;
     @FXML
     private Label labeltypeformation;
@@ -96,8 +93,6 @@ public class CRUDFormationsController implements Initializable {
     private Label labeldescription;
     @FXML
     private TableView<Formation> tableFormation;
-    @FXML
-    private TableColumn<Formation, String> columnPays;
     @FXML
     private TableColumn<Formation, TypeFormation> columntypeformation;
     @FXML
@@ -135,9 +130,20 @@ Stage stage;
     @FXML
     private Button btnAjoutTypeFor;
     @FXML
-    private TableColumn<Formation, String> columnDescription;
-
-     
+    private JFXTextField txtlong;
+    @FXML
+    private JFXTextField txtatitude;
+    @FXML
+    private Label labellong;
+    @FXML
+    private Label labellat;
+    @FXML
+    private TableColumn<?, ?> columnlong;
+    @FXML
+    private TableColumn<?, ?> columnLat;
+    @FXML
+    private TableColumn<?, ?> columnDescription;
+    
     /**
      * Initializes the controller class.
      */
@@ -184,22 +190,11 @@ Stage stage;
             btnSuprrimerFormation.setVisible(true);
             btnAjouterFormatino.setVisible(false);
         
-        System.out.println("hello");
         txtNom.setText(tableFormation.getSelectionModel().getSelectedItem().getNomFor());
-        txtplace.setText(tableFormation.getSelectionModel().getSelectedItem().getPlace());
         txtDescription.setHtmlText(tableFormation.getSelectionModel().getSelectedItem().getDescriptionFor());       
-        String dateformation=tableFormation.getSelectionModel().getSelectedItem().getDateFor().toString();
-        ServiceFormation sf=new ServiceFormation();
-        String year=dateformation.substring(0,4);
-        String month=dateformation.substring(5,7);
-        String date=dateformation.substring(8,10);
-        System.out.println("year="+year);
-        System.out.println("month="+month);
-        System.out.println("day="+date);
-        //System.out.println("id mel type for "+sf.ReturnIdtypeForFromBynom(taableView.getSelectionModel().getSelectedItem().getIdTypeFor().toString()));
-        txtdate.getEditor().setText(date+"/"+month+"/"+year);
+        txtatitude.setText(tableFormation.getSelectionModel().getSelectedItem().getAtitude());
+        txtlong.setText(tableFormation.getSelectionModel().getSelectedItem().getLongitude());
         txtdate.setValue(LocalDate.parse(tableFormation.getSelectionModel().getSelectedItem().getDateFor().toString()));
-        System.out.println("ahaya el type formatiion"+tableFormation.getSelectionModel().getSelectedItem().getIdTypeFor());
        
         combotypeformation.setValue(tableFormation.getSelectionModel().getSelectedItem().getIdTypeFor());
         System.out.println(combotypeformation.getValue().getIdTypeFor());
@@ -225,7 +220,7 @@ Stage stage;
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                {
-                    Formation f=new Formation(txtNom.getText(),txtplace.getText(),txtDescription.getHtmlText().substring(58, txtDescription.getHtmlText().length()-14),java.sql.Date.valueOf(txtdate.getValue()),imgf,combotypeformation.getValue());
+                    Formation f=new Formation(txtNom.getText(),txtDescription.getHtmlText().substring(58, txtDescription.getHtmlText().length()-14),java.sql.Date.valueOf(txtdate.getValue()),imgf,combotypeformation.getValue(),txtlong.getText(),txtatitude.getText());
                     service.ModificationFormation(f,tableFormation.getSelectionModel().getSelectedItem().getIdFor());
                     ClearFields();
                     RefreshTable();
@@ -299,7 +294,7 @@ Stage stage;
     //controle de saisie des champs
     public boolean ValidateFields()
     {
-       int img = 0,nom = 0,combo = 0,desc = 0 ,date = 0,place=0;
+       int img = 0,nom = 0,combo = 0,desc = 0 ,date = 0,longitude=0,lat=0;
         if (imgf.isEmpty())
         {
             img = 1;
@@ -315,13 +310,20 @@ Stage stage;
         }
         else
             labelnom.setVisible(false);
-        if (txtplace.getText().length()==0)
+        if (txtlong.getText().length()==0)
         {
-            place = 1 ;
-            labelplace.setVisible(true);
+            longitude = 1 ;
+            labellong.setVisible(true);
         }
         else
-            labelplace.setVisible(false);
+            labellong.setVisible(false);
+        if (txtatitude.getText().length()==0)
+        {
+            lat = 1 ;
+            labellat.setVisible(true);
+        }
+        else
+            labellat.setVisible(false);
         if (combotypeformation.getValue() == null)
         {
             combo = 1 ;
@@ -360,13 +362,14 @@ Stage stage;
             System.out.println(LocalDate.now());
         }   
          
-        return ( img==1 || nom==1 || combo==1 || desc==1 || date == 1 || place==1);
+        return ( img==1 || nom==1 || combo==1 || desc==1 || date == 1 || longitude==1 || lat==1);
     }
     //vider les champs
     public void ClearFields()
     {
         txtNom.clear();
-        txtplace.clear();
+        txtatitude.clear();
+        txtlong.clear();
         txtDescription.setHtmlText("");
         imageview.setImage(null);
         txtdate.setValue(null);
@@ -391,7 +394,7 @@ Stage stage;
                 }
             else
                 {
-                    Formation f=new Formation(txtNom.getText(),txtplace.getText(),txtDescription.getHtmlText().substring(58, txtDescription.getHtmlText().length()-14),java.sql.Date.valueOf(txtdate.getValue()),imgf,combotypeformation.getValue());
+                    Formation f=new Formation(txtNom.getText(),txtDescription.getHtmlText().substring(58, txtDescription.getHtmlText().length()-14),java.sql.Date.valueOf(txtdate.getValue()),imgf,combotypeformation.getValue(),txtlong.getText(),txtatitude.getText());
 
                     Files.copy(f1.getAbsoluteFile().toPath(),f2.getAbsoluteFile().toPath());
 
@@ -419,9 +422,10 @@ Stage stage;
         tableFormation.getItems().clear();
         columnidFormation.setCellValueFactory(new PropertyValueFactory<>("idFor"));
         columnNom.setCellValueFactory(new PropertyValueFactory<>("nomFor"));
-        columnPays.setCellValueFactory(new PropertyValueFactory<>("place"));
-        columnDescription.setCellValueFactory(new PropertyValueFactory<>("descriptionFor"));
+        columnlong.setCellValueFactory(new PropertyValueFactory<>("longitude"));
+        columnLat.setCellValueFactory(new PropertyValueFactory<>("atitude"));
         columndate.setCellValueFactory(new PropertyValueFactory<>("dateFor"));
+        columnDescription.setCellValueFactory(new PropertyValueFactory<>("descriptionFor"));
         columnImage.setCellValueFactory(new PropertyValueFactory<>("imageform"));
         columntypeformation.setCellValueFactory(new PropertyValueFactory<>("idTypeFor"));
         tableFormation.setItems(service.AfficherListeFormation());
@@ -439,7 +443,7 @@ Stage stage;
 
     @FXML
     private void AutrePage(ActionEvent event) throws IOException, SQLException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("SessionByIDFor.fxml"));       
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SessionByIDFor.fxml"));       
         Parent root = loader.load();   
         SessionByIDForController sc = loader.getController();
         sc.setVbox(vbox);
@@ -517,6 +521,4 @@ Stage stage;
             }
         });
     }
-    
-    
 }
