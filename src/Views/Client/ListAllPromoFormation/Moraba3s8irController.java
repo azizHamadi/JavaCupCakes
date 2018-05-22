@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -25,7 +26,6 @@ public class Moraba3s8irController implements Initializable {
     
     @FXML
     private Text nom;
-    @FXML
     private Text nomFor;
     @FXML
     private Text Prix;
@@ -35,6 +35,8 @@ public class Moraba3s8irController implements Initializable {
     private ImageView image;
     @FXML
     private VBox session;
+    @FXML
+    private Text inscription;
 
 
     /**
@@ -45,8 +47,13 @@ public class Moraba3s8irController implements Initializable {
         // TODO
     }    
 
+    public Text getInscription() {
+        return inscription;
+    }
 
-  
+    public void setInscription(Text inscription) {
+        this.inscription = inscription;
+    }
 
     public Text getNom() {
         return nom;
@@ -57,11 +64,11 @@ public class Moraba3s8irController implements Initializable {
     }
 
     public Text getNomFor() {
-        return nomFor;
+        return nom;
     }
 
     public void setNomFor(String nomFor) {
-        this.nomFor.setText(nomFor);
+        this.nom.setText(nomFor);
     }
 
     
@@ -88,6 +95,10 @@ public class Moraba3s8irController implements Initializable {
     public void setImage(String image) {
         File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Formateur/" + image);
         this.image.setImage(new Image(file.toURI().toString()));
+    }
+
+    @FXML
+    private void inscriptionClient(MouseEvent event) {
     }
     
 }

@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/badou/JavaCupCakes/src/Views/Client/GestionFormation/ListAllFormationsController.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Views/Utilisateur/Login/LoginController.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Views/Client/Recette/ListAllRecettes/ListAllRecettesController.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Services/ServiceTypeFormation.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Views/Patisserie/Recette/ListAllRecettes/ListAllRecettesController.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Services/SessionService.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Services/ServiceNotification.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Services/ServiceFormation.java</file>
+            <file>file:/D:/fafi5/JavaCupCakes/src/Services/ServiceEducate.java</file>
         </group>
     </open-files>
 </project-private>

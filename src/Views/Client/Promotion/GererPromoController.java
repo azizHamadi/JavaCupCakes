@@ -7,6 +7,7 @@ package Views.Client.Promotion;
 
 import Views.Client.ListAllPromoFormation.ListAllSessionPromoController;
 import Views.Client.ListAllPromotions.ListAllProduitController;
+import Views.Client.Panier.AfficherPanier.AfficherPanierController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -58,6 +59,15 @@ public class GererPromoController implements Initializable {
         ListAllSessionPromoController Clar = loader.getController();
         body.getChildren().clear();
         body.getChildren().add(Clar.getBody());
+    }
+
+    @FXML
+    private void PANIER(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Panier/AfficherPanier/AffichrerPanier.fxml"));
+        Node root = loader.load();
+        AfficherPanierController Clar = loader.getController();
+        body.getChildren().clear();
+        body.getChildren().add(root);
     }
     
 }

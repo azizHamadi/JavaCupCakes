@@ -75,7 +75,7 @@ public class SessionSingleController implements Initializable {
     }
 
     public void setImage(String image) {
-         File file = new File("D:/wamp64/www/final/web/public/uploads/brochures/Formateur/" + image);
+         File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Formateur/" + image);
         this.image.setImage(new Image(file.toURI().toString()));    }
 
     public void setNomSes(String nomSes) {
@@ -110,7 +110,5 @@ public class SessionSingleController implements Initializable {
     public void setSess(Session sess) {
         this.sess = sess;
     }
-    
-    
     
 }

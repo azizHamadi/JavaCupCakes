@@ -7,6 +7,7 @@ package Views.Patisserie.Produit;
 
 import Views.Client.Recette.*;
 import Views.Client.Recette.ListAllRecettes.ListAllRecettesController;
+import Views.Patisserie.Produit.AjouterProduit.AjouterProduitController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,6 +54,8 @@ public class GererProduitController implements Initializable {
     private void AjouterProduit(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Produit/AjouterProduit/AjouterProduit.fxml"));
         Node root = loader.load();
+        AjouterProduitController ajouterPController = loader.getController();
+        ajouterPController.setVbox(body);
         body.getChildren().clear();
         body.getChildren().add(root);
     }

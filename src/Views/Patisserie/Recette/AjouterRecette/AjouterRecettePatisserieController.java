@@ -25,7 +25,9 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -34,6 +36,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
@@ -75,6 +78,7 @@ public class AjouterRecettePatisserieController implements Initializable {
     private JFXButton Enregistrer;
     @FXML
     private JFXButton Annuler;
+    private VBox vbox;
     /**
      * Initializes the controller class.
      */
@@ -119,7 +123,7 @@ public class AjouterRecettePatisserieController implements Initializable {
             textImage.setText(fd1.getName());
         imgf = fd1.getName();
         fdS = fd1.getAbsolutePath();
-        fdS1 = ("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Recettes/"+fd1.getName());
+        fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Recettes/"+fd1.getName());
         lab_image.setVisible(false);
         }
         //macopitch l'image 5ater matetcopa ken maya3mel enregistrer w ykounou les conditions lkol s7a7 
@@ -142,7 +146,10 @@ public class AjouterRecettePatisserieController implements Initializable {
         File f2 = new File(fdS1);
         Files.copy(f1.getAbsoluteFile().toPath(),f2.getAbsoluteFile().toPath());
         rs.AjouterRecette(new Recette(nomRec.getText(), description.getHtmlText().substring(58, description.getHtmlText().length()-14), imgf, catRec.getValue(), new Utilisateur(SessionUser.getId())));
-        
+        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("../MesRecettes/MesRecettes.fxml"));
+        Node root = loaderListeR.load();
+        vbox.getChildren().clear();
+        vbox.getChildren().add(root);
     }
     
     public boolean verif(){
@@ -198,7 +205,7 @@ public class AjouterRecettePatisserieController implements Initializable {
             textImage.setText(fd1.getName());
         imgf = fd1.getName();
         fdS = fd1.getAbsolutePath();
-        fdS1 = ("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Recettes/"+fd1.getName());
+        fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Recettes/"+fd1.getName());
         //Files.copy(f.getAbsoluteFile().toPath(),fd.getAbsoluteFile().toPath());
         lab_image.setVisible(false);
         }
@@ -231,6 +238,14 @@ public class AjouterRecettePatisserieController implements Initializable {
                 Logger.getLogger(AjouterRecettePatisserieController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+    }
+
+    public VBox getVbox() {
+        return vbox;
+    }
+
+    public void setVbox(VBox vbox) {
+        this.vbox = vbox;
     }
         
 }

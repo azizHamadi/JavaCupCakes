@@ -65,7 +65,7 @@ public class RecetteService {
     }
 
     public void SupprimerRecette(Recette recette) throws SQLException{
-        String req ="delete from recette where idRec = ?";
+        String req ="update recette set etatRec='non' where idRec = ?";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setInt(1, recette.getIdRec());
         pre.executeUpdate();
@@ -73,9 +73,9 @@ public class RecetteService {
 
     public List<Recette> AfficherRecette(int idUser) throws SQLException{
         List<Recette> recettes = new ArrayList<>();
-        String req = "select * from recette ";
+        String req = "select * from recette where etatRec='oui' ";
         if (idUser != 0)
-            req += "where idUser="+idUser ;
+            req += "and idUser="+idUser ;
         ResultSet rsRecette = ste.executeQuery(req);
 
         while(rsRecette.next())
@@ -116,7 +116,7 @@ public class RecetteService {
         
     public List<Recette> RecetteParCategorie(int idCat, int idUser) throws SQLException{
         List<Recette> listR = new ArrayList<>();
-        String req = "select * from recette where idCatRec="+idCat +" " ;
+        String req = "select * from recette where etatRec='oui' and idCatRec="+idCat +" " ;
         if (idUser != 0 )
             req+= "and idUser = "+ idUser;
         ResultSet rsRecette = ste.executeQuery(req);
@@ -157,7 +157,7 @@ public class RecetteService {
     
     public List<Recette> RechercheParNomRecette(String nom ,int idUser) throws SQLException{
         List<Recette> listR = new ArrayList<>();
-        String req = "select * from recette where nomRec like '%"+nom+"%' ";
+        String req = "select * from recette where etatRec='oui' and nomRec like '%"+nom+"%' ";
             if (idUser != 0 )
                 req += " and idUser="+idUser ;
         ResultSet rsRecette = ste.executeQuery(req);

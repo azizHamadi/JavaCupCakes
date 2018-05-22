@@ -5,6 +5,7 @@
  */
 package Views.Client.ListAllPromoFormation;
 
+import Entity.Educate;
 import Entity.Formation;
 import Entity.Linepromoses;
 import Entity.Session;
@@ -27,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -78,16 +80,17 @@ public class ListAllSessionPromoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        
         try {
+            // TODO
+            
             section_bodyCategorie.getChildren().clear();
             section_body.getChildren().clear();
             ServiceFormation catProd = new ServiceFormation();
             List<Formation> listC = catProd.AfficherFormation();
             LinePromoSesService ps = new LinePromoSesService();
-            List<Linepromoses> listPromo = ps.AfficherLinePromoSes();
+            List<Linepromoses> listPromo = ps.AfficherLinePromoSesClient();
             Node [] nodesCategorie = new Node[listC.size()];
+            
             Node [] nodesLigne = new Node[listPromo.size()];
             Node [] nodesColonne = new Node[listPromo.size()];
             
@@ -108,139 +111,181 @@ public class ListAllSessionPromoController implements Initializable {
             
             for (Formation catp : listC)
             {
-                if(i == 0 || i % 4 == 0 ){
-                    loaderPageCat = new FXMLLoader(getClass().getResource("../Recette/ListAllRecettes/PageCategorieRec.fxml"));
-                    PageCat = loaderPageCat.load();
-                }
-                
-                pcec = loaderPageCat.getController();
-                FXMLLoader loadercat = new FXMLLoader(getClass().getResource("FormationSessionFiltre.fxml"));
-                Node catNode = loadercat.load() ;
-                FormationSessionFiltreController crfc = loadercat.getController();
-                crfc.setNomFor(catp.getNomFor());
-                crfc.setNbrSes(String.valueOf(catProd.CountSessionParFormation(catp.getIdFor())));
-                Text Btafficher = crfc.getAffichersession();
-                Btafficher.setOnMouseClicked(e->{
-                  
-                    try {
-                        SessionParFormation(catp.getIdFor());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    if(i == 0 || i % 4 == 0 ){
+                        loaderPageCat = new FXMLLoader(getClass().getResource("../Recette/ListAllRecettes/PageCategorieRec.fxml"));
+                        PageCat = loaderPageCat.load();
                     }
-                  
-                });
-                pcec.setSection_bodyCategorie(catNode);
-                i++;
-                if(listC.size() > i){
-                    if(i % 4 == 0 ){
+                    
+                    pcec = loaderPageCat.getController();
+                    FXMLLoader loadercat = new FXMLLoader(getClass().getResource("FormationSessionFiltre.fxml"));
+                    Node catNode = loadercat.load() ;
+                    FormationSessionFiltreController crfc = loadercat.getController();
+                    crfc.setNomFor(catp.getNomFor());
+                    crfc.setNbrSes(String.valueOf(catProd.CountSessionParFormation(catp.getIdFor())));
+                    Text Btafficher = crfc.getAffichersession();
+                    Btafficher.setOnMouseClicked(e->{
+                        
+                        try {
+                            SessionParFormation(catp.getIdFor());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                    });
+                    pcec.setSection_bodyCategorie(catNode);
+                    i++;
+                    if(listC.size() > i){
+                        if(i % 4 == 0 ){
+                            listePageCategorie[nbrPageCat] = pcec.getSection_bodyCategorie();
+                            nbrPageCat++;
+                        }
+                        if( i == 4 )
+                            section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
+                    }
+                    else{
+                        if(i<4)
+                            section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
                         listePageCategorie[nbrPageCat] = pcec.getSection_bodyCategorie();
                         nbrPageCat++;
                     }
-                    if( i == 4 )
-                        section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
-                }
-                else{
-                    if(i<4)
-                        section_bodyCategorie.getChildren().add(pcec.getSection_bodyCategorie());
-                    listePageCategorie[nbrPageCat] = pcec.getSection_bodyCategorie();
-                    nbrPageCat++;
+                } catch (SQLException ex) {
+                    Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             nbrPageCat=0;
-            i=0;
             
+            i=0;
+            ServiceEducate Edu = new ServiceEducate();
             FXMLLoader loaderItems = null ;
             Hbox_ItemsController hc = new Hbox_ItemsController();
             Page2sessionController Cp2r = new Page2sessionController();
             for(Linepromoses promo : listPromo)
             {
-                // parcour des lignes
-                if ( i % 3 == 0 || i == 0)
-                {
-                    loaderItems = new FXMLLoader(getClass().getResource("Hbox_Items.fxml"));
-                    nodesLigne[j] = loaderItems.load() ;
-                }
-                hc = loaderItems.getController();
-                Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
-                System.out.println("date actuelle"+dateactuelle);
-                if(promo.getDateFin().before(dateactuelle))
-                {
-                    System.out.println("modification date eli kbal date actuelle effectuée");
-                    ps.ModifierEtatLinePromoses((java.sql.Date) (Date) promo.getDateFin());
-                }
-                //parcour des colonnes
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("moraba3s8ir.fxml"));
-                nodesColonne[i] = loader.load() ;
-                Moraba3s8irController msc = loader.getController();
-                msc.setNom(promo.getIdSes().getNomSes());
-                msc.setImage(promo.getIdSes().getImagesess());
-                msc.setPrix(promo.getIdSes().getPrixSes().toString());
-                msc.setNv_prix(promo.getIdSes().getNvPrixSes().toString());
-                //msc.setNomCat(promo.getIdProd().getIdCat().getNomCat());
-                //msc.setNomPat(promo.getIdProd().getIdUser().getUsername());
-                ImageView img = msc.getImage();
-                img.setOnMouseClicked(e->{
-                                       try {
-                        System.out.println("fafiiii");
-                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../../Promotion/DetailSession/SessionSingle.fxml"));
-                        Parent root;
-                        root = loader1.load();
-                       SessionSingleController c2 =loader1.getController();
-                        System.out.println("produit " + promo);
-                        BodyVBox.getChildren().clear();
-                        BodyVBox.getChildren().add(root);
-                        c2.setNomSes(promo.getIdSes().getNomSes());
-                        c2.setImage(promo.getIdSes().getImagesess());
-                        c2.setPrix(promo.getIdSes().getPrixSes().toString());
-                        c2.setNvprix(promo.getIdSes().getNvPrixSes().toString());
-                        c2.setFormation(promo.getIdSes().getIdFor().getNomFor());
-                        c2.setCapacoté(promo.getIdSes().getCapaciteSes().toString());
-                        System.out.println(promo);
-                        c2.setSess(promo.getIdSes());
-                        System.out.println("produit valeur" + promo.getIdSes());
-                    } catch (IOException ex) {
-                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                });
-                hc.addColonne(nodesColonne[i]);
-                i++;
-                if(j==0 || j % 2 == 0){
-                    FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2session.fxml"));
-                    listePagePromotion[nbrLignePage] = loaderPage2Ligne.load();
-                    Cp2r = loaderPage2Ligne.getController();
-                }
-                if( listPromo.size() > i)
-                {
-                    if ( i % 3 == 0 ){
-                        Cp2r.setPage2Ligne(nodesLigne[j]);
-                        j++;
-                        if(j==2)
-                            section_body.getChildren().add(listePagePromotion[nbrLignePage]);
-                        if (j % 2 ==0){
+                    try {
+                        // parcour des lignes
+                        if ( i % 3 == 0 || i == 0)
+                        {
+                            loaderItems = new FXMLLoader(getClass().getResource("Hbox_Items.fxml"));
+                            nodesLigne[j] = loaderItems.load() ;
+                        }
+                        hc = loaderItems.getController();
+                        Date dateactuelle = new java.sql.Date((new java.util.Date()).getTime());
+                        System.out.println("date actuelle"+dateactuelle);
+                        if(promo.getDateFin().before(dateactuelle))
+                        {
+                            System.out.println("modification date eli kbal date actuelle effectuée");
+                            ps.ModifierEtatLinePromoses((java.sql.Date) (Date) promo.getDateFin());
+                        }
+                        //parcour des colonnes
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("moraba3s8ir.fxml"));
+                        nodesColonne[i] = loader.load() ;
+                        Moraba3s8irController msc = loader.getController();
+                        msc.setNom(promo.getIdSes().getNomSes());
+                        msc.setImage(promo.getIdSes().getImagesess());
+                        msc.setPrix(promo.getIdSes().getPrixSes().toString());
+                        msc.setNv_prix(promo.getIdSes().getNvPrixSes().toString());
+                        //msc.setNomCat(promo.getIdProd().getIdCat().getNomCat());
+                        //msc.setNomPat(promo.getIdProd().getIdUser().getUsername());
+                        msc.getInscription().setOnMouseClicked(e->{
+                            try {
+                                if(Edu.ifClientExists(promo.getIdSes().getIdSes()))
+                                {
+                                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                                    alert.setTitle("Attention!");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Client deja inscrit!");
+                                    alert.showAndWait();
+                                }
+                                else
+                                {
+                                    Edu.inscriptionClient(new Educate(promo.getIdSes()));
+                                    FXMLLoader loaderListSess = new FXMLLoader(getClass().getResource("ListAllSessionPromo.fxml"));
+                                    Node root = loaderListSess.load();
+                                    body.getChildren().clear();
+                                    body.getChildren().add(root);
+                                }
+                            } catch (IOException ex) {
+                                Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                        ImageView img = msc.getImage();
+                        img.setOnMouseClicked(e->{
+                            try {
+                                System.out.println("fafiiii");
+                                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../../Promotion/DetailSession/SessionSingle.fxml"));
+                                Parent root;
+                                root = loader1.load();
+                                SessionSingleController c2 =loader1.getController();
+                                System.out.println("produit " + promo);
+                                BodyVBox.getChildren().clear();
+                                BodyVBox.getChildren().add(root);
+                                c2.setNomSes(promo.getIdSes().getNomSes());
+                                c2.setImage(promo.getIdSes().getImagesess());
+                                c2.setPrix(promo.getIdSes().getPrixSes().toString());
+                                c2.setNvprix(promo.getIdSes().getNvPrixSes().toString());
+                                c2.setFormation(promo.getIdSes().getIdFor().getNomFor());
+                                c2.setCapacoté(promo.getIdSes().getCapaciteSes().toString());
+                                System.out.println(promo);
+                                c2.setSess(promo.getIdSes());
+                                System.out.println("produit valeur" + promo.getIdSes());
+                            } catch (IOException ex) {
+                                Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        });
+                        hc.addColonne(nodesColonne[i]);
+                        i++;
+                        if(j==0 || j % 2 == 0){
+                            try {
+                                FXMLLoader loaderPage2Ligne = new FXMLLoader(getClass().getResource("Page2session.fxml"));
+                                listePagePromotion[nbrLignePage] = loaderPage2Ligne.load();
+                                Cp2r = loaderPage2Ligne.getController();
+                            } catch (IOException ex) {
+                                Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        if( listPromo.size() > i)
+                        {
+                            if ( i % 3 == 0 ){
+                                Cp2r.setPage2Ligne(nodesLigne[j]);
+                                j++;
+                                if(j==2)
+                                    section_body.getChildren().add(listePagePromotion[nbrLignePage]);
+                                if (j % 2 ==0){
+                                    listePagePromotion[nbrLignePage]=Cp2r.getPage2Ligne();
+                                    nbrLignePage++;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (j<2)
+                                section_body.getChildren().add(listePagePromotion[nbrLignePage]);
+                            Cp2r.setPage2Ligne(nodesLigne[j]);
                             listePagePromotion[nbrLignePage]=Cp2r.getPage2Ligne();
                             nbrLignePage++;
                         }
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                else
-                {
-                    if (j<2)
-                        section_body.getChildren().add(listePagePromotion[nbrLignePage]);
-                    Cp2r.setPage2Ligne(nodesLigne[j]);
-                    listePagePromotion[nbrLignePage]=Cp2r.getPage2Ligne();
-                    nbrLignePage++;
-                }
-            }
-            System.out.println(listePagePromotion.length + " hahahah "+ nbrLignePage);
-        
-        } catch (SQLException | IOException ex) {
-            Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    nbrLignePage = 0 ;
+                System.out.println(listePagePromotion.length + " hahahah "+ nbrLignePage);
 
+                nbrLignePage = 0 ;
+            } catch (SQLException ex) {
+                Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
     }    
+        
      public void SessionParFormation(int idFor) throws SQLException, IOException{
         section_body.getChildren().clear();
         LinePromoSesService RS = new LinePromoSesService();
@@ -270,31 +315,43 @@ public class ListAllSessionPromoController implements Initializable {
             msc.setNomFor(promo.getIdFor().getNomFor());
             msc.setNv_prix(promo.getNvPrixSes().toString());
             msc.setPrix(promo.getPrixSes().toString());
+            msc.getInscription().setOnMouseClicked(e->{
+                        try {
+                            ServiceEducate Edu = new ServiceEducate();
+                            Edu.inscriptionClient(new Educate(promo));
+                            FXMLLoader loaderListSess = new FXMLLoader(getClass().getResource("ListAllSessionPromo.fxml"));
+                            Node root = loaderListSess.load();
+                            body.getChildren().clear();
+                            body.getChildren().add(root);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
                
-                                       try {
-                        System.out.println("fafiiii");
-                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../../Promotion/DetailSession/SessionSingle.fxml"));
-                        Parent root;
-                        root = loader1.load();
-                       SessionSingleController c2 =loader1.getController();
-                        System.out.println("produit " + promo);
-                        BodyVBox.getChildren().clear();
-                        BodyVBox.getChildren().add(root);
-                        c2.setNomSes(promo.getNomSes());
-                        c2.setImage(promo.getImagesess());
-                        c2.setPrix(promo.getPrixSes().toString());
-                        c2.setNvprix(promo.getNvPrixSes().toString());
-                        c2.setFormation(promo.getIdFor().getNomFor());
-                        c2.setCapacoté(promo.getCapaciteSes().toString());
-                        System.out.println(promo);
-                        c2.setSess(promo);
-                        System.out.println("produit valeur" + promo.getIdSes());
-                    } catch (IOException ex) {
-                        Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                });
+                try {
+                    System.out.println("fafiiii");
+                    FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../../Promotion/DetailSession/SessionSingle.fxml"));
+                    Parent root;
+                    root = loader1.load();
+                   SessionSingleController c2 =loader1.getController();
+                    System.out.println("produit " + promo);
+                    BodyVBox.getChildren().clear();
+                    BodyVBox.getChildren().add(root);
+                    c2.setNomSes(promo.getNomSes());
+                    c2.setImage(promo.getImagesess());
+                    c2.setPrix(promo.getPrixSes().toString());
+                    c2.setNvprix(promo.getNvPrixSes().toString());
+                    c2.setFormation(promo.getIdFor().getNomFor());
+                    c2.setCapacoté(promo.getCapaciteSes().toString());
+                    System.out.println(promo);
+                    c2.setSess(promo);
+                    System.out.println("produit valeur" + promo.getIdSes());
+                } catch (IOException ex) {
+                    Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
         
             hc.addColonne(nodesColonne[i]);
             i++;
@@ -456,6 +513,18 @@ public class ListAllSessionPromoController implements Initializable {
                 msc.setImage(promo.getIdSes().getImagesess());
                 msc.setPrix(promo.getIdSes().getPrixSes().toString());
                 msc.setNv_prix(promo.getIdSes().getNvPrixSes().toString());
+                msc.getInscription().setOnMouseClicked(e->{
+                        try {
+                            ServiceEducate Edu = new ServiceEducate();
+                            Edu.inscriptionClient(new Educate(promo.getIdSes()));
+                            FXMLLoader loaderListSess = new FXMLLoader(getClass().getResource("ListAllSessionPromo.fxml"));
+                            Node root = loaderListSess.load();
+                            body.getChildren().clear();
+                            body.getChildren().add(root);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ListAllSessionPromoController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    });
                 //msc.setNomCat(promo.getIdProd().getIdCat().getNomCat());
                 //msc.setNomPat(promo.getIdProd().getIdUser().getUsername());
                 ImageView img = msc.getImage();

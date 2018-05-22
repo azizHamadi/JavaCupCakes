@@ -17,6 +17,7 @@ import Views.Patisserie.Recette.SingleRecette.SingleRecetteController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -172,7 +173,10 @@ public class ListAllRecettesController implements Initializable {
                 msc.setNomCat(rec.getIdCatRec().getNomCatRec());
                 msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
                 msc.setNomUser(rec.getIdUser().getUsername());
-                String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+                DecimalFormat df = new DecimalFormat();
+                df.setMaximumFractionDigits(2);
+                String moyenne = String.valueOf(df.format(ns.moyenneRecette(rec.getIdRec())));
+
                 msc.setNote("Note : "+moyenne+" /5");
                 ImageView img = msc.getImage();
                 img.setOnMouseClicked(e->{
@@ -279,7 +283,10 @@ public class ListAllRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
-            String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            String moyenne = String.valueOf(df.format(ns.moyenneRecette(rec.getIdRec())));
+
             msc.setNote("Note : "+moyenne+" /5");
 
             ImageView img = msc.getImage();
@@ -298,7 +305,7 @@ public class ListAllRecettesController implements Initializable {
                     CsR.setImageRecette(rec.getImageRec());
                     CsR.setNomRec(rec.getNomRec());
                     CsR.setUsername(rec.getIdUser().getUsername());
-                    CsR.setMoyenne(moyenne);
+                    CsR.setMoyenne(df.format(moyenne));
                     CommentaireService ComS = new CommentaireService();
                     CsR.setNbrComment(String.valueOf(ComS.CountCommentaireParRecette(rec.getIdRec())));
                     CommentaireService cs = new CommentaireService();
@@ -449,7 +456,10 @@ public class ListAllRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
-            String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            String moyenne = String.valueOf(df.format(ns.moyenneRecette(rec.getIdRec())));
+
             msc.setNote("Note : "+moyenne+" /5");
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
@@ -468,7 +478,7 @@ public class ListAllRecettesController implements Initializable {
                     CsR.setImageRecette(rec.getImageRec());
                     CsR.setNomRec(rec.getNomRec());
                     CsR.setUsername(rec.getIdUser().getUsername());
-                    CsR.setMoyenne(moyenne);
+                    CsR.setMoyenne(moyenne.substring(0, 4));
                     CommentaireService ComS = new CommentaireService();
                     CsR.setNbrComment(String.valueOf(ComS.CountCommentaireParRecette(rec.getIdRec())));
                     CommentaireService cs = new CommentaireService();

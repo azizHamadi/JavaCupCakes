@@ -24,6 +24,11 @@ public class Promotion {
         this.tauxPromo = tauxPromo;
     }
 
+    public Promotion(Integer idPromo, Double tauxPromo) {
+        this.idPromo = idPromo;
+        this.tauxPromo = tauxPromo;
+    }
+
       public Promotion(Double tauxPromo ,String etatPromo) {
         this.tauxPromo = tauxPromo;
         this.etatPromo = etatPromo;

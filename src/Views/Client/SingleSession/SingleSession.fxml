@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="488.0" prefWidth="748.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.SingleSession.SingleSessionController">
+<AnchorPane id="AnchorPane" prefHeight="488.0" prefWidth="748.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.SingleSession.SingleSessionController">
    <children>
       <ImageView fx:id="imageSes" fitHeight="278.0" fitWidth="269.0" layoutX="49.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="nomSess" layoutX="258.0" layoutY="75.0" onMouseClicked="#btnRetour" prefHeight="55.0" prefWidth="475.0" text="NomSession" textAlignment="CENTER" textFill="#e2b85b">

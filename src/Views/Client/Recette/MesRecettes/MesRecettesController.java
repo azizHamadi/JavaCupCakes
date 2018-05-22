@@ -174,6 +174,21 @@ public class MesRecettesController implements Initializable {
                 Morabba3s8irController msc = loader.getController();
                 msc.setNom(rec.getNomRec());
                 msc.setImage(rec.getImageRec());
+                msc.setIdRec(rec.getIdRec());
+                msc.setVbox(body);
+                msc.getSupprimer().setOnMouseClicked(e->{
+                    try {
+                        rs.SupprimerRecette(rec);
+                        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("MesRecettes.fxml"));
+                        Node root = loaderListeR.load();
+                        body.getChildren().clear();
+                        body.getChildren().add(root);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
                 msc.setNomCat(rec.getIdCatRec().getNomCatRec());
                 msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
                 msc.setNomUser(rec.getIdUser().getUsername());
@@ -297,6 +312,19 @@ public class MesRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
+            msc.getSupprimer().setOnMouseClicked(e->{
+                    try {
+                        RS.SupprimerRecette(rec);
+                        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("MesRecettes.fxml"));
+                        Node root = loaderListeR.load();
+                        body.getChildren().clear();
+                        body.getChildren().add(root);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
             msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
@@ -449,6 +477,19 @@ public class MesRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
+            msc.getSupprimer().setOnMouseClicked(e->{
+                    try {
+                        RS.SupprimerRecette(rec);
+                        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("MesRecettes.fxml"));
+                        Node root = loaderListeR.load();
+                        body.getChildren().clear();
+                        body.getChildren().add(root);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
             msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{

@@ -24,7 +24,9 @@ import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -33,6 +35,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
 import javafx.util.StringConverter;
@@ -72,12 +75,20 @@ public class AjouterRecetteClientController implements Initializable {
     private Label lab_image;
     @FXML
     private Button AjouterCategorie;
+    private VBox vbox;
+    ObservableList<CategorieRec> listC;    
     
-    ObservableList<CategorieRec> listC;
+    public VBox getVbox() {
+        return vbox;
+    }  
+
     /**
      * Initializes the controller class.
      */
-    
+    public void setVbox(VBox vbox) {
+        this.vbox = vbox;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -96,8 +107,8 @@ public class AjouterRecetteClientController implements Initializable {
 
                     @Override
                     public CategorieRec fromString(String string) {
-                        return catRec.getItems().stream().filter(ap -> 
-                                    ap.getNomCatRec().equals(string)).findFirst().orElse(null);}
+                        return catRec.getItems().stream().filter(ap ->
+                                ap.getNomCatRec().equals(string)).findFirst().orElse(null);}
                 });
             }
         } catch (SQLException ex) {
@@ -141,7 +152,10 @@ public class AjouterRecetteClientController implements Initializable {
         File f2 = new File(fdS1);
         Files.copy(f1.getAbsoluteFile().toPath(),f2.getAbsoluteFile().toPath());
         rs.AjouterRecette(new Recette(nomRec.getText(), description.getHtmlText().substring(58, description.getHtmlText().length()-14), imgf, catRec.getValue(), new Utilisateur(SessionUser.getId())));
-        
+        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("../MesRecettes/MesRecettes.fxml"));
+        Node root = loaderListeR.load();
+        vbox.getChildren().clear();
+        vbox.getChildren().add(root);
     }
     
     public boolean verif(){

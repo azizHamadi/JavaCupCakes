@@ -100,7 +100,6 @@ public class ContenuFxmlController implements Initializable {
                     pfc.setPrenom(u.getPrenom());
                     pfc.setImage(u.getImageProfil());
                     pfc.setBody(vbox1);
-                    pfc.button();
                     vbox1.getChildren().clear();
                     vbox1.getChildren().add(profil);
                 } catch (IOException ex) {
@@ -241,7 +240,6 @@ public class ContenuFxmlController implements Initializable {
                     pfc.setPrenom(u.getPrenom());
                     pfc.setImage(u.getImageProfil());
                     pfc.setBody(vbox1);
-                    pfc.button();
                     vbox1.getChildren().clear();
                     vbox1.getChildren().add(profil);
                 } catch (IOException ex) {

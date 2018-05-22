@@ -236,14 +236,45 @@ public class ListAllProduitController implements Initializable {
             msc.setNom(promo.getNomProd());
             msc.setImage(promo.getImageprod());
             msc.setNomCat(promo.getIdCat().getNomCat());
-                            msc.setNv_prix(promo.getNvPrix().toString());
+            msc.setNv_prix(promo.getNvPrix().toString());
 
         //    msc.setNomPat(promo.getIdUser().getUsername());
             msc.setPrix(promo.getPrixProd().toString());
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{
-                System.out.println("te5dem");
-            });
+                    try {
+                        System.out.println("te5dem");
+                      
+                           
+                            RS.UpdateProduitValeur(promo);
+                        
+                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../PromoSingle/PromoSingle.fxml"));
+                        Parent root;
+                        root = loader1.load();
+                        PromoSingleController c2 =loader1.getController();
+                        System.out.println("produit " + promo);
+                        BodyVBox.getChildren().clear();
+                        BodyVBox.getChildren().add(root);
+                        c2.setNomProd(promo.getNomProd());
+                        c2.setImage(promo.getImageprod());
+                        c2.setPrix(promo.getIdProd().toString());
+                        c2.setNvprix(promo.getIdProd().toString());
+                        c2.setCategorie(promo.getIdCat().getNomCat());
+                        c2.setStock(promo.getIdProd().toString());
+                        System.out.println(promo);
+                        c2.setProd(promo);
+                        c2.Controle();
+                        System.out.println("produit valeur" + promo.getValeur());
+                        
+                        
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {   
+                    Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                }   
+                        
+                  
+                });
             hc.addColonne(nodesColonne[i]);
             i++;
             if( listPromo.size() > i)

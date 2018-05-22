@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="bodyprofil" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Utilisateur.Profil.ProfilClientController">
+   <children>
+      <ImageView fx:id="image" fitHeight="321.0" fitWidth="291.0" layoutX="94.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fill="#e2b85b" layoutX="543.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profil" wrappingWidth="180.9999946579337">
+         <font>
+            <Font name="Georgia" size="43.0" />
+         </font>
+      </Text>
+      <Label layoutX="427.0" layoutY="203.0" prefHeight="35.0" prefWidth="188.0" text="Nom" textFill="#e2b85b">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="427.0" layoutY="270.0" prefHeight="18.0" prefWidth="227.0" text="Prenom" textFill="#e2b85b">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="335.0" prefHeight="18.0" prefWidth="181.0" text="Adresse" textFill="#e2b85b">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="396.0" prefHeight="18.0" prefWidth="188.0" text="Telephone" textFill="#e2b85b">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="448.0" prefHeight="35.0" prefWidth="195.0" text="Email" textFill="#e2b85b">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Email" layoutX="736.0" layoutY="448.0" prefHeight="35.0" prefWidth="422.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Telephone" layoutX="736.0" layoutY="396.0" prefHeight="35.0" prefWidth="422.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Adresse" layoutX="736.0" layoutY="335.0" prefHeight="35.0" prefWidth="422.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Prenom" layoutX="736.0" layoutY="270.0" prefHeight="35.0" prefWidth="422.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="Nom" layoutX="736.0" layoutY="203.0" prefHeight="35.0" prefWidth="422.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="Retour" layoutX="1009.0" layoutY="535.0" onAction="#Retour" prefHeight="43.0" prefWidth="106.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Acceuil" textFill="WHITE" />
+      <JFXButton fx:id="Modifier" layoutX="748.0" layoutY="535.0" onAction="#ModifierUser" prefHeight="43.0" prefWidth="126.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Modifier" textFill="WHITE" />
+      <JFXButton fx:id="ajout" layoutX="481.0" layoutY="535.0" onAction="#Enregistrer" prefHeight="43.0" prefWidth="126.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Ajouter Image" textFill="WHITE" />
+   </children>
+</AnchorPane>

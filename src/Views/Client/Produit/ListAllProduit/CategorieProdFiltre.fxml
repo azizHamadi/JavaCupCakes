@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Produit.ListAllProduit.CategorieProdFiltreController">
+<AnchorPane id="AnchorPane" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Produit.ListAllProduit.CategorieProdFiltreController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="184.0">
          <children>

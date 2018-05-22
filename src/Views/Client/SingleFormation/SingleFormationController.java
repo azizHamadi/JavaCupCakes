@@ -107,16 +107,13 @@ public class SingleFormationController implements Initializable {
         this.imageFor.setImage(new Image(file.toURI().toString()));
     }
 
-    private void btnRetour(ActionEvent event) throws IOException {
+    @FXML
+    private void btnRetour(MouseEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../GestionFormation/ListAllFormations.fxml"));
         Node root = loader.load();
         System.out.println("Views.Client.SingleFormation.SingleFormationController.btnRetour()");
         anchorPane.getChildren().clear();
         anchorPane.getChildren().add(root);
-    }
-
-    @FXML
-    private void btnRetour(MouseEvent event) {
     }
     
 }

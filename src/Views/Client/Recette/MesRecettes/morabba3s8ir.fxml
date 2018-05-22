@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -43,6 +44,14 @@
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>
                         </WebView>
+                        <Label fx:id="supprimer" onDragDetected="#supprimer" text="Supprimer">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
                         <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #e4b95b;">
                            <VBox.margin>
                               <Insets />

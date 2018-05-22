@@ -59,6 +59,8 @@ public class RegisterController implements Initializable {
     private JFXPasswordField password;
     @FXML
     private JFXPasswordField Cpassword;
+    @FXML
+    private JFXButton Annuler;
 
    
 
@@ -83,13 +85,23 @@ public class RegisterController implements Initializable {
             role = "a:1:{i:0;s:14:\"ROLE_FORMATEUR\";}";
         if (role == "PATISSERIE")
             role = "a:1:{i:0;s:15:\"ROLE_PATISSERIE\";}";
-        if (validateUseraneme() & validateEmail () & validatetel()  & validatePassword() & EqualsPassword ()){
-        Utilisateur u = new Utilisateur (username.getText(), email.getText(),password.getText(),Cpassword.getText(),role,tel.getText(),Adresse.getText(),nom.getText(),prenom.getText());
-        us.AjouterUtilisateur(u);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/login.fxml"));       
-        Parent root = loader.load();   
-        email.getScene().setRoot(root);}
+        if ((validateUseraneme() & validateEmail () & validatetel()  & validatePassword() & EqualsPassword () ) ){
+            if (!us.verif_username(username.getText()) && us.verif_email(email.getText()).getEmail() != email.getText()){
+            Utilisateur u = new Utilisateur (username.getText(), email.getText(),password.getText(),Cpassword.getText(),role,tel.getText(),Adresse.getText(),nom.getText(),prenom.getText());
+            us.AjouterUtilisateur(u);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/login.fxml"));       
+            Parent root = loader.load();   
+            email.getScene().setRoot(root);}
+            else{
+                Alert alert  = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("validate username");
+                alert.setHeaderText(null);
+                alert.setContentText("username or email existe deja");
+                alert.showAndWait();
+            }
+        }
     }
+    
     private boolean validateUseraneme (){
          Pattern  p = Pattern.compile("[a-zA-Z]+");
          Matcher m = p.matcher(username.getText());
@@ -185,6 +197,29 @@ public class RegisterController implements Initializable {
          alert.showAndWait();
           return false;  } 
            }
+
+    @FXML
+    private void Annuler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));       
+        Parent root = loader.load();   
+        email.getScene().setRoot(root);
+    }
+
+    public JFXTextField getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom.setText(nom);
+    }
+
+    public JFXTextField getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username.setText(username);
+    }
 
          
 }

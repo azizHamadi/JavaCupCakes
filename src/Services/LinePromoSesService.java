@@ -37,6 +37,7 @@ public class LinePromoSesService {
     private Statement ste ;
     private Statement ste1 ;
     private Statement ste2 ;
+    private Statement ste3 ;
         final ObservableList<Session> listeob=FXCollections.observableArrayList();
         private ObservableList<Linepromoses> Listlinepromoses;
 
@@ -46,6 +47,7 @@ public class LinePromoSesService {
             ste =con.createStatement();
             ste1 =con.createStatement();
             ste2 =con.createStatement();
+            ste3 =con.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(LinePromoSesService.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,7 +61,7 @@ public class LinePromoSesService {
         pre.setInt(3, p.getIdSes().getIdSes());
         pre.setInt(4, p.getIdPromo().getIdPromo());
         //pre.setInt(2, id );
-        //mail();
+        mail();
         pre.executeUpdate();
         System.out.println("session ajouter sous promotion avec succee!");
 
@@ -82,6 +84,39 @@ public class LinePromoSesService {
         PreparedStatement ps = con.prepareStatement(req);
         ps.executeUpdate();
 
+    }
+    
+    public List<Linepromoses> AfficherLinePromoSesClient() throws SQLException {
+        List<Linepromoses> LinePromosess = new ArrayList<>();
+        ResultSet rs = ste.executeQuery("select * from linepromoses l , session s, formation f where s.idFor=f.idFor and l.idSes=s.idSes");
+        while (rs.next()) {
+            ResultSet rsp = ste1.executeQuery("select * from promotion where idPromo = " + rs.getInt("idPromo"));
+            Promotion p = new Promotion();
+            while (rsp.next()) {
+                p.setIdPromo(rsp.getInt("idPromo"));
+                p.setTauxPromo(rsp.getDouble("tauxPromo"));
+                
+            }
+            ResultSet rspromo = ste2.executeQuery("select * from session where idSes = " + rs.getInt("idSes"));
+            Session session = new Session();
+            while (rspromo.next()) {
+                session.setIdSes(rspromo.getInt("idSes"));
+                session.setNomSes(rspromo.getString("nomSes"));
+                session.setPrixSes(rspromo.getDouble("prix_ses"));
+                session.setNvPrixSes(rspromo.getDouble("nv_prix_ses"));
+                session.setImagesess(rspromo.getString("imagesess"));
+                session.setCapaciteSes(rspromo.getInt("capaciteSes"));
+                ResultSet rspfor = ste3.executeQuery("select * from formation where idFor = " + rs.getInt("idFor"));
+                Formation form = new Formation();
+                while(rspfor.next())
+                {form.setIdFor(rspfor.getInt("idFor"));
+                form.setNomFor(rspfor.getString("nomFor"));
+                }
+                session.setIdFor(form);
+            }
+            LinePromosess.add(new Linepromoses(rs.getInt("idLine"), rs.getDate("dateDeb"), rs.getDate("dateFin"), session, p));
+        }
+        return LinePromosess;
     }
 
     public List<Linepromoses> AfficherLinePromoSes() throws SQLException {
@@ -225,7 +260,7 @@ public class LinePromoSesService {
                 user.setAddresse(rsUser.getString("Addresse"));
                 user.setRoles(rsUser.getString("roles"));
             }*/
-            ResultSet rsCatRecette = ste2.executeQuery("select * from formation where idFor = " + rsProduit.getInt("idFor"));
+            ResultSet rsCatRecette = ste2.executeQuery("select * from formation where idFor = " +idFor);
             while (rsCatRecette.next()) {
                 formation.setIdFor(rsCatRecette.getInt("idFor"));
                 formation.setNomFor(rsCatRecette.getString("nomFor"));
@@ -316,21 +351,26 @@ public class LinePromoSesService {
             ex.printStackTrace();        
 
 }}
-         public void mail() throws MessagingException {
+         public void mail() throws MessagingException, SQLException {
 
         String USER_NAME = "hamdi.fathallah.1@esprit.tn";
         String PASSWORD = "hamdifathallah";
-        String RECIPIENT = "hamdimatador9@gmail.com";
-
+        userServices us = new userServices();
+        List<Utilisateur> listU = us.listClient("a:1:{i:0;s:11:\"ROLE_CLIENT\";}"); 
+        for (Utilisateur user : listU)
+        {
+        String RECIPIENT = user.getEmail() ;
         String from = USER_NAME;
         String pass = PASSWORD;
         String[] to = {RECIPIENT}; // list of recipient email addresses
         String subject = "promotion";
-        String body = "une nouvelle promotion a été ajouter";
+        String body = "une nouvelle session a été ajouter sous promotion consulter notre application pour consulter plus des details  ";
         SendMail send = new SendMail();
         send.sendFromGMail(from, pass, to, subject, body);
+        }
 
     } 
-        
+         
+   
     
 }

@@ -105,6 +105,7 @@ public class userServices {
         ResultSet rsUtilisateur = ste.executeQuery("select * from utilisateur where username='" + username + "'");
         while (rsUtilisateur.next()) {
             user = new Utilisateur(rsUtilisateur.getInt("id"), rsUtilisateur.getString("email"), username, rsUtilisateur.getString("password"), rsUtilisateur.getString("roles"), rsUtilisateur.getString("phoneNumber"), rsUtilisateur.getString("addresse"), rsUtilisateur.getString("nom"), rsUtilisateur.getString("prenom"));
+            user.setImageProfil(rsUtilisateur.getString("imageProfil"));
         }
         return user;
     }
@@ -170,15 +171,12 @@ public class userServices {
     }
 
     public void ModifierLineUser(Utilisateur User) throws SQLException {
-        String req = "update utilisateur set  username = ? ,email=?, nom =?, prenom=?, Addresse=? ,imageProfil=?, phoneNumber = ? where id=" + User.getId();
+        String req = "update utilisateur set nom =?, prenom=?, Addresse=? , phoneNumber = ? where id=" + User.getId();
         PreparedStatement pre = con.prepareStatement(req);
-        pre.setString(1, User.getUsername());
-        pre.setString(2, User.getEmail());
-        pre.setString(3, User.getNom());
-        pre.setString(4, User.getPrenom());
-        pre.setString(5, User.getAddresse());
-        pre.setString(6, User.getImageProfil());
-         pre.setString(7, User.getPhoneNumber());
+        pre.setString(1, User.getNom());
+        pre.setString(2, User.getPrenom());
+        pre.setString(3, User.getAddresse());
+         pre.setString(4, User.getPhoneNumber());
 
         pre.executeUpdate();
         System.out.println("User est modifier avec succee!");
@@ -259,5 +257,5 @@ public class userServices {
             return true;
         return false;
     }
-    
+   
 }

@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -98,7 +99,12 @@ public class SingleRecetteController implements Initializable {
                         ns.ModifierNote(note);
                     else
                         ns.AjouterNote(note);
-                    moyenne.setText(String.valueOf(ns.moyenneRecette(rec.getIdRec())));
+                    
+                    DecimalFormat df = new DecimalFormat();
+                    df.setMaximumFractionDigits(2);
+                    String moy = String.valueOf(df.format(ns.moyenneRecette(rec.getIdRec())));
+
+                    moyenne.setText(moy+" /5"); 
                 } catch (SQLException ex) {
                     Logger.getLogger(SingleRecetteController.class.getName()).log(Level.SEVERE, null, ex);
                 }

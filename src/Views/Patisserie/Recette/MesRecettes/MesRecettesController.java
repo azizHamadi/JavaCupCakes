@@ -17,6 +17,7 @@ import Services.RecetteService;
 import Services.ThreadService;
 import Views.Patisserie.Recette.ModifierRecette.InfoRecetteController;
 import Views.Patisserie.Recette.ModifierRecette.ModifierRecetteController;
+import static com.google.common.base.Ascii.RS;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -173,6 +174,21 @@ public class MesRecettesController implements Initializable {
                 Morabba3s8irController msc = loader.getController();
                 msc.setNom(rec.getNomRec());
                 msc.setImage(rec.getImageRec());
+                msc.setIdRec(rec.getIdRec());
+                msc.setVbox(body);
+                msc.getSupprimer().setOnMouseClicked(e->{
+                    try {
+                        rs.SupprimerRecette(rec);
+                        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("MesRecettes.fxml"));
+                        Node root = loaderListeR.load();
+                        body.getChildren().clear();
+                        body.getChildren().add(root);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Views.Client.Recette.MesRecettes.MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Views.Client.Recette.MesRecettes.MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
                 msc.setNomCat(rec.getIdCatRec().getNomCatRec());
                 msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
                 msc.setNomUser(rec.getIdUser().getUsername());
@@ -294,6 +310,19 @@ public class MesRecettesController implements Initializable {
             msc.setNom(rec.getNomRec());
             msc.setImage(rec.getImageRec());
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
+            msc.getSupprimer().setOnMouseClicked(e->{
+                    try {
+                        RS.SupprimerRecette(rec);
+                        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("MesRecettes.fxml"));
+                        Node root = loaderListeR.load();
+                        body.getChildren().clear();
+                        body.getChildren().add(root);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Views.Client.Recette.MesRecettes.MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Views.Client.Recette.MesRecettes.MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
             msc.setNote("Note : "+String.valueOf(ns.moyenneRecette(rec.getIdRec()))+" /5");
@@ -445,6 +474,19 @@ public class MesRecettesController implements Initializable {
             Morabba3s8irController msc = loader.getController();
             msc.setNom(rec.getNomRec());
             msc.setImage(rec.getImageRec());
+            msc.getSupprimer().setOnMouseClicked(e->{
+                    try {
+                        RS.SupprimerRecette(rec);
+                        FXMLLoader loaderListeR = new FXMLLoader(getClass().getResource("MesRecettes.fxml"));
+                        Node root = loaderListeR.load();
+                        body.getChildren().clear();
+                        body.getChildren().add(root);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Views.Client.Recette.MesRecettes.MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Views.Client.Recette.MesRecettes.MesRecettesController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());

@@ -5,13 +5,21 @@
  */
 package Views.Patisserie.Recette.MesRecettes;
 
+import Entity.Recette;
+import Services.RecetteService;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -38,7 +46,10 @@ public class Morabba3s8irController implements Initializable {
     private Text nomUser;
     @FXML
     private Text note;
-
+    private int idRec ;
+    private VBox vbox;
+    @FXML
+    private Label supprimer;
     /**
      * Initializes the controller class.
      */
@@ -104,6 +115,40 @@ public class Morabba3s8irController implements Initializable {
     public Text getNote() {
         return note;
     }
+
+    public int getIdRec() {
+        return idRec;
+    }
+
+    public void setIdRec(int idRec) {
+        this.idRec = idRec;
+    }
+
+    public VBox getVbox() {
+        return vbox;
+    }
+
+    public void setVbox(VBox vbox) {
+        this.vbox = vbox;
+    }
+
+    public Label getSupprimer() {
+        return supprimer;
+    }
+
+    public void setSupprimer(Label supprimer) {
+        this.supprimer = supprimer;
+    }
     
+    @FXML
+    private void supprimer(MouseEvent event) throws SQLException, IOException {
+        RecetteService recService = new RecetteService();
+        recService.SupprimerRecette(new Recette(idRec));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Recette/ListAllRecettes/ListAllRecettes.fxml"));
+        Node root = loader.load();
+        vbox.getChildren().clear();
+        vbox.getChildren().add(root);
+        
+    }
     
 }

@@ -18,8 +18,11 @@ public class SessionUser {
     private static String roles;
     private static String phoneNumber;
     private static String addresse;
+    private static String nom;
+    private static String prenom;
+    private static String imageProfil;
 
-    public SessionUser(Integer id, String username, String email, String password, String roles, String phoneNumber, String addresse) {
+    public SessionUser(Integer id, String username, String email, String password, String roles, String phoneNumber, String addresse, String nom, String prenom, String imageProfil) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -27,6 +30,33 @@ public class SessionUser {
         this.roles = roles;
         this.phoneNumber = phoneNumber;
         this.addresse = addresse;
+        this.nom =nom;
+        this.prenom= prenom;
+        this.imageProfil=imageProfil;
+    }
+
+    public static String getImageProfil() {
+        return imageProfil;
+    }
+
+    public static void setImageProfil(String imageProfil) {
+        SessionUser.imageProfil = imageProfil;
+    }
+
+    public static String getPrenom() {
+        return prenom;
+    }
+
+    public static void setPrenom(String prenom) {
+        SessionUser.prenom = prenom;
+    }
+
+    public static void setNom(String nom) {
+        SessionUser.nom = nom;
+    }
+
+    public static String getNom() {
+        return nom;
     }
 
     public static Integer getId() {

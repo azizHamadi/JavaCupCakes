@@ -9,11 +9,15 @@ import Entity.SessionUser;
 
 import Entity.Utilisateur;
 import Services.userServices;
+import Views.Utilisateur.Register.RegisterController;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -33,6 +37,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import static jdk.nashorn.internal.objects.NativeJava.type;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * FXML Controller class
@@ -43,100 +49,78 @@ public class LoginController implements Initializable {
 
     @FXML
     private JFXTextField login;
-  
-    @FXML
-    private Text message;
-    @FXML
-    private Button btn5;
+
     @FXML
     private JFXButton Register;
     @FXML
     private JFXPasswordField mdp;
+    @FXML
+    private Button facebook;
 
-   
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
     @FXML
     private void LoginAction(ActionEvent event) throws SQLException, IOException {
-        userServices us = new userServices ();
-        Utilisateur User=null;
+        userServices us = new userServices();
+        Utilisateur User = null;
         User = us.Login(login.getText());
- 
-               if (User!=null && BCrypt.checkpw(mdp.getText(),User.getPassword().substring(0,2)+"a"+User.getPassword().substring(3))){
+        Parent root = null ;
+        if (User != null && BCrypt.checkpw(mdp.getText(), User.getPassword().substring(0, 2) + "a" + User.getPassword().substring(3))) {
             SessionUser.setAddresse(User.getAddresse());
             SessionUser.setEmail(User.getEmail());
-             SessionUser.setId(User.getId());
-              SessionUser.setPassword(User.getPassword());
+            SessionUser.setId(User.getId());
+            SessionUser.setPassword(User.getPassword());
             SessionUser.setPhoneNumber(User.getPhoneNumber());
             SessionUser.setRoles(User.getRoles());
             SessionUser.setUsername(User.getUsername());
-            
-            if(User.getRoles().equals("a:1:{i:0;s:11:\"ROLE_CLIENT\";}")){
-               Parent root = FXMLLoader.load(getClass().getResource("../../test/folder/ClientTemplate.fxml"));
-                    Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();        
-          
+            SessionUser.setNom(User.getNom());
+            SessionUser.setPrenom(User.getPrenom());
+            SessionUser.setImageProfil(User.getImageProfil());
+            if (User.getRoles().equals("a:1:{i:0;s:11:\"ROLE_CLIENT\";}")) {
+                root = FXMLLoader.load(getClass().getResource("../../test/folder/ClientTemplate.fxml"));
 
-                 }           
-            else if(User.getRoles().equals("a:1:{i:0;s:15:\"ROLE_PATISSERIE\";}")) {
-                    Parent root = FXMLLoader.load(getClass().getResource("../../test/folder/BackPatTemplate.fxml"));
-                    Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();        
-          
-            } 
-            else if (User.getRoles().equals("a:1:{i:0;s:14:\"ROLE_FORMATEUR\";}")) {
-                 Parent root = FXMLLoader.load(getClass().getResource("../../test/folder/BackForTemplate.fxml"));
-                    Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();        
-          
-                  
+            } else if (User.getRoles().equals("a:1:{i:0;s:15:\"ROLE_PATISSERIE\";}")) {
+                root = FXMLLoader.load(getClass().getResource("../../test/folder/BackPatTemplate.fxml"));
+
+            } else if (User.getRoles().equals("a:1:{i:0;s:14:\"ROLE_FORMATEUR\";}")) {
+                root = FXMLLoader.load(getClass().getResource("../../test/folder/BackForTemplate.fxml"));
+
+            } else {
+                root = FXMLLoader.load(getClass().getResource("../dashboard/Acceuil.fxml"));
+
             }
-            else{
-            Parent root = FXMLLoader.load(getClass().getResource("../dashboard/Acceuil.fxml"));
-                    Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();        
-          
-            }
-        }
-        
-        else {
-            Alert alert  = new Alert(Alert.AlertType.WARNING);
+            login.getScene().setRoot(root);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("validate username et password");
             alert.setHeaderText(null);
             alert.setContentText("please entrer username valide et password valide");
             alert.showAndWait();
         }
-    }    
+        
+    }
+
     @FXML
-        private void PasswordOublier(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("../MotdePasseOublier/PasswordOublier.fxml"));       
-        Parent root = loader.load();   
+    private void PasswordOublier(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../MotdePasseOublier/PasswordOublier.fxml"));
+        Parent root = loader.load();
         login.getScene().setRoot(root);
-        
-        } 
-        
-            
-        @FXML
-        private void Register(ActionEvent event) throws IOException {
-       FXMLLoader loader = new FXMLLoader(getClass().getResource("../Register/Register.fxml"));       
-        Parent root = loader.load();   
+
+    }
+
+    @FXML
+    private void Register(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Register/Register.fxml"));
+        Parent root = loader.load();
         login.getScene().setRoot(root);
-        
-        } 
+
+    }
     /*@FXML
     private void AuthUser(ActionEvent event) {
 
@@ -165,5 +149,41 @@ public class LoginController implements Initializable {
        
        }
     }*/
-         
+
+    @FXML
+    private void loginFacebook(ActionEvent event) throws SQLException, IOException {
+        String domain = "https://google.fr/";
+        String appId = "132361634176800";
+       
+        String authUrl = "https://graph.facebook.com/oauth/authorize?type=user_agent&client_id="+appId+"&redirect_uri="+domain+"&scope=email"
+                ;
+        
+        System.setProperty("webdirver.chrome.driver", "chromedriver.exe");
+       
+        WebDriver driver = new ChromeDriver();
+        driver.get(authUrl);
+        String accessToken;
+        while(true){
+               
+            if(!driver.getCurrentUrl().contains("facebook.com")){
+            String url = driver.getCurrentUrl();
+            accessToken = url.replaceAll(".*#access_token=(.+)&.*", "$1");
+           
+            driver.close();
+           
+           
+                FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+                com.restfb.types.User user = fbClient.fetchObject("me",com.restfb.types.User.class);
+                //bech nrajja3 page inscription 
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../Register/Register.fxml"));
+                Parent root = loader.load(); 
+                RegisterController registerController = loader.getController();
+                registerController.setNom(user.getName());
+                registerController.getNom().setDisable(true);
+                login.getScene().setRoot(root);
+                       
+    }
+    }
+    }
+
 }

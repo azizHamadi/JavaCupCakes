@@ -98,7 +98,6 @@ public class PasswordOublierController implements Initializable {
         private void Login (ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));       
         Parent root = loader.load();   
-        username.getScene().setRoot(root);
-        
+        email.getScene().setRoot(root);
         } 
 }

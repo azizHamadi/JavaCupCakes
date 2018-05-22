@@ -55,7 +55,7 @@ public class ServiceEducate {
     public void inscriptionClient(Educate e)
     {
         
-        String sql="INSERT INTO Educate(dateIscri,etatEduc,idUser,idSes,etatNotif)VALUES(now(),'inscri',1,?,'non notifié');";
+        String sql="INSERT INTO Educate(dateIscri,etatEduc,idUser,idSes,etatNotif)VALUES(now(),'inscri',+"+SessionUser.getId()+",?,'non notifie');";
         try 
         {
             PreparedStatement ps=conn.prepareStatement(sql);
@@ -130,7 +130,7 @@ public class ServiceEducate {
      public void ModifierEtatNotif(Educate e,int idSession) {
         try 
         {
-            String req ="update Educate set etatNotif='deja notifié' where idSes="+idSession+" AND idUser="+SessionUser.getId() ;
+            String req ="update Educate set etatNotif='deja notifie' where idSes="+idSession+" AND idUser="+SessionUser.getId() ;
             System.out.println(req);
             PreparedStatement ps = conn.prepareStatement(req);                    
             ps.executeUpdate();

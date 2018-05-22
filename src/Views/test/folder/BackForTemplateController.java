@@ -9,6 +9,7 @@ import Views.AjouterPromotion.AjoutpromoformationController;
 import Views.Formateur.GestionFormations.CRUDFormationsController;
 import Views.Patisserie.Recette.ListAllRecettes.ListAllRecettesController;
 import Views.Patisserie.Recette.MesRecettes.MesRecettesController;
+import Views.Patisserie.Utilisateur.Profil.ProfilPatisserieController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -34,6 +36,10 @@ public class BackForTemplateController implements Initializable {
     private VBox nav_bar;
     @FXML
     private VBox vbox_body;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button Deconnexion;
 
     public VBox getVbox_body() {
         return vbox_body;
@@ -122,6 +128,23 @@ public class BackForTemplateController implements Initializable {
         Node root = loader.load();
         vbox_body.getChildren().clear();
         vbox_body.getChildren().add(root);
+    }
+
+    @FXML
+    private void GestionProfil(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Patisserie/Utilisateur/Profil/ProfilPatisserie.fxml"));
+        Node root = loader.load();
+        ProfilPatisserieController profilController = loader.getController();
+        
+        vbox_body.getChildren().clear();
+        vbox_body.getChildren().add(root);
+    }
+
+    @FXML
+    private void Deconnexion(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Utilisateur/Login/Login.fxml"));
+        Parent root = loader.load();
+        body.getScene().setRoot(root);
     }
 
  

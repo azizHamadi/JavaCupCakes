@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Promotion.GererPromoController">
+<AnchorPane id="AnchorPane" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Promotion.GererPromoController">
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="628.0" prefWidth="1200.0" stylesheets="@../../common.css">
          <children>
-            <VBox fx:id="nav_bar" prefHeight="628.0" prefWidth="200.0" style="-fx-background-color: #242a31;">
+            <VBox fx:id="nav_bar" prefHeight="628.0" prefWidth="200.0" style="-fx-background-color: #20202f;">
                <children>
                   <VBox id="side_nav" prefHeight="615.0" prefWidth="239.0" style="-fx-background-color: #f4f2ed; -fx-background-radius: 3em;" stylesheets="@../../common.css">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #383848; -fx-border-width: 0 0 0 7px;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #20202f; -fx-border-width: 0 0 0 7px;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -24,7 +24,7 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                            <children>
-                              <FontAwesomeIconView fill="#383848" glyphName="USER" size="2em">
+                              <FontAwesomeIconView fill="#20202f" glyphName="USER" size="2em">
                                  <HBox.margin>
                                     <Insets left="1.0" />
                                  </HBox.margin>
@@ -36,7 +36,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #383848; -fx-border-width: 0 0 0 7px 0 0 0 7px;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-color: #20202f; -fx-border-width: 0 0 0 7px 0 0 0 7px;">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -44,7 +44,7 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <children>
-                              <MaterialDesignIconView fill="#383848" glyphName="CAKE" size="2em" />
+                              <MaterialDesignIconView fill="#20202f" glyphName="CAKE" size="2em" />
                               <Button fx:id="btnListePromoSes" mnemonicParsing="false" onAction="#promosession" style="-fx-background-color: transparent;" text="Promo Session" textFill="#383848">
                                  <HBox.margin>
                                     <Insets top="10.0" />
@@ -52,7 +52,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-width: 0 0 0 7px; -fx-border-color: #383848;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-width: 0 0 0 7px; -fx-border-color: #20202f;">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -60,8 +60,8 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <children>
-                              <FontAwesomeIconView fill="#383848" glyphName="USER" size="2em" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Profil" textFill="#383848">
+                              <FontAwesomeIconView fill="#20202f" glyphName="USER" size="2em" />
+                              <Button mnemonicParsing="false" onAction="#PANIER" style="-fx-background-color: transparent;" text="Panier" textFill="#383848">
                                  <HBox.margin>
                                     <Insets top="10.0" />
                                  </HBox.margin>
@@ -78,7 +78,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="body" prefHeight="628.0" prefWidth="1000.0" style="-fx-background-color: #242a31;" />
+            <VBox fx:id="body" prefHeight="628.0" prefWidth="1000.0" style="-fx-background-color: #20202f;" />
          </children>
       </HBox>
    </children>

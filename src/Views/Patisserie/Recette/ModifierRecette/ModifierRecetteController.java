@@ -103,7 +103,7 @@ public class ModifierRecetteController implements Initializable {
     }
 
     public void setImageRecette(String imageRecette) {
-        File file = new File("D:/wamp64/www/final/web/public/uploads/brochures/Recettes/" + imageRecette);
+        File file = new File("C:/wamp64/www/final/web/public/uploads/brochures/Recettes/" + imageRecette);
         this.imageRecette.setImage(new Image(file.toURI().toString()));
     }
 

@@ -19,7 +19,7 @@ and open the template in the editor.
    <children>
       <VBox prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #F4F3EF;">
          <children>
-            <HBox alignment="CENTER" prefHeight="55.0" prefWidth="925.0" style="-fx-background-color: #F4F3EF;">
+            <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="925.0" style="-fx-background-color: #F4F3EF;">
                <children>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: transparent; -fx-border-color: #96CAD9; -fx-border-width: 3px; -fx-border-radius: 5em;">
                      <padding>
@@ -31,6 +31,30 @@ and open the template in the editor.
                               <Font name="Arial Rounded MT Bold" size="25.0" />
                            </font>
                         </Text>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="100.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
+                     <children>
+                        <Button fx:id="profil" mnemonicParsing="false" onAction="#GestionProfil" style="-fx-background-color: transparent;" text="Profil" textFill="#96cad9">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="190.0">
+                     <children>
+                        <Button fx:id="Deconnexion" mnemonicParsing="false" onAction="#Deconnexion" style="-fx-background-color: transparent;" text="Deconnexion" textFill="#96cad9">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="20.0" />
+                           </font>
+                        </Button>
                      </children>
                   </HBox>
                </children>

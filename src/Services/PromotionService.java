@@ -34,7 +34,7 @@ public class PromotionService {
     }
     
     public void AjouterPromotion(Promotion p) throws SQLException{
-        String req ="INSERT INTO Promotion (tauxPromo, etatPromo ) VALUES (?,?)";
+        String req ="INSERT INTO Promotion (tauxPromo, etatPromo) VALUES (?,?)";
         PreparedStatement pre = con.prepareStatement(req);
         pre.setDouble(1, p.getTauxPromo());
         pre.setString(2, null);
@@ -61,7 +61,7 @@ public class PromotionService {
  
     public List<Promotion> AfficherPromotion() throws SQLException{
         List<Promotion> promotions = new ArrayList<>();
-        ResultSet rs = ste.executeQuery("select * from Promotion");
+        ResultSet rs = ste.executeQuery("select tauxPromo from Promotion Order By tauxPromo ASC ");
         while(rs.next())
         {
         promotions.add(new Promotion(rs.getDouble("tauxPromo"))) ;
@@ -71,11 +71,10 @@ public class PromotionService {
 
     public Promotion RecherchePromotion(Double taux) throws SQLException{
         ResultSet rs = ste.executeQuery("select * from Promotion where tauxPromo = "+taux);
-        Promotion p = new Promotion();
+        Promotion p = null;
         while(rs.next())
         {
-            p.setTauxPromo(rs.getDouble("tauxPromo"));
-            p.setIdPromo(rs.getInt("idPromo"));
+            p= new Promotion(rs.getInt("idPromo"), rs.getDouble("tauxPromo"));
         }
         return p ;
     }

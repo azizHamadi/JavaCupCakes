@@ -153,6 +153,35 @@ public class ServiceFormation {
         return listeob;
     } 
     
+    public ObservableList<Formation> AfficherListeFormationClient() throws SQLException
+    {
+        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours' ");
+     
+        while(rsformation.next())
+        {   
+            Formation formation=new Formation();
+            formation.setIdFor(rsformation.getInt("idFor"));
+            formation.setNomFor(rsformation.getString("nomFor"));
+            
+            formation.setDescriptionFor(rsformation.getString("descriptionFor"));
+            formation.setDateFor(rsformation.getDate("dateFor"));
+            formation.setImageform (rsformation.getString("imageform"));
+            formation.setAtitude(rsformation.getString("atitude"));
+            formation.setLongitude(rsformation.getString("longitude"));
+            ResultSet rstype= ste2.executeQuery("select * from type_formation where idTypeFor="+ rsformation.getInt("idTypeFor"));
+            TypeFormation typeformation=new TypeFormation();
+            while(rstype.next())
+            {
+                typeformation.setIdTypeFor(rsformation.getInt("idTypeFor"));
+                typeformation.setNomTypeFor(rstype.getString("nomTypeFor"));
+                
+            }
+            formation.setIdTypeFor(typeformation);
+            listeob.add(formation);
+        }
+        return listeob;
+    } 
+    
     //bech nzid iduser houni
     public void ModificationFormation(Formation f,int idFor) throws SQLException{
         System.out.println("modification formation");
@@ -249,6 +278,34 @@ public class ServiceFormation {
     {
         List<Formation> ListeForPartype = new ArrayList<>();
         ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours' and idTypeFor="+idtypefor+" and idUser="+SessionUser.getId());
+     
+        while(rsformation.next())
+        {   
+            Formation formation=new Formation();
+            formation.setIdFor(rsformation.getInt("idFor"));
+            formation.setNomFor(rsformation.getString("nomFor"));
+            formation.setPlace(rsformation.getString("place"));
+            formation.setDescriptionFor(rsformation.getString("descriptionFor"));
+            formation.setDateFor(rsformation.getDate("dateFor"));
+            formation.setImageform(rsformation.getString("imageform"));
+            ResultSet rstype= ste2.executeQuery("select * from type_formation where idTypeFor="+ rsformation.getInt("idTypeFor"));
+            TypeFormation typeformation=new TypeFormation();
+            while(rstype.next())
+            {
+                //formation.setIdFor(rsformation.getInt("idTypeFor"));
+                typeformation.setNomTypeFor(rstype.getString("nomTypeFor"));
+                
+            }
+            formation.setIdTypeFor(typeformation);
+            ListeForPartype.add(formation);
+        }
+        return ListeForPartype;
+    } 
+    
+    public List<Formation> AfficherListeFormationParTypeForClient(int idtypefor) throws SQLException
+    {
+        List<Formation> ListeForPartype = new ArrayList<>();
+        ResultSet rsformation=st.executeQuery("SELECT * FROM Formation where etatFor='en cours' and idTypeFor="+idtypefor);
      
         while(rsformation.next())
         {   

@@ -82,7 +82,10 @@ public class ChangerMotDePasseController implements Initializable {
     }
 
     @FXML
-    private void Annuler(ActionEvent event) {
+    private void Annuler(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));       
+        Parent root = loader.load();   
+        Annuler.getScene().setRoot(root);
     }
     
 }

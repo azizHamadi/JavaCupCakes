@@ -195,7 +195,7 @@ public class CRUDSessionsController implements Initializable {
         imgf=tableSession.getSelectionModel().getSelectedItem().getImagesess();
         if(!imgf.isEmpty())
         { txtimage.setText(imgf);}
-        image=new Image("file:///C://wamp3//www//CupCakesF//web//public//uploads//brochures//Formateur"+tableSession.getSelectionModel().getSelectedItem().getImagesess(),imageview.getFitWidth(),imageview.getFitHeight(),true,true);
+        image=new Image("file:///C://wamp64//www//final//web//public//uploads//brochures//Formateur"+tableSession.getSelectionModel().getSelectedItem().getImagesess(),imageview.getFitWidth(),imageview.getFitHeight(),true,true);
         imageview.setImage(image);
     }
 
@@ -251,7 +251,7 @@ public class CRUDSessionsController implements Initializable {
            txtimage.setText(file.getName());
            imgf = file.getName();
            fdS = file.getAbsolutePath();
-           fdS1 = ("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Formateur/"+file.getName());
+           fdS1 = ("C:/wamp64/www/final/web/public/uploads/brochures/Formateur/"+file.getName());
            //lab_image.setVisible(false);
                  
        }

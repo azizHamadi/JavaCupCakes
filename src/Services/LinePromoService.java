@@ -13,6 +13,10 @@ import Entity.SendMail;
 import Entity.SessionUser;
 import Entity.Utilisateur;
 import Technique.DataSource;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -29,6 +33,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -60,8 +65,8 @@ public class LinePromoService {
         pre.setInt(3, p.getIdPromo().getIdPromo());
         pre.setInt(4, p.getIdProd().getIdProd());
         pre.executeUpdate();
-       // mail();
-        //sms();
+        //mail();
+        sms();
            
         }
         public List<LinePromo> RecherchePromoProduit(int idProd) throws SQLException{
@@ -110,13 +115,17 @@ public class LinePromoService {
     }
     
     
-    /*public void sms() {
+    public void sms() {
     try {
    // Construct data
    String apiKey = "apikey=" + "qrJHQSx3Lto-Uwyhudz00LZJ4Up01HvwjCxsB4idY3";
-   String message = "&message=" + "un nouvea promotion est ajouter sur un produit";
+   String message = "&message=" + "un nouvea promotion est ajouter sur un produit consulter notre site pour plus des informations ";
    String sender = "&sender=" + "CupCakes";
-   String numbers = "&numbers=" + "+21652666307";
+    userServices us = new userServices();
+        List<Utilisateur> listU = us.listClient("a:1:{i:0;s:11:\"ROLE_CLIENT\";}"); 
+        for (Utilisateur user : listU)
+        {
+   String numbers = "&numbers=" + "+216"+user.getPhoneNumber();
     
    // Send data
    HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
@@ -133,20 +142,24 @@ public class LinePromoService {
     JOptionPane.showMessageDialog(null, "message"+line);
    }
    rd.close();
-    
+        }  
    //return stringBuffer.toString();
   } catch (Exception e) {
    //System.out.println("Error SMS "+e);
     JOptionPane.showMessageDialog(null, e);
    //return "Error "+e;
     }
-    }*/
+    }
 
-    public void mail() throws AddressException, MessagingException {
+    public void mail() throws AddressException, MessagingException, SQLException {
 
         String USER_NAME = "hamdi.fathallah.1@esprit.tn";
         String PASSWORD = "hamdifathallah";
-        String RECIPIENT = "hamdimatador9@gmail.com";
+        userServices us = new userServices();
+        List<Utilisateur> listU = us.listClient("a:1:{i:0;s:11:\"ROLE_CLIENT\";}"); 
+        for (Utilisateur user : listU)
+        {
+        String RECIPIENT = user.getEmail() ;
 
         String from = USER_NAME;
         String pass = PASSWORD;
@@ -155,6 +168,7 @@ public class LinePromoService {
         String body = "une nouvelle promotion a été ajouter";
         SendMail send = new SendMail();
         send.sendFromGMail(from, pass, to, subject, body);
+        }
 
     }
 
@@ -223,6 +237,7 @@ public class LinePromoService {
                 p.setPrixProd(rsp.getInt("prixProd"));
                 p.setNvPrix(rsp.getInt("nv_prix"));
                 p.setImageprod(rsp.getString("imageprod"));
+                p.setIdCat(new Categorie(rsp.getInt("idCat")));
             }
             ResultSet rspromo = ste2.executeQuery("select * from promotion where idPromo = " + rs.getInt("idPromo"));
             Promotion promo = new Promotion();
@@ -237,7 +252,7 @@ public class LinePromoService {
     
    public List<LinePromo> AfficherLinePromoS() throws SQLException {
         List<LinePromo> LinePromos = new ArrayList<>();
-        ResultSet rs = ste.executeQuery("select * from line_promo l , produit p , categorie c  WHERE c.idCat=p.idCat and l.idProd=p.idProd and etatLinePromo='en cours'" );
+        ResultSet rs = ste.executeQuery("select * from line_promo l , produit p , categorie c  WHERE c.idCat=p.idCat and l.idProd=p.idProd and l.etatLinePromo='en cours' " );
         while (rs.next()) {
             ResultSet rsp = ste1.executeQuery("select * from produit where idProd ="+rs.getInt("idProd"));
             Produit p = new Produit();
@@ -281,7 +296,7 @@ public class LinePromoService {
 
     public List<Produit> ProduitParCategorie(int idCat) throws SQLException {
         List<Produit> listP = new ArrayList<>();
-        ResultSet rsProduit = ste.executeQuery("select * from produit ,promotion , line_promo  where produit.idProd=line_promo.idProd and promotion.idPromo=line_promo.idPromo and produit.idCat=" + idCat);
+        ResultSet rsProduit = ste.executeQuery("select * from produit ,promotion , line_promo  where produit.idProd=line_promo.idProd and promotion.idPromo=line_promo.idPromo and line_promo.etatLinePromo='en cours' and  produit.idCat=" + idCat);
         while (rsProduit.next()) {
             Produit pr = new Produit();
             Utilisateur user = new Utilisateur();

@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="633.0" prefWidth="921.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.SingleFormation.SingleFormationController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="633.0" prefWidth="921.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.SingleFormation.SingleFormationController">
    <children>
       <ImageView fx:id="imageFor" fitHeight="276.0" fitWidth="269.0" layoutX="24.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="nomFormation" layoutX="249.0" layoutY="47.0" onMouseClicked="#btnRetour" prefHeight="55.0" prefWidth="475.0" text="NomFormation" textAlignment="CENTER" textFill="#e2b85b">

@@ -60,6 +60,7 @@ public class GererRecetteController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../Client/Recette/AjouterRecette/AjouterRecetteClient.fxml"));
         Node root = loader.load();
         AjouterRecetteClientController ac = loader.getController();
+        ac.setVbox(body);
         body.getChildren().clear();
         body.getChildren().add(root);
 

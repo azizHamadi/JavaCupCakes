@@ -33,6 +33,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 /**
@@ -68,6 +69,8 @@ public class AjouterProduitController implements Initializable {
     private Label labTypeProd;
     @FXML
     private Label labImage;
+    private VBox vbox; 
+    
 
     /**
      * Initializes the controller class.
@@ -100,7 +103,7 @@ String imagef="";
      System.out.println(f.getName());
                      }
          imagef = f.getName();
-         File fd = new File("C:/wamp3/www/CupCakesF/web/public/uploads/brochures/Produit/"+f.getName());
+        File fd = new File("C:/wamp64/www/final/web/public/uploads/brochures/Produit/"+f.getName());
          String imaged = "";
          imaged ="file:///"+fd.getAbsolutePath();
          Files.copy(f.getAbsoluteFile().toPath(),fd.getAbsoluteFile().toPath());
@@ -129,8 +132,8 @@ String imagef="";
         alert.show();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../ListeProduit/ListeProduit.FXML"));
         Parent root = loader.load();
-        typProd.getScene().setRoot(root);
-
+        vbox.getChildren().clear();
+        vbox.getChildren().add(root);
     }
 
     @FXML
@@ -226,6 +229,14 @@ String imagef="";
             labTypeProd.setVisible(false);
         
         return ( img==1 || nom==1 || cata==1 || qte==1 || type ==1 );
+    }
+
+    public VBox getVbox() {
+        return vbox;
+    }
+
+    public void setVbox(VBox vbox) {
+        this.vbox = vbox;
     }
 
 }

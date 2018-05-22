@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.ListAllPromoFormation.ListAllSessionPromoController">
+<AnchorPane id="AnchorPane" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.ListAllPromoFormation.ListAllSessionPromoController">
      <children>
-      <VBox fx:id="body" prefHeight="638.0" prefWidth="1010.0" style="-fx-background-color: #242a31;">
+      <VBox fx:id="body" prefHeight="638.0" prefWidth="1010.0" style="-fx-background-color: #20202f;">
          <children>
             <HBox fx:id="nav_search" prefHeight="62.0" prefWidth="961.0">
                <children>
@@ -57,7 +57,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </HBox>
-            <VBox fx:id="BodyVBox" prefHeight="569.0" prefWidth="1000.0" style="-fx-background-color: #242a31;">
+            <VBox fx:id="BodyVBox" prefHeight="569.0" prefWidth="1000.0" style="-fx-background-color: #20202f;">
                <children>
                   <HBox fx:id="nav_cat" prefHeight="117.0" prefWidth="1000.0">
                      <children>

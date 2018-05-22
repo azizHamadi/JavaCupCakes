@@ -10,24 +10,25 @@
     -fx-background-color:  #2f2f2fa3 ;
     -fx-text-fill: bisque;
     -fx-background-radius:100;
-   
 }
 .ComboBox{
       -fx-background-color:#2f2f2fa3 ;
       -fx-text-fill: bisque;
       -fx-background-radius:100;
-    
 }
 .input {
-    -fx-text-inner-color: #e2b85b;
+    -fx-text-fill: black;
     -fx-background-color:  transparent ;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #e2b85b;
 }
-
-.inputLogin {
-    -fx-text-inner-color: #e2b85b;
-    
+.inputClient {
+    -fx-text-fill: white;
     -fx-background-color:  transparent ;
-   
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #e2b85b;
+}
+.inputLogin {
+    -fx-text-inner-color: black;
+    -fx-background-color:  transparent ;
 }

@@ -17,6 +17,7 @@ import Views.Client.Recette.SingleRecette.SingleRecetteController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -172,7 +173,9 @@ public class ListAllRecettesController implements Initializable {
                 msc.setNomCat(rec.getIdCatRec().getNomCatRec());
                 msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
                 msc.setNomUser(rec.getIdUser().getUsername());
-                String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+                DecimalFormat df = new DecimalFormat();
+                df.setMaximumFractionDigits(2);
+                String moyenne = String.valueOf(df.format(ns.moyenneRecette(rec.getIdRec())));
                 msc.setNote("Note : "+moyenne+" /5");
                 ImageView img = msc.getImage();
                 img.setOnMouseClicked(e->{
@@ -279,7 +282,10 @@ public class ListAllRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
-            String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            String moyenne = String.valueOf(df.format(ns.moyenneRecette(rec.getIdRec())));
+
             msc.setNote("Note : "+moyenne+" /5");
 
             ImageView img = msc.getImage();
@@ -449,7 +455,10 @@ public class ListAllRecettesController implements Initializable {
             msc.setNomCat(rec.getIdCatRec().getNomCatRec());
             msc.setDescription(rec.getDescriptionRec().substring(0,30)+"...");
             msc.setNomUser(rec.getIdUser().getUsername());
-            String moyenne = String.valueOf(ns.moyenneRecette(rec.getIdRec()));
+            DecimalFormat df = new DecimalFormat();
+            df.setMaximumFractionDigits(2);
+            String moyenne = String.valueOf(df.format(ns.moyenneRecette(rec.getIdRec())));
+
             msc.setNote("Note : "+moyenne+" /5");
             ImageView img = msc.getImage();
             img.setOnMouseClicked(e->{

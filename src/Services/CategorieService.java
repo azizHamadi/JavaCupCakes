@@ -73,7 +73,7 @@ public class CategorieService {
     }
       public int CountPromoParCat(int idCat) throws SQLException{
         int count = 0 ;
-        ResultSet rs = ste.executeQuery("select count(*) from produit ,promotion , line_promo  where produit.idProd=line_promo.idProd and promotion.idPromo=line_promo.idPromo and produit.idCat="+idCat);
+        ResultSet rs = ste.executeQuery("select count(*) from produit ,promotion , line_promo  where produit.idProd=line_promo.idProd and promotion.idPromo=line_promo.idPromo and  line_promo.etatLinePromo = 'en cours' and produit.idCat="+idCat);
         while(rs.next())
             count = rs.getInt(1);
         return count;

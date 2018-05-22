@@ -6,6 +6,7 @@
 package Views.Patisserie.Recette;
 
 
+import Views.Patisserie.Recette.AjouterRecette.AjouterRecettePatisserieController;
 import Views.Patisserie.Recette.ListAllRecettes.ListAllRecettesController;
 import Views.Patisserie.Recette.MesRecettes.MesRecettesController;
 import java.io.IOException;
@@ -68,6 +69,8 @@ public class GererRecetteController implements Initializable {
     private void AjouterRecette(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterRecette/AjouterRecettePatisserie.fxml"));
         Node root = loader.load();
+        AjouterRecettePatisserieController RecAjout = loader.getController();
+        RecAjout.setVbox(body);
         body.getChildren().clear();
         body.getChildren().add(root);
     }

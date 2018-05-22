@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -121,6 +122,14 @@ public class AcceuilController implements Initializable {
         contenu.AfficherUser(us.listClient("a:1:{i:0;s:14:\"ROLE_FORMATEUR\";}"));
         vbox1.getChildren().clear();
         vbox1.getChildren().add(root);
+    }
+
+    @FXML
+    private void Deconnexion(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Login/Login.fxml"));
+        Parent root = loader.load();
+        Formateur.getScene().setRoot(root);
+
     }
 
    

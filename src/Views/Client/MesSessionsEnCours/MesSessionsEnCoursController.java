@@ -8,7 +8,9 @@ package Views.Client.MesSessionsEnCours;
 import Entity.Session;
 import Services.NoteService;
 import Services.SessionService;
+import Views.Client.Produit.ListAllProduit.ListAllProduitController;
 import Views.Client.Recette.ListAllRecettes.ListAllRecettesController;
+import Views.Client.SingleFormation.SingleFormationController;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -16,10 +18,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -27,6 +33,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
 
 /**
  * FXML Controller class
@@ -107,9 +114,23 @@ public class MesSessionsEnCoursController implements Initializable {
                 ImageView img = msc.getImage();
                 
                 img.setOnMouseClicked(e->{
-                    System.out.println("te5dem");
-                });
-                
+                    try {
+                        System.out.println("fi west el image");
+                        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("../SingleFormation/SingleFormation.fxml"));
+                        Parent root = loader1.load();
+                        SingleFormationController singlefor =loader1.getController();
+                        System.out.println("formation " + rec);
+                        //singlefor.setBody(BodyVBox);
+                        BodyVBox.getChildren().clear();
+                        BodyVBox.getChildren().add(root);
+                        singlefor.setNomFormation(rec.getNomSes());
+                        singlefor.setImageFor(rec.getImagesess());
+                        singlefor.setDateFormation(rec.getDateDebSes().toString());
+                       
+                    } catch (IOException ex) {
+                        Logger.getLogger(ListAllProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                });                 
                 hc.addColonne(nodesColonne[i]);
                 i++;
                 if(j==0 || j % 2 == 0){

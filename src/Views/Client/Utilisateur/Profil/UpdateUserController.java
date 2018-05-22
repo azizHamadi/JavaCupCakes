@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Views.Utilisateur.Update;
+package Views.Client.Utilisateur.Profil;
 
+import Entity.SessionUser;
 import Entity.Utilisateur;
 import Services.userServices;
 import Views.Utilisateur.Profil.ProfilController;
@@ -28,6 +29,7 @@ import javafx.stage.FileChooser;
 import java.nio.file.Files;
 import java.io.File;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 /**
  * FXML Controller class
  *
@@ -43,9 +45,7 @@ public class UpdateUserController implements Initializable {
     private JFXTextField Prenom;
     @FXML
     private JFXTextField Adresse;
-    @FXML
     private JFXTextField username;
-    @FXML
     private JFXTextField Email;
     private JFXTextField Paswword;
     @FXML
@@ -54,7 +54,7 @@ public class UpdateUserController implements Initializable {
     private Label labPrenom;
     @FXML
     private Label labAdresse;
-    private VBox body ;
+    //private VBox body ;
     @FXML
     private JFXButton tbnUpdate;
     @FXML
@@ -66,52 +66,40 @@ public class UpdateUserController implements Initializable {
     private JFXTextField Phone;
     @FXML
     private Label labAdresse1;
+    @FXML
+    private AnchorPane body;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        Adresse.setText(SessionUser.getAddresse());
+        Nom.setText(SessionUser.getNom());
+        Prenom.setText(SessionUser.getPrenom());
+        Phone.setText(SessionUser.getPhoneNumber());
+        setImageView(SessionUser.getImageProfil());
     } 
     
     @FXML
-    private void ModifierUser(ActionEvent event) throws SQLException, IOException {//modif mafhemtech pk plutot tsakkert wallah w jo3t :p hhhhhhh 5alleha l'2m1 plllzzzz !!! w matansech tna77i email w mp w username 5ater mayetbadlouch 
-     
-        User = new Utilisateur(Integer.parseInt(id.getText()), username.getText(), Email.getText(), Nom.getText(), Prenom.getText(),Adresse.getText(),imagef,Phone.getText());
+    private void ModifierUser(ActionEvent event) throws SQLException, IOException {
+        User = new Utilisateur(SessionUser.getId(), SessionUser.getUsername(),SessionUser.getEmail(), Phone.getText(), Adresse.getText(),Nom.getText(),Prenom.getText(),SessionUser.getImageProfil());
         userServices us = new userServices();
         us.ModifierLineUser(User);
-        
-        FXMLLoader loaderin = new FXMLLoader(getClass().getResource("../Profil/Profil.fxml"));
+        FXMLLoader loaderin = new FXMLLoader(getClass().getResource("ProfilClient.fxml"));
         Node UPDAu = loaderin.load();
-        ProfilController pc = loaderin.getController();
+        ProfilClientController pc = loaderin.getController();
         pc.setAdresse(User.getAddresse());
         pc.setEmail(User.getEmail());
         pc.setNom(User.getNom());
         pc.setPrenom(User.getPrenom());
         pc.setTelephone(User.getPhoneNumber());
-        pc.setImage(imagef);
+        pc.setImage(User.getImageProfil());
         body.getChildren().clear();
         body.getChildren().add(UPDAu);
-        pc.setUser(User);
-        pc.setBody(body);
+       // pc.setUser(User);
+        pc.setBodyprofil(body);
         
-        
-        /*ic.setCsR(CsR);
-        ic.setBodyModif(bodyModif);
-        ic.setRec(r);
-        ic.setDescription(r.getDescriptionRec());
-        ic.setNomRec(r.getNomRec());
-        ic.setUsername(r.getIdUser().getUsername());
-        ic.setNbrComment(nbrComment.getText());
-        ic.setMoyenne(moyenne.getText());
-        ic.setCatRec(r.getIdCatRec().getNomCatRec());
-        ic.setCsR(CsR);*/
-        //mcc.setvCatRec(rec.getIdCatRec().getNomCatRec());
-        //mazel ne9es 
-        
-        /*mcc.getBodyModif().getChildren().clear();
-        mcc.getBodyModif().getChildren().add(infoRecette);*/
-        
+     
     }
 
     public JFXTextField getPhone() {
@@ -178,20 +166,22 @@ public class UpdateUserController implements Initializable {
         this.Email.setText(Email);
     }
 
-    public VBox getBody() {
+    public AnchorPane getBody() {
         return body;
     }
 
-    public void setBody(VBox body) {
+    public void setBody(AnchorPane body) {
         this.body = body;
     }
+
+    
 
     public ImageView getImageView() {
         return ImageView;
     }
 
     public void setImageView(String ImageView) {
-          File file = new File ("C:/wamp64/www/final/web/public/uploads/brochures/User/"+ImageView);
+        File file = new File ("C:/wamp64/www/final/web/public/uploads/brochures/User/"+ImageView);
         this.ImageView.setImage(new Image(file.toURI().toString()));
     }
 

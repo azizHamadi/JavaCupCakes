@@ -8,39 +8,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1210.0" stylesheets="@roua.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Utilisateur.Login.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1210.0" styleClass="root" stylesheets="@../Register/registerfxml.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Utilisateur.Login.LoginController">
    <children>
-      <Text fill="#e2b85b" fontSmoothingType="LCD" layoutX="400.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion" textAlignment="CENTER" wrappingWidth="365.13671875">
-         <font>
-            <Font name="Georgia Bold" size="48.0" />
-         </font>
-      </Text>
-      <JFXTextField fx:id="login" focusColor="#e2b85b" layoutX="350.0" layoutY="202.0" prefHeight="56.0" prefWidth="351.0" promptText="Login" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
-         <font>
-            <Font name="Georgia" size="30.0" />
-         </font>
-      </JFXTextField>
-      <Text fx:id="message" layoutX="500.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-      <Button fx:id="btn5" layoutX="482.0" layoutY="648.0" mnemonicParsing="false" text=" Facebook" />
-      <JFXButton layoutX="338.0" layoutY="405.0" onAction="#LoginAction" prefHeight="49.0" prefWidth="351.0" text="Se Connecter" textFill="#e2b85b">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </JFXButton>
-      <JFXButton fx:id="Register" layoutX="348.0" layoutY="487.0" onAction="#Register" prefHeight="47.0" prefWidth="155.0" text="S'inscrire" textFill="#e2b85b">
-         <font>
-            <Font name="System Bold" size="23.0" />
-         </font>
-      </JFXButton>
-      <JFXButton layoutX="514.0" layoutY="487.0" onAction="#PasswordOublier" prefHeight="60.0" prefWidth="294.0" text="Mot de passe oublier" textFill="#e2b85b">
-         <font>
-            <Font name="System Bold" size="23.0" />
-         </font>
-      </JFXButton>
-      <JFXPasswordField fx:id="mdp" focusColor="#e2b85b" layoutX="338.0" layoutY="310.0" prefHeight="31.0" prefWidth="365.0" promptText="Mot de passe" styleClass="inputLogin" stylesheets="@registerfxml.css" unFocusColor="#e2b85b">
-         <font>
-            <Font name="Georgia" size="30.0" />
-         </font>
-      </JFXPasswordField>
+      <AnchorPane layoutX="335.0" layoutY="73.0" prefHeight="554.0" prefWidth="540.0" style="-fx-background-color: rgba(255, 255,255, 0.8); -fx-background-radius: 2em; -fx-border-color: #e2b85b; -fx-border-radius: 2em; -fx-border-width: 5;">
+         <children>
+            <Text fill="#e2b85b" fontSmoothingType="LCD" layoutX="77.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion" textAlignment="CENTER" wrappingWidth="365.13671875">
+               <font>
+                  <Font name="Georgia Bold" size="48.0" />
+               </font>
+            </Text>
+            <JFXTextField fx:id="login" focusColor="#e2b85b" layoutX="98.0" layoutY="159.0" prefHeight="56.0" prefWidth="365.0" promptText="Login" styleClass="input" stylesheets="@../Register/registerfxml.css" unFocusColor="#e2b85b">
+               <font>
+                  <Font name="Georgia" size="30.0" />
+               </font>
+            </JFXTextField>
+            <JFXPasswordField fx:id="mdp" focusColor="#e2b85b" layoutX="98.0" layoutY="232.0" prefHeight="31.0" prefWidth="365.0" promptText="Mot de passe" styleClass="input" stylesheets="@../Register/registerfxml.css" unFocusColor="#e2b85b">
+               <font>
+                  <Font name="Georgia" size="30.0" />
+               </font>
+            </JFXPasswordField>
+            <Button fx:id="facebook" layoutX="216.0" layoutY="496.0" mnemonicParsing="false" onAction="#loginFacebook" style="-fx-background-color: #3b5998;" text=" Facebook" textFill="WHITE" />
+            <JFXButton layoutX="94.0" layoutY="313.0" onAction="#LoginAction" prefHeight="49.0" prefWidth="351.0" ripplerFill="BLACK" text="Se Connecter" textFill="#e2b85b">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="Register" layoutX="45.0" layoutY="394.0" onAction="#Register" prefHeight="47.0" prefWidth="155.0" ripplerFill="BLACK" text="S'inscrire" textFill="#e2b85b">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="207.0" layoutY="389.0" onAction="#PasswordOublier" prefHeight="60.0" prefWidth="294.0" ripplerFill="BLACK" text="Mot de passe oublier" textFill="#e2b85b">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

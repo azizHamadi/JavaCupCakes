@@ -94,8 +94,6 @@
                </font></Label>
          </children>
       </VBox>
-      <JFXButton fx:id="Modifier" layoutX="438.0" layoutY="81.0" onAction="#ModifierUser" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: #eb8a91;" text="Modifier" />
       <JFXButton fx:id="Retour" layoutX="438.0" layoutY="393.0" onAction="#Retour" prefHeight="43.0" prefWidth="106.0" style="-fx-background-color: #eb8a91;" text="Acceuil" />
-      <JFXButton fx:id="ajout" layoutX="438.0" layoutY="26.0" onAction="#Enregistrer" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: #eb8a91;" text="Ajouter Image" visible="false" />
    </children>
 </AnchorPane>
