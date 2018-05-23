@@ -70,12 +70,15 @@ public class ChangerMotDePasseController implements Initializable {
             
             Motdepasse.getScene().setRoot(root);
         }
-        else
+        else 
         {
             Alert alert  = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Verification mot de passe");
             alert.setHeaderText(null);
-            alert.setContentText("please entrer un mot de passe valide");
+            if(!Motdepasse.getText().equals(CMotdepasse.getText()))  
+                alert.setContentText("Mot de passe de confirmation incorrecte !");
+            else
+                alert.setContentText("Mot de passe de confirmation incorrecte !");
             alert.showAndWait();
         }
             

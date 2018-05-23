@@ -35,7 +35,7 @@
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>
                         </WebView>
-                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #e25a92;">
+                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #e4b95b;">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>

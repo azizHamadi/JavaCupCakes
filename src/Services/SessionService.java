@@ -265,7 +265,7 @@ public class SessionService {
     //yelzem nzid fazet el iduser
     public ObservableList<Session> SearchListeSessions(String nomSession) throws SQLException
     {
-         ResultSet rssession=st.executeQuery("SELECT * FROM Session WHERE etatSes='en cours' AND nomSes LIKE '%"+nomSession+"%' AND Session.idFor=Formatin.idFor AND Formation.idUser="+SessionUser.getId());
+         ResultSet rssession=st.executeQuery("SELECT * FROM Session,Formation WHERE Session.etatSes='en cours' AND Session.nomSes LIKE '%"+nomSession+"%' AND Session.idFor=Formation.idFor AND Formation.idUser="+SessionUser.getId());
      
         while(rssession.next())
         {   

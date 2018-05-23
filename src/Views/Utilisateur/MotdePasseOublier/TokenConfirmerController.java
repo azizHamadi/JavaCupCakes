@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -57,6 +58,14 @@ public class TokenConfirmerController implements Initializable {
             cmp.setUser(user);
             anchorpane.getChildren().clear();
             anchorpane.getChildren().add(root);
+        }
+        else
+        {
+            Alert alert  = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Verification de token de confirmation");
+            alert.setHeaderText(null);
+            alert.setContentText("verifier votre token dans votre adresse email !");
+            alert.showAndWait();
         }
             
     }

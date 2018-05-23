@@ -27,13 +27,13 @@
                   <TableView fx:id="tableFormation" onMouseClicked="#FetcherTable" prefHeight="554.0" prefWidth="572.0" style="-fx-border-color: #96cad9; -fx-background-color: #f4f3ef;">
                     <columns>
                       <TableColumn fx:id="columnNom" prefWidth="67.0" text="Nom " />
-                        <TableColumn fx:id="columntypeformation" prefWidth="117.0" text="TypeFormation" />
+                        <TableColumn fx:id="columntypeformation" prefWidth="117.0" text="Type" />
                         <TableColumn fx:id="columnidFormation" prefWidth="60.0" text="Formation" visible="false" />
                         <TableColumn fx:id="columndate" prefWidth="150.0" text="Date" />
                         <TableColumn fx:id="columnImage" prefWidth="67.0" text="Image" visible="false" />
                         <TableColumn fx:id="columnlong" prefWidth="75.0" text="Longitude" />
                         <TableColumn fx:id="columnLat" prefWidth="75.0" text="atitude" />
-                        <TableColumn fx:id="columnDescription" prefWidth="75.0" text="Description" />
+                        <TableColumn fx:id="columnDescription" prefWidth="75.0" text="Description" visible="false" />
                     </columns>
                   </TableView>
                   <JFXTextField fx:id="txtSearch" onKeyTyped="#SearchFormation" promptText="Search formation" unFocusColor="#96cad9" />
@@ -88,7 +88,8 @@
                   <JFXTextField fx:id="txtlong" layoutX="17.0" layoutY="68.0" promptText="longitude" unFocusColor="#96cad9" />
                   <JFXTextField fx:id="txtatitude" layoutX="17.0" layoutY="118.0" promptText="atitude" unFocusColor="#96cad9" />
                   <Label fx:id="labellat" layoutX="187.0" layoutY="122.0" text="veuillez saisir la longitude" textFill="#e11010" visible="false" />
-                  <HTMLEditor fx:id="txtDescription" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="21.0" layoutY="296.0" prefHeight="200.0" prefWidth="506.0" />
+                  <HTMLEditor fx:id="txtDescription" htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="38.0" layoutY="289.0" prefHeight="200.0" prefWidth="506.0" />
+
                </children>
             </AnchorPane>
          </children>

@@ -532,10 +532,10 @@ ex.printStackTrace();        }
     
     @FXML
     private void SearchSession(KeyEvent event) {
-          SessionService service=new SessionService();
+         SessionService service=new SessionService();
         try {
             tableSession.setItems(service.SearchListeSessions(txtSearch.getText()));
-            System.out.println("rechercher session");
+            System.out.println("rechercher");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

@@ -80,8 +80,7 @@ public class TypeFormation {
 
     @Override
     public String toString() {
-        return "Entity.TypeFormation[ idTypeFor=" + idTypeFor + " ]";
+        return ""+nomTypeFor ;
     }
-    
     
 }

@@ -210,10 +210,10 @@ public Formation(int idFor,String nomFor, String place, String etatFor, String d
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
-        return "idFor=" + idFor + ", nomFor=" + nomFor + ", place=" + place + ", etatFor=" + etatFor + ", descriptionFor=" + descriptionFor + ", dateFor=" + dateFor + ", imageform=" + imageform + ", idTypeFor=" + idTypeFor + ", idUser=" + idUser + '}';
+        return nomFor ;
     }
 
 }

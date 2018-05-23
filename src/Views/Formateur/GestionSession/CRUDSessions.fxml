@@ -24,14 +24,14 @@
                   <TableView fx:id="tableSession" onMouseClicked="#FetcherTable" prefHeight="554.0" prefWidth="572.0" style="-fx-border-color: #96cad9; -fx-background-color: #f4f3ef;">
                     <columns>
                       <TableColumn fx:id="columnNom" prefWidth="67.0" text="Nom " />
-                      <TableColumn fx:id="columnDateDebut" prefWidth="85.0" text="Date debut" />
-                        <TableColumn fx:id="columnDateFin" prefWidth="82.0" text="Date fin" />
-                        <TableColumn fx:id="columnFormation" prefWidth="139.0" text="Formation" />
-                        <TableColumn fx:id="columnCapacite" prefWidth="86.0" text="Capacite" />
+                      <TableColumn fx:id="columnDateDebut" prefWidth="119.0" text="Date debut" />
+                        <TableColumn fx:id="columnDateFin" prefWidth="105.0" text="Date fin" />
+                        <TableColumn fx:id="columnFormation" prefWidth="95.0" text="Formation" />
+                        <TableColumn fx:id="columnCapacite" prefWidth="73.0" text="Capacite" />
                         <TableColumn fx:id="columnPrix" prefWidth="108.0" text="Prix" />
                         <TableColumn fx:id="columnImage" prefWidth="67.0" text="Image" visible="false" />
                         <TableColumn fx:id="columnidSession" minWidth="0.0" prefWidth="0.0" text="idSession" />
-                        <TableColumn fx:id="columnImage" prefWidth="150.0" text="Image" />
+                        <TableColumn fx:id="columnImage" prefWidth="150.0" text="Image" visible="false" />
                     </columns>
                   </TableView>
                   <JFXTextField fx:id="txtSearch" onKeyTyped="#SearchSession" promptText="Search session" unFocusColor="#96cad9" />

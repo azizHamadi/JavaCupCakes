@@ -63,7 +63,7 @@ public class CRUDFormationsController implements Initializable {
     private TableColumn<Formation, String> columnImage;
     @FXML
     private JFXTextField txtSearch;
-    @FXML
+ @FXML
     private AnchorPane anchorPane;
     @FXML
     private JFXTextField txtNom;
@@ -140,11 +140,11 @@ Stage stage;
     @FXML
     private Label labellat;
     @FXML
-    private TableColumn<?, ?> columnlong;
+    private TableColumn<Formation, String> columnlong;
     @FXML
-    private TableColumn<?, ?> columnLat;
+    private TableColumn<Formation, String> columnLat;
     @FXML
-    private TableColumn<?, ?> columnDescription;
+    private TableColumn<Formation, String> columnDescription;
     
     /**
      * Initializes the controller class.
@@ -476,7 +476,7 @@ Stage stage;
 
     @FXML
     private void SearchFormation(KeyEvent event) {
-           ServiceFormation service=new ServiceFormation();
+            ServiceFormation service=new ServiceFormation();
         try {
             tableFormation.setItems(service.SearchListeFormation(txtSearch.getText()));
             System.out.println("rechercher");
