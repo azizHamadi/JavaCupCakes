@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.ListAllPromotions.CategorieProdFiltreController">
+<AnchorPane id="AnchorPane" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.ListAllPromotions.CategorieProdFiltreController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="80.0" prefWidth="184.0">
          <children>
@@ -30,7 +30,7 @@
                         </Text>
                         <HBox prefHeight="18.0" prefWidth="141.0">
                            <children>
-                              <Text fx:id="afficherProduit" fill="#e4b95b" strokeType="OUTSIDE" strokeWidth="0.0" text="Afficher les produits" underline="true">
+                              <Text fx:id="afficherProduit" fill="#9f4e4e" strokeType="OUTSIDE" strokeWidth="0.0" text="Afficher les produits" underline="true">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="13.0" />
                                  </font>
@@ -48,7 +48,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" layoutX="18.0" layoutY="-5.0" prefHeight="44.0" prefWidth="55.0" style="-fx-background-color: #e4b95b; -fx-background-radius: 1em;">
+                  <VBox alignment="CENTER" layoutX="18.0" layoutY="-5.0" prefHeight="44.0" prefWidth="55.0" style="-fx-background-color: #9f4e4e; -fx-background-radius: 1em;">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>

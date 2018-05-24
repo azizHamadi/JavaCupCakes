@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.HTMLEditor?>
 
-<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1000.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.AjouterRecette.AjouterRecetteClientController">
+<AnchorPane id="AnchorPane" prefHeight="635.0" prefWidth="1000.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.AjouterRecette.AjouterRecetteClientController">
    <children>
       <ComboBox fx:id="catRec" layoutX="45.0" layoutY="94.0" prefHeight="31.0" prefWidth="358.0" promptText="Categorie Recette">
          <cursor>
@@ -41,16 +41,16 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </TextField>
-      <Text fill="#e4b95b" layoutX="43.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Une recette">
+      <Text fill="#9f4e4e" layoutX="43.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Une recette">
          <font>
             <Font name="Arial Rounded MT Bold" size="25.0" />
          </font>
       </Text>
-      <Button fx:id="Enregistrer" layoutX="827.0" layoutY="595.0" mnemonicParsing="false" onAction="#AjouterRecetteClient" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="WHITE">
+      <Button fx:id="Enregistrer" layoutX="827.0" layoutY="595.0" mnemonicParsing="false" onAction="#AjouterRecetteClient" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="#9f4e4e">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="Annuler" layoutX="657.0" layoutY="596.0" mnemonicParsing="false" onAction="#AnnulerAjoutRecetteClient" prefHeight="31.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Annuler" textFill="WHITE">
+      <Button fx:id="Annuler" layoutX="657.0" layoutY="596.0" mnemonicParsing="false" onAction="#AnnulerAjoutRecetteClient" prefHeight="31.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Annuler" textFill="#9f4e4e">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -68,7 +68,7 @@
          </font></Label>
       <Button fx:id="AjouterCategorie" layoutX="410.0" layoutY="98.0" mnemonicParsing="false" onAction="#AjouterCategorie" prefHeight="28.0" prefWidth="21.0" style="-fx-background-color: transparent;">
          <graphic>
-            <FontAwesomeIconView fill="#e4b95b" glyphName="PLUS" size="18" />
+            <FontAwesomeIconView fill="#9f4e4e" glyphName="PLUS" size="18" />
          </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />

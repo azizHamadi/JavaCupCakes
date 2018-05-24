@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="190.0" prefWidth="219.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.ListAllPromoFormation.Moraba3s8irController">
+<AnchorPane id="AnchorPane" prefHeight="190.0" prefWidth="219.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.ListAllPromoFormation.Moraba3s8irController">
     <children>
       <VBox fx:id="session" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="247.0">
          <children>
@@ -40,7 +40,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Text>
-                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #e4b95b;">
+                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #9f4e4e;">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>

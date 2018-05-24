@@ -8,21 +8,21 @@ and open the template in the editor.
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #242a31;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.test.folder.ClientTemplateController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.test.folder.ClientTemplateController">
    <children>
-      <VBox prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #242a31;">
+      <VBox prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #edadad;">
          <children>
-            <HBox prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #242a31;">
+            <HBox prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #edadad;">
                <children>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="132.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#Profil" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: transparent;" text="Profil" textFill="#e4b95b">
+                        <Button mnemonicParsing="false" onAction="#Profil" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: transparent;" text="Profil" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
@@ -31,7 +31,7 @@ and open the template in the editor.
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="134.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#GestionProduit" style="-fx-background-color: transparent;" text="Produits" textFill="#e4b95b">
+                        <Button mnemonicParsing="false" onAction="#GestionProduit" style="-fx-background-color: transparent;" text="Produits" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
@@ -40,37 +40,26 @@ and open the template in the editor.
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="154.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#GestionCommande" style="-fx-background-color: transparent;" text="Commandes" textFill="#e4b95b">
+                        <Button mnemonicParsing="false" onAction="#GestionCommande" style="-fx-background-color: transparent;" text="Commandes" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
                         </Button>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="55.0" prefWidth="145.0" style="-fx-background-color: transparent; -fx-border-color: #e4b95b; -fx-border-width: 3px; -fx-border-radius: 5em;">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <children>
-                        <Text fill="#e4b95b" strokeType="OUTSIDE" strokeWidth="0.0" text="CupCakes">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="25.0" />
-                           </font>
-                        </Text>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="140.0">
                      <children>
-                        <Button fx:id="GestionFormations" mnemonicParsing="false" onAction="#GestionFormations" style="-fx-background-color: transparent;" text="Formations" textFill="#e4b95b">
+                        <Button fx:id="GestionFormations" mnemonicParsing="false" onAction="#GestionFormations" style="-fx-background-color: transparent;" text="Formations" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
+                  <ImageView fitHeight="87.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="148.0">
                      <children>
-                        <Button fx:id="btnPromotion" mnemonicParsing="false" onAction="#GestionPromotion" style="-fx-background-color: transparent;" text="Promotions" textFill="#e4b95b">
+                        <Button fx:id="btnPromotion" mnemonicParsing="false" onAction="#GestionPromotion" style="-fx-background-color: transparent;" text="Promotions" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
@@ -79,17 +68,20 @@ and open the template in the editor.
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="136.0">
                      <children>
-                        <Button fx:id="btnRecette" mnemonicParsing="false" onAction="#GestionRecette" style="-fx-background-color: transparent;" text="Recettes" textFill="#e4b95b">
+                        <Button fx:id="btnRecette" mnemonicParsing="false" onAction="#GestionRecette" style="-fx-background-color: transparent;" text="Recettes" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="20.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  <Button fx:id="Deconnexion" mnemonicParsing="false" onAction="#Deconnexion" prefHeight="53.0" prefWidth="167.0" style="-fx-background-color: transparent;" text="Deconnexion" textFill="#e4b95b">
+                  <Button fx:id="Deconnexion" mnemonicParsing="false" onAction="#Deconnexion" prefHeight="53.0" prefWidth="167.0" style="-fx-background-color: transparent;" text="Deconnexion" textFill="#9f4e4e">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="20.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </Button>
                </children>
                <VBox.margin>

@@ -7,34 +7,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="body" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Utilisateur.Profil.UpdateUserController">
+<AnchorPane id="AnchorPane" fx:id="body" prefHeight="628.0" prefWidth="1200.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Utilisateur.Profil.UpdateUserController">
    <children>
-      <Label fx:id="labNom" layoutX="290.0" layoutY="170.0" prefHeight="39.0" prefWidth="273.0" text="Nom" textFill="#e2b85b">
+      <Label fx:id="labNom" layoutX="290.0" layoutY="170.0" prefHeight="39.0" prefWidth="273.0" text="Nom" textFill="#9f4e4e">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label fx:id="labPrenom" layoutX="290.0" layoutY="111.0" prefHeight="39.0" prefWidth="253.0" text="Prenom" textFill="#e2b85b">
+      <Label fx:id="labPrenom" layoutX="290.0" layoutY="111.0" prefHeight="39.0" prefWidth="253.0" text="Prenom" textFill="#9f4e4e">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <Label fx:id="labAdresse" layoutX="290.0" layoutY="245.0" prefHeight="39.0" prefWidth="273.0" text="Adresse" textFill="#e2b85b">
+      <Label fx:id="labAdresse" layoutX="290.0" layoutY="245.0" prefHeight="39.0" prefWidth="273.0" text="Adresse" textFill="#9f4e4e">
          <font>
             <Font size="27.0" />
          </font>
       </Label>
-      <JFXButton fx:id="tbnUpdate" layoutX="655.0" layoutY="407.0" onAction="#ModifierUser" prefHeight="43.0" prefWidth="190.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Modifier" textFill="WHITE">
+      <JFXButton fx:id="tbnUpdate" layoutX="655.0" layoutY="407.0" onAction="#ModifierUser" prefHeight="43.0" prefWidth="190.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Modifier" textFill="#9f4e4e">
          <font>
             <Font size="23.0" />
          </font></JFXButton>
-      <JFXTextField fx:id="Nom" focusColor="#e2b85b" layoutX="666.0" layoutY="173.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#e2b85b" />
-      <JFXTextField fx:id="Prenom" focusColor="#e2b85b" layoutX="666.0" layoutY="114.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#e2b85b" />
-      <JFXTextField fx:id="Adresse" focusColor="#e2b85b" layoutX="666.0" layoutY="248.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#e2b85b" />
+      <JFXTextField fx:id="Nom" focusColor="#9f4e4e" layoutX="666.0" layoutY="173.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#9f4e4e" />
+      <JFXTextField fx:id="Prenom" focusColor="#9f4e4e" layoutX="666.0" layoutY="114.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#9f4e4e" />
+      <JFXTextField fx:id="Adresse" focusColor="#9f4e4e" layoutX="666.0" layoutY="248.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#9f4e4e" />
       <ImageView fx:id="ImageView" fitHeight="229.0" fitWidth="253.0" layoutX="55.0" layoutY="41.0" onMouseClicked="#AjouterImage" pickOnBounds="true" preserveRatio="true" />
       <JFXTextField fx:id="id" layoutX="310.0" layoutY="438.0" visible="false" />
-      <JFXTextField fx:id="Phone" focusColor="#e2b85b" layoutX="666.0" layoutY="314.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#e2b85b" />
-      <Label fx:id="labAdresse1" layoutX="290.0" layoutY="311.0" prefHeight="39.0" prefWidth="313.0" text="Numero de telephone" textFill="#e2b85b">
+      <JFXTextField fx:id="Phone" focusColor="#9f4e4e" layoutX="666.0" layoutY="314.0" prefHeight="32.0" prefWidth="386.0" styleClass="inputClient" stylesheets="@../../../Utilisateur/Register/registerfxml.css" unFocusColor="#9f4e4e" />
+      <Label fx:id="labAdresse1" layoutX="290.0" layoutY="311.0" prefHeight="39.0" prefWidth="313.0" text="Numero de telephone" textFill="#9f4e4e">
          <font>
             <Font size="27.0" />
          </font>

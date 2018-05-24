@@ -15,55 +15,55 @@
 <?import javafx.scene.web.WebView?>
 <?import org.controlsfx.control.Rating?>
 
-<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #20202f; -fx-border-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.SingleRecette.SingleRecetteController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #edadad; -fx-border-radius: 1em;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.SingleRecette.SingleRecetteController">
    <children>
-      <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="620.0" prefWidth="1003.0" style="-fx-background-color: #20202f;">
+      <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="620.0" prefWidth="1003.0" style="-fx-background-color: #edadad;">
         <content>
-          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="984.0" style="-fx-background-color: #20202f; -fx-border-radius: 1em; -fx-background-radius: 2em;">
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="984.0" style="-fx-background-color: #edadad; -fx-border-radius: 1em; -fx-background-radius: 2em;">
                <children>
-                  <VBox alignment="CENTER" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="982.0" style="-fx-background-color: #20202f;">
+                  <VBox alignment="CENTER" layoutY="-1.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="982.0" style="-fx-background-color: #edadad;">
                      <children>
                         <ImageView fx:id="imageRecette" fitHeight="152.0" fitWidth="801.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-radius: 2em;" />
                         <VBox prefHeight="317.0" prefWidth="942.0">
                            <children>
                               <HBox prefHeight="30.0" prefWidth="925.0">
                                  <children>
-                                    <FontAwesomeIconView fill="#e4b95b" glyphName="USER" size="25">
+                                    <FontAwesomeIconView fill="#9f4e4e" glyphName="USER" size="25">
                                        <HBox.margin>
                                           <Insets left="50.0" />
                                        </HBox.margin>
                                     </FontAwesomeIconView>
-                                    <Label fx:id="username" text="Username" textFill="#ffe1a1">
+                                    <Label fx:id="username" text="Username" textFill="#9f4e4e">
                                        <HBox.margin>
                                           <Insets left="3.0" top="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <FontAwesomeIconView fill="#e4b95b" glyphName="COMMENTS" size="25">
+                                    <FontAwesomeIconView fill="#9f4e4e" glyphName="COMMENTS" size="25">
                                        <HBox.margin>
                                           <Insets left="200.0" />
                                        </HBox.margin>
                                     </FontAwesomeIconView>
-                                    <Label fx:id="nbrComment" text="nbr" textFill="#ffe1a1">
+                                    <Label fx:id="nbrComment" text="nbr" textFill="#9f4e4e">
                                        <HBox.margin>
                                           <Insets left="4.0" top="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="username12" text=" commentaire(s)" textFill="#ffe1a1">
+                                    <Label fx:id="username12" text=" commentaire(s)" textFill="#9f4e4e">
                                        <HBox.margin>
                                           <Insets left="3.0" top="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <FontAwesomeIconView fill="#e4b95b" glyphName="STAR" size="25">
+                                    <FontAwesomeIconView fill="#9f4e4e" glyphName="STAR" size="25">
                                        <HBox.margin>
                                           <Insets left="200.0" />
                                        </HBox.margin>
                                     </FontAwesomeIconView>
-                                    <Label fx:id="username11" text="Moyenne : " textFill="#ffe1a1">
+                                    <Label fx:id="username11" text="Moyenne : " textFill="#9f4e4e">
                                        <HBox.margin>
                                           <Insets left="3.0" top="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <Label fx:id="moyenne" text="nbr" textFill="#ffe1a1">
+                                    <Label fx:id="moyenne" text="nbr" textFill="#9f4e4e">
                                        <HBox.margin>
                                           <Insets left="3.0" top="5.0" />
                                        </HBox.margin>
@@ -75,7 +75,7 @@
                               </HBox>
                               <HBox prefHeight="57.0" prefWidth="942.0">
                                  <children>
-                                    <Label fx:id="nomRec" prefHeight="36.0" prefWidth="421.0" text="Nom Recette" textFill="#e4b95b">
+                                    <Label fx:id="nomRec" prefHeight="36.0" prefWidth="421.0" text="Nom Recette" textFill="#9f4e4e">
                                        <font>
                                           <Font name="Arial Rounded MT Bold" size="30.0" />
                                        </font>
@@ -100,7 +100,7 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </HBox>
-                              <Label fx:id="CatRec" text="Nom CategorieRecette" textFill="#ffe1a1">
+                              <Label fx:id="CatRec" text="Nom CategorieRecette" textFill="#ae5f5f">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="20.0" />
                                  </font>
@@ -120,7 +120,7 @@
                         </VBox>
                         <VBox prefHeight="136.0" prefWidth="956.0">
                            <children>
-                              <Label alignment="CENTER" text="Commentaire" textFill="#ffe1a1">
+                              <Label alignment="CENTER" text="Commentaire" textFill="#ae5f5f">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="20.0" />
                                  </font>
@@ -145,7 +145,7 @@
                         </VBox>
                         <HBox alignment="TOP_RIGHT" prefHeight="37.0" prefWidth="956.0">
                            <children>
-                              <Button fx:id="Enregistrer" mnemonicParsing="false" onAction="#AjouterCommentaire" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="WHITE">
+                              <Button fx:id="Enregistrer" mnemonicParsing="false" onAction="#AjouterCommentaire" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="#9f4e4e">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>

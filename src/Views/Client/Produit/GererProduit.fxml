@@ -11,11 +11,11 @@
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="628.0" prefWidth="1200.0" stylesheets="@../../common.css">
          <children>
-            <VBox fx:id="nav_bar" prefHeight="628.0" prefWidth="200.0" style="-fx-background-color: #20202f;">
+            <VBox fx:id="nav_bar" prefHeight="628.0" prefWidth="200.0" style="-fx-background-color: #edadad;">
                <children>
                   <VBox id="side_nav" prefHeight="615.0" prefWidth="239.0" style="-fx-background-color: #f4f2ed; -fx-background-radius: 3em;" stylesheets="@../../common.css">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #20202f; -fx-border-width: 0 0 0 7px;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="180.0" style="-fx-border-color: #9f4e4e; -fx-border-width: 0 0 0 7px;">
                            <padding>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
@@ -23,19 +23,19 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                            <children>
-                              <FontAwesomeIconView fill="#20202f" glyphName="USER" size="2em">
+                              <FontAwesomeIconView fill="#9f4e4e" glyphName="USER" size="2em">
                                  <HBox.margin>
                                     <Insets left="1.0" />
                                  </HBox.margin>
                               </FontAwesomeIconView>
-                              <Button fx:id="btnListeProduit" mnemonicParsing="false" onAction="#ListeProduit" style="-fx-background-color: transparent;" text="Liste des produits" textFill="#383848">
+                              <Button fx:id="btnListeProduit" mnemonicParsing="false" onAction="#ListeProduit" style="-fx-background-color: transparent;" text="Liste des produits" textFill="#9f4e4e">
                                  <HBox.margin>
                                     <Insets top="9.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-width: 0 0 0 7px; -fx-border-color: #20202f;">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-border-width: 0 0 0 7px; -fx-border-color: #9f4e4e;">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
@@ -43,8 +43,8 @@
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                            </padding>
                            <children>
-                              <FontAwesomeIconView fill="#20202f" glyphName="USER" size="2em" />
-                              <Button mnemonicParsing="false" onAction="#PANIER" style="-fx-background-color: transparent;" text="Panier" textFill="#383848">
+                              <FontAwesomeIconView fill="#9f4e4e" glyphName="USER" size="2em" />
+                              <Button mnemonicParsing="false" onAction="#PANIER" style="-fx-background-color: transparent;" text="Panier" textFill="#9f4e4e">
                                  <HBox.margin>
                                     <Insets top="10.0" />
                                  </HBox.margin>
@@ -61,7 +61,7 @@
                   </VBox>
                </children>
             </VBox>
-            <VBox fx:id="body" prefHeight="628.0" prefWidth="1000.0" style="-fx-background-color: #20202f;" />
+            <VBox fx:id="body" prefHeight="628.0" prefWidth="1000.0" style="-fx-background-color: #edadad;" />
          </children>
       </HBox>
    </children>

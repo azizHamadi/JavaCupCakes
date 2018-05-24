@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="body" prefHeight="473.0" prefWidth="701.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Commande.Feedback.FeedbackController">
+<AnchorPane id="AnchorPane" fx:id="body" prefHeight="473.0" prefWidth="701.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Commande.Feedback.FeedbackController">
    <children>
-      <JFXTextArea fx:id="description" focusColor="#e2b85b" layoutX="48.0" layoutY="97.0" prefHeight="251.0" prefWidth="591.0" promptText="Description" styleClass="inputtxtcommande" stylesheets="@../../../common.css" unFocusColor="#e2b85b" />
-      <JFXTextField fx:id="sujet" focusColor="#e2b85b" layoutX="48.0" layoutY="37.0" prefHeight="32.0" prefWidth="193.0" promptText="Sujet" styleClass="inputtxtcommande" stylesheets="@../../../common.css" unFocusColor="#e2b85b" />
-      <Button layoutX="507.0" layoutY="384.0" mnemonicParsing="false" onAction="#Enregistrer" prefHeight="47.0" prefWidth="147.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Envoyer" textFill="WHITE">
+      <JFXTextArea fx:id="description" focusColor="#9f4e4e" layoutX="48.0" layoutY="97.0" prefHeight="251.0" prefWidth="591.0" promptText="Description" styleClass="inputtxtcommande" stylesheets="@../../../common.css" unFocusColor="#9f4e4e" />
+      <JFXTextField fx:id="sujet" focusColor="#9f4e4e" layoutX="48.0" layoutY="37.0" prefHeight="32.0" prefWidth="193.0" promptText="Sujet" styleClass="inputtxtcommande" stylesheets="@../../../common.css" unFocusColor="#9f4e4e" />
+      <Button layoutX="507.0" layoutY="384.0" mnemonicParsing="false" onAction="#Enregistrer" prefHeight="47.0" prefWidth="147.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Envoyer" textFill="#9f4e4e">
          <font>
             <Font size="18.0" />
          </font>

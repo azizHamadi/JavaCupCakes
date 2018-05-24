@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.MesRecettes.Commentaire.VcommentaireController">
+<AnchorPane id="AnchorPane" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.MesRecettes.Commentaire.VcommentaireController">
    <children>
       <VBox fx:id="vboxReplay" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="800.0">
          <children>
@@ -34,7 +34,7 @@
                   <Insets right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="Enregistrer" mnemonicParsing="false" onAction="#AjouterCommentaire" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../../common.css" text="Enregistrer" textFill="WHITE">
+                  <Button fx:id="Enregistrer" mnemonicParsing="false" onAction="#AjouterCommentaire" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../../common.css" text="Enregistrer" textFill="#9f4e4e">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

@@ -72,11 +72,11 @@ input[type="text"] {
 
 .btn-add-recette{
 -fx-background-color: 
-        linear-gradient(#242333, #222131),
-        linear-gradient(#404156, #37384c),
-        linear-gradient(#2b2c3e, #262535),
-        linear-gradient(#242333, #242333 50%, #222131 100%),
-        linear-gradient(from 5% 5% to 25% 50%, rgba(34,33,49,39), rgba(47,48,66,53));
+        linear-gradient(#f4f2ed, #f4f2ee),
+        linear-gradient(#f4f2ee, #f4f2ef),
+        linear-gradient(#f4f2ef, #f4f2eg),
+        linear-gradient(#f4f2eg, #f7f3f2 50%, #ffffff 100%),
+        linear-gradient(from 5% 5% to 25% 50%, rgba(247,243,242,39), rgba(247,243,242,53));
     -fx-background-insets: 0,1,2,3,0;
     -fx-background-radius: 10em;
     -fx-border-radius: 10em;

@@ -8,14 +8,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="body" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Panier.ConfirmerAdre.CommandeController">
+<AnchorPane id="AnchorPane" fx:id="body" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Panier.ConfirmerAdre.CommandeController">
    <children>
-      <JFXDatePicker fx:id="dateliv" defaultColor="#e2b85b" layoutX="84.0" layoutY="113.0" prefHeight="41.0" prefWidth="264.0" promptText="Date de livraison" stylesheets="@../../../common.css">
+      <JFXDatePicker fx:id="dateliv" defaultColor="#9f4e4e" layoutX="84.0" layoutY="113.0" prefHeight="41.0" prefWidth="264.0" promptText="Date de livraison" stylesheets="@../../../common.css">
          <styleClass>
             <String fx:value="inputPanier" />
             <String fx:value="inputtxtcommande" />
          </styleClass></JFXDatePicker>
-      <JFXTextField fx:id="Adrliv" focusColor="#e2b85b" layoutX="84.0" layoutY="234.0" prefHeight="41.0" prefWidth="264.0" promptText="Adresse de Livraison" stylesheets="@../../../common.css" unFocusColor="#e2b85b">
+      <JFXTextField fx:id="Adrliv" focusColor="#9f4e4e" layoutX="84.0" layoutY="234.0" prefHeight="41.0" prefWidth="264.0" promptText="Adresse de Livraison" stylesheets="@../../../common.css" unFocusColor="#9f4e4e">
          <font>
             <Font size="19.0" />
          </font>
@@ -23,7 +23,7 @@
             <String fx:value="inputPanier" />
             <String fx:value="inputtxtcommande" />
          </styleClass></JFXTextField>
-      <Button layoutX="413.0" layoutY="392.0" mnemonicParsing="false" onAction="#Confirmer" prefHeight="54.0" prefWidth="232.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Confirmer" textFill="WHITE">
+      <Button layoutX="413.0" layoutY="392.0" mnemonicParsing="false" onAction="#Confirmer" prefHeight="54.0" prefWidth="232.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Confirmer" textFill="#9f4e4e">
          <font>
             <Font size="20.0" />
          </font></Button>

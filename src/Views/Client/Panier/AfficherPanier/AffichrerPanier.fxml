@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Panier.AfficherPanier.AfficherPanierController">
+<AnchorPane id="AnchorPane" prefHeight="517.0" prefWidth="748.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Panier.AfficherPanier.AfficherPanierController">
    <children>
-      <JFXButton layoutX="528.0" layoutY="442.0" onAction="#Valider" prefHeight="50.0" prefWidth="145.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Valider" textFill="WHITE">
+      <JFXButton id="btn-add-recette" layoutX="528.0" layoutY="442.0" onAction="#Valider" prefHeight="50.0" prefWidth="145.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Valider" textFill="#9f4e4e">
          <font>
             <Font name="Georgia" size="21.0" />
          </font></JFXButton>
@@ -18,7 +18,7 @@
          <children>
             <HBox fx:id="Entete" prefHeight="84.0" prefWidth="709.0">
                <children>
-                  <Text fill="#e2b85b" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit" textAlignment="CENTER" wrappingWidth="104.13671875">
+                  <Text fill="#9f4e4e" strokeType="OUTSIDE" strokeWidth="0.0" text="Produit" textAlignment="CENTER" wrappingWidth="104.13671875">
                      <font>
                         <Font name="Georgia" size="24.0" />
                      </font>
@@ -26,7 +26,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fill="#e2b85b" layoutX="20.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix Unitaire" textAlignment="CENTER" wrappingWidth="106.13671875">
+                  <Text fill="#9f4e4e" layoutX="20.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix Unitaire" textAlignment="CENTER" wrappingWidth="106.13671875">
                      <font>
                         <Font name="Georgia" size="24.0" />
                      </font>
@@ -34,7 +34,7 @@
                         <Insets bottom="10.0" left="30.0" right="30.0" top="5.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fill="#e2b85b" layoutX="20.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité" textAlignment="CENTER" wrappingWidth="104.13671875">
+                  <Text fill="#9f4e4e" layoutX="20.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité" textAlignment="CENTER" wrappingWidth="104.13671875">
                      <font>
                         <Font name="Georgia" size="24.0" />
                      </font>
@@ -42,7 +42,7 @@
                         <Insets bottom="10.0" left="30.0" right="30.0" top="5.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fill="#e2b85b" layoutX="135.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" textAlignment="CENTER" wrappingWidth="70.13671875">
+                  <Text fill="#9f4e4e" layoutX="135.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" textAlignment="CENTER" wrappingWidth="70.13671875">
                      <font>
                         <Font name="Georgia" size="24.0" />
                      </font>

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane id="AnchorPane" prefHeight="181.0" prefWidth="257.0" style="-fx-background-color: #20202f;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.MesSessionsEnCours.Morabba3s8irController">
+<AnchorPane id="AnchorPane" prefHeight="181.0" prefWidth="257.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.MesSessionsEnCours.Morabba3s8irController">
    <children>
       <VBox fx:id="prod" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="130.0" prefWidth="247.0">
          <children>
@@ -35,7 +35,7 @@
                               <Insets left="5.0" right="5.0" />
                            </VBox.margin>
                         </WebView>
-                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #e4b95b;">
+                        <HBox prefHeight="25.0" prefWidth="239.0" style="-fx-background-color: #9f4e4e;">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>

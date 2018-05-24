@@ -11,13 +11,13 @@
 
 <AnchorPane id="AnchorPane" fx:id="anchorComment" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.Commentaire.CommentaireController">
    <children>
-      <VBox fx:id="commentaire" maxWidth="1.7976931348623157E308" prefHeight="148.0" prefWidth="850.0" style="-fx-background-color: #20202f;">
+      <VBox fx:id="commentaire" maxWidth="1.7976931348623157E308" prefHeight="148.0" prefWidth="850.0" style="-fx-background-color: #edadad;">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="691.0" style="-fx-border-color: white; -fx-border-radius: 0.5em;">
+            <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="691.0" style="-fx-border-color: #9f4e4e; -fx-border-radius: 0.5em;">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="395.0">
                      <children>
-                        <Label fx:id="username" text="User" textFill="WHITE">
+                        <Label fx:id="username" text="User" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="16.0" />
                            </font>
@@ -25,7 +25,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="date" text="- Date" textFill="WHITE">
+                        <Label fx:id="date" text="- Date" textFill="#9f4e4e">
                            <font>
                               <Font name="Arial Rounded MT Bold" size="16.0" />
                            </font>
@@ -35,7 +35,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button fx:id="Modifier" mnemonicParsing="false" onAction="#ModifierCommentaire" prefHeight="31.0" prefWidth="125.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Modifier" textFill="WHITE">
+                  <Button fx:id="Modifier" mnemonicParsing="false" onAction="#ModifierCommentaire" prefHeight="31.0" prefWidth="125.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Modifier" textFill="#9f4e4e">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -43,7 +43,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="Supprimer" mnemonicParsing="false" onAction="#SupprimerCommentaire" prefHeight="33.0" prefWidth="125.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Supprimer" textFill="WHITE">
+                  <Button fx:id="Supprimer" mnemonicParsing="false" onAction="#SupprimerCommentaire" prefHeight="33.0" prefWidth="125.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Supprimer" textFill="#9f4e4e">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -57,7 +57,7 @@
                <children>
                   <VBox fx:id="vreplay" maxWidth="1.7976931348623157E308" prefWidth="100.0">
                      <children>
-                        <Label fx:id="bodyCom" text="Label" textFill="WHITE">
+                        <Label fx:id="bodyCom" text="Label" textFill="#9f4e4e">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -70,7 +70,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </VBox>
-                  <Button fx:id="replay" mnemonicParsing="false" onAction="#AfficherCommentaire" prefHeight="31.0" prefWidth="100.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Replay" textFill="WHITE">
+                  <Button fx:id="replay" mnemonicParsing="false" onAction="#AfficherCommentaire" prefHeight="31.0" prefWidth="100.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Replay" textFill="#9f4e4e">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

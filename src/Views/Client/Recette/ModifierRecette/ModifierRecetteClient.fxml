@@ -13,49 +13,48 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.HTMLEditor?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="980.0" style="-fx-background-color: #20202f;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="Views.Client.Recette.ModifierRecette.ModifierRecetteClientController">
+<AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="980.0" style="-fx-background-color: #edadad;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Views.Client.Recette.ModifierRecette.ModifierRecetteClientController">
    <children>
       <VBox fx:id="vbody" maxWidth="1.7976931348623157E308" prefHeight="577.0" prefWidth="944.0">
          <children>
             <HBox prefHeight="30.0" prefWidth="925.0">
                <children>
-                  <FontAwesomeIconView fill="#e4b95b" glyphName="USER" size="25">
+                  <FontAwesomeIconView fill="#9f4e4e" glyphName="USER" size="25">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
                   </FontAwesomeIconView>
-                  <Label fx:id="username" text="Username" textFill="#ffe1a1">
+                  <Label fx:id="username" text="Username" textFill="#9f4e4e">
                      <HBox.margin>
                         <Insets left="3.0" top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <FontAwesomeIconView fill="#e4b95b" glyphName="COMMENT" size="25">
+                  <FontAwesomeIconView fill="#9f4e4e" glyphName="COMMENT" size="25">
                      <HBox.margin>
                         <Insets left="250.0" />
                      </HBox.margin>
                   </FontAwesomeIconView>
-                  <Label fx:id="nbrComment" text="nbr" textFill="#ffe1a1">
+                  <Label fx:id="nbrComment" text="nbr" textFill="#9f4e4e">
                      <HBox.margin>
                         <Insets left="4.0" top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="username12" text=" commentaire(s)" textFill="#ffe1a1">
+                  <Label fx:id="username12" text=" commentaire(s)" textFill="#9f4e4e">
                      <HBox.margin>
                         <Insets left="3.0" top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <FontAwesomeIconView fill="#e4b95b" glyphName="STAR" size="25">
+                  <FontAwesomeIconView fill="#9f4e4e" glyphName="STAR" size="25">
                      <HBox.margin>
                         <Insets left="200.0" />
                      </HBox.margin>
                   </FontAwesomeIconView>
-                  <Label fx:id="username11" text="Moyenne : " textFill="#ffe1a1">
+                  <Label fx:id="username11" text="Moyenne : " textFill="#9f4e4e">
                      <HBox.margin>
                         <Insets left="3.0" top="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="moyenne" text="nbr" textFill="#ffe1a1">
+                  <Label fx:id="moyenne" text="nbr" textFill="#9f4e4e">
                      <HBox.margin>
                         <Insets left="3.0" top="5.0" />
                      </HBox.margin>
@@ -92,7 +91,7 @@
                               <Insets bottom="20.0" left="5.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <Label text="Description" textFill="#ffe1a1">
+                        <Label text="Description" textFill="#9f4e4e">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -103,7 +102,7 @@
                         <HTMLEditor fx:id="description" htmlText="" prefHeight="364.0" prefWidth="921.0" />
                         <HBox alignment="TOP_RIGHT" prefHeight="78.0" prefWidth="849.0">
                            <children>
-                              <Button fx:id="Annuler" mnemonicParsing="false" onAction="#AnnulerModification" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Annuler" textFill="WHITE">
+                              <Button fx:id="Annuler" mnemonicParsing="false" onAction="#AnnulerModification" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Annuler" textFill="#9f4e4e">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
@@ -111,7 +110,7 @@
                                     <Insets right="20.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="Enregistrer" mnemonicParsing="false" onAction="#ModifierCommentaire" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="WHITE">
+                              <Button fx:id="Enregistrer" mnemonicParsing="false" onAction="#ModifierCommentaire" prefHeight="33.0" prefWidth="142.0" styleClass="btn-add-recette" stylesheets="@../../../common.css" text="Enregistrer" textFill="#9f4e4e">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
